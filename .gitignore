@@ -1,7 +1,7 @@
 **/dist/main.js
-.config
+config.js
 .DS_Store
-bundle.js
-node_modules/
+**/dist/bundle.js
+node_modules
 .vscode
-.env
+/*.env
