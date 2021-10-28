@@ -1,11 +1,11 @@
 {
-  "name": "fec-catwalk",
+  "name": "my-webpack-project",
   "version": "1.0.0",
-  "description": "this is catwalk",
+  "description": "My webpack project",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "dev": "webpack --mode development",
+    "react-dev": "webpack --mode development --watch",
+    "server-dev": "npx nodemon server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +19,20 @@
   },
   "homepage": "https://github.com/jinicha/fec-catwalk#readme",
   "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.1.0",
+    "eslint-plugin-react": "^7.26.1",
     "webpack": "^5.60.0",
     "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "express": "^4.15.0",
+    "jquery": "^3.6.0",
+    "react": "^16.4",
+    "react-dom": "^16.4"
   }
 }
