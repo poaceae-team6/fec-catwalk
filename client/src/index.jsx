@@ -1,19 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App.jsx';
 
-class App extends React.Component {
-  constructor (props) {
-    super(props);
-  }
-
-  render () {
-
-    return (
-      <div>
-        <h1> react is running </h1>
-      </div>
-    )
-  }
-}
 
 ReactDOM.render(<App />, document.getElementById('app'));
