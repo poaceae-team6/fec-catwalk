@@ -15,4 +15,4 @@ class QuestionList extends React.Component {
   }
 }
 
-export default QuestionList
+export default QuestionList;
