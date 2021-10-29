@@ -8,16 +8,16 @@ const sampleProductIdData = {
   "category": "Basketball Shoes",
   "default_price": "0",
   "features": [
-  {
-          "feature": "Sole",
-          "value": "Rubber"
-      },
-  {
-          "feature": "Material",
-          "value": "FullControlSkin"
-      },
-  // ...
-  ],
+    {
+      "feature": "Sole",
+      "value": "Rubber"
+    },
+    {
+      "feature": "Material",
+      "value": "FullControlSkin"
+    },
+    // ...
+  ]
 }
 
 export defualt sampleProductIdData;
