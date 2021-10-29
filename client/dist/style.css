@@ -5,7 +5,7 @@
 body {
   display: block;
   margin: auto;
-  width: 1280px;
+  width: 1120px;
   line-height: 1.4;
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
@@ -38,14 +38,14 @@ h3 {
 .logo {
   background-color: #525252;
   color: white;
-  height: 80px;
-  padding-left: 50px;
+  height: 70px;
+  padding-left: 30px;
 }
 
 .logo h1 {
   margin: 0px;
   text-decoration: underline;
-  font-size: 25px;
+  font-size: 20px;
   padding-top: 25px;
   font-weight: bolder;
   font-style: italic;
@@ -84,6 +84,14 @@ h3 {
 /* Products
 /*******************/
 
+.related-products-card {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.related-products-card img {
+  height: 320px
+}
 
 /*******************/
 /* Questions
