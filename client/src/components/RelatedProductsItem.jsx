@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class RelatedProducts extends Component {
+class RelatedProductsItem extends Component {
   constructor(props) {
     
   }
@@ -9,4 +9,4 @@ class RelatedProducts extends Component {
   }
 }
 
-export defualt RelatedProducts;
+export defualt RelatedProductsItem;
