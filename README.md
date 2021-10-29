@@ -6,7 +6,8 @@ This is a front end capstone project at Hack Reactor.
 ## Installation
 - Fork and clone the repo
 - Run `npm install`
-- Run `npm run build`
+- Run `npm run react-dev`
+- Run `npm run server-dev` (in a seperate terminal)
 
 ## Tools
 - Babel
