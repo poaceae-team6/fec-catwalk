@@ -1,18 +1,18 @@
 import React from 'react';
 import QuestionList from './QuestionList.jsx';
+import RelatedProducts from './RelatedProducts.jsx';
 
 // Import sampleData for testing purposes
 // Related Products
-import sampleProductsData from '../../related_products/sampleProductsData.js';
-import sampleProductIdData from '../../related_products/sampleProductIdData.js'
-import sampleProductIdRelatedData from '../../related_products/sampleProductIdRelatedData.js';
+import sampleProductIdData from '../assets/related_products/sampleProductIdData.js'
+
 
 class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       // sample data for current product retrieved by id
-      tempCurrentProduct: {sampleProductIdData};
+      tempCurrentProduct: {sampleProductIdData},
       // shared component for Overview & Outfit
       tempOutfitList: []
     };
@@ -21,8 +21,10 @@ class App extends React.Component {
   render () {
 
     return (
-      <RelatedProducts />
-      <QuestionList />
+      <div>
+        <RelatedProducts outfitIdList={this.state.tempOutfitList}/>
+        <QuestionList />
+      </div>
     )
   }
 }
