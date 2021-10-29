@@ -27,4 +27,4 @@ const sampleProductsData = [
   }
 ];
 
-export default sampleProductsData
+export default sampleProductsData;

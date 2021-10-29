@@ -20,4 +20,4 @@ const sampleProductIdData = {
   ]
 }
 
-export defualt sampleProductIdData;
+export default sampleProductIdData;
