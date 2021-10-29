@@ -12,7 +12,7 @@ class QuestionList extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='questions'>
         <h3>Questions & Answers</h3>
         QuestionList goes here
       </div>

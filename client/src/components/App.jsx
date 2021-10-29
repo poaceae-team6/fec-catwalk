@@ -4,6 +4,12 @@ import QuestionList from './QuestionList.jsx';
 class App extends React.Component {
   constructor (props) {
     super(props);
+
+    this.state = {
+
+      currentProduct: {}
+
+    };
   }
 
   render () {
