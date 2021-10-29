@@ -12,6 +12,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 
+// API: https://app-hrsei-api.herokuapp.com/api/fec2/:hr-rfp/
+
 app.get('/api', (req, res) => {
   // call your api to fetch data
   //axios.get('/')
