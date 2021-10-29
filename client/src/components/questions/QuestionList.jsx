@@ -1,5 +1,6 @@
 import React from 'react';
 import QuestionItem from './QuestionItem.jsx';
+import Search from './Search.jsx';
 
 class QuestionList extends React.Component {
   constructor(props) {
@@ -58,14 +59,26 @@ class QuestionList extends React.Component {
     };
   }
 
+  sortData () {
+    let results = this.state.data.results;
+    let sorted = [];
+
+    for (let i = 0; i < results.length; i++) {
+      results[i].question_helpfulness
+    }
+  }
+
   getData () {
     // send request to server asking API data
   }
 
   render () {
+
+
     return (
       <div className='questions-container'>
         <p>Questions & Answers</p>
+        <Search />
         <ul>
           {this.state.data.results.map((question, index) => <QuestionItem key={index} question={question}/>)}
         </ul>
