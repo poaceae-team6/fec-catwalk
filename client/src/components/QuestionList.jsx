@@ -6,9 +6,14 @@ class QuestionList extends React.Component {
 
   }
 
+  getData () {
+    // send request to server asking API data
+  }
+
   render () {
     return (
       <div>
+        <h3>Questions & Answers</h3>
         QuestionList goes here
       </div>
     )
