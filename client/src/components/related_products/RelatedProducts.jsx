@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import RelatedProductsItem from './relatedProducts/RelatedProductsItem.jsx';
+import RelatedProductsItem from './RelatedProductsItem.jsx';
 
 import sampleProductsdData from '../../assets/related_products/sampleProductsData.js';
 
