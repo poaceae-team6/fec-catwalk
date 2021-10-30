@@ -7,11 +7,18 @@ class Reviews extends React.Component {
     super(props);
   }
 
-
   render () {
 
     return (
       <div>
+        <div>Sort</div>
+        <div>ReviewList</div>
+        <button>
+          More Review
+        </button>
+        <button>
+          Write New Review
+        </button>
 
       </div>
     )

@@ -1,4 +1,7 @@
 import React from 'react';
+import RatingSummary from './RatingSummary.jsx';
+import Recommend from './Recommend.jsx';
+import StarBreakdown from './StarBreakdown.jsx';
 
 
 class RatingBreakdown extends React.Component {
@@ -6,17 +9,12 @@ class RatingBreakdown extends React.Component {
     super(props);
   }
 
-
   render () {
-
     return (
       <div>
-        <div>ScaleIcon</div>
-        <div>ScaleIcon</div>
-        <div>ScaleIcon</div>
-        <div>ScaleIcon</div>
-        <div>ScaleIcon</div>
-        <div>ScaleIcon</div>
+        <div><RatingSummary /></div>
+        <div><Recommend /></div>
+        <div><StarBreakdown /></div>
       </div>
     )
   }

@@ -11,9 +11,12 @@ class ProductBreakdown extends React.Component {
 
     return (
       <div>
-        <div>RatingSummary</div>
-        <div>Recommendations</div>
-        <div>Breakdown</div>
+        <div>ScaleIcon</div>
+        <div>ScaleIcon</div>
+        <div>ScaleIcon</div>
+        <div>ScaleIcon</div>
+        <div>ScaleIcon</div>
+        <div>ScaleIcon</div>
       </div>
     )
   }
