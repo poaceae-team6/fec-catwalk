@@ -8,7 +8,7 @@ class RelatedProductsItem extends Component {
   // fetch styles data using id to get the image url
   
   render() {
-    return (     
+    return (
     <div className='related-products-card'>
       <img src='./img/related_products_img_placeholder.png'/>
     </div>
