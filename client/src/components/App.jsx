@@ -1,6 +1,6 @@
 import React from 'react';
 import QuestionList from './questions/QuestionList.jsx';
-import ReviewMain from './review/ReviewMain.jsx';
+import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 import RelatedProducts from './RelatedProducts.jsx';
 
 // Import sampleData for testing purposes
@@ -27,7 +27,7 @@ class App extends React.Component {
         <div className='overview-container'>Overview Goes Here</div>
         <RelatedProducts outfitIdList={this.state.tempOutfitList}/>
         <QuestionList />
-        <div>Review Goes Here</div>
+        <div id='review'>Review Goes Here</div>
         <ReviewMain />
       </div>
     )

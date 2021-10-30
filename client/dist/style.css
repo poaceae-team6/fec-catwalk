@@ -102,6 +102,24 @@ h3 {
 /* Ratings
 /*******************/
 
+#leftbar {
+  float: left;
+  clear: left;
+  height: 1000px;
+  width: 24%;
+  border: solid rgb(141, 110, 110);
+  border-top-left-radius: 0.5px;
+  padding: 10px;
+}
+
+#rightbar {
+  float: right;
+  height: 1000px;
+  width: 70%;
+  border: solid rgb(141, 110, 110);
+  border-top-left-radius: 0.5px;
+  padding: 10px;
+}
 
 /*******************/
 /* Footer

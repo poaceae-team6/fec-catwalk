@@ -5,7 +5,7 @@ class RelatedProductsItem extends Component {
     super(props);
   }
   render() {
-    return (     
+    return (
     <div className='related-products-card'>
       <img src='./img/related_card_placeholder.png'/>
     </div>
