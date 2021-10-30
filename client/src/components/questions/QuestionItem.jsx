@@ -4,7 +4,7 @@ import Answer from './Answer.jsx';
 const QuestionItem = (props) => {
 
  let answers = Object.values (props.question.answers);
- console.log(answers);
+
 
   return (
     <div>

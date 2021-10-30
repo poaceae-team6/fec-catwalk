@@ -56,6 +56,7 @@ class QuestionList extends React.Component {
 
       ]
       },
+    length: 4,
     };
   }
 
@@ -74,14 +75,21 @@ class QuestionList extends React.Component {
 
   render () {
 
+    //only 4 questions will be visiable by default
+    let data = this.state.data.results;
+    // need to sort by helpfuness
+
+    //slice the data array to set the defaut length
+    data = data.slice(0, this.state.length);
 
     return (
       <div className='questions-container'>
         <p>Questions & Answers</p>
         <Search />
         <ul>
-          {this.state.data.results.map((question, index) => <QuestionItem key={index} question={question}/>)}
+          {data.map((question, index) => <QuestionItem key={index} question={question}/>)}
         </ul>
+        <button>MORE ANSWERED QUESTIONS</button>  |  <button>ADD A QUESTIONS +</button>
       </div>
     )
   }
