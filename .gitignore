@@ -5,3 +5,4 @@ config.js
 node_modules
 .vscode
 /*.env
+package-lock.json

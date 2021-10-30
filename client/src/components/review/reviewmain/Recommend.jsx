@@ -1,20 +1,11 @@
-
 import React from 'react';
 
-
-class Recommend extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render () {
-
-    return (
-      <div>
-        % of customer recommend it
-      </div>
-    )
-  }
+function Recommend() {
+  return (
+    <div>
+      % of customer recommend it
+    </div>
+  );
 }
 
 
