@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { AiFillStar } from "react-icons/ai";
 
 
 const StarRating = () => {
@@ -32,7 +32,7 @@ const StarRating = () => {
               onMouseOver={() => setHover(ratingValue)}
               onMouseOut={() => setHover(null)}
             />
-            <FaStar
+            <AiFillStar
               className="star"
               color= {ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
               size= {20}
