@@ -1,7 +1,7 @@
 import React from 'react';
 import QuestionList from './questions/QuestionList.jsx';
+import RelatedProducts from './related_products/RelatedProducts.jsx';
 import ReviewMain from './review/reviewmain/ReviewMain.jsx';
-import RelatedProducts from './RelatedProducts.jsx';
 
 // Import sampleData for testing purposes
 // Related Products
