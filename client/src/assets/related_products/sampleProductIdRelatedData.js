@@ -1,10 +1,10 @@
-// GET /products/:product_id/related
+// GET /products/40344/related
 
 const sampleProductIdRelatedData = [
-  2,
-  3,
-  8,
-  7
-];
+  40345,
+  40346,
+  40351,
+  40350
+]
 
 export default sampleProductIdRelatedData;
