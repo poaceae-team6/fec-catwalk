@@ -5,7 +5,7 @@ const Answer = (props) => {
   return (
     <div>
       <p> A: {props.answer.body}</p>
-      <span> by User{props.answer.id}</span>  |  <span>helpful?  Yes ({props.answer.helpfulness})</span>  |  <span>report</span>
+      <span> by User {props.answer.answerer_name}</span>  |  <span>helpful?  Yes ({props.answer.helpfulness})</span>  |  <span>report</span>
     </div>
 
   )

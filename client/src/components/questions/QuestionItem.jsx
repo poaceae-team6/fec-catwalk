@@ -5,6 +5,12 @@ const QuestionItem = (props) => {
 
  let answers = Object.values (props.question.answers);
 
+ //sort the answers by helpfulness
+
+ //slice the array to the correct length
+ answers = answers.slice(0, 2);
+
+
 
   return (
     <div>
