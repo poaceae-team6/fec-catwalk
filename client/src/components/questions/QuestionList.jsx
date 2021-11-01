@@ -31,7 +31,7 @@ const QuestionList = (props) => {
                         "body": "Its made in china.",
                         "date": "2021-09-20T00:00:00.000Z",
                         "answerer_name": "jack",
-                        "helpfulness": 0,
+                        "helpfulness": 6,
                         "photos": []
                     },
                     "3990001": {
@@ -110,12 +110,12 @@ const QuestionList = (props) => {
     // send request to server asking API data
   };
 
-  const sortData = (questions) => {
+  const sortQuestions = (questions) => {
 
     let compare = (a, b) => {
       let voteA = a.question_helpfulness;
       let voteB = b.question_helpfulness;
-      console.log('A: ', a, 'B: ', b);
+
       let comparision = 0;
       if (voteA < voteB) {
         comparision = 1;
@@ -148,7 +148,7 @@ const QuestionList = (props) => {
   } else {
     // if there are questions
     // need to sort by helpfuness
-    sortData(data);
+    sortQuestions(data);
 
     //slice the data array to set the defaut length
     data = data.slice(0, state.length);
