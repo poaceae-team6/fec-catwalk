@@ -142,7 +142,7 @@ const QuestionList = (props) => {
       <div className='questions-container'>
         <p>Questions & Answers</p>
 
-        <button>ADD A QUESTIONS +</button>
+        <button>ADD A QUESTION +</button>
       </div>
     )
   } else {
