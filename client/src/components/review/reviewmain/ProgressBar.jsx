@@ -5,31 +5,30 @@ const ProgressBar = () => {
   // const { '#ffc107', 60 } = props;
 
   const containerStyles = {
-    float: 'right',
+    display: 'inline-block',
     height: 5,
     width: '70%',
-    backgroundColor: '#e4e5e9',
-    margin: 30
+    backgroundColor: '#e4e5e9'
   }
 
   const fillerStyles = {
     height: '100%',
     width: '60%',
     backgroundColor: '#4d4d4d',
-    textAlign: 'right'
   }
 
-  // const label = {
-  //   white-space: nowrap;
-  // }
+  const label = {
+    display: 'inline-block',
+    paddingRight: '10px',
+    textDecoration: 'underline'
+  }
 
   return (
-    <div>
-      <div >1 star:
-        <div style={containerStyles}>
+    <div style={{whiteSpace: 'nowrap'}}>
+      <div style={label}>1 star:</div>
+      <div style={containerStyles}>
           <div style={fillerStyles}>
           </div>
-        </div>
       </div>
 
     </div>

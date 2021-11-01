@@ -4,8 +4,13 @@ import ProgressBar from './ProgressBar.jsx';
 
 function StarBreakdown() {
   return (
-    <div>
+    <div style={{marginTop: '20px', marginBottom: '40px'}}>
       <ProgressBar />
+      <ProgressBar />
+      <ProgressBar />
+      <ProgressBar />
+      <ProgressBar />
+
     </div>
   );
 }
