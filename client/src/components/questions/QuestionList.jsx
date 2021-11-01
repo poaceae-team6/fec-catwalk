@@ -8,136 +8,99 @@ const QuestionList = (props) => {
   const [state, setState] = useState(
     {
       data: {
-        "product_id": "40344",
+        "product_id": "40347",
         "results": [
-          {
-            "question_id": 426460,
-            "question_body": "Can you actually be seen in the camo onesie?",
-            "question_date": "2021-09-24T00:00:00.000Z",
-            "asker_name": "Lt. Dan",
-            "question_helpfulness": 9,
-            "reported": false,
-            "answers": {
-              "3990304": {
-                "id": 3990304,
-                "body": "It's like you're wearing harry potter's invisible cloak.....",
-                "date": "2021-09-24T00:00:00.000Z",
-                "answerer_name": "Forest",
-                "helpfulness": 12,
-                "photos": [
-                  "https://firebasestorage.googleapis.com/v0/b/fec-iroh.appspot.com/o/55fc732add0895843d8b4708.jpeg?alt=media&token=174bf4a5-7f65-4ebc-93d0-33b15b6e0b80"
-                ]
-              },
-              "3990317": {
-                "id": 3990317,
-                "body": "No, I blend in completely!",
-                "date": "2021-09-24T00:00:00.000Z",
-                "answerer_name": "Zuko",
-                "helpfulness": 0,
-                "photos": [
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526457/parxzslwt2fwnjiqd8lu.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526458/q4wl9uawwzcrf5lprx44.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526457/cimta26dmsglwajw8ted.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526457/uosxfyrpwk9cop5mmpa5.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526457/ofr0af0azefvplwiune4.jpg"
-                ]
-              },
-              "3990318": {
-                "id": 3990318,
-                "body": "No, I blend in completely!",
-                "date": "2021-09-24T00:00:00.000Z",
-                "answerer_name": "Zuko",
-                "helpfulness": 0,
-                "photos": [
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526467/mxkoyikxdut7jt6dydxz.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526470/qipotsk0uqbymn3hmgrk.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526460/ra5dlbjd3uvizpmxvlgg.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526466/rzt8jlco8psy3ivu3bjy.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526466/jthtefzpdez8t5haleok.jpg"
-                ]
-              },
-              "3990319": {
-                "id": 3990319,
-                "body": "No, I blend in completely!",
-                "date": "2021-09-24T00:00:00.000Z",
-                "answerer_name": "Zuko",
-                "helpfulness": 0,
-                "photos": [
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526478/xy0f7ipvgv8ia9o4cjtx.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526468/sclgbgtimg9z1mpzmfmj.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526471/ts9srvud0fucwg0amvy8.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526476/kpqamjnj0omqwrzbrxdp.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526475/yci248n7ctdixn0ijbjc.jpg"
-                ]
-              },
-              "3990320": {
-                "id": 3990320,
-                "body": "No, I blend in completely!",
-                "date": "2021-09-24T00:00:00.000Z",
-                "answerer_name": "Zuko",
-                "helpfulness": 0,
-                "photos": [
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526482/osrrnxnlck6sk4wxxgbd.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526478/nlv3s16yhjao4ibuhqfp.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526492/i9cppqo1k4u9g9vnke5g.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526486/fzxxijm70udkf2sobbhx.jpg",
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632526483/tamxvwtgbhs8v8exzkx6.jpg"
-                ]
-              },
-              "3990403": {
-                "id": 3990403,
-                "body": "HELLO FROM 9/26 CASPIAN ",
-                "date": "2021-09-27T00:00:00.000Z",
-                "answerer_name": "asdfasdf",
-                "helpfulness": 0,
-                "photos": []
-              },
-              "3990441": {
-                "id": 3990441,
-                "body": "You cannot see me if I am not moving",
-                "date": "2021-09-29T00:00:00.000Z",
-                "answerer_name": "Drax",
-                "helpfulness": 0,
-                "photos": []
-              },
-              "3990803": {
-                "id": 3990803,
-                "body": "SDC Test",
-                "date": "2021-10-09T00:00:00.000Z",
-                "answerer_name": "test",
-                "helpfulness": 0,
-                "photos": []
-              },
-              "3990804": {
-                "id": 3990804,
-                "body": "Testing",
-                "date": "2021-10-09T00:00:00.000Z",
-                "answerer_name": "Test",
-                "helpfulness": 0,
-                "photos": []
-              },
-              "3990806": {
-                "id": 3990806,
-                "body": "Testing",
-                "date": "2021-10-09T00:00:00.000Z",
-                "answerer_name": "Test",
-                "helpfulness": 0,
-                "photos": []
-              },
-              "4996573": {
-                "id": 4996573,
-                "body": "Yes you can actually be seen.",
-                "date": "2021-10-28T00:00:00.000Z",
-                "answerer_name": "Zuko",
-                "helpfulness": 0,
-                "photos": [
-                  "https://res.cloudinary.com/drbwyfh4x/image/upload/v1635449624/igopfygexh5igymhgv0f.png"
-                ]
-              }
+            {
+                "question_id": 329021,
+                "question_body": "Why is this product cheaper here than other sites?",
+                "question_date": "2017-08-12T00:00:00.000Z",
+                "asker_name": "toofast",
+                "question_helpfulness": 7,
+                "reported": false,
+                "answers": {
+                    "3073745": {
+                        "id": 3073745,
+                        "body": "This product is overstocked here!",
+                        "date": "2017-09-12T00:00:00.000Z",
+                        "answerer_name": "toofast",
+                        "helpfulness": 5,
+                        "photos": []
+                    },
+                    "3989841": {
+                        "id": 3989841,
+                        "body": "Its made in china.",
+                        "date": "2021-09-20T00:00:00.000Z",
+                        "answerer_name": "jack",
+                        "helpfulness": 0,
+                        "photos": []
+                    },
+                    "3990001": {
+                        "id": 3990001,
+                        "body": "hello",
+                        "date": "2021-09-22T00:00:00.000Z",
+                        "answerer_name": "Seller",
+                        "helpfulness": 0,
+                        "photos": []
+                    },
+                    "3990002": {
+                        "id": 3990002,
+                        "body": "hello!",
+                        "date": "2021-09-22T00:00:00.000Z",
+                        "answerer_name": "Seller",
+                        "helpfulness": 1,
+                        "photos": []
+                    },
+                    "3990310": {
+                        "id": 3990310,
+                        "body": "asdfdasfsdfas",
+                        "date": "2021-09-24T00:00:00.000Z",
+                        "answerer_name": "asdfdsafasdf",
+                        "helpfulness": 1,
+                        "photos": [
+                            "https://www.linkpicture.com/q/Screen-Shot-2021-09-23-at-5.15.16-PM.png"
+                        ]
+                    },
+                    "3990312": {
+                        "id": 3990312,
+                        "body": "asdfsafasdf",
+                        "date": "2021-09-24T00:00:00.000Z",
+                        "answerer_name": "asdfasdfsadf",
+                        "helpfulness": 0,
+                        "photos": [
+                            "https://www.linkpicture.com/q/Screen-Shot-2021-09-23-at-5.15.16-PM.png"
+                        ]
+                    }
+                }
+            },
+            {
+                "question_id": 426188,
+                "question_body": "are they tight?",
+                "question_date": "2021-09-20T00:00:00.000Z",
+                "asker_name": "randy",
+                "question_helpfulness": 1,
+                "reported": false,
+                "answers": {}
+            },
+            {
+                "question_id": 426008,
+                "question_body": "Will this Work?",
+                "question_date": "2021-09-17T00:00:00.000Z",
+                "asker_name": "matthew",
+                "question_helpfulness": 1,
+                "reported": false,
+                "answers": {}
+            },
+            {
+                "question_id": 426007,
+                "question_body": "Where are these shoes made?",
+                "question_date": "2021-09-17T00:00:00.000Z",
+                "asker_name": "Stud",
+                "question_helpfulness": 1,
+                "reported": false,
+                "answers": {}
             }
-          }
         ]
-      },
+    },
       length: 4,
     }
   )
@@ -147,13 +110,23 @@ const QuestionList = (props) => {
     // send request to server asking API data
   };
 
-  const sortData = () => {
-    let results = this.state.data.results;
-    let sorted = [];
+  const sortData = (questions) => {
 
-    for (let i = 0; i < results.length; i++) {
-      results[i].question_helpfulness
+    let compare = (a, b) => {
+      let voteA = a.question_helpfulness;
+      let voteB = b.question_helpfulness;
+      console.log('A: ', a, 'B: ', b);
+      let comparision = 0;
+      if (voteA < voteB) {
+        comparision = 1;
+      } else {
+        comparision = -1;
+      }
+      return comparision;
     }
+
+    return questions.sort(compare);
+
   };
 
   const handleMoreQuestionsClick = (e) => {
@@ -175,6 +148,7 @@ const QuestionList = (props) => {
   } else {
     // if there are questions
     // need to sort by helpfuness
+    sortData(data);
 
     //slice the data array to set the defaut length
     data = data.slice(0, state.length);
