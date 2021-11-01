@@ -7,14 +7,14 @@ function RatingBreakdown() {
 
   const RatingSummary = {
     whiteSpace: 'nowrap',
-    padding: '10px',
-    border: '20px'
+    marginTop: '10px',
+    marginBottom: '10px',
   }
 
   const Score = {
     display: 'inline-block',
-    paddingLeft: '10px',
-    fontSize: '50px'
+    fontSize: '50px',
+    fontWeight: 'bold'
   }
 
   const Stars = {
@@ -27,10 +27,10 @@ function RatingBreakdown() {
 
 
   return (
-    <div>
+    <div style={{paddingLeft: '10px'}}>
       <div>RATINGS & REVIEWS</div>
       <div style={RatingSummary}>
-        <div style={Score}>4.2 </div>
+        <div style={Score}> 4.2 </div>
         <div style={Stars}><StarRating /></div>
       </div>
       <div>100% of reviewe recommand this product</div>

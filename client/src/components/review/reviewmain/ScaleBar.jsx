@@ -13,7 +13,7 @@ const ScaleBar = () => {
 
   const containerStyles = {
     height: '7px',
-    width: '90%',
+    width: '100%',
     backgroundColor: '#e4e5e9',
     marginTop:'5px',
     marginBottom:'5px'
@@ -36,7 +36,7 @@ const ScaleBar = () => {
       <div style={containerStyles}>
         <BsTriangleFill style={fillerStyles}/>
       </div>
-      <div>
+      <div style={{width: '100%', fontSize: '14px'}}>
         <div style={{float: 'left'}}>Too small</div>
         <div style={{float: 'right'}}>Too large</div>
       </div>

@@ -27,8 +27,8 @@ class App extends React.Component {
         <div className='overview-container'>Overview Goes Here</div>
         <RelatedProducts outfitIdList={this.state.tempOutfitList}/>
         <QuestionList />
-        <div id='review'>Review Goes Here</div>
-        <ReviewMain />
+        <div id='review'><ReviewMain /></div>
+
       </div>
     )
   }

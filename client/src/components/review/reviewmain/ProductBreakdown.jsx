@@ -4,13 +4,13 @@ import ScaleBar from './ScaleBar.jsx'
 
 function ProductBreakdown() {
   return (
-    <div>
+    <div style={{paddingLeft: '10px'}} >
       <div><ScaleBar /></div>
       <div><ScaleBar /></div>
-      {/* <div>ScaleIcon</div>
-      <div>ScaleIcon</div>
-      <div>ScaleIcon</div>
-      <div>ScaleIcon</div> */}
+      <div><ScaleBar /></div>
+      <div><ScaleBar /></div>
+      <div><ScaleBar /></div>
+      <div><ScaleBar /></div>
     </div>
   );
 }
