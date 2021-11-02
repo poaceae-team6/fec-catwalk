@@ -3,35 +3,46 @@ import React, { useState } from 'react';
 const Search = (props) => {
 
   const [state, setState] = useState({
-    query: '',
+    currentQ: props.questions,
   });
 
+
+  // handle input changes to filter search
   const handleInput = (e) => {
-    setState({...state, query: e.target.value});
+
+    let term = e.target.value;
+
+    if (term.length > 2) {
+
+      props.setQuestions({
+        ...state,
+        data: props.questions.filter((question) => {
+          if (term === '') {
+            return question;
+          } else if (question.question_body.toLowerCase().includes(term.toLowerCase())) {
+            return question;
+          }
+        }),
+      })
+    } else {
+      props.setQuestions({
+        ...state,
+        data: state.currentQ
+      })
+    }
   }
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-
-    let term = state.query;
-
-    props.setQuestions({
-      ...state,
-      data: props.questions.filter((question) => {
-        if (term === '') {
-          return question;
-        } else if (question.question_body.toLowerCase().includes(term.toLowerCase())) {
-          return question;
-        }
-      }),
-    })
-
+  // styles
+  const searchStyle = {
+    height: '50px',
+    width: '800px',
+    fontSize: '20px',
   }
+
 
   return (
-    <form onSubmit={handleSearch}>
-      <input onChange={handleInput} type='text' placeholder='Have a question? Search for answers…'/>
-      <input type='submit' value='search' />
+    <form>
+      <input style={searchStyle} onChange={handleInput} type='text' placeholder='Have a question? Search for answers…'/>
     </form>
   )
 }
