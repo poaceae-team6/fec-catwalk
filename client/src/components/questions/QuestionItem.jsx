@@ -95,7 +95,7 @@ const QuestionItem = (props) => {
             <button>Add answer</button>
           </p>
           {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
-          <span onClick={handleLessAnswers}>Load Less Questions</span>
+          <span onClick={handleLessAnswers}>Load Less Answers</span>
         </div>
       )
     }
@@ -111,7 +111,7 @@ const QuestionItem = (props) => {
           <button>Add answer</button>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
-        <span onClick={handleMoreAnswers}>Load More Questions</span>
+        <span onClick={handleMoreAnswers}>Load More Answers</span>
       </div>
     )
   } else {

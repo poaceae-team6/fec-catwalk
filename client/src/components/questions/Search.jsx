@@ -15,7 +15,7 @@ const Search = (props) => {
     if (term.length > 2) {
 
       props.setQuestions({
-        ...state,
+        ...props.ql,
         data: props.questions.filter((question) => {
           if (term === '') {
             return question;
@@ -26,7 +26,7 @@ const Search = (props) => {
       })
     } else {
       props.setQuestions({
-        ...state,
+        ...props.ql,
         data: state.currentQ
       })
     }
