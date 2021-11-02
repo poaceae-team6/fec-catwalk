@@ -1,20 +1,17 @@
-import React, {Component} from 'react';
+import React, {Component, useState, useContext} from 'react';
 import RelatedProductsItem from './RelatedProductsItem.jsx';
+import { ThemeContext } from '../ThemeContext.js';
 
 import slide from '../../../dist/css_animations/horizontalScroll.js';
 import sampleProductsdData from '../../assets/related_products/sampleProductsData.js';
-import jquery from 'jquery';
 
-class RelatedProducts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      relatedProducts: sampleProductsdData
-    }
-    this.handleClick = this.handleClick.bind(this);
-  }
+const RelatedProducts = (props) => {
+
+  const [relatedProducts, setRelatedProducts] = useState(sampleProductsdData);
+  // const theme = useContext(ThemeContext);
+  // const [darkMode, setDarkMode] = useState(theme.darkMode);
   
-  handleClick(e) {
+  const handleClick = (e) => {
     if (e.target.id === 'left-arrow') {
       slide('horizontal-slide', 'left', 1000, 500);
     } else {
@@ -22,19 +19,21 @@ class RelatedProducts extends Component {
     }
   }
   
-  render() {
-    return (  
-      <div className='products-container'>
-        <button onClick={this.handleClick} id='left-arrow' className='arrow left'/>
-        <div id='horizontal-slide'>
-          {this.state.relatedProducts.map(item => {
-            return <RelatedProductsItem itemData={item} key={item.id}/>
-          })}
+  return (  
+    <ThemeContext.Consumer>
+      {darkMode => (
+        <div className='products-container'>
+          <button onClick={handleClick.bind(this)} id='left-arrow' className={darkMode ? 'arrow-dark left' : 'arrow left'}/>
+          <div id='horizontal-slide'>
+            {relatedProducts.map(item => {
+              return <RelatedProductsItem itemData={item} key={item.id}/>
+            })}
+          </div>
+          <button onClick={handleClick.bind(this)} id='right-arrow' className={darkMode ? 'arrow-dark right' : 'arrow right'}/>
         </div>
-        <button onClick={this.handleClick} id='right-arrow' className='arrow right'/>
-      </div>
-    )
-  }
+      )}
+    </ThemeContext.Consumer>
+  );
 }
 
 export default RelatedProducts;

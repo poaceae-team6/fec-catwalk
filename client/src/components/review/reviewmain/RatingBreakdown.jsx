@@ -1,6 +1,5 @@
 import React from 'react';
 import StarRating from './StarRating.jsx'
-
 import StarBreakdown from './StarBreakdown.jsx';
 
 function RatingBreakdown() {

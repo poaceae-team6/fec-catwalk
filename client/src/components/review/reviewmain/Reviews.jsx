@@ -1,6 +1,7 @@
 
 import React from 'react';
 import ReviewsList from './ReviewsList.jsx';
+import AddReview from '../addreview/AddReview.jsx';
 
 function Reviews() {
 
@@ -28,7 +29,7 @@ function Reviews() {
 
 
   return (
-    <div style={{padding: '10px'}}>
+    <div style={{padding: '10px', marginTop: '20px'}}>
       <div style={sortStyles}>
         <div style={{display: 'inline-block'}}>248 reviews, sorted by</div>
         <div style={{display: 'inline-block'}}>
@@ -47,6 +48,8 @@ function Reviews() {
       <button style={buttonStyles}>
         ADD A REVIEW +
       </button>
+      <br></br>
+      <div><AddReview /></div>
     </div>
     );
 }

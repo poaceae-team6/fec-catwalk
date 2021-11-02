@@ -1,4 +1,10 @@
-import React, { useState }from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from './ThemeContext.js';
+
+// Theme Toggle Button Icons
+import { BsToggleOn } from 'react-icons/bs';
+import { BsToggleOff } from 'react-icons/bs';
+
 import QuestionList from './questions/QuestionList.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
 import ReviewMain from './review/reviewmain/ReviewMain.jsx';
@@ -9,24 +15,32 @@ import sampleProductIdData from '../assets/related_products/sampleProductIdData.
 
 const App = (props) => {
 
-  const [state, setState] = useState({
-    currentProduct: {},
-    // sample data for current product retrieved by id
-    tempCurrentProduct: {sampleProductIdData},
-    // shared component for Overview & Outfit
-    tempOutfitList: []
-  });
-
+  const [currentProduct, setCurrentProduct] = useState({});
+  // sample data for current product retrieved by id
+  const [temp, setTemp] = useState(sampleProductIdData);
+  // shared component for Overview & Outfit
+  const [OutfitList, setOutfitList] = useState([]);
+  
+  const theme = useContext(ThemeContext);
+  const [darkMode, setDarkMode] = useState(theme.darkMode);
+  
+  const toggleMode = () => {
+    setDarkMode(darkMode => !darkMode);
+  }
 
   return (
+    <ThemeContext.Provider value={darkMode}>
     <div>
-      <h1> react is running </h1>
+      {darkMode ? "Dark Mode" : "Light Mode"}
+      <button id='toggle-btn' onClick={toggleMode.bind(this)}>{darkMode ? <BsToggleOn /> : <BsToggleOff />}</button>
+      <h1 className={darkMode ? "font-dark" : ""}> react is running </h1>
       <div className='overview-container'>Overview Goes Here</div>
-      <RelatedProducts outfitIdList={state.tempOutfitList}/>
+      <RelatedProducts outfitIdList={OutfitList}/>
       <QuestionList />
       <div id='review'>Review Goes Here</div>
       <ReviewMain />
     </div>
+    </ThemeContext.Provider>
   );
 
 
