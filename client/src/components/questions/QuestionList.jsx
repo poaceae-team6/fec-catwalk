@@ -179,6 +179,13 @@ const QuestionList = (props) => {
     setState({...state, length: state.length + 2} );
   }
 
+
+  //overflow style
+  let overflow = {
+    overflow: 'scroll',
+    maxHeight: '800px'
+  }
+
   //only 4 questions will be visiable by default
   let data = state.data;
 
@@ -205,7 +212,7 @@ const QuestionList = (props) => {
       <div className='questions-container'>
         <p>Questions & Answers</p>
         <Search ql={state} questions={state.data} setQuestions={setState}/>
-        <ul>
+        <ul style={overflow}>
           {data.map((question, index) => <QuestionItem key={index} question={question} />)}
         </ul>
          <button>ADD A QUESTIONS +</button>
@@ -222,7 +229,7 @@ const QuestionList = (props) => {
       <div className='questions-container'>
         <p>Questions & Answers</p>
         <Search ql={state} questions={state.data} setQuestions={setState}/>
-        <ul>
+        <ul style={overflow}>
           {data.map((question, index) => <QuestionItem key={index} question={question} />)}
         </ul>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button>ADD A QUESTIONS +</button>
