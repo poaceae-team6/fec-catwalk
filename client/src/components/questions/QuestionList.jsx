@@ -127,7 +127,7 @@ const QuestionList = (props) => {
 
   };
 
-  const handleMoreQuestionsClick = (e) => {
+  const handleMoreQuestionsClick = () => {
     setState({...state, length: state.length + 2} );
   }
 
