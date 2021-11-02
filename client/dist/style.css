@@ -139,8 +139,8 @@ h3 {
   float: left;
   clear: left;
   height: 1000px;
-  width: 24%;
-  border: solid rgb(141, 110, 110);
+  width: 25%;
+  /* border: solid rgb(141, 110, 110); */
   border-top-left-radius: 0.5px;
   padding: 10px;
 }
@@ -149,8 +149,8 @@ h3 {
   float: right;
   height: 1000px;
   width: 70%;
-  border: solid rgb(141, 110, 110);
-  border-top-left-radius: 0.5px;
+  /* border: solid rgb(141, 110, 110); */
+  /* border-top-left-radius: 0.5px; */
   padding: 10px;
 }
 

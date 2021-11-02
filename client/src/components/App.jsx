@@ -13,14 +13,12 @@ const theme = useContext(ThemeContext);
 const darkMode = theme.state.darkMode;
 
 const App = (props) => {
-
-  const [state, setState] = useState({
-    currentProduct: {},
-    // sample data for current product retrieved by id
-    tempCurrentProduct: {sampleProductIdData},
-    // shared component for Overview & Outfit
-    tempOutfitList: []
-  });
+  
+  const [currentProduct, setCurrentProduct] = useState({});
+  // sample data for current product retrieved by id
+  const [temp, setTemp] = useState(sampleProductIdData);
+  // shared component for Overview & Outfit
+  const [OutfitList, setOutfitList] = useState([]);
 
   return (
     <div>
@@ -32,6 +30,8 @@ const App = (props) => {
       <ReviewMain />
     </div>
   );
+
+
 }
 
 export default App;
