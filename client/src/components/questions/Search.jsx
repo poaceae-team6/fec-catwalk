@@ -1,21 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class Search extends React.Component {
-  constructor (props) {
-    super(props);
+const Search = (props) => {
 
-    this.state = {};
+  const [state, setState] = useState({
+    query: '',
+  });
+
+  const handleInput = (e) => {
+    setState({...state, query: e.target.value});
   }
 
-  render () {
+  const handleSearch = (e) => {
+    e.preventDefault();
 
-    return (
-      <form>
-        <input type='text' />
-        <input type='submit' value='search' />
-      </form>
-    )
+    let term = state.query;
+
+    props.setQuestions({
+      ...state,
+      data: props.questions.filter((question) => {
+        if (term === '') {
+          return question;
+        } else if (question.question_body.toLowerCase().includes(term.toLowerCase())) {
+          return question;
+        }
+      }),
+    })
+
   }
+
+  return (
+    <form onSubmit={handleSearch}>
+      <input onChange={handleInput} type='text' placeholder='Have a question? Search for answers…'/>
+      <input type='submit' value='search' />
+    </form>
+  )
 }
 
 export default Search;
