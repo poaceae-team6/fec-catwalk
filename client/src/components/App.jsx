@@ -7,6 +7,7 @@ import { BsToggleOff } from 'react-icons/bs';
 
 import QuestionList from './questions/QuestionList.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
+import YourOutfit from './related_products/YourOutfit.jsx';
 import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 
 // Import sampleData for testing purposes
@@ -34,8 +35,8 @@ const App = (props) => {
       {darkMode ? "Dark Mode" : "Light Mode"}
       <button id='toggle-btn' onClick={toggleMode.bind(this)}>{darkMode ? <BsToggleOn /> : <BsToggleOff />}</button>
       <h1 className={darkMode ? "font-dark" : ""}> react is running </h1>
-      <div className='overview-container'>Overview Goes Here</div>
       <RelatedProducts outfitIdList={OutfitList}/>
+      <YourOutfit />
       <QuestionList />
       <div id='review'>Review Goes Here</div>
       <ReviewMain />

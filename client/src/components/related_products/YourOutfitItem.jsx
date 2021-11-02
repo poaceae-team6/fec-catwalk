@@ -8,7 +8,7 @@ import StarRating from '../review/reviewmain/StarRating.jsx';
   // product object (category, name, description, 'features')
   // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
 
-const RelatedProductsItem = (props) => {
+const YourOutfitItem = (props) => {
   
   let sampleProductObject = sampleProductIdData;
   let sampleStylesObject = sampleProductIdStylesData.results[0];
@@ -24,4 +24,4 @@ const RelatedProductsItem = (props) => {
   )
 };
 
-export default RelatedProductsItem;
+export default YourOutfitItem;
