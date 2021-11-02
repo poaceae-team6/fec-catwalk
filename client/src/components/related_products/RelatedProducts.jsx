@@ -1,20 +1,14 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import RelatedProductsItem from './RelatedProductsItem.jsx';
 
 import slide from '../../../dist/css_animations/horizontalScroll.js';
 import sampleProductsdData from '../../assets/related_products/sampleProductsData.js';
-import jquery from 'jquery';
 
-class RelatedProducts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      relatedProducts: sampleProductsdData
-    }
-    this.handleClick = this.handleClick.bind(this);
-  }
+const RelatedProducts = (props) => {
+
+  const [relatedProducts, setRelatedProducts] = useState({})
   
-  handleClick(e) {
+  const handleClick = (e) => {
     if (e.target.id === 'left-arrow') {
       slide('horizontal-slide', 'left', 1000, 500);
     } else {
@@ -22,19 +16,17 @@ class RelatedProducts extends Component {
     }
   }
   
-  render() {
-    return (  
-      <div className='products-container'>
-        <button onClick={this.handleClick} id='left-arrow' className='arrow left'/>
-        <div id='horizontal-slide'>
-          {this.state.relatedProducts.map(item => {
-            return <RelatedProductsItem itemData={item} key={item.id}/>
-          })}
-        </div>
-        <button onClick={this.handleClick} id='right-arrow' className='arrow right'/>
+  return (  
+    <div className='products-container'>
+      <button onClick={handleClick.bind(this)} id='left-arrow' className='arrow left'/>
+      <div id='horizontal-slide'>
+        {props.relatedProducts.map(item => {
+          return <RelatedProductsItem itemData={item} key={item.id}/>
+        })}
       </div>
-    )
-  }
+      <button onClick={handleClick.bind(this)} id='right-arrow' className='arrow right'/>
+    </div>
+  );
 }
 
 export default RelatedProducts;
