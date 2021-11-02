@@ -9,6 +9,7 @@ const QuestionItem = (props) => {
     vote: false,
   });
 
+  // find seller's answers
   const findSeller = (answers) => {
     let seller = [];
 
@@ -39,13 +40,18 @@ const QuestionItem = (props) => {
     } else {
       console.log('you voted');
     }
-
-    // then send the request to update the API
   }
 
   const handleMoreAnswers = () => {
     setState({ ...state, length: state.length + 2 })
   };
+
+
+
+  // style here
+  const questionBody = {fontWeight: 'bold'};
+
+
 
 
   let answers = Object.values(props.question.answers);
@@ -74,7 +80,6 @@ const QuestionItem = (props) => {
   findSeller(answers);
 
 
-
   if (answers.length > 2) {
     //slice the array to the correct length
     answers = answers.slice(0, state.length);
@@ -82,7 +87,7 @@ const QuestionItem = (props) => {
     return (
       <div>
         <p>
-          Q: {props.question.question_body}
+          <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
           <span>Add answer</span>
         </p>
@@ -95,7 +100,7 @@ const QuestionItem = (props) => {
     return (
       <div>
         <p>
-          Q: {props.question.question_body}
+          <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
           <span>Add answer</span>
         </p>

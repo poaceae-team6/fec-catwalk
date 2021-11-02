@@ -3,9 +3,29 @@ import moment from 'moment';
 
 const Answer = (props) => {
 
+  const [state, setState] = useState({
+    helpfulNum: props.answer.helpfulness,
+    vote: false,
+  });
 
   //format the date
   let date = moment(props.answer.date).format('LL');
+
+  const handleHelpful = () => {
+
+    if(state.vote === false) {
+      setState({
+        helpfulNum: props.answer.helpfulness += 1,
+        vote: true,
+      })
+    }
+
+  }
+
+  // bold the A in the answer
+  let boldA = {
+    fontWeight: 'bold'
+  }
 
   let bold = {
    fontWeight: 'normal'
@@ -21,8 +41,10 @@ const Answer = (props) => {
 
     return (
       <div>
-        <p> A: {props.answer.body}</p>
-        <span> by User</span> <span style={bold}> {props.answer.answerer_name}</span><span>, {date}</span>  |  <span>helpful?  Yes ({props.answer.helpfulness})</span>  |  <span>report</span>
+        <p>
+           <span style={boldA}>A: </span>{props.answer.body}
+        </p>
+        <span> by User</span> <span style={bold}> {props.answer.answerer_name}</span><span>, {date}</span>  |  <span>helpful?</span> <span onClick={handleHelpful}> Yes ({state.helpfulNum})</span>  |  <span>report</span>
       </div>
 
     )
@@ -32,7 +54,7 @@ const Answer = (props) => {
       <div>
         <p> A: {props.answer.body}</p>
         {props.answer.photos.map((img, index) => <img key={index} src={img} />)}
-        <span style={bold}> by User {props.answer.answerer_name}, {date}</span>  |  <span>helpful?  Yes ({props.answer.helpfulness})</span>  |  <span>report</span>
+        <span style={bold}> by User {props.answer.answerer_name}, {date}</span>  |  <span>helpful?</span>  <span onClick={handleHelpful}>Yes ({state.helpfulNum})</span>  |  <span>report</span>
       </div>
 
     )
