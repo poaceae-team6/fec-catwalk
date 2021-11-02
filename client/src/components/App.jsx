@@ -7,8 +7,6 @@ import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 // Related Products
 import sampleProductIdData from '../assets/related_products/sampleProductIdData.js'
 
-
-
 const App = (props) => {
 
   const [state, setState] = useState({
@@ -30,6 +28,8 @@ const App = (props) => {
       <ReviewMain />
     </div>
   );
+
+
 }
 
 export default App;
