@@ -5,8 +5,7 @@ import Reviews from './Reviews.jsx'
 
 function ReviewMain() {
   return (
-    <div>
-      <h2>REVIEW</h2>
+    <div style = {{fontFamily:'sans-serif', marginTop: '40px'}}>
       <div id='leftbar'>
         <div><RatingBreakdown /></div>
         <div><ProductBreakdown /></div>
