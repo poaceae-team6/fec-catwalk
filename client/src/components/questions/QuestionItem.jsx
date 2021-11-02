@@ -10,11 +10,21 @@ const QuestionItem = (props) => {
   });
 
   const findSeller = (answers) => {
+    let seller = [];
+
     for (let i = 0; i < answers.length; i++) {
       if (answers[i].answerer_name === 'Seller') {
         let pop = answers.splice(i, 1);
-        answers.unshift(pop);
+        seller.push(pop[0]);
+        i--;
       }
+    }
+
+    // sort seller's answer by helpfulness
+    sortAnswers(seller);
+
+    for (let j = seller.length - 1; j >= 0; j--) {
+      answers.unshift(seller[j]);
     }
   }
 
@@ -39,7 +49,6 @@ const QuestionItem = (props) => {
 
 
   let answers = Object.values(props.question.answers);
-  console.log(answers)
 
   //sort the answers by helpfulness
   const sortAnswers = (answers) => {
@@ -61,6 +70,8 @@ const QuestionItem = (props) => {
 
   sortAnswers(answers);
   // after sorting see if seller is asnwering
+
+  findSeller(answers);
 
 
 
