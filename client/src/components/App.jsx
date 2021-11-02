@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import { ThemeContext } from './ThemeContext.js';
+import React, { useState } from 'react';
 
 import QuestionList from './questions/QuestionList.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
@@ -8,9 +7,6 @@ import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 // Import sampleData for testing purposes
 // Related Products
 import sampleProductIdData from '../assets/related_products/sampleProductIdData.js'
-
-const theme = useContext(ThemeContext);
-const darkMode = theme.state.darkMode;
 
 const App = (props) => {
   
@@ -24,7 +20,7 @@ const App = (props) => {
     <div>
       <h1> react is running </h1>
       <div className='overview-container'>Overview Goes Here</div>
-      <RelatedProducts outfitIdList={state.tempOutfitList}/>
+      <RelatedProducts outfitIdList={OutfitList}/>
       <QuestionList />
       <div id='review'>Review Goes Here</div>
       <ReviewMain />
