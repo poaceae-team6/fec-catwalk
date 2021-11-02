@@ -92,7 +92,7 @@ const QuestionItem = (props) => {
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
             <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
-            <span>Add answer</span>
+            <button>Add answer</button>
           </p>
           {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
           <span onClick={handleLessAnswers}>Load Less Questions</span>
@@ -108,7 +108,7 @@ const QuestionItem = (props) => {
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
-          <span>Add answer</span>
+          <button>Add answer</button>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
         <span onClick={handleMoreAnswers}>Load More Questions</span>
@@ -120,7 +120,7 @@ const QuestionItem = (props) => {
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
-          <span>Add answer</span>
+          <button>Add answer</button>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
 
