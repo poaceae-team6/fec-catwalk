@@ -5,9 +5,9 @@ import ReviewTile from '../reviewtile/ReviewTile.jsx';
 function ReviewsList() {
 
   const listStyles = {
-    height: '600px',
+    height: 'auto',
     width: '100%',
-    border: 'solid black 1px',
+    // border: 'solid black 1px',
     padding: '10px'
   }
 
