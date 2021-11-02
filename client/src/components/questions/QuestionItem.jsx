@@ -9,12 +9,23 @@ const QuestionItem = (props) => {
     vote: false,
   });
 
+  // find seller's answers
   const findSeller = (answers) => {
+    let seller = [];
+
     for (let i = 0; i < answers.length; i++) {
       if (answers[i].answerer_name === 'Seller') {
         let pop = answers.splice(i, 1);
-        answers.unshift(pop);
+        seller.push(pop[0]);
+        i--;
       }
+    }
+
+    // sort seller's answer by helpfulness
+    sortAnswers(seller);
+
+    for (let j = seller.length - 1; j >= 0; j--) {
+      answers.unshift(seller[j]);
     }
   }
 
@@ -22,24 +33,30 @@ const QuestionItem = (props) => {
     // update the data in the app
     if (state.vote === false) {
       let voted = props.question.question_helpfulness += 1;
-      setState({...state, helpfulNum: voted, vote: true});
+      setState({ ...state, helpfulNum: voted, vote: true });
 
       // then send the request to update the API
 
     } else {
       console.log('you voted');
     }
-
-    // then send the request to update the API
   }
 
+  // load more questions
   const handleMoreAnswers = () => {
     setState({ ...state, length: state.length + 2 })
   };
 
+  // load less questions
+  const handleLessAnswers = () => {
+    setState({...state, length: 2})
+  };
+
+  // style here
+  const questionBody = { fontWeight: 'bold' };
+
 
   let answers = Object.values(props.question.answers);
-  console.log(answers)
 
   //sort the answers by helpfulness
   const sortAnswers = (answers) => {
@@ -62,31 +79,48 @@ const QuestionItem = (props) => {
   sortAnswers(answers);
   // after sorting see if seller is asnwering
 
+  findSeller(answers);
 
 
   if (answers.length > 2) {
+
+    if (state.length >= answers.length) {
+      answers = answers.slice(0, state.length);
+
+      return (
+        <div>
+          <p>
+            <span style={questionBody}>Q: {props.question.question_body}</span>
+            <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
+            <button>Add answer</button>
+          </p>
+          {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
+          <span onClick={handleLessAnswers}>Load Less Questions</span>
+        </div>
+      )
+    }
+
     //slice the array to the correct length
     answers = answers.slice(0, state.length);
 
     return (
       <div>
         <p>
-          Q: {props.question.question_body}
+          <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
-          <span>Add answer</span>
+          <button>Add answer</button>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
-        <span onClick={handleMoreAnswers}>Load more answers</span>
+        <span onClick={handleMoreAnswers}>Load More Questions</span>
       </div>
-
     )
   } else {
     return (
       <div>
         <p>
-          Q: {props.question.question_body}
+          <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
-          <span>Add answer</span>
+          <button>Add answer</button>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
 
