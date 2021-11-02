@@ -28,7 +28,7 @@ function Reviews() {
 
 
   return (
-    <div style={{padding: '10px'}}>
+    <div style={{padding: '10px', marginTop: '20px'}}>
       <div style={sortStyles}>
         <div style={{display: 'inline-block'}}>248 reviews, sorted by</div>
         <div style={{display: 'inline-block'}}>
