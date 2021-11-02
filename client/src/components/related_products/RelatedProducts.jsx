@@ -1,12 +1,15 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useState, useContext} from 'react';
 import RelatedProductsItem from './RelatedProductsItem.jsx';
+import { ThemeContext } from '../ThemeContext.js';
 
 import slide from '../../../dist/css_animations/horizontalScroll.js';
 import sampleProductsdData from '../../assets/related_products/sampleProductsData.js';
 
 const RelatedProducts = (props) => {
 
-  const [relatedProducts, setRelatedProducts] = useState({})
+  const [relatedProducts, setRelatedProducts] = useState(sampleProductsdData);
+  // const theme = useContext(ThemeContext);
+  // const [darkMode, setDarkMode] = useState(theme.darkMode);
   
   const handleClick = (e) => {
     if (e.target.id === 'left-arrow') {
@@ -17,15 +20,19 @@ const RelatedProducts = (props) => {
   }
   
   return (  
-    <div className='products-container'>
-      <button onClick={handleClick.bind(this)} id='left-arrow' className='arrow left'/>
-      <div id='horizontal-slide'>
-        {props.relatedProducts.map(item => {
-          return <RelatedProductsItem itemData={item} key={item.id}/>
-        })}
-      </div>
-      <button onClick={handleClick.bind(this)} id='right-arrow' className='arrow right'/>
-    </div>
+    <ThemeContext.Consumer>
+      {darkMode => (
+        <div className='products-container'>
+          <button onClick={handleClick.bind(this)} id='left-arrow' className={darkMode ? 'arrow-dark left' : 'arrow left'}/>
+          <div id='horizontal-slide'>
+            {relatedProducts.map(item => {
+              return <RelatedProductsItem itemData={item} key={item.id}/>
+            })}
+          </div>
+          <button onClick={handleClick.bind(this)} id='right-arrow' className={darkMode ? 'arrow-dark right' : 'arrow right'}/>
+        </div>
+      )}
+    </ThemeContext.Consumer>
   );
 }
 
