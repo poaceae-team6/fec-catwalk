@@ -1,6 +1,7 @@
 
 import React from 'react';
 import ReviewsList from './ReviewsList.jsx';
+import AddReview from '../addreview/AddReview.jsx';
 
 function Reviews() {
 
@@ -47,6 +48,7 @@ function Reviews() {
       <button style={buttonStyles}>
         ADD A REVIEW +
       </button>
+      <div><AddReview /></div>
     </div>
     );
 }

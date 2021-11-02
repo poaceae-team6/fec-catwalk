@@ -35,7 +35,7 @@ function ReviewTile() {
       </div>
       <hr style={{marginTop: '15px', orderBottomWidth: '1px'}} />
     </div>
-    );
+  );
 }
 
 
