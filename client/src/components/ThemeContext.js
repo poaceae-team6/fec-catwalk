@@ -1,28 +1,7 @@
-import { Context, useReducer } from 'react';
+import React from 'react';
 
-const initialState = { darkMode: false };
+// By default, set darkMode to false
 
-const themeReducer = (state, action) => {
-  switch (action.type) {
-    case "LIGHTMODE":
-      return { darkMode: false };
-    case "DARKMODE":
-      return { darkMode: true };
-    default:
-      return state;  
-  }
-};
-
-const [state, dispatch] = useReducer(themeReducer, initialState);
-
-export const ThemeContext = createContext();
-
-export const ThemeProvider = (props) => {
-  
-  const [state, dispatch] = useReducer(themeReducer, initialState);
-  
-  return 
-    <ThemeContext.Provider value={ { state: state, dispatch: dispatch} }>
-      {props.children}
-    </ThemeContext.Provider>;
-};
+export const ThemeContext = React.createContext({
+  darkMode: false,
+});
