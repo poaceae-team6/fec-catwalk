@@ -48,6 +48,7 @@ function Reviews() {
       <button style={buttonStyles}>
         ADD A REVIEW +
       </button>
+      <br></br>
       <div><AddReview /></div>
     </div>
     );
