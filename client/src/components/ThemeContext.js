@@ -17,7 +17,7 @@ const [state, dispatch] = useReducer(themeReducer, initialState);
 
 export const ThemeContext = createContext();
 
-export function ThemeProvider(props) {
+export const ThemeProvider = (props) => {
   
   const [state, dispatch] = useReducer(themeReducer, initialState);
   
