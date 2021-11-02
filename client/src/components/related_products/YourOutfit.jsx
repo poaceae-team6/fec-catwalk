@@ -1,17 +1,17 @@
 import React, {Component, useState, useContext} from 'react';
-import RelatedProductsItem from './RelatedProductsItem.jsx';
+import YourOutfitItem from './YourOutfitItem.jsx';
 import { ThemeContext } from '../ThemeContext.js';
 
 import slide from '../../../dist/css_animations/horizontalScroll.js';
 import sampleProductsData from '../../assets/related_products/sampleProductsData.js';
 
-const RelatedProducts = (props) => {
+const YourOutfit = (props) => {
   
   const handleClick = (e) => {
     if (e.target.id === 'left-arrow') {
-      slide('products-slide', 'left', 1000, 500);
+      slide('outfit-slide', 'left', 1000, 500);
     } else {
-      slide('products-slide', 'right', 1000, 500);
+      slide('outfit-slide', 'right', 1000, 500);
     }
   }
   
@@ -23,13 +23,13 @@ const RelatedProducts = (props) => {
   return (  
     <ThemeContext.Consumer>
       {darkMode => (
-        <div className='products-container'>
-          <h2 className='products-list-title'>RELATED PRODUCTS</h2>
+        <div className='outfit-container'>
+          <h2 className='products-list-title'>YOUR OUTFIT</h2>
           <button onClick={handleClick.bind(this)} id='left-arrow' className={darkMode ? 'arrow-dark left' : 'arrow left'}/>
-          <div className='horizontal-slide' id='products-slide'>
+          <div className='horizontal-slide' id='outfit-slide'>
             {sampleProductsData.map(item => {
               // should pass 2 objects - product & styles for specific id
-              return <RelatedProductsItem itemData={item} itemStyle={item} key={item.id}/>
+              return <YourOutfitItem itemData={item} itemStyle={item} key={item.id}/>
             })}
           </div>
           <button onClick={handleClick.bind(this)} id='right-arrow' className={darkMode ? 'arrow-dark right' : 'arrow right'}/>
@@ -39,4 +39,4 @@ const RelatedProducts = (props) => {
   );
 }
 
-export default RelatedProducts;
+export default YourOutfit;
