@@ -12,7 +12,7 @@ const Answer = (props) => {
   };
 
   if(props.answer.answerer_name === 'Seller') {
-    console.log('I am seller');
+
     bold.fontWeight = 'bold';
   }
 
