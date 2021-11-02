@@ -1,4 +1,6 @@
-import React, { useState }from 'react';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from './ThemeContext.js';
+
 import QuestionList from './questions/QuestionList.jsx';
 import RelatedProducts from './related_products/RelatedProducts.jsx';
 import ReviewMain from './review/reviewmain/ReviewMain.jsx';
@@ -7,7 +9,8 @@ import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 // Related Products
 import sampleProductIdData from '../assets/related_products/sampleProductIdData.js'
 
-
+const theme = useContext(ThemeContext);
+const darkMode = theme.state.darkMode;
 
 const App = (props) => {
 
@@ -18,7 +21,6 @@ const App = (props) => {
     // shared component for Overview & Outfit
     tempOutfitList: []
   });
-
 
   return (
     <div>
