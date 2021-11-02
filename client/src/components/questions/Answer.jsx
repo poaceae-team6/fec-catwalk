@@ -29,6 +29,7 @@ const Answer = (props) => {
 
     if(state.vote === false) {
       setState({
+        ...state,
         helpfulNum: props.answer.helpfulness += 1,
         vote: true,
       })
