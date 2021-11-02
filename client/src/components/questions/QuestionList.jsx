@@ -188,7 +188,8 @@ const QuestionList = (props) => {
     return (
       <div className='questions-container'>
         <p>Questions & Answers</p>
-
+        <Search questions={state.data} setQuestions={setState}/>
+        <p>No questions found. Do you want to add yours?</p>
         <button>ADD A QUESTION +</button>
       </div>
     )
