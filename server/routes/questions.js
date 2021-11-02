@@ -2,8 +2,8 @@ const express = require('express');
 const axios = require('axios');
 let router = express.Router();
 
-const url = require('../server/atelier_api.js');
-const {TOKEN} = require('../config.js');
+const url = require('../atelier_api.js');
+const {TOKEN} = require('../../config.js');
 
 // .route adds onto the path that is stated in app.js
 // this whole file uses this base path '/reviews'

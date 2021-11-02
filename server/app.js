@@ -3,9 +3,9 @@ const path = require("path")
 
 const app = express ();
 // routers
-const products = require('../routes/products')
-const reviews = require('../routes/reviews')
-const questions = require('../routes/questions');
+const products = require('./routes/products')
+const reviews = require('./routes/reviews')
+const questions = require('./routes/questions');
 const { appendFileSync } = require('fs');
 
 //setup bodyparser
