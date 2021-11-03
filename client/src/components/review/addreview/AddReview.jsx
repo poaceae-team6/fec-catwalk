@@ -4,7 +4,7 @@ import StarRating from '../reviewmain/StarRating.jsx';
 import UploadPic from './UploadPic.jsx';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-function AddReview() {
+function AddReview({ setShowAddReview }) {
 
   const PopWindowStyles = {
     height: 'auto',
@@ -32,7 +32,7 @@ function AddReview() {
 
   return (
     <div style={PopWindowStyles}>
-      <AiOutlineCloseCircle style={{float: 'right'}} color="grey" size= {30}/>
+      <AiOutlineCloseCircle style={{float: 'right'}} color="grey" size= {30} onClick={ () => setShowAddReview(false)}/>
       <div style={{fontSize: '16px',fontWeight: 'bold', marginTop: '10px', marginBottom: '10px'}}>
         Product Title</div>
       <div ><StarRating /></div>
