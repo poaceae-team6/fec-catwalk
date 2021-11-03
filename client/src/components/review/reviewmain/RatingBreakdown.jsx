@@ -22,9 +22,6 @@ function RatingBreakdown() {
     padding: '20px'
   }
 
-
-
-
   return (
     <div style={{paddingLeft: '10px'}}>
       <div>RATINGS & REVIEWS</div>
