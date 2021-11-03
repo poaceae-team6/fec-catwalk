@@ -9,12 +9,11 @@ var outfitList = [];
   // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
 const url = 'http://localhost:3000';
 
-const RelatedProductsItem = (props) => {
+const Overview = (props) => {
   
   const [styles, setStyles] = useState({});
-  const [currentStyleId, setCurrentStyleId] = useState(0);
+  const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
   const [outfits, setOutfits] = useState([]);
-  const [addToOutfit, setAddToOutfit] = useState(false);
   
   useEffect(() => {
     axios.get(`${url}/products/${currentProduct.id}/styles`)
@@ -31,16 +30,14 @@ const RelatedProductsItem = (props) => {
   
   return (
     <div className='overview-container'>
-      <div className='overview-grid'>
-        <img src={sampleStylesObject.photos[0].thumbnail_url}/>
-        <h3>CATEGORY: {sampleProductObject.category.toUpperCase()}</h3>
-        <h2 className='product-name'>{sampleProductObject.name}</h2>
-        <h3>${sampleStylesObject.original_price}</h3>
-      </div>
+      <h2>{styles[currentStyleIndex].name}</h2>
+      {styles.map( (style, index) => {
+        return <OverviewStyle setCurrentStyleIndex={setCurrentStyleIndex.bind(this)} currentStyle={styles[currentStyleIndex]} key={index}/>
+      })}
       <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
-      <YourOutfit currentProduct={props.currentProduct} currentStyle={styles[currentStyleId]}/>
+      <YourOutfit currentProduct={props.currentProduct} currentStyle={styles[currentStyleIndex]}/>
     </div>
   )
 };
 
-export default RelatedProductsItem;
+export default Overview;

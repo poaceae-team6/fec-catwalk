@@ -10,6 +10,8 @@ import Overview from './overview/Overview.jsx';
 import QuestionList from './questions/QuestionList.jsx';
 import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 
+const url = 'http://localhost:3000';
+
 const App = (props) => {
 
   const [currentProduct, setCurrentProduct] = useState({
@@ -72,7 +74,7 @@ const App = (props) => {
             dark mode will turn this red
           </h3>
         </div>
-        <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
+        {/* <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/> */}
         <QuestionList />
         <ReviewMain />
       </div>

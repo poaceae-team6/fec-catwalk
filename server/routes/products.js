@@ -31,7 +31,7 @@ router
   
 // GET specific product by id
 router
-  .route('/product_id')
+  .route('/products/id')
   .get((req, res) => {
     
   })
