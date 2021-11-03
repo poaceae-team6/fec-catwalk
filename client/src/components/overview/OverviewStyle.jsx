@@ -5,12 +5,14 @@ import React, {useState, useEffect} from 'react';
 
 const OverviewStyle = (props) => {
   
+  const [addToOutfit, setAddToOutfit] = useState(false);
+  
   const handleClick = () => {
     props.setCurrentStyleIndex(props.key);
   }
 
   return (
-    <div>
+    <div className='styles-selection'>
       <button onClick={handleClick.bind(this)}>
         <img className='style-img' value={props.currentStyle} src={props.currentStyle.photos[0].thumbnail_url}/>
       </button>

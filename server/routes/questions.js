@@ -45,12 +45,12 @@ router
       url: `${url}/reviews...`,
       headers: {
         'Authorization': `${TOKEN}`
-    }
+      }
+    })
+    .then(response => {
+      // ...
+    })
   })
-  .then(response => {
-    // ...
-  })
-})
 // ... add the rest
 
 module.exports = router;

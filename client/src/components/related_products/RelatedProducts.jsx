@@ -1,4 +1,4 @@
-import React, {Component, useState, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import RelatedProductsItem from './RelatedProductsItem.jsx';
 import { ThemeContext } from '../ThemeContext.js';
 
