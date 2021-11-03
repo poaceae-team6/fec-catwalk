@@ -14,12 +14,11 @@ const {TOKEN} = require('../../config.js');
 // Add additonal router 
 
 router
-  .route('/')
+  .route('/:id') // expecting the text after / to be a param named id
   .get((req, res) => {
-    let id = '40344'; // testing purposes, this should eventually be req.query.id
     axios({
       method: 'get',
-      url: `${url}/qa/questions?product_id=${id}`,
+      url: `${url}/qa/questions?product_id=${req.params.id}`,
       headers: {
         'Authorization': `${TOKEN}`
       }
@@ -31,30 +30,21 @@ router
       console.log(error);
     })
   })
-  .post((req, res) => {
-    axios({
-      method: 'post',
-      url: `${url}/qa/questions`,
-      headers: {
-        'Authorization': `${TOKEN}`
-      }
-    })
-    .then(response => {
-      // ...
-    })
+  .post((req, res) => { // using router, you can chain your requests!
+    // ...
   })
 
 // The .route can be whatever you want to name it! I just put /answers as an example
 // this is equivalent to http://localhost:3000/questions/answers
 
 router
-.route('/answers')
-.get((req, res) => {
-  axios({
-    method: 'get',
-    url: `${url}/reviews`,
-    headers: {
-      'Authorization': `${TOKEN}`
+  .route('/answers/:id')
+  .get((req, res) => {
+    axios({
+      method: 'get',
+      url: `${url}/reviews...`,
+      headers: {
+        'Authorization': `${TOKEN}`
     }
   })
   .then(response => {
