@@ -26,8 +26,8 @@ const Overview = (props) => {
   const updateOutfitList = (copyArray) => {
     outfitList = copyArray;
     setOutfits(copyArray);
-  } 
-  
+  }
+
   return (
     <div className='overview-container'>
       <h2>{styles[currentStyleIndex].name}</h2>

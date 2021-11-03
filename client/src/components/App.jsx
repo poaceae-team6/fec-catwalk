@@ -35,29 +35,24 @@ const App = (props) => {
       }
     ]
   })
-  
   // hooks version of componentDidMount
   useEffect(() => {
     axios.get(`${url}/products`)
       .then(res => {
         console.log(res[0]);
-        //setCurrentProduct(res[0]);
-      })
-      .catch(error => {
-        console.log(error);
       })
   }, [])
-  
+
   const fetchNewProduct = (productId) => {
     axios.get(`${url}/products/${productId}`)
       .then(res => {
         setCurrentProduct(res);
-      }) 
+      })
   }
-  
+
   const theme = useContext(ThemeContext);
   const [darkMode, setDarkMode] = useState(theme.darkMode);
-  
+
   const toggleMode = () => {
     setDarkMode(darkMode => !darkMode);
   }

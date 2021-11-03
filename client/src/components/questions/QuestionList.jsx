@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import QuestionItem from './QuestionItem.jsx';
 import Search from './Search.jsx';
+import AddQuestionModal from './AddQuestionModal.jsx';
 
 
 const QuestionList = (props) => {
@@ -148,6 +149,7 @@ const QuestionList = (props) => {
         }
     ],
       length: 4,
+      modalShow: false,
     }
   )
 
@@ -175,9 +177,24 @@ const QuestionList = (props) => {
 
   };
 
+  // open Add a question
+  const openAddQuestion = () => {
+    setState({
+      ...state,
+      modalShow: true,
+    });
+  };
+  // close add a question
+  const closeAddQuestion = () => {
+    setState({
+      ...state,
+      modalShow: false,
+    });
+  };
+
   const handleMoreQuestionsClick = () => {
     setState({...state, length: state.length + 2} );
-  }
+  };
 
 
   //overflow style
@@ -196,7 +213,8 @@ const QuestionList = (props) => {
         <p>Questions & Answers</p>
         <Search ql={state} questions={state.data} setQuestions={setState}/>
         <p>No questions found. Do you want to add yours?</p>
-        <button>ADD A QUESTION +</button>
+        <button onClick={openAddQuestion}>ADD A QUESTION +</button>
+        {state.modalShow && <AddQuestionModal close={closeAddQuestion}/>}
       </div>
     )
   } else {
@@ -215,7 +233,9 @@ const QuestionList = (props) => {
         <ul style={overflow}>
           {data.map((question, index) => <QuestionItem key={index} question={question} />)}
         </ul>
-         <button>ADD A QUESTIONS +</button>
+         <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+         {state.modalShow && <AddQuestionModal close={closeAddQuestion}/>}
+
       </div>
     );
     }
@@ -232,7 +252,8 @@ const QuestionList = (props) => {
         <ul style={overflow}>
           {data.map((question, index) => <QuestionItem key={index} question={question} />)}
         </ul>
-        <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button>ADD A QUESTIONS +</button>
+        <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+        {state.modalShow && <AddQuestionModal close={closeAddQuestion}/>}
       </div>
     );
   }
