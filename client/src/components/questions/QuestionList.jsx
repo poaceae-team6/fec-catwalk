@@ -192,6 +192,17 @@ const QuestionList = (props) => {
     });
   };
 
+  // add a question to the list
+  const AddQuestion = (questionObj) => {
+    let questions = state.data;
+    questions.push(questionObj);
+
+    setState({
+      ...state,
+      data: questions,
+    })
+  }
+
   const handleMoreQuestionsClick = () => {
     setState({...state, length: state.length + 2} );
   };
@@ -214,7 +225,7 @@ const QuestionList = (props) => {
         <Search ql={state} questions={state.data} setQuestions={setState}/>
         <p>No questions found. Do you want to add yours?</p>
         <button onClick={openAddQuestion}>ADD A QUESTION +</button>
-        {state.modalShow && <AddQuestionModal name={props.name} close={closeAddQuestion}/>}
+        {state.modalShow && <AddQuestionModal addQ={AddQuestion} name={props.name} close={closeAddQuestion}/>}
       </div>
     )
   } else {
@@ -234,7 +245,7 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem key={index} question={question} />)}
         </ul>
          <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
-         {state.modalShow && <AddQuestionModal name={props.name} close={closeAddQuestion}/>}
+         {state.modalShow && <AddQuestionModal addQ={AddQuestion} name={props.name} close={closeAddQuestion}/>}
 
       </div>
     );
@@ -253,7 +264,7 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem key={index} question={question} />)}
         </ul>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
-        {state.modalShow && <AddQuestionModal name={props.name} close={closeAddQuestion}/>}
+        {state.modalShow && <AddQuestionModal addQ={AddQuestion} name={props.name} close={closeAddQuestion}/>}
       </div>
     );
   }

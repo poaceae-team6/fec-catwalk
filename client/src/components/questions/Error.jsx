@@ -1,8 +1,12 @@
 import React from 'react';
 
 const Error = (props) => {
+  const red = {
+    color: 'red',
+  }
+
   return (
-    <div>
+    <div style={red}>
     <span>
       You must enter the following:
     </span>

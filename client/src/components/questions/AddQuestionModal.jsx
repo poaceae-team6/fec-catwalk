@@ -11,6 +11,8 @@ const AddQuestionModal = (props) => {
     msg: '',
   });
 
+
+  // style
   let modalBg = {
     width: '700px',
     height: '700px',
@@ -29,7 +31,10 @@ const AddQuestionModal = (props) => {
     flexDirection: 'column',
     padding: '25px',
     border: 'solid 1px',
+  }
 
+  let xButton = {
+    float: 'right',
   }
 
   let input = {
@@ -108,6 +113,15 @@ const AddQuestionModal = (props) => {
 
     if (name && email && question) {
       //submit ok add question
+      let questionData = {
+        question_body: state.question,
+        asker_name: state.name,
+        answers: [],
+        question_helpfulness: 0,
+        reported: false
+      };
+      props.addQ(questionData);
+      // send this data to API
 
       // close the window
       props.close ();
@@ -125,7 +139,7 @@ const AddQuestionModal = (props) => {
     <div className='modalBg' style={modalBg}>
       <div className='modalContianer' style={modalContianer}>
         <div>
-          <button onClick={props.close}>X</button>
+          <button style={xButton} onClick={props.close}>X</button>
         </div>
       <div className='title'>
         <h2>Ask Your Question</h2>
