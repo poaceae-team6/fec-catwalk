@@ -88,7 +88,7 @@ h3 {
   margin: auto;
 }
 
-.ratings-container {
+.reviews-container {
   margin: auto;
 }
 
@@ -247,14 +247,18 @@ footer p {
 /* Dark Mode
 /*******************/
 
+.theme-setting h2, h3 {
+  padding: 0px;
+}
+
 #toggle-btn {
-  font-size: 30px;
-  color: #525252;
+  display: block;
+  margin: auto;
+  font-size: 25px;
+  color: #808080;
   cursor: pointer;
   background: none;
   border: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
 }
 
 .font-dark {

@@ -12,12 +12,11 @@ const {TOKEN} = require('../../config.js');
 // POST /reviews
 // this is actually http://localhost:3000/reviews
 router
-  .route('/')
+  .route('/:id') // expecting the text after / to be a param named id
   .get((req, res) => {
-    const id = '40345'; // testing purposes, this should eventually be the params of the req
     axios({
       method: 'get',
-      url: `${url}/reviews?product_id=${id}`,
+      url: `${url}/reviews?product_id=${req.params.id}`,
       headers: {
         'Authorization': `${TOKEN}`
       }
@@ -25,24 +24,18 @@ router
     .then(response => {
       res.send(response.data);
     })
+    .catch(error => {
+      console.log(error);
+    })
   })
-  .post((req, res) => {
-    axios({
-      method: 'post',
-      url: `${url}/reviews`,
-      headers: {
-        'Authorization': `${TOKEN}`
-      }
-    })
-    .then(response => {
-      // ...
-    })
+  .post((req, res) => { // using router, you can chain your requests!
+    // ...
   })
   
-// The express route can be whatever you want to name it! I just put /meta as an example
+// The .route can be whatever you want to name it! I just put /meta as an example
 // this is equivalent to http://localhost:3000/reviews/meta
 router
-  .route('/meta')
+  .route('/:id/meta')
   .get((req, res) => {
     axios({
       method: 'get',
