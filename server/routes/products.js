@@ -27,27 +27,66 @@ router
     .catch(error => {
       console.log(error);
     })
-  })
+  });
   
 // GET specific product by id
 router
-  .route('/products/id')
+  .route('/:id')
   .get((req, res) => {
-    
-  })
+    axios({
+      method: 'get',
+      url: `${url}/products/${req.params.id}`,
+      headers: {
+        'Authorization': `${TOKEN}`
+      }
+    })
+    .then(response => {
+      //console.log(resonse.data);
+      res.send(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  });
 
 // GET specific product's styles by id
 router
-  .route('/product_id/styles')
+  .route('/:id/styles')
   .get((req, res) => {
-    
-  })
+    axios({
+      method: 'get',
+      url: `${url}/products/${req.params.id}/styles`,
+      headers: {
+        'Authorization': `${TOKEN}`
+      }
+    })
+    .then(response => {
+      //console.log(resonse.data);
+      res.send(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  });
   
 // GET related products ids for specific product
 router
-  .route('/product_id/related')
+  .route('/:id/related')
   .get((req, res) => {
-    
-  })
+    axios({
+      method: 'get',
+      url: `${url}/products/${req.params.id}/related`,
+      headers: {
+        'Authorization': `${TOKEN}`
+      }
+    })
+    .then(response => {
+      //console.log(resonse.data);
+      res.send(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  });
 
 module.exports = router;
