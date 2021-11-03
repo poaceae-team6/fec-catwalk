@@ -21,10 +21,10 @@ const App = (props) => {
   const [temp, setTemp] = useState(sampleProductIdData);
   // shared component for Overview & Outfit
   const [OutfitList, setOutfitList] = useState([]);
-  
+
   const theme = useContext(ThemeContext);
   const [darkMode, setDarkMode] = useState(theme.darkMode);
-  
+
   const toggleMode = () => {
     setDarkMode(darkMode => !darkMode);
   }
@@ -38,7 +38,7 @@ const App = (props) => {
       <RelatedProducts outfitIdList={OutfitList}/>
       <YourOutfit />
       <QuestionList />
-      <div id='review'>Review Goes Here</div>
+      <div id='review'></div>
       <ReviewMain />
     </div>
     </ThemeContext.Provider>
