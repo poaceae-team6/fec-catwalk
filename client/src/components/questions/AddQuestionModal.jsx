@@ -120,6 +120,7 @@ const AddQuestionModal = (props) => {
         question_helpfulness: 0,
         reported: false
       };
+
       props.addQ(questionData);
       // send this data to API
 
@@ -169,5 +170,6 @@ const AddQuestionModal = (props) => {
     </div>
   );
 };
+
 
 export default AddQuestionModal;

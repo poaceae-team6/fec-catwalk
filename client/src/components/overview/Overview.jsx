@@ -8,15 +8,15 @@ import OverviewStyle from './OverviewStyle.jsx';
 var outfitList = [];
   // product object (category, name, description, 'features')
   // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
-const url = 'http://localhost:3000';
+const url = 'http://127.0.0.1:3000';
 
 const Overview = (props) => {
-  
+
   const [styles, setStyles] = useState(null);
   const [currentStyleIndex, setCurrentStyleIndex] = useState(0);
   const [outfits, setOutfits] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   const fetchData = () => {
     setIsLoading(true);
     axios.get(`${url}/products/${props.currentProduct.id}/styles`)
@@ -28,11 +28,11 @@ const Overview = (props) => {
     })
     setIsLoading(false);
   }
-  
+
   useEffect(() => {
     fetchData();
   }, [])
-  
+
   const updateOutfitList = (copyArray) => {
     outfitList = copyArray;
     setOutfits(copyArray);

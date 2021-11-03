@@ -4,9 +4,9 @@ import React, {useState, useEffect} from 'react';
   // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
 
 const OverviewStyle = (props) => {
-  
+
   const [addToOutfit, setAddToOutfit] = useState(false);
-  
+
   const handleClick = () => {
     props.setCurrentStyleIndex(props.key);
   }
