@@ -18,9 +18,9 @@ const App = (props) => {
 
   const [currentProduct, setCurrentProduct] = useState({});
   // sample data for current product retrieved by id
-  const [temp, setTemp] = useState(sampleProductIdData);
+  const [relatedList, setRelatedList] = useState(sampleProductIdData);
   // shared component for Overview & Outfit
-  const [OutfitList, setOutfitList] = useState([]);
+  const [outfitList, setOutfitList] = useState([]);
   
   const theme = useContext(ThemeContext);
   const [darkMode, setDarkMode] = useState(theme.darkMode);
@@ -31,20 +31,23 @@ const App = (props) => {
 
   return (
     <ThemeContext.Provider value={darkMode}>
-    <div>
-      {darkMode ? "Dark Mode" : "Light Mode"}
-      <button id='toggle-btn' onClick={toggleMode.bind(this)}>{darkMode ? <BsToggleOn /> : <BsToggleOff />}</button>
-      <h1 className={darkMode ? "font-dark" : ""}> react is running </h1>
-      <RelatedProducts outfitIdList={OutfitList}/>
-      <YourOutfit />
-      <QuestionList />
-      <div id='review'>Review Goes Here</div>
-      <ReviewMain />
-    </div>
+      <div>
+        <div className='theme-setting'>
+          <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
+          <button id='toggle-btn' onClick={toggleMode.bind(this)}>
+            {darkMode ? <BsToggleOn /> : <BsToggleOff />}
+          </button>
+          <h3 className={darkMode ? "font-dark" : ""}>
+            dark mode will turn this red
+          </h3>
+        </div>
+        <RelatedProducts relatedList={relatedList}/>
+        <YourOutfit outfitIdList={outfitList}/>
+        <QuestionList />
+        <ReviewMain />
+      </div>
     </ThemeContext.Provider>
   );
-
-
 }
 
 export default App;
