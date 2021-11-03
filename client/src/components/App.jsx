@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ThemeContext } from './ThemeContext.js';
+import axios from 'axios';
 
 // Theme Toggle Button Icons
 import { BsToggleOn } from 'react-icons/bs';
 import { BsToggleOff } from 'react-icons/bs';
 
+import Overview from './overview/Overview.jsx';
 import QuestionList from './questions/QuestionList.jsx';
-import RelatedProducts from './related_products/RelatedProducts.jsx';
-import YourOutfit from './related_products/YourOutfit.jsx';
 import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 
 // Import sampleData for testing purposes
@@ -16,11 +16,22 @@ import sampleProductIdData from '../assets/related_products/sampleProductIdData.
 
 const App = (props) => {
 
-  const [currentProduct, setCurrentProduct] = useState({});
-  // sample data for current product retrieved by id
-  const [relatedList, setRelatedList] = useState(sampleProductIdData);
-  // shared component for Overview & Outfit
-  const [outfitList, setOutfitList] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState({})
+  
+  // hooks version of componentDidMount
+  useEffect(() => {
+    axios.get(`${url}/products`)
+      .then(res => {
+        console.log(res[0]);
+      }) 
+  }, [])
+  
+  const fetchNewProduct = (productId) => {
+    axios.get(`${url}/products/${productId}`)
+      .then(res => {
+        setCurrentProduct(res);
+      }) 
+  }
   
   const theme = useContext(ThemeContext);
   const [darkMode, setDarkMode] = useState(theme.darkMode);
@@ -41,8 +52,7 @@ const App = (props) => {
             dark mode will turn this red
           </h3>
         </div>
-        <RelatedProducts relatedList={relatedList}/>
-        <YourOutfit outfitIdList={outfitList}/>
+        <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
         <QuestionList />
         <ReviewMain />
       </div>
