@@ -59,6 +59,7 @@ const AddQuestionModal = (props) => {
           <br></br>
           <br></br>
           <input type='submit' value='submit'/>
+          <input onClick={props.close} type='submit' value='cancel'/>
         </form>
       </div>
       </div>
