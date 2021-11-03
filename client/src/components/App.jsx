@@ -1,26 +1,59 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ThemeContext } from './ThemeContext.js';
+import axios from 'axios';
 
 // Theme Toggle Button Icons
 import { BsToggleOn } from 'react-icons/bs';
 import { BsToggleOff } from 'react-icons/bs';
 
+import Overview from './overview/Overview.jsx';
 import QuestionList from './questions/QuestionList.jsx';
-import RelatedProducts from './related_products/RelatedProducts.jsx';
-import YourOutfit from './related_products/YourOutfit.jsx';
 import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 
 // Import sampleData for testing purposes
 // Related Products
 import sampleProductIdData from '../assets/related_products/sampleProductIdData.js'
 
+const url = 'http://localhost:3000';
+
 const App = (props) => {
 
-  const [currentProduct, setCurrentProduct] = useState({});
-  // sample data for current product retrieved by id
-  const [temp, setTemp] = useState(sampleProductIdData);
-  // shared component for Overview & Outfit
-  const [OutfitList, setOutfitList] = useState([]);
+  const [currentProduct, setCurrentProduct] = useState({
+    "id": 40344,
+    "campus": "hr-rfp",
+    "name": "Camo Onesie",
+    "slogan": "Blend in to your crowd",
+    "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+    "category": "Jackets",
+    "default_price": "140.00",
+    "created_at": "2021-08-13T14:38:44.509Z",
+    "updated_at": "2021-08-13T14:38:44.509Z",
+    "features": [
+      {
+        "feature": "Fabric",
+        "value": "Canvas"
+      },
+      {
+        "feature": "Buttons",
+        "value": "Brass"
+      }
+    ]
+  })
+
+  // hooks version of componentDidMount
+  useEffect(() => {
+    axios.get(`${url}/products`)
+      .then(res => {
+        console.log(res[0]);
+      })
+  }, [])
+
+  const fetchNewProduct = (productId) => {
+    axios.get(`${url}/products/${productId}`)
+      .then(res => {
+        setCurrentProduct(res);
+      })
+  }
 
   const theme = useContext(ThemeContext);
   const [darkMode, setDarkMode] = useState(theme.darkMode);
@@ -31,20 +64,22 @@ const App = (props) => {
 
   return (
     <ThemeContext.Provider value={darkMode}>
-    <div>
-      {darkMode ? "Dark Mode" : "Light Mode"}
-      <button id='toggle-btn' onClick={toggleMode.bind(this)}>{darkMode ? <BsToggleOn /> : <BsToggleOff />}</button>
-      <h1 className={darkMode ? "font-dark" : ""}> react is running </h1>
-      <RelatedProducts outfitIdList={OutfitList}/>
-      <YourOutfit />
-      <QuestionList />
-      <div id='review'></div>
-      <ReviewMain />
-    </div>
+      <div>
+        <div className='theme-setting'>
+          <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
+          <button id='toggle-btn' onClick={toggleMode.bind(this)}>
+            {darkMode ? <BsToggleOn /> : <BsToggleOff />}
+          </button>
+          <h3 className={darkMode ? "font-dark" : ""}>
+            dark mode will turn this red
+          </h3>
+        </div>
+        <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
+        <QuestionList />
+        <ReviewMain />
+      </div>
     </ThemeContext.Provider>
   );
-
-
 }
 
 export default App;
