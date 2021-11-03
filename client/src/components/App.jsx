@@ -75,7 +75,7 @@ const App = (props) => {
           </h3>
         </div>
         <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
-        <QuestionList />
+        <QuestionList id={currentProduct.id} name={currentProduct.name}/>
         <ReviewMain />
       </div>
     </ThemeContext.Provider>
