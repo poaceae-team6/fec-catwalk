@@ -10,7 +10,7 @@ const reviewListData = [
       "rating": 4,
       "summary": "Good buy",
       "recommend": true,
-      "response": null,
+      "response": "Thank you!" ,
       "body": "I really like this product. Solid quality and price.",
       "date": "2021-10-25T00:00:00.000Z",
       "reviewer_name": "LesterTheTester",
@@ -30,7 +30,7 @@ const reviewListData = [
       "review_id": 1074924,
       "rating": 5,
       "summary": "123",
-      "recommend": true,
+      "recommend": false,
       "response": null,
       "body": "abcd",
       "date": "2021-10-29T00:00:00.000Z",
@@ -68,7 +68,7 @@ function Reviews() {
 
   useEffect(() => {
     reviewContext.setReviewList(reviewListData);
-    console.log(reviewContext);
+    console.log(reviewContext.reviewList);
   });
 
   const openAddReview = () => {

@@ -1,6 +1,7 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import ReviewTile from '../reviewtile/ReviewTile.jsx';
+import { ReviewContext } from '../ReviewProvider.jsx'
 
 function ReviewsList() {
 
@@ -11,10 +12,17 @@ function ReviewsList() {
     padding: '10px'
   }
 
+  const reviewContext = useContext(ReviewContext);
+
   return (
     <div style={listStyles}>
-      <div><ReviewTile /></div>
-      <div><ReviewTile /></div>
+      {/* {console.log('here', reviewContext.reviewList)} */}
+      <ul>
+        {reviewContext.reviewList.map((review, i) =>
+           <ReviewTile review={review} key={i} />
+        )}
+      </ul>
+
     </div>
     );
 }
