@@ -34,19 +34,24 @@ const App = (props) => {
         "value": "Brass"
       }
     ]
-  })
+  });
   // hooks version of componentDidMount
-  useEffect(() => {
-    axios.get(`${url}/products`)
-      .then(res => {
-        console.log(res[0]);
-      })
-  }, [])
+  // fetch the first product in the proucts list in DB
+  // and set it as the currentProduct
+  // useEffect(() => {
+  //   axios.get(`${url}/products`)
+  //     .then(res => {
+  //       setCurrentProduct(res.data[0]);
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     })
+  // }, [])
 
   const fetchNewProduct = (productId) => {
     axios.get(`${url}/products/${productId}`)
       .then(res => {
-        setCurrentProduct(res);
+        setCurrentProduct(res.data);
       })
   }
 
@@ -69,7 +74,7 @@ const App = (props) => {
             dark mode will turn this red
           </h3>
         </div>
-        {/* <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/> */}
+        <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
         <QuestionList />
         <ReviewMain />
       </div>
