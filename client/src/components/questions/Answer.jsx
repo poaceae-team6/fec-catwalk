@@ -39,7 +39,11 @@ const Answer = (props) => {
     }
   };
 
-
+ //overflow style
+ let overflow = {
+  overflow: 'scroll',
+  maxHeight: '300px'
+}
   // bold the A in the answer
   let boldA = {
     fontWeight: 'bold'
@@ -58,7 +62,7 @@ const Answer = (props) => {
   if (props.answer.photos.length === 0) {
 
     return (
-      <div>
+      <div style={overflow}>
         <p>
            <span style={boldA}>A: </span>{props.answer.body}
         </p>
@@ -69,7 +73,7 @@ const Answer = (props) => {
   } else {
 
     return (
-      <div>
+      <div style={overflow}>
         <p> A: {props.answer.body}</p>
         {/* {props.answer.photos.map((img, index) => <img key={index} src={img} />)} */}
         <span> by User </span> <span style={bold}>{props.answer.answerer_name}</span> <span>, {date}</span>  |  <span>helpful?</span>  <span onClick={handleHelpful}>Yes ({state.helpfulNum})</span>  |  <span onClick={handleReport}>{state.reportDisplay}</span>

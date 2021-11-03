@@ -148,7 +148,6 @@ const QuestionList = (props) => {
         }
     ],
       length: 4,
-      display: [],
     }
   )
 
@@ -180,6 +179,13 @@ const QuestionList = (props) => {
     setState({...state, length: state.length + 2} );
   }
 
+
+  //overflow style
+  let overflow = {
+    overflow: 'scroll',
+    maxHeight: '800px'
+  }
+
   //only 4 questions will be visiable by default
   let data = state.data;
 
@@ -188,7 +194,7 @@ const QuestionList = (props) => {
     return (
       <div className='questions-container'>
         <p>Questions & Answers</p>
-        <Search questions={state.data} setQuestions={setState}/>
+        <Search ql={state} questions={state.data} setQuestions={setState}/>
         <p>No questions found. Do you want to add yours?</p>
         <button>ADD A QUESTION +</button>
       </div>
@@ -198,14 +204,32 @@ const QuestionList = (props) => {
     // need to sort by helpfuness
     sortQuestions(data);
 
+    //when no more questions to show, do not display more questions
+    if (state.length >= state.data.length) {
+      data = data.slice(0, state.length);
+
+    return (
+      <div className='questions-container'>
+        <p>Questions & Answers</p>
+        <Search ql={state} questions={state.data} setQuestions={setState}/>
+        <ul style={overflow}>
+          {data.map((question, index) => <QuestionItem key={index} question={question} />)}
+        </ul>
+         <button>ADD A QUESTIONS +</button>
+      </div>
+    );
+    }
+
+    //otherwise, there is a more questions button.
+
     //slice the data array to set the defaut length
     data = data.slice(0, state.length);
 
     return (
       <div className='questions-container'>
         <p>Questions & Answers</p>
-        <Search questions={state.data} setQuestions={setState}/>
-        <ul>
+        <Search ql={state} questions={state.data} setQuestions={setState}/>
+        <ul style={overflow}>
           {data.map((question, index) => <QuestionItem key={index} question={question} />)}
         </ul>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button>ADD A QUESTIONS +</button>
