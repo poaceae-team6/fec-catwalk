@@ -1,10 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import ReviewsList from './ReviewsList.jsx';
 import AddReview from '../addreview/AddReview.jsx';
 
 function Reviews() {
-
   const buttonStyles = {
     height: '60px',
     width: '200px',
@@ -27,6 +26,13 @@ function Reviews() {
     textDecoration: 'underline'
   }
 
+  const [showAddReview, setShowAddReview] = useState(false)
+
+  const openAddReview = () => {
+    console.log(showAddReview);
+    setShowAddReview(prev => !prev)
+  }
+
 
   return (
     <div style={{padding: '10px', marginTop: '20px'}}>
@@ -45,11 +51,11 @@ function Reviews() {
       <button style={buttonStyles}>
         MORE REVIEWS
       </button>
-      <button style={buttonStyles}>
+      <button style={buttonStyles} onClick={openAddReview}>
         ADD A REVIEW +
       </button>
       <br></br>
-      <div><AddReview /></div>
+      {showAddReview ? <AddReview setShowAddReview={ setShowAddReview } /> : ''}
     </div>
     );
 }
