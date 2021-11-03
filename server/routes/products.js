@@ -61,7 +61,6 @@ router
       }
     })
     .then(response => {
-      //console.log(resonse.data);
       res.send(response.data);
     })
     .catch(error => {
