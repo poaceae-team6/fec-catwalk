@@ -16,9 +16,10 @@ const {TOKEN} = require('../../config.js');
 router
   .route('/')
   .get((req, res) => {
+    let id = '40344'; // testing purposes, this should eventually be req.query.id
     axios({
       method: 'get',
-      url: `${url}/qa/questions`,
+      url: `${url}/qa/questions?product_id=${id}`,
       headers: {
         'Authorization': `${TOKEN}`
       }
@@ -30,20 +31,20 @@ router
       console.log(error);
     })
   })
-  // .post((req, res) => {
-  //   axios({
-  //     method: 'post',
-  //     url: `${url}/qa/questions`,
-  //     headers: {
-  //       'Authorization': `${TOKEN}`
-  //     }
-  //   })
-  //   .then(response => {
-  //     // ...
-  //   })
-  // })
+  .post((req, res) => {
+    axios({
+      method: 'post',
+      url: `${url}/qa/questions`,
+      headers: {
+        'Authorization': `${TOKEN}`
+      }
+    })
+    .then(response => {
+      // ...
+    })
+  })
 
-// The express route can be whatever you want to name it! I just put /answers as an example
+// The .route can be whatever you want to name it! I just put /answers as an example
 // this is equivalent to http://localhost:3000/questions/answers
 
 router
