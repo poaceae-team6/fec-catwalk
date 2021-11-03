@@ -12,7 +12,7 @@ const OverviewStyle = (props) => {
   }
 
   return (
-    <div>
+    <div className='styles-selection'>
       <button onClick={handleClick.bind(this)}>
         <img className='style-img' value={props.currentStyle} src={props.currentStyle.photos[0].thumbnail_url}/>
       </button>
