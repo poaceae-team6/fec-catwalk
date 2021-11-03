@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import Error from './Error.jsx';
 
 const AddQuestionModal = (props) => {
+
+  const [state, setState] = useState ({
+    name: '',
+    email: '',
+    question: '',
+    error: false,
+    msg: '',
+  });
 
   let modalBg = {
     width: '700px',
     height: '700px',
     backgroundColor: 'white',
-    position: 'fix',
+    position: 'relative',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -15,12 +24,12 @@ const AddQuestionModal = (props) => {
   let modalContianer = {
     width: '700px',
     height: '800px',
-    borderRadius: '12px',
     backgroundColor: 'white',
     display: 'flex',
     flexDirection: 'column',
     padding: '25px',
-    border: 'solid'
+    border: 'solid 1px',
+
   }
 
   let input = {
@@ -34,6 +43,84 @@ const AddQuestionModal = (props) => {
     fontSize: '18px',
   }
 
+  // handle input changes
+
+  const handleNameInput = (e) => {
+    setState({
+      ...state,
+      name: e.target.value,
+    });
+  };
+
+  const handleEmailInput = (e) => {
+    setState({
+      ...state,
+      email: e.target.value,
+    })
+
+
+  };
+
+  const handleQInput = (e) => {
+    setState({
+      ...state,
+      question: e.target.value,
+    });
+
+  };
+
+  // validation for the input
+
+  const isValid = (property) => {
+    let result = false;
+
+    if (property === 'email') {
+      if(state[property].indexOf('@') !== -1 && state[property].length > 5) {
+        result = true;
+      }
+    } else if (state[property].length !== 0) {
+      result = true;
+    }
+
+    return result;
+  };
+
+  // handle submit
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    let name = isValid('name');
+    let email = isValid('email');
+    let question = isValid('question');
+    let error = [];
+
+    if (!name) {
+     error.push('Name');
+
+    }
+    if (!email) {
+      error.push('email');
+    }
+    if (!question) {
+      error.push('question body')
+    }
+
+    if (name && email && question) {
+      //submit ok add question
+
+      // close the window
+      props.close ();
+    } else {
+      setState({
+        ...state,
+        error: true,
+        msg: error,
+      });
+    }
+  }
+
+
   return (
     <div className='modalBg' style={modalBg}>
       <div className='modalContianer' style={modalContianer}>
@@ -42,24 +129,26 @@ const AddQuestionModal = (props) => {
         </div>
       <div className='title'>
         <h2>Ask Your Question</h2>
-        <h4>Question about [product Name]</h4>
+        <h4>Question about {props.name}</h4>
         </div>
       <div className='body'>
-        <form>
+        <form onSubmit={handleSubmit}>
           <p>What is your nickname?</p>
-          <input style={input} type='text' placeholder='Example: jackson11!'/>
+          <input onChange={handleNameInput} style={input} type='text' placeholder='Example: jackson11!'/>
           <p>For privacy reasons, do not use your full name or email address</p>
           <br></br>
           <p>Your email</p>
-          <input style={input} type='text' placeholder='Why did you like the product or not?'/>
+          <input onChange={handleEmailInput} style={input} type='text' placeholder='Why did you like the product or not?'/>
           <p>For authentication reasons, you will not be emailed</p>
           <br></br>
           <p>Your Question</p>
-          <input type='text' placeholder='question body' style={body}/>
+          <input onChange={handleQInput} type='text' placeholder='question body' style={body}/>
           <br></br>
           <br></br>
           <input type='submit' value='submit'/>
           <input onClick={props.close} type='submit' value='cancel'/>
+          <br></br>
+          {state.error && <Error msg={state.msg} />}
         </form>
       </div>
       </div>

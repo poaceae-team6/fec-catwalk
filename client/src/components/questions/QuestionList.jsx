@@ -154,9 +154,9 @@ const QuestionList = (props) => {
   )
 
 
-  const getData = () => {
-    // send request to server asking API data
-  };
+  // const getData = () => {
+  //   // send request to server asking API data
+  // };
 
   const sortQuestions = (questions) => {
 
@@ -214,7 +214,7 @@ const QuestionList = (props) => {
         <Search ql={state} questions={state.data} setQuestions={setState}/>
         <p>No questions found. Do you want to add yours?</p>
         <button onClick={openAddQuestion}>ADD A QUESTION +</button>
-        {state.modalShow && <AddQuestionModal close={closeAddQuestion}/>}
+        {state.modalShow && <AddQuestionModal name={props.name} close={closeAddQuestion}/>}
       </div>
     )
   } else {
@@ -234,7 +234,7 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem key={index} question={question} />)}
         </ul>
          <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
-         {state.modalShow && <AddQuestionModal close={closeAddQuestion}/>}
+         {state.modalShow && <AddQuestionModal name={props.name} close={closeAddQuestion}/>}
 
       </div>
     );
@@ -253,7 +253,7 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem key={index} question={question} />)}
         </ul>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
-        {state.modalShow && <AddQuestionModal close={closeAddQuestion}/>}
+        {state.modalShow && <AddQuestionModal name={props.name} close={closeAddQuestion}/>}
       </div>
     );
   }
