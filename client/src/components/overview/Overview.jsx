@@ -10,7 +10,6 @@ var outfitList = [];
 const url = 'http://localhost:3000';
 
 const RelatedProductsItem = (props) => {
-
   const [styles, setStyles] = useState({});
   const [currentStyleId, setCurrentStyleId] = useState(0);
   const [outfits, setOutfits] = useState([]);

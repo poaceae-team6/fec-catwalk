@@ -39,7 +39,6 @@ const App = (props) => {
       }
     ]
   })
-
   // hooks version of componentDidMount
   useEffect(() => {
     axios.get(`${url}/products`)
