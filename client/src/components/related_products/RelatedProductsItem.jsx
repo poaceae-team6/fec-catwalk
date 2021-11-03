@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import sampleProductIdData from '../../assets/related_products/sampleProductIdData.js';
 import sampleProductIdStylesData from '../../assets/related_products/sampleProductIdStylesData.js';
