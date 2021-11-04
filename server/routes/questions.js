@@ -29,25 +29,31 @@ router
     })
     .catch(error => {
       console.log('server get error', error);
+      res.send(error);
     })
   })
   .post((req, res) => { // using router, you can chain your requests!
     // ...
-    let postData = req.body.data;
-    let id = req.body.id;
-    console.log(req.body);
+    let postData = req.body.data
 
-    // axios({
-    //   method: 'post',
-    //   url: `${url}/qa/question?product_id=${id}`,
-    //   headers: {
-    //     'Authorization': `${TOKEN}`
-    //   }
-    // }, postData)
-    // .then(() => {
-    //   res.send('data added')
-    // })
-    // .catch(err => console.log('server post err', err))
+    let id = req.body.id;
+    console.log(postData);
+
+    axios({
+      method: 'post',
+      url: `${url}/qa/question?product_id=${id}`,
+      headers: {
+        'Authorization': `${TOKEN}`
+      }
+    }, JSON.stringify(postData))
+    .then(() => {
+      res.send('data added')
+    })
+    .catch(err => {
+      console.log('server post err', err);
+      res.send(err);
+    });
+
   })
 
 // The .route can be whatever you want to name it! I just put /answers as an example
@@ -68,5 +74,8 @@ router
     })
   })
 // ... add the rest
+.post((req, res) => {
+  console.log(req.body);
+})
 
 module.exports = router;

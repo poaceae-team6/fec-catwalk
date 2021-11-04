@@ -127,7 +127,14 @@ const AddQuestionModal = (props) => {
 
       props.addQ(questionData);
       // send this data to API
-      axios.post(`${url}/questions/${productId}`, {id: props.id, data: questionData})
+      let postObj = {
+        body: state.question,
+        name: state.name,
+        email: state.email,
+        product_id: props.id
+
+      }
+      axios.post(`${url}/questions/${productId}`, {id: props.id, data: postObj})
       .then(res => console.log('add question ok', res))
       .catch(err => console.log('add question err', err));
       // close the window

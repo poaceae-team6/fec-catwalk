@@ -75,7 +75,8 @@ const Answer = (props) => {
     return (
       <div style={overflow}>
         <p> A: {props.answer.body}</p>
-        {/* {props.answer.photos.map((img, index) => <img key={index} src={img} />)} */}
+        {props.answer.photos.map((img, index) => <img key={index} src={img} style={{height: '50px', width: '50px'}}/>)}
+        <br></br>
         <span> by User </span> <span style={bold}>{props.answer.answerer_name}</span> <span>, {date}</span>  |  <span>helpful?</span>  <span onClick={handleHelpful}>Yes ({state.helpfulNum})</span>  |  <span onClick={handleReport}>{state.reportDisplay}</span>
       </div>
 

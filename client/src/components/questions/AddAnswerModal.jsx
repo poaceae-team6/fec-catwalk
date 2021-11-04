@@ -1,8 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Error from './Error.jsx';
+import axios from 'axios';
+
+const url = 'http://127.0.0.1:3000';
 
 const AddAnswerModal = (props) => {
+
+  const questionId = props.questionId;
 
   const [image, setImg] = useState(null);
 
@@ -112,9 +117,12 @@ const AddAnswerModal = (props) => {
 
     if (name && email && answer) {
       //submit ok add question
+      let postData = {};
 
       // send this data to API
-
+      axios.post(`${url}/answers/${questionId}`, {id: questionId, data: postData})
+      .then(() => console.log('add answer ok'))
+      .catch((err) => console.log('add answer err', err));
       // close the window
       props.close();
     } else {

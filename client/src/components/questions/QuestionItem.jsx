@@ -4,6 +4,8 @@ import AddAnswerModal from './AddAnswerModal.jsx';
 
 const QuestionItem = (props) => {
 
+  const questionId = props.question.question_id;
+
   const [state, setState] = useState({
     length: 2,
     helpfulNum: props.question.question_helpfulness,
@@ -101,7 +103,7 @@ const QuestionItem = (props) => {
 
       return (
         <div>
-          {modalShow && <AddAnswerModal question={props.question.question_body} name={props.name} close={closeModal}/>}
+          {modalShow && <AddAnswerModal questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
             <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
@@ -118,7 +120,7 @@ const QuestionItem = (props) => {
 
     return (
       <div>
-        {modalShow && <AddAnswerModal question={props.question.question_body} name={props.name} close={closeModal}/>}
+        {modalShow && <AddAnswerModal questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
@@ -131,7 +133,7 @@ const QuestionItem = (props) => {
   } else {
     return (
       <div>
-        {modalShow && <AddAnswerModal question={props.question.question_body} name={props.name} close={closeModal}/>}
+        {modalShow && <AddAnswerModal questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
