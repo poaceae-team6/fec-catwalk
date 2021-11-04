@@ -242,7 +242,7 @@ const QuestionList = (props) => {
         <p>Questions & Answers</p>
         <Search ql={state} questions={state.data} setQuestions={setState}/>
         <ul style={overflow}>
-          {data.map((question, index) => <QuestionItem key={index} question={question} />)}
+          {data.map((question, index) => <QuestionItem name={props.name} key={index} question={question} />)}
         </ul>
          <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
          {state.modalShow && <AddQuestionModal addQ={AddQuestion} name={props.name} close={closeAddQuestion}/>}
@@ -261,7 +261,7 @@ const QuestionList = (props) => {
         <p>Questions & Answers</p>
         <Search ql={state} questions={state.data} setQuestions={setState}/>
         <ul style={overflow}>
-          {data.map((question, index) => <QuestionItem key={index} question={question} />)}
+          {data.map((question, index) => <QuestionItem name={props.name} key={index} question={question} />)}
         </ul>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
         {state.modalShow && <AddQuestionModal addQ={AddQuestion} name={props.name} close={closeAddQuestion}/>}
