@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function Reviews({ productId }) {
   const [page, setPage] = useState(0);
-  const [sort, setSort] = useState('newest');
+  const [sort, setSort] = useState('relevant');
 
   const buttonStyles = {
     height: '60px',
@@ -49,6 +49,7 @@ function Reviews({ productId }) {
     .then(res => {
       callback(res);
     });
+    console.log(`refersh list with page ${page} and sort ${sort}`);
   }
 
   const openAddReview = () => {
@@ -66,19 +67,30 @@ function Reviews({ productId }) {
       });
   }
 
+  const resetReviews = (event) => {
+    const sortBy = event.target.value;
+    getReviews(
+      0,
+      sortBy,
+      (res) => {
+        reviewContext.setReviewList(res.data.results);
+        setPage(0);
+        setSort(sortBy);
+      }
+    )
+  }
+
 
   return (
     <div style={{padding: '10px', marginTop: '20px'}}>
       <div style={sortStyles}>
-        <div style={{display: 'inline-block'}}>248 reviews, sorted by </div>
+        <div style={{display: 'inline-block'}}>248 reviews, sorted by  </div>
         <div style={{display: 'inline-block'}}>
-        {console.log('refersh list', reviewContext.reviewList)}
-          {/* <button style={dropdownStyle}>dropdown ˅ </button> */}
-          {/* <div>
-            <a href="#">Relevant</a>
-            <a href="#">Helpful</a>
-            <a href="#">Newest</a>
-          </div> */}
+          <select stype={dropdownStyle} name="sortBy" id="casortByrs" onChange={resetReviews}>
+            <option value="relevant">Relevant</option>
+            <option value="helpful">Helpful</option>
+            <option value="newest">Newest</option>
+          </select>
         </div>
       </div>
       <div><ReviewsList /></div>
