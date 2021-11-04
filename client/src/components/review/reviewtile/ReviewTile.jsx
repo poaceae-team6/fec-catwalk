@@ -50,7 +50,7 @@ function ReviewTile(props) {
       { props.review.photos ?
       <div>
         {props.review.photos.map((photo, i) =>
-          <img src={photo.url} key={i} style={{width:'100px', height:'100px'}}/>
+          <img src={photo.url} key={i} style={{width:'50px', height:'50px'}}/>
         )}
       </div> : null}
 
