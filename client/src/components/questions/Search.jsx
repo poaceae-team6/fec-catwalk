@@ -1,21 +1,14 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 
 const Search = (props) => {
-
-  const currentQ = props.questions;
-
-  const [storage, setStorage] = useState({
-    questions: currentQ
-  })
-
 
   // handle input changes to filter search
   const handleInput = (e) => {
 
     let term = e.target.value;
-
     props.search(term);
+
   }
 
   // styles

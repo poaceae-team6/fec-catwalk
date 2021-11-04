@@ -126,7 +126,7 @@ const QuestionList = (props) => {
         <Search ql={state} questions={questions} search={handleSearch}/>
         <p>No questions found. Do you want to add yours?</p>
         <button onClick={openAddQuestion}>ADD A QUESTION +</button>
-        {state.modalShow && <AddQuestionModal addQ={AddQuestion} name={props.name} close={closeAddQuestion}/>}
+        {state.modalShow && <AddQuestionModal addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
       </div>
     )
   } else {
@@ -146,7 +146,7 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem name={props.name} key={index} question={question} />)}
         </ul>
          <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
-         {state.modalShow && <AddQuestionModal addQ={AddQuestion} name={props.name} close={closeAddQuestion}/>}
+         {state.modalShow && <AddQuestionModal addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
 
       </div>
     );
@@ -165,7 +165,7 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem name={props.name} key={index} question={question} />)}
         </ul>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
-        {state.modalShow && <AddQuestionModal addQ={AddQuestion} name={props.name} close={closeAddQuestion}/>}
+        {state.modalShow && <AddQuestionModal addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
       </div>
     );
   }

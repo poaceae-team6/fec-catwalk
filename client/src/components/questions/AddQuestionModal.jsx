@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Error from './Error.jsx';
+import axios from 'axios';
+
+const url = 'http://127.0.0.1:3000';
 
 const AddQuestionModal = (props) => {
 
@@ -11,6 +14,7 @@ const AddQuestionModal = (props) => {
     msg: '',
   });
 
+  const productId = props.id;
 
   // style
   let modalBg = {
@@ -123,7 +127,9 @@ const AddQuestionModal = (props) => {
 
       props.addQ(questionData);
       // send this data to API
-
+      axios.post(`${url}/questions/${productId}`, {id: props.id, data: questionData})
+      .then(res => console.log('add question ok', res))
+      .catch(err => console.log('add question err', err));
       // close the window
       props.close ();
     } else {
