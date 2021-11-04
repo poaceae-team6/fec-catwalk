@@ -3,44 +3,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import ReviewsList from './ReviewsList.jsx';
 import AddReview from '../addreview/AddReview.jsx';
 import { ReviewContext } from '../ReviewProvider.jsx'
+import axios from 'axios';
 
-const reviewListData = [
-  {
-      "review_id": 1036514,
-      "rating": 4,
-      "summary": "Good buy",
-      "recommend": true,
-      "response": "Thank you!" ,
-      "body": "I really like this product. Solid quality and price.",
-      "date": "2021-10-25T00:00:00.000Z",
-      "reviewer_name": "LesterTheTester",
-      "helpfulness": 12,
-      "photos": [
-          {
-              "id": 1984850,
-              "url": "https://res.cloudinary.com/drbwyfh4x/image/upload/v1635129787/kzxyqcmpncbwtnalhxp0.png"
-          },
-          {
-              "id": 1984851,
-              "url": "https://res.cloudinary.com/drbwyfh4x/image/upload/v1635129787/tszpmsfxvg80vpqacrrh.ico"
-          }
-      ]
-  },
-  {
-      "review_id": 1074924,
-      "rating": 5,
-      "summary": "123",
-      "recommend": false,
-      "response": null,
-      "body": "abcd",
-      "date": "2021-10-29T00:00:00.000Z",
-      "reviewer_name": "km",
-      "helpfulness": 11,
-      "photos": []
-  }
-];
-
-function Reviews() {
+function Reviews({ productId }) {
   const buttonStyles = {
     height: '60px',
     width: '200px',
@@ -67,9 +32,11 @@ function Reviews() {
   const reviewContext = useContext(ReviewContext);
 
   useEffect(() => {
-    reviewContext.setReviewList(reviewListData);
-    console.log(reviewContext.reviewList);
-  });
+    axios.get(`http://localhost:3000/reviews/40344`)
+      .then(res => {
+        reviewContext.setReviewList(res.data.results);
+      });
+  }, []);
 
   const openAddReview = () => {
     console.log(showAddReview);

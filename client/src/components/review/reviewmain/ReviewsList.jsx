@@ -16,7 +16,6 @@ function ReviewsList() {
 
   return (
     <div style={listStyles}>
-      {/* {console.log('here', reviewContext.reviewList)} */}
       <ul>
         {reviewContext.reviewList.map((review, i) =>
            <ReviewTile review={review} key={i} />
