@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Answer from './Answer.jsx';
+import AddAnswerModal from './AddAnswerModal.jsx';
 
 const QuestionItem = (props) => {
 
@@ -8,6 +9,8 @@ const QuestionItem = (props) => {
     helpfulNum: props.question.question_helpfulness,
     vote: false,
   });
+
+  const [modalShow, setModal] = useState(false);
 
   // find seller's answers
   const findSeller = (answers) => {
@@ -52,6 +55,15 @@ const QuestionItem = (props) => {
     setState({...state, length: 2})
   };
 
+  // Add answer funciton
+  const openModal = () => {
+    setModal(true);
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  }
+
   // style here
   const questionBody = { fontWeight: 'bold' };
 
@@ -89,10 +101,11 @@ const QuestionItem = (props) => {
 
       return (
         <div>
+          {modalShow && <AddAnswerModal question={props.question.question_body} name={props.name} close={closeModal}/>}
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
             <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
-            <button>Add answer</button>
+            <button onClick={openModal}>Add answer</button>
           </p>
           {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
           <span onClick={handleLessAnswers}>Load Less Answers</span>
@@ -105,10 +118,11 @@ const QuestionItem = (props) => {
 
     return (
       <div>
+        {modalShow && <AddAnswerModal question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
-          <button>Add answer</button>
+          <button onClick={openModal}>Add answer</button>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
         <span onClick={handleMoreAnswers}>Load More Answers</span>
@@ -117,10 +131,11 @@ const QuestionItem = (props) => {
   } else {
     return (
       <div>
+        {modalShow && <AddAnswerModal question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
-          <button>Add answer</button>
+          <button onClick={openModal}>Add answer</button>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
 
