@@ -1,10 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
 const Search = (props) => {
 
-  const [state, setState] = useState({
-    currentQ: props.questions,
-  });
+  const currentQ = props.questions;
+
+  const [storage, setStorage] = useState({
+    questions: currentQ
+  })
 
 
   // handle input changes to filter search
@@ -12,24 +15,7 @@ const Search = (props) => {
 
     let term = e.target.value;
 
-    if (term.length > 2) {
-
-      props.setQuestions({
-        ...props.ql,
-        data: props.questions.filter((question) => {
-          if (term === '') {
-            return question;
-          } else if (question.question_body.toLowerCase().includes(term.toLowerCase())) {
-            return question;
-          }
-        }),
-      })
-    } else {
-      props.setQuestions({
-        ...props.ql,
-        data: state.currentQ
-      })
-    }
+    props.search(term);
   }
 
   // styles

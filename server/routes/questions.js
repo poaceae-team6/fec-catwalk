@@ -11,11 +11,12 @@ const {TOKEN} = require('../../config.js');
 // GET /questions
 // POST /questions
 // this is actually http://localhost:3000/questions
-// Add additonal router 
+// Add additonal router
 
 router
   .route('/:id') // expecting the text after / to be a param named id
   .get((req, res) => {
+    console.log(req.params)
     axios({
       method: 'get',
       url: `${url}/qa/questions?product_id=${req.params.id}`,
