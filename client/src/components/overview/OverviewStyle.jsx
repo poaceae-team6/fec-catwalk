@@ -8,12 +8,12 @@ const OverviewStyle = (props) => {
   const [addToOutfit, setAddToOutfit] = useState(false);
 
   const handleClick = () => {
-    props.setCurrentStyleIndex(props.key);
+    props.setStyleIndex(props.styleIndex);
   }
 
   return (
     <div className='styles-selection'>
-      <button onClick={handleClick.bind(this)}>
+      <button className='style-btn' onClick={handleClick.bind(this)}>
         <img className='style-img' value={props.currentStyle} src={props.currentStyle.photos[0].thumbnail_url}/>
       </button>
     </div>

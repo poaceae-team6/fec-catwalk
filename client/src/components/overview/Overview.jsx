@@ -16,6 +16,7 @@ const url = 'http://localhost:3000';
 const Overview = (props) => {
 
   const [styles, setStyles] = useState(null);
+  const [styleIndex, setStyleIndex] = useState(0);
   const [outfits, setOutfits] = useState([]);
   const [isInOutfits, setIsInOutfit] = useState(false);
 
@@ -46,7 +47,7 @@ const Overview = (props) => {
         <div className='overview-grid'>
           <h2>{props.currentProduct.name}</h2>
           <div className='gallery'>
-            <img src={styles[0].photos[0].thumbnail_url}/>
+            <img src={styles[styleIndex].photos[0].thumbnail_url}/>
           </div>
           <div className='overview-buttons'>
             <button id='cart-btn'>
@@ -58,7 +59,7 @@ const Overview = (props) => {
           </div>
           <div className='styles'>
             {styles.map( (style, index) => {
-              return <OverviewStyle currentStyle={styles[index]} key={index}/>
+              return <OverviewStyle currentStyle={styles[index]} styleIndex={index} setStyleIndex={setStyleIndex.bind(this)} key={index}/>
             })}
           </div>
         </div>
