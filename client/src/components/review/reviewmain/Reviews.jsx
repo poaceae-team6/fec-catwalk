@@ -6,6 +6,9 @@ import { ReviewContext } from '../ReviewProvider.jsx'
 import axios from 'axios';
 
 function Reviews({ productId }) {
+  const [page, setPage] = useState(0);
+  const [sort, setSort] = useState('newest');
+
   const buttonStyles = {
     height: '60px',
     width: '200px',
@@ -32,24 +35,45 @@ function Reviews({ productId }) {
   const reviewContext = useContext(ReviewContext);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/reviews/40344`)
-      .then(res => {
+    getReviews(
+      page,
+      sort,
+      (res) => {
         reviewContext.setReviewList(res.data.results);
+        setPage(0);
       });
   }, []);
+
+  const getReviews = (page, sort, callback) => {
+    axios.get(`http://localhost:3000/reviews/${productId}?page=${page}&sort=${sort}`)
+    .then(res => {
+      callback(res);
+    });
+  }
 
   const openAddReview = () => {
     console.log(showAddReview);
     setShowAddReview(prev => !prev)
   }
 
+  const loadMoreReviews = () => {
+    getReviews(
+      page + 1,
+      sort,
+      (res) => {
+        reviewContext.setReviewList(reviewContext.reviewList.concat(res.data.results));
+        setPage(page + 1);
+      });
+  }
+
 
   return (
     <div style={{padding: '10px', marginTop: '20px'}}>
       <div style={sortStyles}>
-        <div style={{display: 'inline-block'}}>248 reviews, sorted by</div>
+        <div style={{display: 'inline-block'}}>248 reviews, sorted by </div>
         <div style={{display: 'inline-block'}}>
-          <button style={dropdownStyle}>dropdown ˅ </button>
+        {console.log('refersh list', reviewContext.reviewList)}
+          {/* <button style={dropdownStyle}>dropdown ˅ </button> */}
           {/* <div>
             <a href="#">Relevant</a>
             <a href="#">Helpful</a>
@@ -58,7 +82,7 @@ function Reviews({ productId }) {
         </div>
       </div>
       <div><ReviewsList /></div>
-      <button style={buttonStyles}>
+      <button style={buttonStyles} onClick={loadMoreReviews}>
         MORE REVIEWS
       </button>
       <button style={buttonStyles} onClick={openAddReview}>
