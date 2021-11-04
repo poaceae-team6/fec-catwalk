@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Error from './Error.jsx';
 
 const AddAnswerModal = (props) => {
@@ -80,7 +80,7 @@ const AddAnswerModal = (props) => {
     let result = false;
 
     if (property === 'email') {
-      if(state[property].indexOf('@') !== -1 && state[property].length > 5) {
+      if (state[property].indexOf('@') !== -1 && state[property].length > 5) {
         result = true;
       }
     } else if (state[property].length !== 0) {
@@ -102,60 +102,59 @@ const AddAnswerModal = (props) => {
 
     if (!name) {
       error.push('Name');
+    }
+    if (!email) {
+      error.push('email');
+    }
+    if (!answer) {
+      error.push('your answer')
+    }
 
-     }
-     if (!email) {
-       error.push('email');
-     }
-     if (!answer) {
-       error.push('your answer')
-     }
+    if (name && email && answer) {
+      //submit ok add question
 
-     if (name && email && answer) {
-       //submit ok add question
+      // send this data to API
 
-       // send this data to API
-
-       // close the window
-       props.close ();
-     } else {
-       setState({
-         ...state,
-         error: true,
-         msg: error,
-       });
-     }
+      // close the window
+      props.close();
+    } else {
+      setState({
+        ...state,
+        error: true,
+        msg: error,
+      });
+    }
   }
 
   return (
     <div style={modalBg}>
       <div style={modalContianer}>
         <div>
-      <button style={{float: 'right'}} onClick={props.close}>X</button>
-      </div>
-      <div>
-        <h2>Submit Your Answer</h2>
-        <h4>{props.name}: {props.question} </h4>
-      </div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <p>What is your nickname? *</p>
-          <input onChange={nameChange} style={inputBox} type='text' placeholder='Example: jack543!' />
-          <p>For privacy reasons, do not use your full name or email address</p>
+          <button style={{ float: 'right' }} onClick={props.close}>X</button>
+        </div>
+        <div>
+          <h2>Submit Your Answer</h2>
+          <h4>{props.name}: {props.question} </h4>
+        </div>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <p>What is your nickname? *</p>
+            <input onChange={nameChange} style={inputBox} type='text' placeholder='Example: jack543!' />
+            <p>For privacy reasons, do not use your full name or email address</p>
 
-          <p>What is your email? *</p>
-          <input onChange={emailChange} style={inputBox} type='text' placeholder='Example: jack@email.com' />
-          <p>For authentication reasons, you will not be emailed</p>
-          <p>Your Answer *</p>
-          <input onChange={answerChange} style={answerBox} type='text' placeholder='your answer here...' />
-          <p>Do you want to upload your pictures?</p>
-          <input onChange={onImageChange} type='file' name='upload image'/>
-          <p></p>
-          <input type='submit' value='submit' />
-        </form>
-        <button onClick={props.close}>cancel</button>
-        {state.error && <Error msg={state.msg}/>}
-      </div>
+            <p>What is your email? *</p>
+            <input onChange={emailChange} style={inputBox} type='text' placeholder='Example: jack@email.com' />
+            <p>For authentication reasons, you will not be emailed</p>
+            <p>Your Answer *</p>
+            <input onChange={answerChange} style={answerBox} type='text' placeholder='your answer here...' />
+            <p>Do you want to upload your pictures?</p>
+            <input onChange={onImageChange} type='file' name='upload image' />
+            <p></p>
+            <input type='submit' value='submit' />
+          </form>
+          <button onClick={props.close}>cancel</button>
+          {state.error && <Error msg={state.msg} />}
+        </div>
       </div>
     </div>
   )
