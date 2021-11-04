@@ -5,7 +5,7 @@ import Reviews from './Reviews.jsx'
 import { ReviewProvider } from '../ReviewProvider.jsx'
 
 
-function ReviewMain() {
+function ReviewMain({ productId }) {
 
   return (
     <ReviewProvider>
@@ -15,7 +15,7 @@ function ReviewMain() {
           <div><ProductBreakdown /></div>
         </div>
         <div id='rightbar'>
-          <Reviews />
+          <Reviews productId={productId } />
         </div>
       </div>
     </ReviewProvider>
