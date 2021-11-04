@@ -5,16 +5,6 @@ import React, {useState, useEffect} from 'react';
 
 const OverviewStyle = (props) => {
 
-  
-  // everytime the style component is loaded, it will check if the item is in outfits list
-  useEffect(() => {
-    if (props.isInOutfits) {
-      if (props.outfits.styles.includes(props.styleIndex)) {
-        props.setFillHeart(true);
-      }
-    }
-  }, []);
-
   const handleClick = () => {
     props.setStyleIndex(props.styleIndex);
   }
