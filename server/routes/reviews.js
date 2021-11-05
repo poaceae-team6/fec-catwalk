@@ -32,6 +32,25 @@ router
     // ...
   })
 
+router
+  .route('/:id/helpful')
+  .put((req, res) => {
+    console.log(`Forward to ${url}/reviews${req.url}`);
+    axios({
+      method: 'put',
+      url: `${url}/reviews${req.url}`,
+      headers: {
+        'Authorization': `${TOKEN}`
+      }
+    })
+    .then(response => {
+      res.sendStatus(response.status);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  })
+
 // The .route can be whatever you want to name it! I just put /meta as an example
 // this is equivalent to http://localhost:3000/reviews/meta
 router
