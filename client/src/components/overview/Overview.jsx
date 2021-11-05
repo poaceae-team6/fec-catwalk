@@ -8,6 +8,11 @@ import OverviewStyle from './OverviewStyle.jsx';
 import {IoMdHeartEmpty} from 'react-icons/io';
 import {IoMdHeart} from 'react-icons/io';
 
+var outfitList = [];
+  // product object (category, name, description, 'features')
+  // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
+
+// const url = 'http://localhost:3000';
 const url = 'http://127.0.0.1:3000';
 
 
@@ -16,9 +21,9 @@ var outfits = [];
 
 const Overview = (props) => {
 
-  const [styles, setStyles] = useState(null); 
+  const [styles, setStyles] = useState(null);
   const [styleIndex, setStyleIndex] = useState(0);
-  const [outfits, setOutfits] = useState([]); 
+  const [outfits, setOutfits] = useState([]);
   const [fillHeart, setFillHeart] = useState();
 
   useEffect(() => {
@@ -27,7 +32,7 @@ const Overview = (props) => {
     // setOutfits(JSON.parse(window.localStorage.getItem('outfits')));
   }, [])
 
-  
+
   const fetchData = () => {
     axios.get(`${url}/products/${props.currentProduct.id}/styles`)
       .then(res => {
@@ -39,7 +44,7 @@ const Overview = (props) => {
   }
 
   const addToOutfits = () => {
-    
+
 
     if (outfits.length < 1) {
       outfits.push({
@@ -61,11 +66,11 @@ const Overview = (props) => {
 
   const deleteFromOutfits = () => {
 
-    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id ); 
+    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
     if (outfits[outfitIndex].styles.length === 1) {
       outfits.splice(outfitIndex, 1);
 
-    } else if (outfits[outfitIndex].styles.length > 1) { 
+    } else if (outfits[outfitIndex].styles.length > 1) {
       let index = outfits[outfitIndex].styles.indexOf(styleIndex);
       outfits[outfitIndex].styles.splice(index, 1);
 

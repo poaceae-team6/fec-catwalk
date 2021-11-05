@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Error from './Error.jsx';
+import axios from 'axios';
 
 const AddQuestionModal = (props) => {
 
@@ -11,6 +12,7 @@ const AddQuestionModal = (props) => {
     msg: '',
   });
 
+  const productId = props.id;
 
   // style
   let modalBg = {
@@ -48,6 +50,10 @@ const AddQuestionModal = (props) => {
     fontSize: '18px',
   }
 
+  const refresh = () => {
+    props.getData();
+  };
+
   // handle input changes
 
   const handleNameInput = (e) => {
@@ -80,7 +86,7 @@ const AddQuestionModal = (props) => {
     let result = false;
 
     if (property === 'email') {
-      if(state[property].indexOf('@') !== -1 && state[property].length > 5) {
+      if(state[property].indexOf('@') !== -1 && state[property].length > 5 && state[property].indexOf('.com') !== -1) {
         result = true;
       }
     } else if (state[property].length !== 0) {
@@ -113,19 +119,33 @@ const AddQuestionModal = (props) => {
 
     if (name && email && question) {
       //submit ok add question
-      let questionData = {
-        question_body: state.question,
-        asker_name: state.name,
-        answers: [],
-        question_helpfulness: 0,
-        reported: false
-      };
+      // let questionData = {
+      //   question_body: state.question,
+      //   asker_name: state.name,
+      //   answers: [],
+      //   question_helpfulness: 0,
+      //   reported: false
+      // };
 
-      props.addQ(questionData);
+      // props.addQ(questionData);
       // send this data to API
+      let postObj = {
+        body: state.question,
+        name: state.name,
+        email: state.email,
+        product_id: props.id
+      }
+
+      axios.post(`/questions/${productId}`, postObj)
+      .then(res => {
+        console.log('add question ok', res);
+        // refresh();
+      })
+      .catch(err => console.log('add question err', err));
 
       // close the window
       props.close ();
+
     } else {
       setState({
         ...state,
