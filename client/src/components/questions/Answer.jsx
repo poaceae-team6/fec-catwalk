@@ -22,6 +22,13 @@ const Answer = (props) => {
         report: true,
         reportDisplay: 'reported'
       });
+
+      // API call
+      let id = props.answer.id;
+      axios.put(`/questions/report/answers/${id}`, {answer_id: id})
+      .then(() => {console.log('you report this answer')})
+      .catch(err => console.log(err));
+
     }
   };
 

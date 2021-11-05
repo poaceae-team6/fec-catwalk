@@ -149,4 +149,27 @@ router
 
   })
 
+  router
+  .route('/report/answers/:id')
+  .put((req, res) => {
+    console.log('put works', req.body)
+    let postData = req.body;
+    let id = req.body.answer_id;
+    //axios
+    const options = {
+      method: 'put',
+      url: `${url}/qa/answers/${id}/report`,
+      data: postData,
+      headers: {
+        'Authorization': `${TOKEN}`,
+        'Content-Type': 'application/json',
+      }
+    };
+
+    axios(options)
+    .then((data) => res.send(data.data))
+    .catch(err => console.log('server put err', err));
+
+  })
+
 module.exports = router;
