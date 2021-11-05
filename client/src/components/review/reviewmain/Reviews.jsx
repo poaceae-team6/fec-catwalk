@@ -44,7 +44,7 @@ function Reviews({ productId }) {
   }, []);
 
   const getReviews = (page, sort, callback) => {
-    axios.get(`http://localhost:3000/reviews/${productId}?page=${page}&sort=${sort}`)
+    axios.get(`http://127.0.0.1:3000/reviews/${productId}?page=${page}&sort=${sort}`)
     .then(res => {
       callback(res);
     });

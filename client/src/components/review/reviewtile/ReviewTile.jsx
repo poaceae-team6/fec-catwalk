@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function ReviewTile(props) {
   const [helpfulness, setHelpfulness] = useState(props.review.helpfulness);
+  const [isClick, setIsClick] = useState(false);
 
   const tileStyles = {
     height: 'auto',
@@ -37,11 +38,14 @@ function ReviewTile(props) {
   }
 
   const markHelpful = () => {
-    axios.put(`/reviews/${props.review.review_id}/helpful`)
+    if(!isClick){
+      axios.put(`/reviews/${props.review.review_id}/helpful`)
       .then(() => {
         setHelpfulness(helpfulness + 1);
+        setIsClick(true);
         console.log(`Mark ${props.review.review_id} as helpful`);
       })
+    }
   }
 
   return (

@@ -10,7 +10,7 @@ import {IoMdHeart} from 'react-icons/io';
 
 // product object (category, name, description, 'features')
 // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
-const url = 'http://localhost:3000';
+const url = 'http://127.0.0.1:3000/';
 
 // placeholder - prentending to be local storage
 var outfits = [];
@@ -27,7 +27,7 @@ const Overview = (props) => {
     // save outfits into local storage - persist the state
     // setOutfits(JSON.parse(window.localStorage.getItem('outfits')));
   }, [])
-  
+
   const fetchData = (productId) => {
     axios.get(`${url}/products/${productId}/styles`)
     .then(res => {
@@ -39,12 +39,12 @@ const Overview = (props) => {
   }
 
   const addToOutfits = () => {
-    
+
     // if there are no outfits! Just add right away
     if (outfits.length < 1) {
       // otherwise add the entire object
       outfits.push({
-        id: props.currentProduct.id, 
+        id: props.currentProduct.id,
         styles: [styleIndex]
       });
     } else {
@@ -52,27 +52,27 @@ const Overview = (props) => {
       let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
       if (outfitIndex === -1) {
         outfits.push({
-          id: props.currentProduct.id, 
+          id: props.currentProduct.id,
           styles: [styleIndex]
         });
-      } else { 
+      } else {
         outfits[outfitIndex].styles.push(styleIndex);
       }
     }
     console.log(outfits);
   }
-  
+
   const deleteFromOutfits = () => {
 
     let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
     if (outfits[outfitIndex].styles.length === 1) {
       outfits.splice(outfitIndex, 1);
-    } else { 
+    } else {
       outfits[outfitIndex].styles.splice(styleIndex, 1);
     }
     console.log(outfits);
   }
-  
+
   const handleClickHeart = () => {
     // toggle heart icon boolean
     setFillHeart(!fillHeart);
@@ -82,7 +82,7 @@ const Overview = (props) => {
       addToOutfits();
     }
   }
-  
+
   // update everytime styleIndex is changed.
   useEffect(() => {
     let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );

@@ -20,6 +20,7 @@ function RatingBreakdown() {
     display: 'inline-block',
     verticalAlign:'top',
     padding: '20px'
+    
   }
 
   return (
