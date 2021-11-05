@@ -4,15 +4,16 @@ import AddReview from '../addreview/AddReview.jsx';
 import { ReviewContext } from '../ReviewProvider.jsx'
 import axios from 'axios';
 
-function Reviews({ productId }) {
+function ReviewsRight({ productId }) {
   const [page, setPage] = useState(1);
   const [sort, setSort] = useState('revelent');
 
   const buttonStyles = {
     height: '60px',
     width: '200px',
+    marginLeft: '20px',
     margin: '10px',
-    paddiing:'20px',
+    padding:'10px',
     fontSize: '16px',
     fontWeight: 'bold'
   }
@@ -83,7 +84,7 @@ function Reviews({ productId }) {
   return (
     <div style={{padding: '10px', marginTop: '20px'}}>
       <div style={sortStyles}>
-        <div style={{display: 'inline-block'}}>248 reviews, sorted by  </div>
+        <div style={{display: 'inline-block'}}>{} reviews, sorted by  </div>
         <div style={{display: 'inline-block'}}>
           <select style={dropdownStyle} name="sortBy" id="casortByrs" onChange={resetReviews}>
             <option value="revelent">Revelent</option>
@@ -92,7 +93,9 @@ function Reviews({ productId }) {
           </select>
         </div>
       </div>
+      <br></br>
       <div><ReviewsList /></div>
+      <br></br>
       <button style={buttonStyles} onClick={loadMoreReviews}>
         MORE REVIEWS
       </button>
@@ -106,4 +109,4 @@ function Reviews({ productId }) {
 }
 
 
-export default Reviews;
+export default ReviewsRight;

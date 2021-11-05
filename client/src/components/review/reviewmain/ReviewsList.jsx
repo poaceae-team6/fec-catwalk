@@ -9,7 +9,7 @@ function ReviewsList() {
     height: 'auto',
     width: '100%',
     // border: 'solid black 1px',
-    padding: '10px'
+    // paddingTop: '10px'
   }
 
   const reviewContext = useContext(ReviewContext);

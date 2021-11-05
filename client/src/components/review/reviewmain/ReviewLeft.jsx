@@ -1,8 +1,9 @@
 import React from 'react';
-import StarRating from './StarRating.jsx'
-import StarBreakdown from './StarBreakdown.jsx';
+import StarRating from './StarRating.jsx';
+import ProgressBar from './ProgressBar.jsx';
+import ScaleBar from './ScaleBar.jsx';
 
-function RatingBreakdown() {
+function ReviewLeft() {
 
   const RatingSummary = {
     whiteSpace: 'nowrap',
@@ -20,7 +21,7 @@ function RatingBreakdown() {
     display: 'inline-block',
     verticalAlign:'top',
     padding: '20px'
-    
+
   }
 
   return (
@@ -31,10 +32,21 @@ function RatingBreakdown() {
         <div style={Stars}><StarRating /></div>
       </div>
       <div>100% of reviewe recommand this product</div>
-      <div><StarBreakdown /></div>
+      <br></br>
+      <div style={{lineHeight: '2.3'}}>
+        <ProgressBar />
+        <ProgressBar />
+        <ProgressBar />
+        <ProgressBar />
+      </div>
+      <br></br>
+      <div style={{paddingLeft: '10px'}} >
+        <ScaleBar />
+      </div>
+
     </div>
   );
 }
 
 
-export default RatingBreakdown;
+export default ReviewLeft;

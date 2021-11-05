@@ -12,7 +12,6 @@ const StarRating = (props) => {
 
   return (
     <div className="star-ratings">
-      {console.log(props.rating)}
       <div className="fill-ratings" style={ ratingWidthStyle }>
         <span>★★★★★</span>
       </div>
