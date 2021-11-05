@@ -6,7 +6,7 @@ import slide from '../../../dist/css_animations/horizontalScroll.js';
 import sampleProductsData from '../../assets/related_products/sampleProductsData.js';
 import axios from 'axios';
 
-const url = 'http://localhost:3000';
+const url = 'http://127.0.0.1:3000';
 
 const RelatedProducts = (props) => {
   
