@@ -112,7 +112,7 @@ const Overview = (props) => {
           </div>
         </div>
         <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
-        <YourOutfit currentProduct={props.currentProduct} />
+        <YourOutfit currentProduct={props.currentProduct} outfits={outfits}/>
       </div>
     )
   }
