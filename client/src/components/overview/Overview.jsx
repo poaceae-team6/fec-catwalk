@@ -8,47 +8,42 @@ import OverviewStyle from './OverviewStyle.jsx';
 import {IoMdHeartEmpty} from 'react-icons/io';
 import {IoMdHeart} from 'react-icons/io';
 
-// product object (category, name, description, 'features')
-// 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
-const url = 'http://localhost:3000';
+const url = 'http://127.0.0.1:3000';
 
 // placeholder - prentending to be local storage
 var outfits = [];
 
 const Overview = (props) => {
 
-  const [styles, setStyles] = useState(null); // this saves the array of style objects for the current product!
-  const [styleIndex, setStyleIndex] = useState(0); // this saves the index of the selected style!
-  const [outfits, setOutfits] = useState([]); // this saves the current outfits list
+  const [styles, setStyles] = useState(null); 
+  const [styleIndex, setStyleIndex] = useState(0);
+  const [outfits, setOutfits] = useState([]); 
   const [fillHeart, setFillHeart] = useState();
 
   useEffect(() => {
-    fetchData(props.currentProduct.id);
+    fetchData();
     // save outfits into local storage - persist the state
     // setOutfits(JSON.parse(window.localStorage.getItem('outfits')));
   }, [])
   
-  const fetchData = (productId) => {
-    axios.get(`${url}/products/${productId}/styles`)
-    .then(res => {
-      setStyles(res.data.results);
-    })
-    .catch(error => {
-      console.log(error);
-    })
+  const fetchData = () => {
+    axios.get(`${url}/products/${props.currentProduct.id}/styles`)
+      .then(res => {
+        setStyles(res.data.results);
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   const addToOutfits = () => {
     
-    // if there are no outfits! Just add right away
     if (outfits.length < 1) {
-      // otherwise add the entire object
       outfits.push({
         id: props.currentProduct.id, 
         styles: [styleIndex]
       });
     } else {
-      // Find the outfit index using the id...
       let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
       if (outfitIndex === -1) {
         outfits.push({
@@ -59,28 +54,26 @@ const Overview = (props) => {
         outfits[outfitIndex].styles.push(styleIndex);
       }
     }
-    console.log(outfits);
   }
   
   const deleteFromOutfits = () => {
 
-    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
+    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id ); 
     if (outfits[outfitIndex].styles.length === 1) {
       outfits.splice(outfitIndex, 1);
-    } else { 
-      outfits[outfitIndex].styles.splice(styleIndex, 1);
+    } else if (outfits[outfitIndex].styles.length > 1) { 
+      let index = outfits[outfitIndex].styles.indexOf(styleIndex);
+      outfits[outfitIndex].styles.splice(index, 1);
     }
-    console.log(outfits);
   }
   
   const handleClickHeart = () => {
-    // toggle heart icon boolean
-    setFillHeart(!fillHeart);
     if (fillHeart) {
       deleteFromOutfits();
     } else {
       addToOutfits();
     }
+    setFillHeart(!fillHeart);
   }
   
   // update everytime styleIndex is changed.
@@ -93,7 +86,7 @@ const Overview = (props) => {
     }
   }, [styleIndex])
 
-  if (styles===null) {
+  if (styles === null) {
     return (<h3>isLoading...</h3>)
   } else {
     return (
@@ -113,12 +106,12 @@ const Overview = (props) => {
           </div>
           <div className='styles'>
             {styles.map( (style, index) => {
-              return <OverviewStyle currentStyle={styles[index]} styleIndex={index} setStyleIndex={setStyleIndex.bind(this)} setFillHeart={setFillHeart} key={index}/>
+              return <OverviewStyle currentStyle={styles[index]} styleIndex={index} setStyleIndex={setStyleIndex.bind(this)} key={index}/>
             })}
           </div>
         </div>
         <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
-        <YourOutfit currentProduct={props.currentProduct} />
+        <YourOutfit currentProduct={props.currentProduct} outfits={outfits}/>
       </div>
     )
   }
