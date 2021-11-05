@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react';
 
-  // product object (category, name, description, 'features')
-  // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
-
 const OverviewStyle = (props) => {
 
   const handleClick = () => {
     props.setStyleIndex(props.styleIndex);
+
   }
 
   return (
