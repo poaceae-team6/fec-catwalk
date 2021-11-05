@@ -14,23 +14,47 @@ const {TOKEN} = require('../../config.js');
 router
   .route('/:id') // expecting the text after / to be a param named id
   .get((req, res) => {
+    const reqUrl = `${url}/reviews?product_id=${req.params.id}&${req.url.split('?')[1]}`;
+    console.log(`Forward the request to ${reqUrl}`);
     axios({
       method: 'get',
-      url: `${url}/reviews?product_id=${req.params.id}&${req.url.split('?')[1]}`,
+      url: reqUrl,
       headers: {
         'Authorization': `${TOKEN}`
       }
     })
     .then(response => {
+      console.log(response.status);
       res.send(response.data);
     })
     .catch(error => {
       console.log(error);
     })
   })
-  .post((req, res) => { // using router, you can chain your requests!
-    // ...
-  })
+
+  router
+    .route('/')
+    .post((req, res) => {
+      console.log(`Forward review create request to the atelier api`);
+      // console.log('body', JSON.stringify(req.body));
+      // res.sendStatus(201);
+      axios({
+        method: 'post',
+        url: `${url}/reviews`,
+        headers: {
+          'Authorization': `${TOKEN}`,
+          'Content-Type': 'application/json'
+        },
+        data: JSON.stringify(req.body)
+      })
+      .then(response => {
+        res.sendStatus(response.status);
+      })
+      .catch(error => {
+        console.log(error);
+        res.send(500);
+      })
+    })
 
 router
   .route('/:id/helpful')
