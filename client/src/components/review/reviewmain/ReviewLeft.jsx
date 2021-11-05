@@ -33,7 +33,11 @@ function ReviewLeft({ productId }) {
   const getReviewMeta = () => {
     axios.get(`http://127.0.0.1:3000/reviews/${productId}/meta`)
     .then(res => {
+       // Calculate total review and storge result in res.data.reveiwTotal
+       res.data.reveiwTotal = Number(res.data.ratings['1']) + Number(res.data.ratings['2']) + Number(res.data.ratings['3']) + Number(res.data.ratings['4']) + Number(res.data.ratings['5']);
+
       reviewContext.setReviewMeta(res.data);
+
       console.log(res.data);
     });
   }
