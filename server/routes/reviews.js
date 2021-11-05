@@ -16,7 +16,7 @@ router
   .get((req, res) => {
     axios({
       method: 'get',
-      url: `${url}/reviews?product_id=${req.params.id}`,
+      url: `${url}/reviews?product_id=${req.params.id}&${req.url.split('?')[1]}`,
       headers: {
         'Authorization': `${TOKEN}`
       }
@@ -31,7 +31,7 @@ router
   .post((req, res) => { // using router, you can chain your requests!
     // ...
   })
-  
+
 // The .route can be whatever you want to name it! I just put /meta as an example
 // this is equivalent to http://localhost:3000/reviews/meta
 router
