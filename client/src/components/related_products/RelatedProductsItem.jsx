@@ -42,7 +42,7 @@ const RelatedProductsItem = (props) => {
     return <p>isLoading...</p>
   } else {
     return (
-      <div className='related-products-card'>
+      <div className='product-card'>
         <img src={styleData.photos[0].thumbnail_url}/>
         <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
         <h2 className='product-name'>{productData.name}</h2>
