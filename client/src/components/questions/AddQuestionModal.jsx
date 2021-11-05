@@ -50,6 +50,10 @@ const AddQuestionModal = (props) => {
     fontSize: '18px',
   }
 
+  const refresh = () => {
+    props.getData();
+  };
+
   // handle input changes
 
   const handleNameInput = (e) => {
@@ -133,10 +137,15 @@ const AddQuestionModal = (props) => {
       }
 
       axios.post(`/questions/${productId}`, postObj)
-      .then(res => console.log('add question ok', res))
+      .then(res => {
+        console.log('add question ok', res);
+        // refresh();
+      })
       .catch(err => console.log('add question err', err));
+
       // close the window
       props.close ();
+
     } else {
       setState({
         ...state,

@@ -51,6 +51,10 @@ const AddAnswerModal = (props) => {
     fontSize: '18px',
   }
 
+  const refresh = () => {
+    props.getData();
+  };
+
   //handle upload image
   const onImageChange = (e) => {
     let img = e.target.files[0];
@@ -130,11 +134,12 @@ const AddAnswerModal = (props) => {
       .then(() => console.log('add answer ok'))
       .catch((err) => console.log('add answer err', err));
 
+      // close the window
+      props.close();
+
       // fetch data
       props.getData();
 
-      // close the window
-      props.close();
     } else {
       setState({
         ...state,

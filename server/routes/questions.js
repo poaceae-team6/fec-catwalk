@@ -103,4 +103,32 @@ router
 
 })
 
+router
+  .route('/helpfulness/:id')
+  .get((req, res) => {
+    console.log('get works', req.params)
+    //axios
+
+  })
+  .put((req, res) => {
+    console.log('put works', req.body)
+    let postData = req.body;
+    let id = req.body.question_id;
+    //axios
+    const options = {
+      method: 'put',
+      url: `${url}/qa/questions/${id}/helpful`,
+      data: postData,
+      headers: {
+        'Authorization': `${TOKEN}`,
+        'Content-Type': 'application/json',
+      }
+    };
+
+    axios(options)
+    .then((data) => res.send(data.data))
+    .catch(err => console.log('server put err', err));
+
+  })
+
 module.exports = router;
