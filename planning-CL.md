@@ -28,16 +28,16 @@
   - When clicked, it will setAddToOutfit to true ✅
 
 ## RelatedProducts:
-1. Fetch the relatedProducts array using currentId
+1. Fetch the relatedProducts array using currentId ✅
   - Fetch all the products for each element and save that in an array (`relatedItems`)
     - map that array into RelatedProductsItem Components.
     - pass `currentObject` to each of them
 
 ### RelatedProductsItem Component:
-1. Fetch the styles object
-2. saves the stylesObject.results[0] as a variable (`styleObject`)
-3. Render all the information
-4. When card is clicked, it will trigger `fetchNewProduct` with the current `product id`, which will then fetch the new data and setCurrentProduct to that new data
+1. Fetch the styles object ✅
+2. saves the stylesObject.results[0] as a variable (`styleObject`) ✅
+3. Render all the information ✅
+4. When card is clicked, it will trigger `fetchNewProduct` with the current `product id`, which will then fetch the new data and setCurrentProduct to that new data ✅
 
 ## YourOutfit
 0. Create a state `isEmpty`, set to true
