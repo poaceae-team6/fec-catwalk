@@ -14,7 +14,7 @@ const YourOutfitItem = (props) => {
   let sampleStylesObject = sampleProductIdStylesData.results[0];
   
   return (
-    <div className='related-products-card'>
+    <div className='product-card'>
       <img src={sampleStylesObject.photos[0].thumbnail_url}/>
       <h3>CATEGORY: {sampleProductObject.category.toUpperCase()}</h3>
       <h2 className='product-name'>{sampleProductObject.name}</h2>
