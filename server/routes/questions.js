@@ -41,16 +41,17 @@ router
 
     axios({
       method: 'post',
-      url: `${url}/qa/question?product_id=${id}`,
+      url: `${url}/qa/questions?product_id=${id}`,
+      data: postData,
       headers: {
         'Authorization': `${TOKEN}`
       }
-    }, JSON.stringify(postData))
+    })
     .then(() => {
-      res.send('data added')
+      res.send('data added');
     })
     .catch(err => {
-      console.log('server post err', err);
+      console.log('server post err');
       res.send(err);
     });
 

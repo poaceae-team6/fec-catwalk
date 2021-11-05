@@ -6,6 +6,9 @@ import { ReviewContext } from '../ReviewProvider.jsx'
 import axios from 'axios';
 
 function Reviews({ productId }) {
+  const [page, setPage] = useState(0);
+  const [sort, setSort] = useState('relevant');
+
   const buttonStyles = {
     height: '60px',
     width: '200px',
@@ -32,33 +35,66 @@ function Reviews({ productId }) {
   const reviewContext = useContext(ReviewContext);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/reviews/40344`)
-      .then(res => {
+    getReviews(
+      page,
+      sort,
+      (res) => {
         reviewContext.setReviewList(res.data.results);
+        setPage(0);
       });
   }, []);
+
+  const getReviews = (page, sort, callback) => {
+    axios.get(`http://localhost:3000/reviews/${productId}?page=${page}&sort=${sort}`)
+    .then(res => {
+      callback(res);
+    });
+    console.log(`refersh list with page ${page} and sort ${sort}`);
+  }
 
   const openAddReview = () => {
     console.log(showAddReview);
     setShowAddReview(prev => !prev)
   }
 
+  const loadMoreReviews = () => {
+    getReviews(
+      page + 1,
+      sort,
+      (res) => {
+        reviewContext.setReviewList(reviewContext.reviewList.concat(res.data.results));
+        setPage(page + 1);
+      });
+  }
+
+  const resetReviews = (event) => {
+    const sortBy = event.target.value;
+    getReviews(
+      0,
+      sortBy,
+      (res) => {
+        reviewContext.setReviewList(res.data.results);
+        setPage(0);
+        setSort(sortBy);
+      }
+    )
+  }
+
 
   return (
     <div style={{padding: '10px', marginTop: '20px'}}>
       <div style={sortStyles}>
-        <div style={{display: 'inline-block'}}>248 reviews, sorted by</div>
+        <div style={{display: 'inline-block'}}>248 reviews, sorted by  </div>
         <div style={{display: 'inline-block'}}>
-          <button style={dropdownStyle}>dropdown ˅ </button>
-          {/* <div>
-            <a href="#">Relevant</a>
-            <a href="#">Helpful</a>
-            <a href="#">Newest</a>
-          </div> */}
+          <select stype={dropdownStyle} name="sortBy" id="casortByrs" onChange={resetReviews}>
+            <option value="relevant">Relevant</option>
+            <option value="helpful">Helpful</option>
+            <option value="newest">Newest</option>
+          </select>
         </div>
       </div>
       <div><ReviewsList /></div>
-      <button style={buttonStyles}>
+      <button style={buttonStyles} onClick={loadMoreReviews}>
         MORE REVIEWS
       </button>
       <button style={buttonStyles} onClick={openAddReview}>

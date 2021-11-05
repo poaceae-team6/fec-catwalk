@@ -5,8 +5,6 @@ import React, {useState, useEffect} from 'react';
 
 const OverviewStyle = (props) => {
 
-  const [addToOutfit, setAddToOutfit] = useState(false);
-
   const handleClick = () => {
     props.setStyleIndex(props.styleIndex);
   }

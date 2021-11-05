@@ -6,22 +6,26 @@
                          
 ## Overview Component:
 0. Create a global variable array `outfitList` ✅
-0. Create 1 state `outfits` array ✅
-0. Create `updateOutfitList(copyArray)` function which will setOutfits to copyArray and update the global variable outfitList ✅
-1. have 2 more states `styles` & `currentStylesId` ✅
-2. fetch the styles object 
-  - setStyles to `stylesObject.results`
+1. Create 1 state `outfits` array ✅
+2. Create `updateOutfitList()` function which will setOutfits to copyArray and update the global variable outfitList ✅
+3. have 2 more states `styles` & `currentStylesId` ✅
+4. fetch the styles object ✅
+  - setStyles to `stylesObject.results` ✅
   - setCurrentStyles to `stylesObject.results[0]`
-3. render out some information
-5. render out all the styles as Style Components
-  - use map to create the list
-  - pass `setCurrentStylesId` to each of them
-
+5. render out some information ✅
+6. render out all the styles as Style Components
+  - use map to create the list ✅
+  - pass `setStylesIndex` ✅
+7. Test the addToOutfit and deleteFromOutfit functionalities:
+  - Outfits is added and stored in the local storage
+  - Outfits is deleted from the local storage
+  - Components update after state change (heart icon)
+  
 ### Style Component:
 1. Renders a mini thumnail of the image ✅
 2. When clicked, it will trigger `currentStylesId` and set the state to the current thumbnail's value (index) ✅
-3. Create a Heart Icon that will be renderd based on `addToOutfit`!
-  - When clicked, it will setAddToOutfit to true
+3. Create a Heart Icon that will be renderd based on `addToOutfit`! ✅
+  - When clicked, it will setAddToOutfit to true ✅
 
 ## RelatedProducts:
 1. Fetch the relatedProducts array using currentId

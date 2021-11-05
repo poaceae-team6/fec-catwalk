@@ -116,6 +116,7 @@ h3 {
 .gallery {
   grid-area: gallery;
   display: block;
+  height: 450px;
   background-color: rgb(243, 243, 243);
 }
 
