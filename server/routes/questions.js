@@ -34,25 +34,29 @@ router
   })
   .post((req, res) => { // using router, you can chain your requests!
     // ...
-    let postData = req.body.data
-
-    let id = req.body.id;
+    let postData = req.body;
+    let id = req.body.product_id;
     console.log(postData);
 
-    axios({
+    const options = {
       method: 'post',
       url: `${url}/qa/questions?product_id=${id}`,
       data: postData,
       headers: {
-        'Authorization': `${TOKEN}`
+        'Authorization': `${TOKEN}`,
+        'Content-Type': 'application/json',
       }
-    })
-    .then(() => {
+    };
+
+    axios(options)
+    .then((data) => {
+      console.log(data.data)
       res.send('data added');
     })
     .catch(err => {
-      console.log('server post err');
-      res.send(err);
+      console.log('server post err', err);
+      // res.sendStatus(500);
+      res.send(err)
     });
 
   })
@@ -77,6 +81,26 @@ router
 // ... add the rest
 .post((req, res) => {
   console.log(req.body);
+  let id = req.body.question_id;
+  let postData = req.body;
+
+  const options = {
+    method: 'post',
+    url: `${url}/qa/questions/${id}/answers`,
+    data: postData,
+    headers: {
+      'Authorization': `${TOKEN}`,
+      'Content-Type': 'application/json',
+    }
+  };
+
+  axios(options)
+  .then((data) => {
+    console.log(data.data);
+    res.send(data.data);
+  })
+  .catch(err => console.log('answer server error', err));
+
 })
 
 module.exports = router;

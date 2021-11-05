@@ -117,10 +117,16 @@ const AddAnswerModal = (props) => {
 
     if (name && email && answer) {
       //submit ok add question
-      let postData = {};
+      let postObj = {
+        question_id: questionId,
+        body: state.answer,
+        name: state.name,
+        email: state.email,
+
+      };
 
       // send this data to API
-      axios.post(`${url}/answers/${questionId}`, {id: questionId, data: postData})
+      axios.post(`/questions/answers/${questionId}`, postObj)
       .then(() => console.log('add answer ok'))
       .catch((err) => console.log('add answer err', err));
       // close the window
