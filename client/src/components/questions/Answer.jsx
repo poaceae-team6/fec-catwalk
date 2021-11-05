@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import axios from 'axios';
 
 const Answer = (props) => {
 
@@ -33,8 +34,11 @@ const Answer = (props) => {
         helpfulNum: props.answer.helpfulness += 1,
         vote: true,
       })
-
+      let id = props.answer.id;
       //calls the API for the update
+      axios.put(`/questions/helpfulness/answers/${id}`, {answer_id: id})
+      .then(() => {console.log('you find this answer helpful')})
+      .catch(err => console.log(err));
 
     }
   };

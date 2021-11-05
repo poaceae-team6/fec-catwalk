@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import StarRating from '../reviewmain/StarRating.jsx'
 // import { BsFillCheckCircleFill } from "react-icons/bs";
+import axios from 'axios';
 
 function ReviewTile(props) {
+  const [helpfulness, setHelpfulness] = useState(props.review.helpfulness);
+  const [isClick, setIsClick] = useState(false);
 
   const tileStyles = {
     height: 'auto',
@@ -34,7 +37,16 @@ function ReviewTile(props) {
     paddingLeft: '20px'
   }
 
-
+  const markHelpful = () => {
+    if(!isClick){
+      axios.put(`/reviews/${props.review.review_id}/helpful`)
+      .then(() => {
+        setHelpfulness(helpfulness + 1);
+        setIsClick(true);
+        console.log(`Mark ${props.review.review_id} as helpful`);
+      })
+    }
+  }
 
   return (
     // props.review.rating
@@ -58,8 +70,8 @@ function ReviewTile(props) {
 
       <div style={{whiteSpace: 'nowrap', marginTop: '10px', color: 'grey'}}>
         <div style={{display: 'inline-block'}}>Helpful? </div>
-        <button style={yesStyles} >Yes</button>
-        <div style={{display: 'inline-block', marginLeft: '5px'}}>({props.review.helpfulness})</div>
+        <button style={yesStyles} onClick={markHelpful} >Yes</button>
+        <div style={{display: 'inline-block', marginLeft: '5px'}}>({helpfulness})</div>
       </div>
       <hr style={{marginTop: '15px', orderBottomWidth: '1px'}} />
     </div>

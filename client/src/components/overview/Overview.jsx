@@ -15,6 +15,7 @@ var outfitList = [];
 // const url = 'http://localhost:3000';
 const url = 'http://127.0.0.1:3000';
 
+
 // placeholder - prentending to be local storage
 var outfits = [];
 
@@ -31,6 +32,7 @@ const Overview = (props) => {
     // setOutfits(JSON.parse(window.localStorage.getItem('outfits')));
   }, [])
 
+
   const fetchData = () => {
     axios.get(`${url}/products/${props.currentProduct.id}/styles`)
       .then(res => {
@@ -42,6 +44,7 @@ const Overview = (props) => {
   }
 
   const addToOutfits = () => {
+
 
     if (outfits.length < 1) {
       outfits.push({
@@ -66,9 +69,11 @@ const Overview = (props) => {
     let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
     if (outfits[outfitIndex].styles.length === 1) {
       outfits.splice(outfitIndex, 1);
+
     } else if (outfits[outfitIndex].styles.length > 1) {
       let index = outfits[outfitIndex].styles.indexOf(styleIndex);
       outfits[outfitIndex].styles.splice(index, 1);
+
     }
   }
 

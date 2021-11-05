@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
+import axios from 'axios';
 
 const QuestionItem = (props) => {
 
@@ -41,6 +42,9 @@ const QuestionItem = (props) => {
       setState({ ...state, helpfulNum: voted, vote: true });
 
       // then send the request to update the API
+      axios.put(`/questions/helpfulness/${props.question.question_id}`, {question_id: props.question.question_id})
+      .then(() => console.log('helpfulness updated'))
+      .catch((err) => console.log(err));
 
     } else {
       console.log('you voted');

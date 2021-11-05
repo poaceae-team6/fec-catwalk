@@ -1,6 +1,6 @@
 
 import React from 'react';
-import StarRating from '../reviewmain/StarRating.jsx';
+import StarRatingInput from '../reviewmain/StarRatingInput.jsx';
 import UploadPic from './UploadPic.jsx';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
@@ -35,7 +35,7 @@ function AddReview({ setShowAddReview }) {
       <AiOutlineCloseCircle style={{float: 'right'}} color="grey" size= {30} onClick={ () => setShowAddReview(false)}/>
       <div style={{fontSize: '16px',fontWeight: 'bold', marginTop: '10px', marginBottom: '10px'}}>
         Product Title</div>
-      <div ><StarRating /></div>
+      <div ><StarRatingInput /></div>
       <div style={{whiteSpace: 'nowrap'}}>
           <div style={{display: 'inline-block', marginRight: '5px'}}>Do you recommend this product?</div>
           <div style={{display: 'inline-block'}}>
