@@ -76,10 +76,15 @@ h3 {
 
 .products-container {
   display: block;
-  width: calc(var(--width) * 0.8);
   margin: auto;
+  width: calc(var(--width) * 0.8);
   padding-top: 30px;
   text-align: center;
+}
+
+.scroll-container {
+  display: flex;
+  justify-content: center;
 }
 
 .outfit-container {
@@ -213,13 +218,14 @@ h3 {
   width: 215px;
   margin-right: 20px;
   border: 1px solid #b6b2b2;
+  cursor: pointer;
 }
 
 .product-card img {
   width: 100%;
   height: 220px;
   object-fit: cover;
-  background: #eeeeed;
+  background-color: #F6F5F2;
 }
 
 .product-name {
@@ -246,7 +252,7 @@ h3 {
 
 .horizontal-slide {
   display: inline-block;
-  width: calc(var(--width) * 0.8);
+  width: calc(var(--width) * 0.7);
   text-align: left;
   overflow: auto;
   white-space: nowrap;
@@ -261,13 +267,36 @@ h3 {
   display: none;
 }
 
-#left-arrow {
+.arrow {
+  display: inline-block;
   margin: auto;
+  cursor: pointer;
+  font-size: 25px;
+  color: #68665f;
+  height: 200px;
+  width: 50px;
+  background: none;
 }
 
-#right-arrow {
+.add-outfit-btn {
+  display: block;
   margin: auto;
+  margin-top: 50%;
+  margin-bottom: 20%;
+  font-size: 50px;
+  color: #808080;
+  cursor: pointer;
+  background: none;
+  border: none;
 }
+
+.add-outfit-btn h2 {
+  margin-top: 10%;
+  font-size: 14px;
+  font-weight: 300;
+  color: #383838;
+}
+
 
 /*******************/
 /* Questions
@@ -315,31 +344,6 @@ footer p {
 /* Icons/Shapes
 /*******************/
 
-.arrow {
-  display: inline-block;
-	height: 15px; width: 15px;
-	border: 3px solid #525252;
-  border-radius: 2px;
-	border-width: 3px 3px 0 0;
-  background-color: transparent;
-}
-
-.arrow-dark {
-  display: inline-block;
-	height: 15px; width: 15px;
-	border: 3px solid red;
-  border-radius: 2px;
-	border-width: 3px 3px 0 0;
-  background-color: transparent;
-}
-
-.right {
-  transform: rotate(45deg);
-}
-
-.left {
-  transform: rotate(-135deg);
-}
 
 /*******************/
 /* Dark Mode
