@@ -22,6 +22,7 @@ const QuestionList = (props) => {
   const questions = state.data;
 
   const getData = () => {
+    console.log('getting data');
     // send request to server asking API data
     axios.get(`${url}/questions/${productId}`, {params: {id: productId}})
     .then(res => {
