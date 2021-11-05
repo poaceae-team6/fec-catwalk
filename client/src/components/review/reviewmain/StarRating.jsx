@@ -5,7 +5,6 @@ import { AiFillStar } from "react-icons/ai";
 const StarRating = (props) => {
 
   return (
-
     <div>
       {[...Array(5)].map((star, i) => {
 

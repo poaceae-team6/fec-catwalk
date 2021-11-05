@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from 'react';
 import ReviewsList from './ReviewsList.jsx';
 import AddReview from '../addreview/AddReview.jsx';
@@ -6,8 +5,8 @@ import { ReviewContext } from '../ReviewProvider.jsx'
 import axios from 'axios';
 
 function Reviews({ productId }) {
-  const [page, setPage] = useState(0);
-  const [sort, setSort] = useState('relevant');
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState('revelent');
 
   const buttonStyles = {
     height: '60px',
@@ -40,12 +39,12 @@ function Reviews({ productId }) {
       sort,
       (res) => {
         reviewContext.setReviewList(res.data.results);
-        setPage(0);
+        setPage(1);
       });
   }, []);
 
   const getReviews = (page, sort, callback) => {
-    axios.get(`http://localhost:3000/reviews/${productId}?page=${page}&sort=${sort}`)
+    axios.get(`http://127.0.0.1:3000/reviews/${productId}?page=${page}&sort=${sort}`)
     .then(res => {
       callback(res);
     });
@@ -70,11 +69,11 @@ function Reviews({ productId }) {
   const resetReviews = (event) => {
     const sortBy = event.target.value;
     getReviews(
-      0,
+      1,
       sortBy,
       (res) => {
         reviewContext.setReviewList(res.data.results);
-        setPage(0);
+        setPage(1);
         setSort(sortBy);
       }
     )
@@ -86,8 +85,8 @@ function Reviews({ productId }) {
       <div style={sortStyles}>
         <div style={{display: 'inline-block'}}>248 reviews, sorted by  </div>
         <div style={{display: 'inline-block'}}>
-          <select stype={dropdownStyle} name="sortBy" id="casortByrs" onChange={resetReviews}>
-            <option value="relevant">Relevant</option>
+          <select style={dropdownStyle} name="sortBy" id="casortByrs" onChange={resetReviews}>
+            <option value="revelent">Revelent</option>
             <option value="helpful">Helpful</option>
             <option value="newest">Newest</option>
           </select>
