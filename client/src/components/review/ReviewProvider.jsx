@@ -7,11 +7,13 @@ function ReviewProvider(props) {
   // ReviewList will store reviewListData from api call
   // SetReviewList is the function to change the value ofreviewList
   const [reviewList, setReviewList] = useState([]);
+  const [reviewMeta, setReviewMeta] = useState({});
 
   return (
     // Allow the children to get data from context
     <ReviewContext.Provider value={{
-      reviewList, setReviewList
+      reviewList, setReviewList,
+      reviewMeta, setReviewMeta
     }}>
       {props.children}
     </ReviewContext.Provider>

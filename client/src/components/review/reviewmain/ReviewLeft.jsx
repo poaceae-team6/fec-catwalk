@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import StarRating from './StarRating.jsx';
 import ProgressBar from './ProgressBar.jsx';
 import ScaleBar from './ScaleBar.jsx';
+import axios from 'axios';
+import { ReviewContext } from '../ReviewProvider.jsx';
 
-function ReviewLeft() {
+function ReviewLeft({ productId }) {
 
+  // In-line Styling
   const RatingSummary = {
     whiteSpace: 'nowrap',
     marginTop: '10px',
@@ -23,6 +26,22 @@ function ReviewLeft() {
     padding: '20px'
 
   }
+  // Create constance to access context
+  const reviewContext = useContext(ReviewContext);
+
+  // API
+  const getReviewMeta = () => {
+    axios.get(`http://127.0.0.1:3000/reviews/${productId}/meta`)
+    .then(res => {
+      reviewContext.setReviewMeta(res.data);
+      console.log(res.data);
+    });
+  }
+
+  // Hooks to initiate the reviewLeft
+  useEffect(() => {
+    getReviewMeta();
+  }, []);
 
   return (
     <div style={{paddingLeft: '10px'}}>

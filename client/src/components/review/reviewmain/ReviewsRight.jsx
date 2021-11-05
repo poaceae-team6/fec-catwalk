@@ -5,9 +5,8 @@ import { ReviewContext } from '../ReviewProvider.jsx'
 import axios from 'axios';
 
 function ReviewsRight({ productId }) {
-  const [page, setPage] = useState(1);
-  const [sort, setSort] = useState('revelent');
 
+  //In-line styling
   const buttonStyles = {
     height: '60px',
     width: '200px',
@@ -31,9 +30,15 @@ function ReviewsRight({ productId }) {
     textDecoration: 'underline'
   }
 
+  // Create state for page sort
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState('revelent');
+
+  // Create state to load more page of review
   const [showAddReview, setShowAddReview] = useState(false)
   const reviewContext = useContext(ReviewContext);
 
+  // Hooks to initiate the reviewList
   useEffect(() => {
     getReviews(
       page,
@@ -44,6 +49,7 @@ function ReviewsRight({ productId }) {
       });
   }, []);
 
+  // Call API to fetch review data
   const getReviews = (page, sort, callback) => {
     axios.get(`http://127.0.0.1:3000/reviews/${productId}?page=${page}&sort=${sort}`)
     .then(res => {

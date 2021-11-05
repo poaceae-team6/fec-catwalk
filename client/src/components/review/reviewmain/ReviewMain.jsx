@@ -10,7 +10,7 @@ function ReviewMain({ productId }) {
     <ReviewProvider>
       <div style = {{fontFamily:'sans-serif', marginTop: '40px'}}>
         <div id='leftbar'>
-          <div><ReviewLeft /></div>
+          <div><ReviewLeft productId={productId }/></div>
 
         </div>
         <div id='rightbar'>
