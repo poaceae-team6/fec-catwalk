@@ -22,19 +22,19 @@ const Overview = (props) => {
   const [fillHeart, setFillHeart] = useState();
 
   useEffect(() => {
-    fetchData(props.currentProduct.id);
+    fetchData();
     // save outfits into local storage - persist the state
     // setOutfits(JSON.parse(window.localStorage.getItem('outfits')));
   }, [])
   
-  const fetchData = (productId) => {
-    axios.get(`${url}/products/${productId}/styles`)
-    .then(res => {
-      setStyles(res.data.results);
-    })
-    .catch(error => {
-      console.log(error);
-    })
+  const fetchData = () => {
+    axios.get(`${url}/products/${props.currentProduct.id}/styles`)
+      .then(res => {
+        setStyles(res.data.results);
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   const addToOutfits = () => {
@@ -58,9 +58,8 @@ const Overview = (props) => {
   }
   
   const deleteFromOutfits = () => {
-     
-    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
-    
+
+    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id ); 
     if (outfits[outfitIndex].styles.length === 1) {
       outfits.splice(outfitIndex, 1);
     } else if (outfits[outfitIndex].styles.length > 1) { 
@@ -88,7 +87,7 @@ const Overview = (props) => {
     }
   }, [styleIndex])
 
-  if (styles===null) {
+  if (styles === null) {
     return (<h3>isLoading...</h3>)
   } else {
     return (
