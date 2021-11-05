@@ -8,8 +8,7 @@ import OverviewStyle from './OverviewStyle.jsx';
 import {IoMdHeartEmpty} from 'react-icons/io';
 import {IoMdHeart} from 'react-icons/io';
 
-const url = 'http://localhost:3000';
-//const url = 'http://127.0.0.1:3000';
+const url = 'http://127.0.0.1:3000';
 
 // placeholder - prentending to be local storage
 var outfits = [];

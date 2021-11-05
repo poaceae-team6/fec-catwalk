@@ -6,7 +6,7 @@ import StarRating from '../review/reviewmain/StarRating.jsx';
   // product object (category, name, description, 'features')
   // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
   
-const url = 'http://localhost:3000';
+  const url = 'http://127.0.0.1:3000';
 
 const RelatedProductsItem = (props) => {
   
