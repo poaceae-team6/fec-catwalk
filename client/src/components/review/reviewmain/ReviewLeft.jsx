@@ -35,6 +35,8 @@ function ReviewLeft({ productId }) {
     .then(res => {
        // Calculate total review and storge result in res.data.reveiwTotal
        res.data.reveiwTotal = Number(res.data.ratings['1']) + Number(res.data.ratings['2']) + Number(res.data.ratings['3']) + Number(res.data.ratings['4']) + Number(res.data.ratings['5']);
+       // Calculate rating average and storge result in res.data.avgRating
+       res.data.avgRating = parseFloat(((Number(res.data.ratings['1']) * 1 + Number(res.data.ratings['2']) * 2 + Number(res.data.ratings['3']) * 3 + Number(res.data.ratings['4']) * 4 + Number(res.data.ratings['5']) * 5) / res.data.reveiwTotal)).toFixed(1);
 
       reviewContext.setReviewMeta(res.data);
 
@@ -51,8 +53,8 @@ function ReviewLeft({ productId }) {
     <div style={{paddingLeft: '10px'}}>
       <div>RATINGS & REVIEWS</div>
       <div style={RatingSummary}>
-        <div style={Score}> 4.2 </div>
-        <div style={Stars}><StarRating /></div>
+        <div style={Score}> {reviewContext.reviewMeta.avgRating} </div>
+        <div style={Stars}><StarRating rating={reviewContext.reviewMeta.avgRating} /></div>
       </div>
       <div>100% of reviewe recommand this product</div>
       <br></br>

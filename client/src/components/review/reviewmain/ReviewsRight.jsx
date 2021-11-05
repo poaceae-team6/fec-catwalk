@@ -93,9 +93,9 @@ function ReviewsRight({ productId }) {
         <div style={{display: 'inline-block'}}>{reviewContext.reviewMeta.reveiwTotal} reviews, sorted by  </div>
         <div style={{display: 'inline-block'}}>
           <select style={dropdownStyle} name="sortBy" id="casortByrs" onChange={resetReviews}>
-            <option value="revelent">Revelent</option>
-            <option value="helpful">Helpful</option>
-            <option value="newest">Newest</option>
+            <option style={dropdownStyle} value="revelent">Revelent</option>
+            <option style={dropdownStyle} value="helpful">Helpful</option>
+            <option style={dropdownStyle} value="newest">Newest</option>
           </select>
         </div>
       </div>
