@@ -43,7 +43,7 @@ const RelatedProductsItem = (props) => {
   } else {
     return (
       <div className='product-card'>
-        <img src={styleData.photos[0].thumbnail_url}/>
+        {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url}/> : <img src='./img/image-not-found.jpg'/>}
         <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
         <h2 className='product-name'>{productData.name}</h2>
         <h3>${styleData.original_price}</h3>
