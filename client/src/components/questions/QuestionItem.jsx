@@ -103,7 +103,7 @@ const QuestionItem = (props) => {
 
       return (
         <div>
-          {modalShow && <AddAnswerModal questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
+          {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
             <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
@@ -120,7 +120,7 @@ const QuestionItem = (props) => {
 
     return (
       <div>
-        {modalShow && <AddAnswerModal questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
+        {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
@@ -133,7 +133,7 @@ const QuestionItem = (props) => {
   } else {
     return (
       <div>
-        {modalShow && <AddAnswerModal questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
+        {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |

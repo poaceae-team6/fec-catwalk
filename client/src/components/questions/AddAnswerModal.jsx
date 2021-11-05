@@ -129,6 +129,10 @@ const AddAnswerModal = (props) => {
       axios.post(`/questions/answers/${questionId}`, postObj)
       .then(() => console.log('add answer ok'))
       .catch((err) => console.log('add answer err', err));
+
+      // fetch data
+      props.getData();
+
       // close the window
       props.close();
     } else {
