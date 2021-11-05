@@ -29,6 +29,7 @@ router
     })
     .catch(error => {
       console.log(error);
+      res.sendStatus(500);
     })
   })
 
@@ -48,6 +49,7 @@ router
         data: JSON.stringify(req.body)
       })
       .then(response => {
+        console.log(response.status);
         res.sendStatus(response.status);
       })
       .catch(error => {
@@ -68,10 +70,12 @@ router
       }
     })
     .then(response => {
+      console.log(response.status);
       res.sendStatus(response.status);
     })
     .catch(error => {
       console.log(error);
+      res.sendStatus(500);
     })
   })
 
@@ -80,15 +84,22 @@ router
 router
   .route('/:id/meta')
   .get((req, res) => {
+    const reqUrl = `${url}/reviews/meta?product_id=${req.params.id}`;
+    console.log(`Forward the request to ${reqUrl}`)
     axios({
       method: 'get',
-      url: `${url}/reviews`,
+      url: reqUrl,
       headers: {
         'Authorization': `${TOKEN}`
       }
     })
     .then(response => {
-      // ...
+      console.log(response.status);
+      res.send(response.data);
+    })
+    .catch(error => {
+      console.log(error);
+      res.sendStatus(500);
     })
   })
 
