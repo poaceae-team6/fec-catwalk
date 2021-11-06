@@ -37,8 +37,7 @@ router
     .route('/')
     .post((req, res) => {
       console.log(`Forward review create request to the atelier api`);
-      // console.log('body', JSON.stringify(req.body));
-      // res.sendStatus(201);
+      console.log('body', JSON.stringify(req.body));
       axios({
         method: 'post',
         url: `${url}/reviews`,
@@ -54,8 +53,9 @@ router
       })
       .catch(error => {
         console.log(error);
-        res.send(500);
+        res.sendStatus(500);
       })
+      // res.sendStatus(201);
     })
 
 router
