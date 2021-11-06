@@ -3,6 +3,7 @@ import Answer from './Answer.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
 import axios from 'axios';
 
+
 const QuestionItem = (props) => {
 
   const questionId = props.question.question_id;
@@ -37,7 +38,7 @@ const QuestionItem = (props) => {
 
   const helpful = () => {
     // update the data in the app
-    if (state.vote === false) {
+    if (state.vote === false && localStorage.getItem(questionId) === null) {
       let voted = props.question.question_helpfulness += 1;
       setState({ ...state, helpfulNum: voted, vote: true });
 
@@ -45,6 +46,8 @@ const QuestionItem = (props) => {
       axios.put(`/questions/helpfulness/${props.question.question_id}`, {question_id: props.question.question_id})
       .then(() => console.log('helpfulness updated'))
       .catch((err) => console.log(err));
+
+      localStorage.setItem(questionId, true);
 
     } else {
       console.log('you voted');
