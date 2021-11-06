@@ -25,8 +25,8 @@ const AddAnswerModal = (props) => {
     backgroundColor: 'white',
     position: 'absolute',
     display: 'inline-block',
-    justifyContent: 'center',
-    alignItems: 'center',
+    left: '400px',
+    zIndex: '1000'
   };
 
   let modalContianer = {
@@ -34,7 +34,6 @@ const AddAnswerModal = (props) => {
     height: '950px',
     backgroundColor: 'white',
     display: 'inline-block',
-    flexDirection: 'column',
     padding: '25px',
     border: 'solid 1px',
   }
