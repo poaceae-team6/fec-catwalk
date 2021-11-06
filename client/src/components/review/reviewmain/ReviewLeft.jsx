@@ -34,9 +34,15 @@ function ReviewLeft({ productId }) {
     axios.get(`http://127.0.0.1:3000/reviews/${productId}/meta`)
     .then(res => {
        // Calculate total review and storge result in res.data.reveiwTotal
-       res.data.reveiwTotal = Number(res.data.ratings['1']) + Number(res.data.ratings['2']) + Number(res.data.ratings['3']) + Number(res.data.ratings['4']) + Number(res.data.ratings['5']);
+       res.data.reveiwTotal = Number(res.data.recommended.true) + Number(res.data.recommended.false) ;
        // Calculate rating average and storge result in res.data.avgRating
        res.data.avgRating = parseFloat(((Number(res.data.ratings['1']) * 1 + Number(res.data.ratings['2']) * 2 + Number(res.data.ratings['3']) * 3 + Number(res.data.ratings['4']) * 4 + Number(res.data.ratings['5']) * 5) / res.data.reveiwTotal)).toFixed(1);
+
+       // Calculate recommended percentage and storge result in res.data.recommended
+       res.data.recommended = Math.round(Number(res.data.recommended.true)/res.data.reveiwTotal * 100)
+
+       // Calculate starBreakdown
+       res.data.ratingBreakdown = [Math.round(Number(res.data.ratings['1']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['2']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['3']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['4']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['5']) / res.data.reveiwTotal * 100)]
 
       reviewContext.setReviewMeta(res.data);
 
@@ -50,19 +56,24 @@ function ReviewLeft({ productId }) {
   }, []);
 
   return (
-    <div style={{paddingLeft: '10px'}}>
+    <div>
       <div>RATINGS & REVIEWS</div>
       <div style={RatingSummary}>
         <div style={Score}> {reviewContext.reviewMeta.avgRating} </div>
+
         <div style={Stars}><StarRating rating={reviewContext.reviewMeta.avgRating} /></div>
       </div>
-      <div>100% of reviewe recommand this product</div>
+      <div>{reviewContext.reviewMeta.recommended}% of reviewer recommand this product</div>
       <br></br>
-      <div style={{lineHeight: '2.3'}}>
-        <ProgressBar />
-        <ProgressBar />
-        <ProgressBar />
-        <ProgressBar />
+      <div >
+
+        {/* <ProgressBar ratingStar = '1' ratingBreakdown ={reviewContext.reviewMeta.ratingBreakdown[0]}/>
+        {console.log('ratingBreakdown', reviewContext.reviewMeta.ratingBreakdown)} */}
+        <ul style={{lineHeight: '2.3', padding: '0px'}}>
+          {reviewContext.reviewMeta.ratingBreakdown.map((ratingBreakdown, i) =>
+            <ProgressBar ratingBreakdown={ratingBreakdown} key={i} ratingStar= '1' />
+          )}
+        </ul>
       </div>
       <br></br>
       <div style={{paddingLeft: '10px'}} >

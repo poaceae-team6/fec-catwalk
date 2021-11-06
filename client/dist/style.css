@@ -281,8 +281,8 @@ h3 {
 #leftbar {
   float: left;
   clear: left;
-  height: 1000px;
-  width: 25%;
+  height: auto;
+  width: 27%;
   /* border: solid rgb(141, 110, 110); */
   border-top-left-radius: 0.5px;
   padding: 10px;
@@ -290,11 +290,11 @@ h3 {
 
 #rightbar {
   float: right;
-  height: 1000px;
+  height: auto;
   width: 70%;
   /* border: solid rgb(141, 110, 110); */
   /* border-top-left-radius: 0.5px; */
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .star-ratings {

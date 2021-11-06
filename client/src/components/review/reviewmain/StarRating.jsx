@@ -1,6 +1,4 @@
 import React from "react";
-import { AiFillStar } from "react-icons/ai";
-
 
 const StarRating = (props) => {
 
@@ -8,7 +6,6 @@ const StarRating = (props) => {
   const ratingWidthStyle = {
     width: `${props.rating / 5 * 100}%`
   }
-
 
   return (
     <div className="star-ratings">

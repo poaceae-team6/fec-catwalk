@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProgressBar = () => {
+const ProgressBar = (props) => {
 
   // const { '#ffc107', 60 } = props;
 
@@ -13,7 +13,7 @@ const ProgressBar = () => {
 
   const fillerStyles = {
     height: '100%',
-    width: '60%',
+    width: `${props.ratingBreakdown}%`,
     backgroundColor: '#4d4d4d',
   }
 
@@ -25,7 +25,7 @@ const ProgressBar = () => {
 
   return (
     <div style={{whiteSpace: 'nowrap'}}>
-      <div style={label}>1 star:</div>
+      <div style={label}>{props.ratingStar} star:</div>
       <div style={containerStyles}>
           <div style={fillerStyles}>
           </div>
