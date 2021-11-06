@@ -5,7 +5,6 @@ import axios from 'axios';
 
 function ReviewTile(props) {
   const [helpfulness, setHelpfulness] = useState(props.review.helpfulness);
-  const [isClick, setIsClick] = useState(false);
 
   const tileStyles = {
     height: 'auto',
@@ -38,13 +37,15 @@ function ReviewTile(props) {
   }
 
   const markHelpful = () => {
-    if(!isClick){
+    if(localStorage.getItem(props.review.review_id) === null){
       axios.put(`/reviews/${props.review.review_id}/helpful`)
       .then(() => {
         setHelpfulness(helpfulness + 1);
-        setIsClick(true);
+        localStorage.setItem(props.review.review_id, true);
         console.log(`Mark ${props.review.review_id} as helpful`);
       })
+    } else {
+      console.log(`Review ${props.review.review_id} has been marked before.`)
     }
   }
 
