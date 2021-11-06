@@ -250,6 +250,11 @@ h3 {
   color: #383838;
 }
 
+
+/*******************/
+/* Products Widgets
+/*******************/
+
 .horizontal-slide {
   display: inline-block;
   width: calc(var(--width) * 0.7);
@@ -297,6 +302,30 @@ h3 {
   color: #383838;
 }
 
+.comparison-modal {
+  display: block;
+  position: absolute;
+  transform: translate(200px, 50px);
+  width: 200px;
+  height: 150px;
+  padding: 40px;
+  border: 1px solid #b6b2b2;
+  background: rgba(243, 243, 243, 0.938);
+  text-align: center;
+  z-index: 1;
+}
+
+.info-container {
+  position: relative;
+}
+
+.info-btn {
+  position: absolute;
+  padding-left: 75%;
+  margin: 10px;
+  font-size: 30px;
+  color: #cac8c8;
+}
 
 /*******************/
 /* Questions
@@ -374,6 +403,10 @@ footer p {
 /*******************/
 /* Dark Mode
 /*******************/
+
+#bg-dark {
+  background-color: #292826;
+}
 
 .theme-setting h2, h3 {
   padding: 0px;
