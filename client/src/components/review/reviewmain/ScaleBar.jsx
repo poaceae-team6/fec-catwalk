@@ -7,16 +7,16 @@ const ScaleBar = (props) => {
   const barStyles = {
     height: '60px',
     width: '100%',
-    marginBottom:'10px',
-    marginTop:'10px'
+    marginBottom:'20px',
+    marginTop:'20px'
   }
 
   const containerStyles = {
-    height: '7px',
+    height: '8px',
     width: '100%',
     backgroundColor: '#e4e5e9',
-    marginTop:'5px',
-    marginBottom:'5px'
+    margin:'5px',
+
   }
 
   const fillerStyles = {

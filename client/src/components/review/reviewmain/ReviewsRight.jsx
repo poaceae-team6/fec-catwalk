@@ -4,7 +4,7 @@ import AddReview from '../addreview/AddReview.jsx';
 import { ReviewContext } from '../ReviewProvider.jsx'
 import axios from 'axios';
 
-function ReviewsRight({ productId }) {
+function ReviewsRight({ productId, productName }) {
 
   //In-line styling
   const buttonStyles = {
@@ -59,7 +59,7 @@ function ReviewsRight({ productId }) {
   }
 
   const openAddReview = () => {
-    console.log(showAddReview);
+    console.log('should show add review', showAddReview);
     setShowAddReview(prev => !prev)
   }
 
@@ -109,7 +109,7 @@ function ReviewsRight({ productId }) {
         ADD A REVIEW +
       </button>
       <br></br>
-      {showAddReview ? <AddReview setShowAddReview={ setShowAddReview } /> : ''}
+      {showAddReview ? <AddReview setShowAddReview={ setShowAddReview } productTitle={productName} productId={productId} /> : ''}
     </div>
     );
 }
