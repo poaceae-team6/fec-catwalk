@@ -5,13 +5,15 @@ import axios from 'axios';
 
 function ReviewTile(props) {
   const [helpfulness, setHelpfulness] = useState(props.review.helpfulness);
+  const [showReview, setShowReview] = useState(true);
 
   const tileStyles = {
     height: 'auto',
     width: 'auto',
     // border: 'solid black 1px',
     // padding: '10px',
-    lineHeight: '1.8'
+    lineHeight: '1.8',
+    display: showReview ? 'block' : 'none'
   }
   const tagStyles = {
     float:'right',
@@ -49,6 +51,14 @@ function ReviewTile(props) {
     }
   }
 
+  const reportReview = () => {
+    axios.put(`/reviews/${props.review.review_id}/report`)
+    .then(() => {
+      setShowReview(false);
+      console.log(`Successfully report review ${props.review.review_id}`);
+    })
+  }
+
   return (
     // props.review.rating
     <div style={tileStyles}>
@@ -73,6 +83,10 @@ function ReviewTile(props) {
         <div style={{display: 'inline-block'}}>Helpful? </div>
         <button style={yesStyles} onClick={markHelpful} >Yes</button>
         <div style={{display: 'inline-block', marginLeft: '5px'}}>({helpfulness})</div>
+        <button
+          style={yesStyles}
+          value={props.review.review_id}
+          onClick={reportReview}>Report </button>
       </div>
       <hr style={{marginTop: '15px', orderBottomWidth: '1px'}} />
     </div>

@@ -105,7 +105,7 @@ router
 
   router
   .route('/:id/report')
-  .get((req, res) => {
+  .put((req, res) => {
     const reqUrl = `${url}/reviews/${req.params.id}/report`;
     console.log(`Forward the request to ${reqUrl}`)
     axios({
