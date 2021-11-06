@@ -80,7 +80,7 @@ router
   })
 
 // The .route can be whatever you want to name it! I just put /meta as an example
-// this is equivalent to http://localhost:3000/reviews/meta
+// this is equivalent to http://localhost:3000/reviews/:id/meta
 router
   .route('/:id/meta')
   .get((req, res) => {

@@ -4,15 +4,15 @@ import AddReview from '../addreview/AddReview.jsx';
 import { ReviewContext } from '../ReviewProvider.jsx'
 import axios from 'axios';
 
-function Reviews({ productId }) {
-  const [page, setPage] = useState(1);
-  const [sort, setSort] = useState('revelent');
+function ReviewsRight({ productId }) {
 
+  //In-line styling
   const buttonStyles = {
     height: '60px',
     width: '200px',
+    marginLeft: '20px',
     margin: '10px',
-    paddiing:'20px',
+    padding:'10px',
     fontSize: '16px',
     fontWeight: 'bold'
   }
@@ -30,9 +30,15 @@ function Reviews({ productId }) {
     textDecoration: 'underline'
   }
 
+  // Create state for page sort
+  const [page, setPage] = useState(1);
+  const [sort, setSort] = useState('revelent');
+
+  // Create state to load more page of review
   const [showAddReview, setShowAddReview] = useState(false)
   const reviewContext = useContext(ReviewContext);
 
+  // Hooks to initiate the reviewList
   useEffect(() => {
     getReviews(
       page,
@@ -43,6 +49,7 @@ function Reviews({ productId }) {
       });
   }, []);
 
+  // Call API to fetch review data
   const getReviews = (page, sort, callback) => {
     axios.get(`http://127.0.0.1:3000/reviews/${productId}?page=${page}&sort=${sort}`)
     .then(res => {
@@ -83,16 +90,18 @@ function Reviews({ productId }) {
   return (
     <div style={{padding: '10px', marginTop: '20px'}}>
       <div style={sortStyles}>
-        <div style={{display: 'inline-block'}}>248 reviews, sorted by  </div>
+        <div style={{display: 'inline-block'}}>{reviewContext.reviewMeta.reveiwTotal} reviews, sorted by  </div>
         <div style={{display: 'inline-block'}}>
           <select style={dropdownStyle} name="sortBy" id="casortByrs" onChange={resetReviews}>
-            <option value="revelent">Revelent</option>
-            <option value="helpful">Helpful</option>
-            <option value="newest">Newest</option>
+            <option style={dropdownStyle} value="revelent">Revelent</option>
+            <option style={dropdownStyle} value="helpful">Helpful</option>
+            <option style={dropdownStyle} value="newest">Newest</option>
           </select>
         </div>
       </div>
+      <br></br>
       <div><ReviewsList /></div>
+      <br></br>
       <button style={buttonStyles} onClick={loadMoreReviews}>
         MORE REVIEWS
       </button>
@@ -106,4 +115,4 @@ function Reviews({ productId }) {
 }
 
 
-export default Reviews;
+export default ReviewsRight;

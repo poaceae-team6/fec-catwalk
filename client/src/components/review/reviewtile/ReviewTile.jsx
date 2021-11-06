@@ -11,7 +11,7 @@ function ReviewTile(props) {
     height: 'auto',
     width: 'auto',
     // border: 'solid black 1px',
-    padding: '10px',
+    // padding: '10px',
     lineHeight: '1.8'
   }
   const tagStyles = {

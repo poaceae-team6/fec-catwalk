@@ -111,7 +111,7 @@ h3 {
   display: grid;
   grid-template-columns: 60% 40%;
   grid-template-rows: auto;
-  grid-template-areas: 
+  grid-template-areas:
   "gallery name"
   "gallery styles"
   "gallery styles"
@@ -310,8 +310,8 @@ h3 {
 #leftbar {
   float: left;
   clear: left;
-  height: 1000px;
-  width: 25%;
+  height: auto;
+  width: 27%;
   /* border: solid rgb(141, 110, 110); */
   border-top-left-radius: 0.5px;
   padding: 10px;
@@ -319,13 +319,39 @@ h3 {
 
 #rightbar {
   float: right;
-  height: 1000px;
+  height: auto;
   width: 70%;
   /* border: solid rgb(141, 110, 110); */
   /* border-top-left-radius: 0.5px; */
-  padding: 10px;
+  /* padding: 10px; */
 }
 
+.star-ratings {
+  unicode-bidi: bidi-override;
+  color: #ccc;
+  font-size: 16px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.star-ratings .fill-ratings {
+  color: black;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: block;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.star-ratings .fill-ratings span {
+  display: inline-block;
+}
+.star-ratings .empty-ratings {
+  padding: 0;
+  display: block;
+  z-index: 0;
+}
 
 /*******************/
 /* Footer
@@ -366,4 +392,3 @@ footer p {
 .font-dark {
   color: red;
 }
-
