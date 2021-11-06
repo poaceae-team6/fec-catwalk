@@ -66,18 +66,18 @@ router
 
 router
   .route('/answers/:id')
-  .get((req, res) => {
-    axios({
-      method: 'get',
-      url: `${url}/reviews...`,
-      headers: {
-        'Authorization': `${TOKEN}`
-      }
-    })
-    .then(response => {
-      // ...
-    })
-  })
+  // .get((req, res) => {
+  //   axios({
+  //     method: 'get',
+  //     url: `${url}/reviews...`,
+  //     headers: {
+  //       'Authorization': `${TOKEN}`
+  //     }
+  //   })
+  //   .then(response => {
+  //     // ...
+  //   })
+  // })
 // ... add the rest
 .post((req, res) => {
   console.log(req.body);

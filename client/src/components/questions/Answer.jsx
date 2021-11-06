@@ -34,19 +34,23 @@ const Answer = (props) => {
 
   // handle answer helpful click
   const handleHelpful = () => {
+    const id = props.answer.id;
 
-    if(state.vote === false) {
+    if(state.vote === false && localStorage.getItem(id) === null) {
       setState({
         ...state,
         helpfulNum: props.answer.helpfulness += 1,
         vote: true,
       })
-      let id = props.answer.id;
+
       //calls the API for the update
       axios.put(`/questions/helpfulness/answers/${id}`, {answer_id: id})
       .then(() => {console.log('you find this answer helpful')})
       .catch(err => console.log(err));
 
+      localStorage.setItem(id, true);
+    } else {
+      console.log ('you voted')
     }
   };
 
