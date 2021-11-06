@@ -26,7 +26,6 @@ const App = (props) => {
     localStorage.getItem('outfits');
     const hasOutfitsData = localStorage.getItem('outfits');
     if (hasOutfitsData === null) {
-      console.log('Added outfits as an [] to localStorage')
       localStorage.setItem('outfits', JSON.stringify([]));
     }
     
@@ -62,13 +61,13 @@ const App = (props) => {
   } else {  
     return (
       <ThemeContext.Provider value={darkMode}>
-        <div>
+        <div id={darkMode ? 'bg-dark' : ''}>
           <div className='theme-setting'>
             <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
             <button id='toggle-btn' onClick={toggleMode.bind(this)}>
               {darkMode ? <BsToggleOn /> : <BsToggleOff />}
             </button>
-            <h3 className={darkMode ? "font-dark" : ""}>
+            <h3 className={darkMode ? 'font-dark' : ''}>
               dark mode will turn this red
             </h3>
           </div>
