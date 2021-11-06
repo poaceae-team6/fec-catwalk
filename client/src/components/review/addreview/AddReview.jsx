@@ -8,7 +8,9 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   const [rating, setRating] = useState(5);
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
-  const [photos, setPhotos] = useState([]);
+  const [photo1, setPhoto1] = useState('');
+  const [photo2, setPhoto2] = useState('');
+  const [photo3, setPhoto3] = useState('');
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [recommend, setRecommend] = useState(true);
@@ -32,6 +34,16 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   }
 
   const submit = (event) => {
+    const photos = [];
+    if (photo1) {
+      photos.push(photo1);
+    }
+    if (photo2) {
+      photos.push(photo2);
+    }
+    if (photo3) {
+      photos.push(photo3);
+    }
     const data = {
       rating, summary, body, photos, name: nickName,
       email, recommend, product_id: productId, characteristics }
@@ -46,6 +58,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     }).then(res => {
       console.log('post review result: ', res.status);
     });
+    setShowAddReview(false)
     event.preventDefault();
   }
 
@@ -74,24 +87,56 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
             </div>
         </div>
         <br></br>
-
-        <input
-          style={InputBoxStyles}
-          type="text"
-          placeholder="Review Summary"
-          value={summary}
-          name="summary"
-          onChange={(e) => {setSummary(e.target.value)}} />
+        <div>
+          Summary:
+          <input
+            style={InputBoxStyles}
+            type="text"
+            placeholder="Review Summary"
+            value={summary}
+            name="summary"
+            onChange={(e) => {setSummary(e.target.value)}} />
+        </div>
         <br></br>
-        <input
-          style={InputBoxStyles}
-          type="text"
-          placeholder="Detail"
-          value={body}
-          name="body"
-          onChange={(e) => setBody(e.target.value)} required/>
+        <div>
+          Detail:
+          <input
+            style={InputBoxStyles}
+            type="text"
+            placeholder="Detail"
+            value={body}
+            name="body"
+            onChange={(e) => setBody(e.target.value)} required/>
+        </div>
         <br></br>
-        <div><UploadPic /></div><br></br>
+        {/* <div><UploadPic /></div><br></br> */}
+        <div>
+          Add Photos:
+          <input
+            style={InputBoxStyles}
+            type="text"
+            placeholder="Photo1"
+            value={photo1}
+            name="photo1"
+            onChange={(e) => setPhoto1(e.target.value)}/>
+          <input
+            style={InputBoxStyles}
+            type="text"
+            placeholder="Photo2"
+            value={photo2}
+            name="photo2"
+            onChange={(e) => setPhoto2(e.target.value)}/>
+          <input
+            style={InputBoxStyles}
+            type="text"
+            placeholder="Photo3"
+            value={photo3}
+            name="photo3"
+            onChange={(e) => setPhoto3(e.target.value)}/>
+        </div>
+        <br></br>
+        <div>
+          Nickname:
         <input
           style={InputBoxStyles}
           type="text"
@@ -99,13 +144,17 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           value={nickName}
           name="nickName"
           onChange={(e) => setNickName(e.target.value)} required/>
-        <input
-          style={InputBoxStyles}
-          type="text"
-          placeholder="Email"
-          value={email}
-          name="email"
-          onChange={(e) => setEmail(e.target.value)} required/>
+        </div>
+        <div>
+          Email:
+          <input
+            style={InputBoxStyles}
+            type="text"
+            placeholder="Email"
+            value={email}
+            name="email"
+            onChange={(e) => setEmail(e.target.value)} required/>
+        </div>
         <br></br>
         <input
           style={ButtonStyles}

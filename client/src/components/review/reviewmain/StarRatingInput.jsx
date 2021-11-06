@@ -40,7 +40,7 @@ function StarRatingInput({ updateStarRating }) {
             <AiFillStar
               className="star"
               color= {ratingValue <= (hover || rating) ? "black" : "#e4e5e9"}
-              size= {15}
+              size= {30}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(null)}
             />
