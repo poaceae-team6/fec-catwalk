@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
+import axios from 'axios';
 
 const Answer = (props) => {
 
@@ -21,6 +22,13 @@ const Answer = (props) => {
         report: true,
         reportDisplay: 'reported'
       });
+
+      // API call
+      let id = props.answer.id;
+      axios.put(`/questions/report/answers/${id}`, {answer_id: id})
+      .then(() => {console.log('you report this answer')})
+      .catch(err => console.log(err));
+
     }
   };
 
@@ -33,8 +41,11 @@ const Answer = (props) => {
         helpfulNum: props.answer.helpfulness += 1,
         vote: true,
       })
-
+      let id = props.answer.id;
       //calls the API for the update
+      axios.put(`/questions/helpfulness/answers/${id}`, {answer_id: id})
+      .then(() => {console.log('you find this answer helpful')})
+      .catch(err => console.log(err));
 
     }
   };
@@ -75,7 +86,8 @@ const Answer = (props) => {
     return (
       <div style={overflow}>
         <p> A: {props.answer.body}</p>
-        {/* {props.answer.photos.map((img, index) => <img key={index} src={img} />)} */}
+        {props.answer.photos.map((img, index) => <img key={index} src={img} style={{height: '50px', width: '50px'}}/>)}
+        <br></br>
         <span> by User </span> <span style={bold}>{props.answer.answerer_name}</span> <span>, {date}</span>  |  <span>helpful?</span>  <span onClick={handleHelpful}>Yes ({state.helpfulNum})</span>  |  <span onClick={handleReport}>{state.reportDisplay}</span>
       </div>
 

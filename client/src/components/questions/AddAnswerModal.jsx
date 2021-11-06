@@ -1,8 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import Error from './Error.jsx';
+import axios from 'axios';
+
+const url = 'http://127.0.0.1:3000';
 
 const AddAnswerModal = (props) => {
+
+  const questionId = props.questionId;
 
   const [image, setImg] = useState(null);
 
@@ -45,6 +50,10 @@ const AddAnswerModal = (props) => {
     height: '300px',
     fontSize: '18px',
   }
+
+  const refresh = () => {
+    props.getData();
+  };
 
   //handle upload image
   const onImageChange = (e) => {
@@ -112,11 +121,25 @@ const AddAnswerModal = (props) => {
 
     if (name && email && answer) {
       //submit ok add question
+      let postObj = {
+        question_id: questionId,
+        body: state.answer,
+        name: state.name,
+        email: state.email,
+
+      };
 
       // send this data to API
+      axios.post(`/questions/answers/${questionId}`, postObj)
+      .then(() => console.log('add answer ok'))
+      .catch((err) => console.log('add answer err', err));
 
       // close the window
       props.close();
+
+      // fetch data
+      props.getData();
+
     } else {
       setState({
         ...state,

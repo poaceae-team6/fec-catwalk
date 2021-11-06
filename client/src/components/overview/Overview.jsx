@@ -8,11 +8,16 @@ import OverviewStyle from './OverviewStyle.jsx';
 import {IoMdHeartEmpty} from 'react-icons/io';
 import {IoMdHeart} from 'react-icons/io';
 
+var outfitList = [];
+  // product object (category, name, description, 'features')
+  // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
+
+// const url = 'http://localhost:3000';
 const url = 'http://127.0.0.1:3000';
 
 const Overview = (props) => {
 
-  const [styles, setStyles] = useState(null); 
+  const [styles, setStyles] = useState(null);
   const [styleIndex, setStyleIndex] = useState(0);
   const [outfits, setOutfits] = useState(() => {
     // getting the outfits from localStorage
@@ -25,12 +30,6 @@ const Overview = (props) => {
   useEffect(() => {
     fetchData();
   }, [])
-  
-  // useEffect(() => {
-  //   // whenever outfits get updated
-  //   // save stringified version of outfits into local storage - persist the state
-  //   localStorage.setItem('outfits', JSON.stringify(outfits));
-  // }, [outfits])
 
   const fetchData = () => {
     axios.get(`${url}/products/${props.currentProduct.id}/styles`)

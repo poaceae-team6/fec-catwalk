@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
+import axios from 'axios';
 
 const QuestionItem = (props) => {
+
+  const questionId = props.question.question_id;
 
   const [state, setState] = useState({
     length: 2,
@@ -39,6 +42,9 @@ const QuestionItem = (props) => {
       setState({ ...state, helpfulNum: voted, vote: true });
 
       // then send the request to update the API
+      axios.put(`/questions/helpfulness/${props.question.question_id}`, {question_id: props.question.question_id})
+      .then(() => console.log('helpfulness updated'))
+      .catch((err) => console.log(err));
 
     } else {
       console.log('you voted');
@@ -101,7 +107,7 @@ const QuestionItem = (props) => {
 
       return (
         <div>
-          {modalShow && <AddAnswerModal question={props.question.question_body} name={props.name} close={closeModal}/>}
+          {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
             <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
@@ -118,7 +124,7 @@ const QuestionItem = (props) => {
 
     return (
       <div>
-        {modalShow && <AddAnswerModal question={props.question.question_body} name={props.name} close={closeModal}/>}
+        {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
@@ -131,7 +137,7 @@ const QuestionItem = (props) => {
   } else {
     return (
       <div>
-        {modalShow && <AddAnswerModal question={props.question.question_body} name={props.name} close={closeModal}/>}
+        {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |

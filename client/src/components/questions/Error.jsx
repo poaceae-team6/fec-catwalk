@@ -10,8 +10,9 @@ const Error = (props) => {
     <span>
       You must enter the following:
     </span>
+    <ul>
     {props.msg.map((err, index) => <li key={index}> {err} </li>)}
-
+    </ul>
   </div>
   )
 };

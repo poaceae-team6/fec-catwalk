@@ -1,35 +1,14 @@
-import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React from 'react';
 
 const Search = (props) => {
-
-  const [state, setState] = useState({
-    currentQ: props.questions,
-  });
-
 
   // handle input changes to filter search
   const handleInput = (e) => {
 
     let term = e.target.value;
+    props.search(term);
 
-    if (term.length > 2) {
-
-      props.setQuestions({
-        ...props.ql,
-        data: props.questions.filter((question) => {
-          if (term === '') {
-            return question;
-          } else if (question.question_body.toLowerCase().includes(term.toLowerCase())) {
-            return question;
-          }
-        }),
-      })
-    } else {
-      props.setQuestions({
-        ...props.ql,
-        data: state.currentQ
-      })
-    }
   }
 
   // styles
