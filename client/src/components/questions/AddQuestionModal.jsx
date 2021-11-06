@@ -172,15 +172,15 @@ const AddQuestionModal = (props) => {
         </div>
       <div className='body'>
         <form onSubmit={handleSubmit}>
-          <p>What is your nickname?</p>
+          <p>What is your nickname? *</p>
           <input onChange={handleNameInput} style={input} type='text' placeholder='Example: jackson11!'/>
           <p>For privacy reasons, do not use your full name or email address</p>
           <br></br>
-          <p>Your email</p>
+          <p>Your email *</p>
           <input onChange={handleEmailInput} style={input} type='text' placeholder='Why did you like the product or not?'/>
           <p>For authentication reasons, you will not be emailed</p>
           <br></br>
-          <p>Your Question</p>
+          <p>Your Question *</p>
           <input onChange={handleQInput} type='text' placeholder='question body' style={body}/>
           <br></br>
           <br></br>

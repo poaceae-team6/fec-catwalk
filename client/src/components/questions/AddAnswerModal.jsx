@@ -132,7 +132,6 @@ const AddAnswerModal = (props) => {
       if (image) {
         postObj.photos = [image];
       }
-      console.log(postObj)
 
       // send this data to API
       axios.post(`/questions/answers/${questionId}`, postObj)
@@ -181,6 +180,7 @@ const AddAnswerModal = (props) => {
             <input onChange={answerChange} style={answerBox} type='text' placeholder='your answer here...' />
             <p>Do you want to upload your pictures?</p>
             <input onChange={onImageChange} type='file' name='upload image' />
+            {image && <img style={{height: '50px'}} src={image} />}
             <p></p>
             <input type='submit' value='submit' />
           </form>
