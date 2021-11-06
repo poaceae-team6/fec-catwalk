@@ -1,4 +1,4 @@
-import React, {Component, useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import YourOutfitItem from './YourOutfitItem.jsx';
 import YourOutfitItemDefault from './YourOutfitItemDefault.jsx';
 import { ThemeContext } from '../ThemeContext.js';
@@ -34,9 +34,9 @@ const YourOutfit = (props) => {
               <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>
             </button>
             <div className='horizontal-slide' id='outfit-slide'>
-              {props.outfits.length ? relatedProducts.map( (productId, index) => {
-                return <RelatedProductsItem productId={productId} key={index}/>
-              }) : <YourOutfitItemDefault />}
+              {props.outfits.length ? props.outfits.map( (outfit, index) => {
+                return <YourOutfitItem outfit={outfit} key={index} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
+              }) : <YourOutfitItemDefault addToOutfits={props.addToOutfits.bind(this)}/>}
             </div>
             <button className='arrow' onClick={handleRightArrow.bind(this)}>
               <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/>
