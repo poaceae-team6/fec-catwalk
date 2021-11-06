@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Answer from './Answer.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
 import axios from 'axios';
@@ -116,7 +116,7 @@ const QuestionItem = (props) => {
             <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
             <button onClick={openModal}>Add answer</button>
           </p>
-          {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
+          {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
           <span onClick={handleLessAnswers}>Load Less Answers</span>
         </div>
       )
@@ -133,7 +133,7 @@ const QuestionItem = (props) => {
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
           <button onClick={openModal}>Add answer</button>
         </p>
-        {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
+        {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
         <span onClick={handleMoreAnswers}>Load More Answers</span>
       </div>
     )
@@ -146,7 +146,7 @@ const QuestionItem = (props) => {
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
           <button onClick={openModal}>Add answer</button>
         </p>
-        {answers.map((answer, index) => <Answer key={index} answer={answer} />)}
+        {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
 
       </div>
 

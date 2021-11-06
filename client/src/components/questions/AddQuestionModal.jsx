@@ -50,6 +50,7 @@ const AddQuestionModal = (props) => {
     fontSize: '18px',
   }
 
+  // eslint-disable-next-line no-unused-vars
   const refresh = () => {
     props.getData();
   };
@@ -139,11 +140,14 @@ const AddQuestionModal = (props) => {
       axios.post(`/questions/${productId}`, postObj)
       .then(res => {
         console.log('add question ok', res);
-        // refresh();
+        props.getData();
+        props.close ();
       })
       .catch(err => console.log('add question err', err));
 
-      // close the window
+      // props.getData()
+
+      // // close the window
       props.close ();
 
     } else {

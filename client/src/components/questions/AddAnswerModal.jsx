@@ -129,16 +129,25 @@ const AddAnswerModal = (props) => {
 
       };
 
+      if (image) {
+        postObj.photos = [image];
+      }
+      console.log(postObj)
+
       // send this data to API
       axios.post(`/questions/answers/${questionId}`, postObj)
-      .then(() => console.log('add answer ok'))
+      .then(() => {
+        console.log('add answer ok');
+        props.getData();
+        props.close();
+      })
       .catch((err) => console.log('add answer err', err));
 
       // close the window
-      props.close();
+      // props.close();
 
-      // fetch data
-      props.getData();
+      // // fetch data
+      // props.getData();
 
     } else {
       setState({

@@ -164,7 +164,7 @@ const QuestionList = (props) => {
         <p>Questions & Answers</p>
         <Search ql={state} questions={state.data} search={handleSearch}/>
         <ul style={overflow}>
-          {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
+          {data.map((question, index) => <QuestionItem getData={useEffect} name={props.name} key={index} question={question} />)}
         </ul>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
         {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
