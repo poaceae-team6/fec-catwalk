@@ -10,24 +10,28 @@ import {IoMdHeart} from 'react-icons/io';
 
 const url = 'http://127.0.0.1:3000';
 
-
-// placeholder - prentending to be local storage
-var outfits = [];
-
 const Overview = (props) => {
 
   const [styles, setStyles] = useState(null); 
   const [styleIndex, setStyleIndex] = useState(0);
-  const [outfits, setOutfits] = useState([]); 
+  const [outfits, setOutfits] = useState(() => {
+    // getting the outfits from localStorage
+    const storedOutfits = localStorage.getItem('outfits');
+    const initialValue = JSON.parse(storedOutfits);
+    return initialValue || [];
+  }); 
   const [fillHeart, setFillHeart] = useState();
-
+  
   useEffect(() => {
     fetchData();
-    // save outfits into local storage - persist the state
-    // setOutfits(JSON.parse(window.localStorage.getItem('outfits')));
   }, [])
-
   
+  // useEffect(() => {
+  //   // whenever outfits get updated
+  //   // save stringified version of outfits into local storage - persist the state
+  //   localStorage.setItem('outfits', JSON.stringify(outfits));
+  // }, [outfits])
+
   const fetchData = () => {
     axios.get(`${url}/products/${props.currentProduct.id}/styles`)
       .then(res => {
@@ -37,39 +41,55 @@ const Overview = (props) => {
         console.log(error);
       })
   }
+    
+  // update everytime styleIndex is changed.
+  useEffect(() => {
+    
+    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
+    if (outfitIndex > -1 && outfits[outfitIndex].styles.includes(styleIndex)) {
+      setFillHeart(true);
+    } else {
+      setFillHeart(false);
+    }
+    
+  }, [styleIndex])
 
   const addToOutfits = () => {
     
-
+    let temp = outfits;
     if (outfits.length < 1) {
-      outfits.push({
+      temp.push({
         id: props.currentProduct.id,
         styles: [styleIndex]
       });
     } else {
       let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
       if (outfitIndex === -1) {
-        outfits.push({
+        temp.push({
           id: props.currentProduct.id,
           styles: [styleIndex]
         });
       } else {
-        outfits[outfitIndex].styles.push(styleIndex);
+        temp[outfitIndex].styles.push(styleIndex);
       }
     }
+    setOutfits(temp);
+    localStorage.setItem('outfits', JSON.stringify(outfits));
   }
 
   const deleteFromOutfits = () => {
-
-    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id ); 
-    if (outfits[outfitIndex].styles.length === 1) {
-      outfits.splice(outfitIndex, 1);
-
-    } else if (outfits[outfitIndex].styles.length > 1) { 
-      let index = outfits[outfitIndex].styles.indexOf(styleIndex);
-      outfits[outfitIndex].styles.splice(index, 1);
-
+    
+    let temp = outfits;
+    let outfitIndex = temp.findIndex( ({ id }) => id === props.currentProduct.id ); 
+    if (temp[outfitIndex].styles.length === 1) {
+      temp.splice(outfitIndex, 1);
+      setOutfits(temp);
+    } else if (temp[outfitIndex].styles.length > 1) { 
+      let index = temp[outfitIndex].styles.indexOf(styleIndex);
+      temp[outfitIndex].styles.splice(index, 1);
+      setOutfits(temp);
     }
+    localStorage.setItem('outfits', JSON.stringify(outfits));
   }
 
   const handleClickHeart = () => {
@@ -80,16 +100,6 @@ const Overview = (props) => {
     }
     setFillHeart(!fillHeart);
   }
-
-  // update everytime styleIndex is changed.
-  useEffect(() => {
-    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
-    if (outfitIndex > -1 && outfits[outfitIndex].styles.includes(styleIndex)) {
-      setFillHeart(true);
-    } else {
-      setFillHeart(false);
-    }
-  }, [styleIndex])
 
   if (styles === null) {
     return (<h3>isLoading...</h3>)
@@ -116,7 +126,7 @@ const Overview = (props) => {
           </div>
         </div>
         <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
-        <YourOutfit currentProduct={props.currentProduct} outfits={outfits}/>
+        <YourOutfit currentProduct={props.currentProduct} outfits={outfits} fetchNewProduct={props.fetchNewProduct.bind(this)} addToOutfits={addToOutfits.bind(this)}/>
       </div>
     )
   }
