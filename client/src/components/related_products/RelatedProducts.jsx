@@ -50,7 +50,7 @@ const RelatedProducts = (props) => {
               </button>
               <div className='horizontal-slide' id='products-slide'>
                 {relatedProducts.map( (productId, index) => {
-                  return <RelatedProductsItem productId={productId} key={index}/>
+                  return <RelatedProductsItem productId={productId} fetchNewProduct={props.fetchNewProduct.bind(this)} key={index}/>
                 })}
               </div>
               <button className='arrow' onClick={handleRightArrow.bind(this)}>

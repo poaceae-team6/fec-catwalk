@@ -15,45 +15,38 @@ import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 const url = 'http://127.0.0.1:3000';
 
 const App = (props) => {
-
-  const [currentProduct, setCurrentProduct] = useState({
-    "id": 40359,
-    "campus": "hr-rfp",
-    "name": "Camo Onesie",
-    "slogan": "Blend in to your crowd",
-    "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
-    "category": "Jackets",
-    "default_price": "140.00",
-    "created_at": "2021-08-13T14:38:44.509Z",
-    "updated_at": "2021-08-13T14:38:44.509Z",
-    "features": [
-      {
-        "feature": "Fabric",
-        "value": "Canvas"
-      },
-      {
-        "feature": "Buttons",
-        "value": "Brass"
-      }
-    ]
-  });
+  
+  const [currentProduct, setCurrentProduct] = useState(null);
   // hooks version of componentDidMount
   // fetch the first product in the proucts list in DB
   // and set it as the currentProduct
-  // useEffect(() => {
-  //   axios.get(`${url}/products`)
-  //     .then(res => {
-  //       setCurrentProduct(res.data[0]);
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     })
-  // }, [])
+  useEffect(() => {
+    
+    // get the outfit data from localStorage
+    localStorage.getItem('outfits');
+    const hasOutfitsData = localStorage.getItem('outfits');
+    if (hasOutfitsData === null) {
+      console.log('Added outfits as an [] to localStorage')
+      localStorage.setItem('outfits', JSON.stringify([]));
+    }
+    
+    axios.get(`${url}/products`)
+      .then(res => {
+        setCurrentProduct(res.data[0]);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }, [])
 
   const fetchNewProduct = (productId) => {
+    setCurrentProduct(null);
     axios.get(`${url}/products/${productId}`)
       .then(res => {
         setCurrentProduct(res.data);
+      })
+      .catch(error => {
+        console.log(error);
       })
   }
 
@@ -63,25 +56,29 @@ const App = (props) => {
   const toggleMode = () => {
     setDarkMode(darkMode => !darkMode);
   }
-
-  return (
-    <ThemeContext.Provider value={darkMode}>
-      <div>
-        <div className='theme-setting'>
-          <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
-          <button id='toggle-btn' onClick={toggleMode.bind(this)}>
-            {darkMode ? <BsToggleOn /> : <BsToggleOff />}
-          </button>
-          <h3 className={darkMode ? "font-dark" : ""}>
-            dark mode will turn this red
-          </h3>
+  
+  if (currentProduct === null) {
+    return <p>Please wait...Loading...</p>
+  } else {  
+    return (
+      <ThemeContext.Provider value={darkMode}>
+        <div>
+          <div className='theme-setting'>
+            <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
+            <button id='toggle-btn' onClick={toggleMode.bind(this)}>
+              {darkMode ? <BsToggleOn /> : <BsToggleOff />}
+            </button>
+            <h3 className={darkMode ? "font-dark" : ""}>
+              dark mode will turn this red
+            </h3>
+          </div>
+          <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
+          <QuestionList id={currentProduct.id} name={currentProduct.name}/>
+          <ReviewMain productId={currentProduct.id} />
         </div>
-        <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
-        <QuestionList id={currentProduct.id} name={currentProduct.name}/>
-        <ReviewMain productId={currentProduct.id} />
-      </div>
-    </ThemeContext.Provider>
-  );
+      </ThemeContext.Provider>
+    );
+  }
 }
 
 export default App;

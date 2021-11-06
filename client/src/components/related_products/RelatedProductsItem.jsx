@@ -6,7 +6,7 @@ import StarRating from '../review/reviewmain/StarRating.jsx';
   // product object (category, name, description, 'features')
   // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
   
-  const url = 'http://127.0.0.1:3000';
+const url = 'http://127.0.0.1:3000';
 
 const RelatedProductsItem = (props) => {
   
@@ -38,11 +38,15 @@ const RelatedProductsItem = (props) => {
     })
   }
   
+  const onClickCard = () => {
+    props.fetchNewProduct(props.productId);
+  }
+  
   if (productData === null || styleData === null) {
     return <p>isLoading...</p>
   } else {
     return (
-      <div className='product-card'>
+      <div className='product-card' onClick={onClickCard.bind(this)}>
         {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url}/> : <img src='./img/image-not-found.jpg'/>}
         <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
         <h2 className='product-name'>{productData.name}</h2>

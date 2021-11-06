@@ -60,3 +60,31 @@ renderOutfits():
 deleteOutfit():
   - Create a copy of the outfitList, remove the current item from that array then trigger the updateOutfitList(copyArray)
 ```
+
+### YourOutfit
+outfits -->
+```
+[
+  { 
+    id: 40344,
+    styles: [0, 1, 2]
+  },
+  { 
+    id: 40345,
+    styles: [0, 1, 2, 6]
+  },
+  { 
+    id: 40347,
+    styles: [0]
+  }
+]
+```
+
+### YourOutfitItem
+props.outfit ->
+```
+{ 
+  id: 40344,
+  styles: [0, 1, 2]
+}
+```
