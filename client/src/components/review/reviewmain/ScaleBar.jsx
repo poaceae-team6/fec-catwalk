@@ -2,7 +2,7 @@ import React from "react";
 import { BsTriangleFill } from "react-icons/bs";
 
 
-const ScaleBar = () => {
+const ScaleBar = (props) => {
 
   const barStyles = {
     height: '60px',
@@ -22,23 +22,19 @@ const ScaleBar = () => {
   const fillerStyles = {
     height: '10px',
     width: '10px',
-    // backgroundColor: '#4d4d4d',
-    paddingLeft: '150px',
-    // transform: 'rotate(180deg)',
-    inlineAlign: 'top',
-    position: 'absolute'
-
-}
+    paddingLeft: `${Number(Number(props.scale) / 5).toFixed(2) * 100}%`,
+    inlineAlign: 'top'
+  }
 
   return (
     <div style={barStyles}>
-      <div>Size</div>
+      <div>{props.character}</div>
       <div style={containerStyles}>
-        <BsTriangleFill style={fillerStyles}/>
+        <div><BsTriangleFill style={fillerStyles}/></div>
       </div>
       <div style={{width: '100%', fontSize: '14px'}}>
-        <div style={{float: 'left'}}>Too small</div>
-        <div style={{float: 'right'}}>Too large</div>
+        <div style={{float: 'left'}}>{props.range[0]}</div>
+        <div style={{float: 'right'}}>{props.range[1]}</div>
       </div>
     </div>
   );

@@ -44,7 +44,11 @@ function ReviewLeft({ productId }) {
        // Calculate starBreakdown
        res.data.ratingBreakdown = [Math.round(Number(res.data.ratings['1']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['2']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['3']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['4']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['5']) / res.data.reveiwTotal * 100)]
 
-      reviewContext.setReviewMeta(res.data);
+      //  for(var key in res.data.characteristics) {
+      //   res.data.char[key] = Number(res.data.characteristics.key.value).toFixed(2)
+      //  }
+
+      reviewContext.setReviewMeta({...reviewContext.reviewMeta, ...res.data});
 
       console.log(res.data);
     });
@@ -70,14 +74,21 @@ function ReviewLeft({ productId }) {
         {/* <ProgressBar ratingStar = '1' ratingBreakdown ={reviewContext.reviewMeta.ratingBreakdown[0]}/>
         {console.log('ratingBreakdown', reviewContext.reviewMeta.ratingBreakdown)} */}
         <ul style={{lineHeight: '2.3', padding: '0px'}}>
-          {reviewContext.reviewMeta.ratingBreakdown.map((ratingBreakdown, i) =>
-            <ProgressBar ratingBreakdown={ratingBreakdown} key={i} ratingStar= '1' />
-          )}
+          {reviewContext.reviewMeta.ratingBreakdown ? reviewContext.reviewMeta.ratingBreakdown.map((ratingBreakdown, i) =>
+            <ProgressBar ratingBreakdown={ratingBreakdown} key={i} ratingStar= {i + 1} />
+          ) : null}
         </ul>
       </div>
       <br></br>
-      <div style={{paddingLeft: '10px'}} >
-        <ScaleBar />
+      <div>
+        { reviewContext.reviewMeta.characteristics ?
+          Object.keys(reviewContext.reviewMeta.characteristics).map((charName, i) => (
+            <ScaleBar
+              character={charName}
+              scale={reviewContext.reviewMeta.characteristics[charName]['value']}
+              range={reviewContext.reviewMeta.characteristicsRange[charName]}
+              key={i} />
+          )) : null }
       </div>
 
     </div>

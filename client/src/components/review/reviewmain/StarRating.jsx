@@ -16,8 +16,6 @@ const StarRating = (props) => {
         <span>★★★★★</span>
       </div>
     </div>
-
-    // </div>
   )
 };
 
