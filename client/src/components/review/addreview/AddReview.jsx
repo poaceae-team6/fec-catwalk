@@ -21,7 +21,8 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     width: 'auto',
     border: 'solid grey 0.5px',
     padding: '30px',
-    position: 'sticky'
+    position: 'absolute',
+    marginTop: 'Math.max(0,($(window).height() - modalDialog.height()) / 2))'
   }
 
   const ButtonStyles = {
@@ -56,7 +57,11 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
       },
       data: JSON.stringify(data)
     }).then(res => {
+      alert('Successfully submit the review!')
       console.log('post review result: ', res.status);
+    }).catch(err => {
+      alert('Failed to submit the review.')
+      console.log('failed to submit the review', err);
     });
     setShowAddReview(false)
     event.preventDefault();
