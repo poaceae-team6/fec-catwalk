@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import StarRating from './StarRating.jsx';
 import ProgressBar from './ProgressBar.jsx';
 import ScaleBar from './ScaleBar.jsx';
@@ -49,8 +49,6 @@ function ReviewLeft({ productId }) {
       //  }
 
       reviewContext.setReviewMeta({...reviewContext.reviewMeta, ...res.data});
-
-      console.log(res.data);
     });
   }
 

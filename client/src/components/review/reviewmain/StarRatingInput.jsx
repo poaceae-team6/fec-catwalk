@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 
 
-const StarRatingInput = () => {
+function StarRatingInput({ updateStarRating }) {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
 
@@ -13,6 +13,11 @@ const StarRatingInput = () => {
     width: '1px',
     height: '1px',
     clip: 'rect(1px, 1px, 1px, 1px)'
+  }
+
+  const handleClick = (ratingValue) => {
+    setRating(ratingValue);
+    updateStarRating(ratingValue);
   }
 
   return (
@@ -28,14 +33,14 @@ const StarRatingInput = () => {
               name= "rating"
               style = {starInputStyle}
               value={ratingValue}
-              onClick={() => setRating(ratingValue)}
+              onClick={() => handleClick(ratingValue)}
               onMouseOver={() => setHover(ratingValue)}
               onMouseOut={() => setHover(null)}
             />
             <AiFillStar
               className="star"
               color= {ratingValue <= (hover || rating) ? "black" : "#e4e5e9"}
-              size= {15}
+              size= {30}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(null)}
             />
