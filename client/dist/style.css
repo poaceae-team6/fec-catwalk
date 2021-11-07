@@ -327,6 +327,15 @@ h3 {
   color: #cac8c8;
 }
 
+.delete-btn {
+  position: absolute;
+  padding-left: 75%;
+  margin: 10px;
+  font-size: 30px;
+  color: #cac8c8;
+  text-shadow: 2px 2px 1px #202020;
+}
+
 /*******************/
 /* Questions
 /*******************/
