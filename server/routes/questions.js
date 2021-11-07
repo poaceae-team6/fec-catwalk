@@ -29,7 +29,7 @@ router
     })
     .catch(error => {
       console.log('server get error', error);
-      res.send(error);
+      res.sendStatus(500);
     })
   })
   .post((req, res) => { // using router, you can chain your requests!
@@ -56,7 +56,7 @@ router
     .catch(err => {
       console.log('server post err', err);
       // res.sendStatus(500);
-      res.send(err)
+      res.sendStatus(500);
     });
 
   })
@@ -66,18 +66,21 @@ router
 
 router
   .route('/answers/:id')
-  // .get((req, res) => {
-  //   axios({
-  //     method: 'get',
-  //     url: `${url}/reviews...`,
-  //     headers: {
-  //       'Authorization': `${TOKEN}`
-  //     }
-  //   })
-  //   .then(response => {
-  //     // ...
-  //   })
-  // })
+  .get((req, res) => {
+    console.log(req.params.id)
+    axios({
+      method: 'get',
+      url: `${url}/qa/questions/${req.params.id}/answers`,
+      headers: {
+        'Authorization': `${TOKEN}`
+      }
+    })
+    .then(data => {
+      res.send(data.data);
+    })
+    .catch(err => console.log('get answer err', err));
+
+  })
 // ... add the rest
 .post((req, res) => {
   console.log(req.body);
