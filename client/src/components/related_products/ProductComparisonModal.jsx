@@ -10,7 +10,8 @@ const ProductComparisonModal = (props) => {
   return (
     <div className='comparison-modal' onClick={ e => e.stopPropagation() }>
       <MdOutlineClose onClick={onToggleModal.bind(this)}/>
-      <p>I'm A Pop Up!!!</p>
+      <p>{props.currentProduct.name}</p>
+      <p>{props.productData.name}</p>
     </div>
   )
 }

@@ -17,35 +17,35 @@ const YourOutfit = (props) => {
   const handleRightArrow = () => {
     slide('outfit-slide', 'right', 1000, 500);
   }
-  
-  // fetch styles data using id to get the image url
-  // 1. Get the current product's id
-  // 2. Use that id to fetch relatedProducts array of id's
-  // 3. Iterate over each id and fetch for that specific product object (category, name, description, 'features') & 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
-  
-  return (  
-    <ThemeContext.Consumer>
-      {darkMode => (
-        // className={darkMode ? 'arrow-dark left' : 'arrow left'}
-        <div className='outfit-container'>
-          <h2 className='products-list-title'>YOUR OUTFIT</h2>
-          <div className='scroll-container'>
-            <button className='arrow' onClick={handleLeftArrow.bind(this)}>
-              <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>
-            </button>
-            <div className='horizontal-slide' id='outfit-slide'>
-              {props.outfits.length ? props.outfits.map( (outfit, index) => {
-                return <YourOutfitItem outfit={outfit} key={index} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
-              }) : <YourOutfitItemDefault addToOutfits={props.addToOutfits.bind(this)}/>}
+
+  if (props.outfits === null) {
+    return (<h3>isLoading...</h3>)
+  } else {
+    return (  
+      <ThemeContext.Consumer>
+        {darkMode => (
+          // className={darkMode ? 'arrow-dark left' : 'arrow left'}
+          <div className='outfit-container'>
+            {console.log('before 5 seconds:', JSON.stringify(props.outfits))}
+            <h2 className='products-list-title'>YOUR OUTFIT</h2>
+            <div className='scroll-container'>
+              <button className='arrow' onClick={handleLeftArrow.bind(this)}>
+                <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>
+              </button>
+              <div className='horizontal-slide' id='outfit-slide'>
+                {props.outfits.length === 0 ? <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits}/> : props.outfits.map( (outfit, index) => {
+                  return <YourOutfitItem outfit={outfit} key={outfit.id + '' + outfit.style} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={props.deleteFromOutfitList.bind(this)}/>
+                })}
+              </div>
+              <button className='arrow' onClick={handleRightArrow.bind(this)}>
+                <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/>
+              </button> 
             </div>
-            <button className='arrow' onClick={handleRightArrow.bind(this)}>
-              <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/>
-            </button> 
           </div>
-        </div>
-      )}
-    </ThemeContext.Consumer>
-  );
+        )}
+      </ThemeContext.Consumer>
+    );
+  }
 }
 
 export default YourOutfit;

@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import StarRating from '../review/reviewmain/StarRating.jsx';
 import ProductComparisonModal from './ProductComparisonModal.jsx';
-import { MdOutlineAddLocationAlt } from 'react-icons/md';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
   // product object (category, name, description, 'features')
@@ -60,8 +59,8 @@ const RelatedProductsItem = (props) => {
   } else {
     return (
       <div className='product-card' onClick={onClickCard.bind(this)}>
-        {showModal ? <ProductComparisonModal productData={productData} toggleModal={toggleModal.bind(this)}/> : null}
         <div className='info-container'>
+          {showModal ? <ProductComparisonModal currentProduct={props.currentProduct} productData={productData} toggleModal={toggleModal.bind(this)}/> : null}
           <IoMdInformationCircleOutline onClick={toggleModal.bind(this)} className='info-btn'/>
           {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url}/> : <img src='./img/image-not-found.jpg'/>}
         </div>

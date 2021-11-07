@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BsPlusLg } from 'react-icons/bs';
 
 const YourOutfitItemDefault = (props) => {
   
-  const onClickToAdd = () => {
-    props.addToOutfits();
+  const addToOutfits = () => {
+    props.updateOutfits({ 
+      id: props.currentProduct.id, 
+      style: 0
+    });
   }
   
   return (
-    <div className='product-card' onClick={onClickToAdd.bind(this)}>
+    <div className='product-card' onClick={addToOutfits.bind(this)}>
       <button className='add-outfit-btn'>
         <BsPlusLg />
         <h2 className='product-name'>
