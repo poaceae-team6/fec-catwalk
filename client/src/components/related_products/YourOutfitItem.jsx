@@ -1,11 +1,8 @@
 import React, {Component, useEffect, useState} from 'react';
 import axios from 'axios';
 
-import sampleProductIdData from '../../assets/related_products/sampleProductIdData.js';
-import sampleProductIdStylesData from '../../assets/related_products/sampleProductIdStylesData.js';
-
-import YourOutfitItemCard from './YourOutfitItemCard.jsx';
 import StarRating from '../review/reviewmain/StarRating.jsx';
+import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 const url = 'http://127.0.0.1:3000';
 
@@ -34,21 +31,35 @@ const YourOutfitItem = (props) => {
   const fetchStyleData = () => {
     axios.get(`${url}/products/${props.outfit.id}/styles`)
     .then(res => {
-      setStyleData(res.data.results);
+      setStyleData(res.data.results[props.outfit.style]);
     })
     .catch(error => {
       console.log(error);
     })
   }
   
+  const onClickCard = () => {
+    props.fetchNewProduct(productData.id);
+  }
+  
+  const onDelete = (e) => {
+    e.stopPropagation();
+    props.deleteFromOutfitList(props.outfit.id, props.outfit.style);
+  }
+  
   if (productData === null || styleData === null) {
     return <p>isLoading...</p>
   } else {
     return (
-      <div style={{ display: 'inline-block' }}>
-        {props.outfit.styles.map( (styleIndex, index) => {
-          return <YourOutfitItemCard productData={productData} styleData={styleData} styleIndex={styleIndex} fetchNewProduct={props.fetchNewProduct} key={index}/>
-        })}
+      <div className='product-card' onClick={onClickCard.bind(this)}>
+        <div className='info-container'>
+          <IoMdCloseCircleOutline onClick={onDelete.bind(this)} className='delete-btn'/>
+          <img src={styleData.photos[0].thumbnail_url}/>
+        </div>
+        <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
+        <h2 className='product-name'>{styleData.name}</h2>
+        <h3>${styleData.original_price}</h3>
+        <StarRating />
       </div>
     )
   }
