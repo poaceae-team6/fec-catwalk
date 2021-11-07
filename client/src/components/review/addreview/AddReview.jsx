@@ -70,6 +70,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
       rating, summary, body, photos, name: nickName,
       email, recommend, product_id: productId, characteristics }
     console.log('submitting review:', JSON.stringify(data));
+
     axios({
       method: 'post',
       url: `/reviews`,
@@ -88,26 +89,52 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     event.preventDefault();
   }
 
+  const validate = (data) => {
+    const warnings = [];
+    if (!data.rating) {
+      warnings.push('Missing overall rating.');
+    }
+    if (!data.recommend) {
+      warnings.push('Missing recommendation response.');
+    }
+    if (Object.keys(data.characteristics).length !=
+      Object.keys(reviewContext.reviewMeta.characteristics).length) {
+      warnings.push('Missing fields under characteristics.');
+    }
+    if (data.summary.length > 60) {
+      warnings.push('Should have less than 60 characters in summary.');
+    }
+    if (data.body.length > 1000) {
+      warnings.push('Should have less than 1000 characters in the review body.');
+    }
+    if (data.body.length < 50) {
+      warnings.push('Should have more than 50 characters in the review body.');
+    }
+  }
+
 
   return (
     <div style={PopWindowStyles}>
       <AiOutlineCloseCircle className='review-buttons' style={{float: 'right'}} color="grey" size= {30} onClick={ () => setShowAddReview(false)}/>
+
       <div style={{fontSize: '16px',fontWeight: 'bold', marginTop: '10px', marginBottom: '10px'}}>
         {productTitle}</div>
-      {/* <div >RatingBreackdown</div> */}
       <br></br>
+
       <form onSubmit={submit}>
-        <div ><StarRatingInput updateStarRating={setRating}/></div>
+        <div style={{height: '30px'}}><StarRatingInput updateStarRating={setRating}/></div>
+        <br></br>
+
         <div style={{whiteSpace: 'nowrap'}}>
-          <div style={{display: 'inline-block', marginRight: '5px'}}>Do you recommend this product?</div>
+          <div style={{display: 'inline-block', marginRight: '5px'}}>Do you recommend this product? *</div>
           <div style={{display: 'inline-block'}}>
-            <input type="radio" value='true' name="YN" onChange={() => {setRecommend(true)}}/> Yes
+            <input type="radio" value='true' name="YN" onChange={() => {setRecommend(true)}} checked/> Yes
             <input type="radio" value='false' name="YN"  onChange={() => {setRecommend(false)}}/> No
           </div>
         </div>
         <br></br>
 
-        <div style={{whiteSpace: 'nowrap'}}>
+        <div style={{whiteSpace: 'nowrap'}}>Characteristics: *
           <table><tbody>
             {reviewContext.reviewMeta.characteristics ?
               Object.keys(reviewContext.reviewMeta.characteristics).map((charName, i) => (
@@ -127,9 +154,6 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
                   ))}
               </tr>)) : null}
           </tbody></table>
-
-
-
         </div>
         <br></br>
 
@@ -138,21 +162,26 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           <input
             style={InputBoxStyles}
             type="text"
-            placeholder="Review Summary"
+            placeholder="Example: Best purchase ever!"
             value={summary}
             name="summary"
             onChange={(e) => {setSummary(e.target.value)}} />
+          <small>up to 60 characters</small>
         </div>
         <br></br>
         <div>
-          Detail:
-          <input
+          Review Body:
+          <textarea
             style={InputBoxStyles}
-            type="text"
-            placeholder="Detail"
+            placeholder="Why did you like the product or not?"
             value={body}
             name="body"
-            onChange={(e) => setBody(e.target.value)} required/>
+            onChange={(e) => setBody(e.target.value)} />
+          <small>
+            {body.length >= 50 ?
+              'Minimum reached' :
+              'Minimum required characters left: ' + (50 - body.length) }
+          </small>
         </div>
         <br></br>
         {/* <div><UploadPic /></div><br></br> */}
@@ -189,7 +218,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           placeholder="Nick Name"
           value={nickName}
           name="nickName"
-          onChange={(e) => setNickName(e.target.value)} required/>
+          onChange={(e) => setNickName(e.target.value)}/>
         </div>
         <div>
           Email:
@@ -199,7 +228,8 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
             placeholder="Email"
             value={email}
             name="email"
-            onChange={(e) => setEmail(e.target.value)} required/>
+            onChange={(e) => setEmail(e.target.value)}/>
+          <small>For authentication reasons, you will not be emailed.</small>
         </div>
         <br></br>
         <input
