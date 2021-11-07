@@ -7,12 +7,8 @@ import OverviewStyle from './OverviewStyle.jsx';
 
 import {IoMdHeartEmpty} from 'react-icons/io';
 import {IoMdHeart} from 'react-icons/io';
+import { BsHeartFill } from 'react-icons/bs';
 
-var outfitList = [];
-  // product object (category, name, description, 'features')
-  // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
-
-// const url = 'http://localhost:3000';
 const url = 'http://127.0.0.1:3000';
 
 const Overview = (props) => {
@@ -25,7 +21,7 @@ const Overview = (props) => {
     const initialValue = JSON.parse(storedOutfits);
     return initialValue || [];
   }); 
-  const [fillHeart, setFillHeart] = useState();
+  const [fillHeart, setFillHeart] = useState(false);
   
   useEffect(() => {
     fetchData();
@@ -40,55 +36,69 @@ const Overview = (props) => {
         console.log(error);
       })
   }
-    
+  
   // update everytime styleIndex is changed.
   useEffect(() => {
-    
-    let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
-    if (outfitIndex > -1 && outfits[outfitIndex].styles.includes(styleIndex)) {
-      setFillHeart(true);
-    } else {
-      setFillHeart(false);
-    }
-    
+    checkHeartStatus();
   }, [styleIndex])
-
-  const addToOutfits = () => {
-    
-    let temp = outfits;
-    if (outfits.length < 1) {
-      temp.push({
-        id: props.currentProduct.id,
-        styles: [styleIndex]
-      });
+  
+  // update everytime outfits is changed.
+  useEffect(() => {
+    checkHeartStatus();
+    console.log(outfits);
+  }, [outfits])
+  
+  // check which current styles in current product are already in outfits!
+  const checkHeartStatus = () => {
+    if (outfits.length === 0) {
+      setFillHeart(false);
     } else {
-      let outfitIndex = outfits.findIndex( ({ id }) => id === props.currentProduct.id );
-      if (outfitIndex === -1) {
-        temp.push({
-          id: props.currentProduct.id,
-          styles: [styleIndex]
-        });
-      } else {
-        temp[outfitIndex].styles.push(styleIndex);
+      for (let outfit of outfits) {
+        if (outfit.id === props.currentProduct.id && outfit.style === styleIndex) {
+          setFillHeart(true);
+          return;
+        } else {
+          setFillHeart(false);
+        }
       }
     }
+  }
+  
+  // triggered in Outfit Components
+  const updateOutfits = (newOutfit) => {
+    let temp = [...outfits, newOutfit];
+    setFillHeart(true);
     setOutfits(temp);
-    localStorage.setItem('outfits', JSON.stringify(outfits));
+    localStorage.setItem('outfits', JSON.stringify(temp));
+  }
+
+  const addToOutfits = () => {
+    let temp = [...outfits, {
+      id: props.currentProduct.id,
+      style: styleIndex
+    }];
+    setFillHeart(true);
+    setOutfits(temp);
+    localStorage.setItem('outfits', JSON.stringify(temp));
   }
 
   const deleteFromOutfits = () => {
-    
-    let temp = outfits;
-    let outfitIndex = temp.findIndex( ({ id }) => id === props.currentProduct.id ); 
-    if (temp[outfitIndex].styles.length === 1) {
-      temp.splice(outfitIndex, 1);
-      setOutfits(temp);
-    } else if (temp[outfitIndex].styles.length > 1) { 
-      let index = temp[outfitIndex].styles.indexOf(styleIndex);
-      temp[outfitIndex].styles.splice(index, 1);
-      setOutfits(temp);
-    }
-    localStorage.setItem('outfits', JSON.stringify(outfits));
+    let temp = [...outfits];
+    let outfitIndex = temp.findIndex( ({ id, style }) => id === props.currentProduct.id && style === styleIndex);
+    setFillHeart(false);
+    temp.splice(outfitIndex, 1);
+    setOutfits(temp);
+    localStorage.setItem('outfits', JSON.stringify(temp));
+  }
+  
+  const deleteFromOutfitList = (outfitId, outfitStyle) => {
+    let temp = [...outfits];
+    let outfitIndex = temp.findIndex( ({ id, style }) => id === outfitId && style === outfitStyle);
+    console.log(outfitIndex);
+    temp.splice(outfitIndex, 1);
+    console.log(temp);
+    setOutfits([...temp]);
+    localStorage.setItem('outfits', JSON.stringify(temp));
   }
 
   const handleClickHeart = () => {
@@ -97,10 +107,9 @@ const Overview = (props) => {
     } else {
       addToOutfits();
     }
-    setFillHeart(!fillHeart);
   }
 
-  if (styles === null) {
+  if (styles === null || outfits === null) {
     return (<h3>isLoading...</h3>)
   } else {
     return (
@@ -115,21 +124,20 @@ const Overview = (props) => {
               <h3>ADD TO BAG</h3>
             </button>
             <button id='heart-icon' onClick={handleClickHeart.bind(this)}>
-              {fillHeart ? <IoMdHeart /> : <IoMdHeartEmpty />}
+              {fillHeart ? <IoMdHeart stye={{color: 'red'}}/> : <IoMdHeartEmpty />}
             </button>
           </div>
           <div className='styles'>
             {styles.map( (style, index) => {
-              return <OverviewStyle currentStyle={styles[index]} styleIndex={index} setStyleIndex={setStyleIndex.bind(this)} key={index}/>
+              return <OverviewStyle currentStyle={styles[index]} styleIndex={index} setStyleIndex={setStyleIndex} key={index}/>
             })}
           </div>
         </div>
         <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
-        <YourOutfit currentProduct={props.currentProduct} outfits={outfits} fetchNewProduct={props.fetchNewProduct.bind(this)} addToOutfits={addToOutfits.bind(this)}/>
+        <YourOutfit currentProduct={props.currentProduct} outfits={outfits} onUpdateOutfits={updateOutfits.bind(this)} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={deleteFromOutfitList.bind(this)}/>
       </div>
     )
   }
-  // return content;
 };
 
 export default Overview;
