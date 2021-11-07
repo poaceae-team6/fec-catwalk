@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import StarRatingInput from '../reviewmain/StarRatingInput.jsx';
-import UploadPic from './UploadPic.jsx';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios from 'axios';
+import { ReviewContext } from '../ReviewProvider.jsx'
+
 
 function AddReview({ setShowAddReview, productTitle, productId }) {
   const [rating, setRating] = useState(5);
@@ -16,22 +17,42 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   const [recommend, setRecommend] = useState(true);
   const [characteristics, setCharacteristics] = useState({});
 
+  const reviewContext = useContext(ReviewContext);
+
   const PopWindowStyles = {
     height: 'auto',
     width: 'auto',
     border: 'solid grey 0.5px',
     padding: '30px',
     position: 'absolute',
-    marginTop: 'Math.max(0,($(window).height() - modalDialog.height()) / 2))'
+    marginTop: 'Math.max(0,($(window).height() - modalDialog.height()) / 2))',
+    zIndex: 10,
+    WebkitTransform: 'translateZ(0)'
   }
 
   const ButtonStyles = {
     height: '35px',
     width: 'auto',
-    // margin: '10px',
     padding:'8px',
     fontSize: '16px',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    "&:hover": {
+      color: "red"
+   },
+  }
+
+  const InputBoxStyles = {
+    width: '95%',
+    marginBottom: '10px',
+    padding:'10px',
+    border: 'solid grey 1px',
+    fontSize: '16px'
+  }
+
+  const handleCharChange = (event) => {
+    const id = event.target.name;
+    const value = event.target.value;
+    setCharacteristics({...characteristics, [id]: value});
   }
 
   const submit = (event) => {
@@ -67,17 +88,10 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     event.preventDefault();
   }
 
-  const InputBoxStyles = {
-    width: '95%',
-    marginBottom: '10px',
-    padding:'10px',
-    border: 'solid grey 1px',
-    fontSize: '16px'
-  }
 
   return (
     <div style={PopWindowStyles}>
-      <AiOutlineCloseCircle style={{float: 'right'}} color="grey" size= {30} onClick={ () => setShowAddReview(false)}/>
+      <AiOutlineCloseCircle className='review-buttons' style={{float: 'right'}} color="grey" size= {30} onClick={ () => setShowAddReview(false)}/>
       <div style={{fontSize: '16px',fontWeight: 'bold', marginTop: '10px', marginBottom: '10px'}}>
         {productTitle}</div>
       {/* <div >RatingBreackdown</div> */}
@@ -85,13 +99,40 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
       <form onSubmit={submit}>
         <div ><StarRatingInput updateStarRating={setRating}/></div>
         <div style={{whiteSpace: 'nowrap'}}>
-            <div style={{display: 'inline-block', marginRight: '5px'}}>Do you recommend this product?</div>
-            <div style={{display: 'inline-block'}}>
-              <input type="radio" value='true' name="YN" onChange={() => {setRecommend(true)}}/> Yes
-              <input type="radio" value='false' name="YN"  onChange={() => {setRecommend(false)}}/> No
-            </div>
+          <div style={{display: 'inline-block', marginRight: '5px'}}>Do you recommend this product?</div>
+          <div style={{display: 'inline-block'}}>
+            <input type="radio" value='true' name="YN" onChange={() => {setRecommend(true)}}/> Yes
+            <input type="radio" value='false' name="YN"  onChange={() => {setRecommend(false)}}/> No
+          </div>
         </div>
         <br></br>
+
+        <div style={{whiteSpace: 'nowrap'}}>
+          <table><tbody>
+            {reviewContext.reviewMeta.characteristics ?
+              Object.keys(reviewContext.reviewMeta.characteristics).map((charName, i) => (
+                <tr key={i}>
+                  <td style={{display: 'inline-block', marginRight: '5px', fontWeight: 'bold' }}>
+                    {charName}:
+                  </td>
+                  {[1, 2, 3, 4, 5].map((value, i) => (
+                    <td key={i}>
+                      <input
+                        type="radio"
+                        value={value}
+                        name={reviewContext.reviewMeta.characteristics[charName].id}
+                        onChange={handleCharChange} />
+                        {reviewContext.reviewMeta.characteristicsRange[charName][i]}
+                    </td>
+                  ))}
+              </tr>)) : null}
+          </tbody></table>
+
+
+
+        </div>
+        <br></br>
+
         <div>
           Summary:
           <input
