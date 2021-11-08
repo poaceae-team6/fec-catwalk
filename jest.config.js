@@ -137,7 +137,7 @@ module.exports = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -158,7 +158,8 @@ module.exports = {
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
-  testRegex: "((\\.|/*.)(spec))\\.js?$",
+  // Server pattern
+  testRegex: ["/__tests__/.*\\.(js|jsx)$"],
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: undefined,
@@ -192,4 +193,5 @@ module.exports = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+  setupFilesAfterEnv: ["<rootDir>client/src/setupTests.js"]
 };

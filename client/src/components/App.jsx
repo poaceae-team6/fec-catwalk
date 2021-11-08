@@ -72,10 +72,11 @@ const App = (props) => {
             <h3 className={darkMode ? 'font-dark' : ''}>
               dark mode will turn this red
             </h3>
-            <ReviewMain productId={currentProduct.id} />
+
           </div>
-          {/* <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/> */}
-          {/* <QuestionList id={currentProduct.id} name={currentProduct.name}/> */}
+          <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
+          <QuestionList id={currentProduct.id} name={currentProduct.name}/>
+          <ReviewMain productId={currentProduct.id} />
         </div>
       </ThemeContext.Provider>
     );
