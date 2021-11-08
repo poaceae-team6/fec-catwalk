@@ -69,8 +69,6 @@ const RelatedProductsItem = (props) => {
   const toggleModal = (e) => {
     e.stopPropagation();
     setShowModal(true);
-    console.log(props.currentProduct);
-    console.log(productData)
   }
 
   useOutsideClick(ref, () => {
