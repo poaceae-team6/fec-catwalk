@@ -15,6 +15,10 @@ const RelatedProducts = (props) => {
   
   useEffect(() => {
     fetchRelatedProducts();
+    // cleanup/reset state after unmount
+    return () => {
+      setRelatedProducts(null); 
+    }
   }, [])
   
   const fetchRelatedProducts = () => {

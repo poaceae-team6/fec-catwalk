@@ -25,6 +25,10 @@ const Overview = (props) => {
   
   useEffect(() => {
     fetchData();
+    // cleanup/reset state after unmount
+    return () => {
+      setStyles(null); 
+    }
   }, [])
 
   const fetchData = () => {
@@ -45,7 +49,6 @@ const Overview = (props) => {
   // update everytime outfits is changed.
   useEffect(() => {
     checkHeartStatus();
-    console.log(outfits);
   }, [outfits])
   
   // check which current styles in current product are already in outfits!
@@ -94,9 +97,7 @@ const Overview = (props) => {
   const deleteFromOutfitList = (outfitId, outfitStyle) => {
     let temp = [...outfits];
     let outfitIndex = temp.findIndex( ({ id, style }) => id === outfitId && style === outfitStyle);
-    console.log(outfitIndex);
     temp.splice(outfitIndex, 1);
-    console.log(temp);
     setOutfits([...temp]);
     localStorage.setItem('outfits', JSON.stringify(temp));
   }
@@ -117,7 +118,7 @@ const Overview = (props) => {
         <div className='overview-grid'>
           <h2>{props.currentProduct.name}</h2>
           <div className='gallery'>
-            <img src={styles[styleIndex].photos[0].thumbnail_url}/>
+            {styles[styleIndex].photos[0].url ? <img src={styles[styleIndex].photos[0].url} height='450' alt={'product img for ' + props.currentProduct.name}/> : <img src='./img/image-not-found.webp' height='450' alt='product img not available'/>}
           </div>
           <div className='overview-buttons'>
             <button id='cart-btn'>

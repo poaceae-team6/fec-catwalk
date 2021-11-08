@@ -18,34 +18,29 @@ const YourOutfit = (props) => {
     slide('outfit-slide', 'right', 1000, 500);
   }
 
-  if (props.outfits === null) {
-    return (<h3>isLoading...</h3>)
-  } else {
-    return (  
-      <ThemeContext.Consumer>
-        {darkMode => (
-          // className={darkMode ? 'arrow-dark left' : 'arrow left'}
-          <div className='outfit-container'>
-            {console.log('before 5 seconds:', JSON.stringify(props.outfits))}
-            <h2 className='products-list-title'>YOUR OUTFIT</h2>
-            <div className='scroll-container'>
-              <button className='arrow' onClick={handleLeftArrow.bind(this)}>
-                <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>
-              </button>
-              <div className='horizontal-slide' id='outfit-slide'>
-                {props.outfits.length === 0 ? <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits}/> : props.outfits.map( (outfit, index) => {
-                  return <YourOutfitItem outfit={outfit} key={outfit.id + '' + outfit.style} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={props.deleteFromOutfitList.bind(this)}/>
-                })}
-              </div>
-              <button className='arrow' onClick={handleRightArrow.bind(this)}>
-                <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/>
-              </button> 
+  return (  
+    <ThemeContext.Consumer>
+      {darkMode => (
+        // className={darkMode ? 'arrow-dark left' : 'arrow left'}
+        <div className='outfit-container'>
+          <h2 className='products-list-title'>YOUR OUTFIT</h2>
+          <div className='scroll-container'>
+            <button className='arrow' onClick={handleLeftArrow.bind(this)}>
+              <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>
+            </button>
+            <div className='horizontal-slide' id='outfit-slide'>
+              {props.outfits.length === 0 ? <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits}/> : props.outfits.map( (outfit, index) => {
+                return <YourOutfitItem outfit={outfit} key={outfit.id + '' + outfit.style} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={props.deleteFromOutfitList.bind(this)}/>
+              })}
             </div>
+            <button className='arrow' onClick={handleRightArrow.bind(this)}>
+              <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/>
+            </button> 
           </div>
-        )}
-      </ThemeContext.Consumer>
-    );
-  }
+        </div>
+      )}
+    </ThemeContext.Consumer>
+  );
 }
 
 export default YourOutfit;
