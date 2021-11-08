@@ -78,7 +78,7 @@ const RelatedProductsItem = (props) => {
     return (
       <div className='product-card' onClick={onClickCard.bind(this)}>
         <div className='info-container'>
-          {showModal ? <ProductComparisonModal currentProduct={props.currentProduct} productData={productData} toggleModal={toggleModal.bind(this)}/> : null}
+          {showModal ? <ProductComparisonModal currentProduct={props.currentProduc`t} productData={productData} toggleModal={toggleModal.bind(this)}/> : null}
           <IoMdInformationCircleOutline onClick={toggleModal.bind(this)} className='info-btn'/>
           {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}
         </div>
