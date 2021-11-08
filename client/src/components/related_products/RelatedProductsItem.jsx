@@ -14,11 +14,19 @@ const RelatedProductsItem = (props) => {
   
   const [productData, setProductData] = useState(null);
   const [styleData, setStyleData] = useState(null);
+  const [reviewData, setReviewData] = useState(null);
   const [showModal, setShowModal] = useState(false);
   
   useEffect(() => {
     fetchProductData();
     fetchStyleData();
+    fetchReviewData();
+    // cleanup/reset state after unmount
+    return () => {
+      setProductData(null); 
+      setStyleData(null); 
+      setReviewData(null); 
+    }
   }, [])
   
   const fetchProductData = () => {
@@ -41,6 +49,16 @@ const RelatedProductsItem = (props) => {
     })
   }
   
+  const fetchReviewData = () => {
+    axios.get(`${url}/reviews/${props.productId}`)
+    .then(res => {
+      setReviewData(res.data.results);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+  
   const onClickCard = () => {
     props.fetchNewProduct(props.productId);
   }
@@ -54,7 +72,7 @@ const RelatedProductsItem = (props) => {
   //   setShowModal(false);
   // }
   
-  if (productData === null || styleData === null) {
+  if (productData === null || styleData === null || reviewData === null) {
     return <p>isLoading...</p>
   } else {
     return (
@@ -62,12 +80,13 @@ const RelatedProductsItem = (props) => {
         <div className='info-container'>
           {showModal ? <ProductComparisonModal currentProduct={props.currentProduct} productData={productData} toggleModal={toggleModal.bind(this)}/> : null}
           <IoMdInformationCircleOutline onClick={toggleModal.bind(this)} className='info-btn'/>
-          {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url}/> : <img src='./img/image-not-found.jpg'/>}
+          {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}
         </div>
         <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
         <h2 className='product-name'>{productData.name}</h2>
-        <h3>${styleData.original_price}</h3>
-        <StarRating />
+        {styleData.sale_price ? <h3><span style={{color: 'red', 'fontWeight': 'bold'}}>${styleData.sale_price}</span> <span style={{'textDecorationLine': 'line-through'}}>${styleData.original_price}</span></h3> : <h3>${styleData.original_price}</h3>}
+        {/* {reviewData.reduce((total, obj) => obj.rating + total, 0) / reviewData.length} */}
+        <StarRating rating={reviewData.reduce((total, obj) => obj.rating + total, 0) / reviewData.length}/>
       </div>
     )
   }
