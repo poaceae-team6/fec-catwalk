@@ -73,7 +73,7 @@ function ReviewTile(props) {
       { props.review.photos ?
       <div>
         {props.review.photos.map((photo, i) =>
-          <img src={photo.url} key={i} style={{width:'50px', height:'50px'}}/>
+          <img src={photo.url} key={i} style={{height:'60px', margin: '10px'}}/>
         )}
       </div> : null}
 
@@ -82,7 +82,7 @@ function ReviewTile(props) {
       <div style={{whiteSpace: 'nowrap', marginTop: '10px', color: 'grey'}}>
         <div style={{display: 'inline-block'}}>Helpful? </div>
         <button style={yesStyles} onClick={markHelpful} >Yes</button>
-        <div style={{display: 'inline-block', marginLeft: '5px'}}>({helpfulness})</div>
+        <div style={{display: 'inline-block', marginLeft: '5px'}}>({helpfulness})   │</div>
         <button
           style={yesStyles}
           value={props.review.review_id}

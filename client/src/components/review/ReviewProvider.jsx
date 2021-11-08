@@ -9,12 +9,12 @@ function ReviewProvider(props) {
   const [reviewList, setReviewList] = useState([]);
   const [reviewMeta, setReviewMeta] = useState({
     characteristicsRange: {
-      'Size': ['too small', '1/2 a size too small', 'perfect', '1/2 a size too big', 'too big'],
-      'Width': ['too narrow', 'slightly narrow', 'perfect', 'slightly wide', 'too wide'],
-      'Comfort': ['uncomfortable', 'slightly uncomfortable', 'OK', 'comfortable', 'perfect'],
-      'Quality': ['poor', 'below average', 'what I expected', 'pretty great', 'perfect'],
-      'Length': ['runs short', 'runs slightly short', 'perfect', 'runs slightly long', 'runs long'],
-      'Fit': ['runs tight', 'runs slightly tight', 'perfect', 'runs slightly long', 'runs long']
+      'Size': ['Too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'Too big'],
+      'Width': ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide'],
+      'Comfort': ['Uncomfortable', 'Slightly uncomfortable', 'OK', 'comfortable', 'Perfect'],
+      'Quality': ['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'],
+      'Length': ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
+      'Fit': ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long']
     }
   });
 

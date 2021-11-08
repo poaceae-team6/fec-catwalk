@@ -8,7 +8,7 @@ function ReviewMain({ productId, productName }) {
 
   return (
     <ReviewProvider>
-      <div style = {{fontFamily:'sans-serif', marginTop: '40px'}}>
+      <div style = {{fontFamily:'sans-serif', marginTop: '40px', height: 'auto'}}>
         <div id='leftbar'>
           <div><ReviewLeft productId={productId }/></div>
 
