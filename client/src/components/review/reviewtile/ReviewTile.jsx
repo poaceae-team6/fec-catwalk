@@ -5,14 +5,15 @@ import axios from 'axios';
 
 function ReviewTile(props) {
   const [helpfulness, setHelpfulness] = useState(props.review.helpfulness);
-  const [isClick, setIsClick] = useState(false);
+  const [showReview, setShowReview] = useState(true);
 
   const tileStyles = {
     height: 'auto',
     width: 'auto',
     // border: 'solid black 1px',
     // padding: '10px',
-    lineHeight: '1.8'
+    lineHeight: '1.8',
+    display: showReview ? 'block' : 'none'
   }
   const tagStyles = {
     float:'right',
@@ -38,14 +39,24 @@ function ReviewTile(props) {
   }
 
   const markHelpful = () => {
-    if(!isClick){
+    if(localStorage.getItem(props.review.review_id) === null){
       axios.put(`/reviews/${props.review.review_id}/helpful`)
       .then(() => {
         setHelpfulness(helpfulness + 1);
-        setIsClick(true);
+        localStorage.setItem(props.review.review_id, true);
         console.log(`Mark ${props.review.review_id} as helpful`);
       })
+    } else {
+      console.log(`Review ${props.review.review_id} has been marked before.`)
     }
+  }
+
+  const reportReview = () => {
+    axios.put(`/reviews/${props.review.review_id}/report`)
+    .then(() => {
+      setShowReview(false);
+      console.log(`Successfully report review ${props.review.review_id}`);
+    })
   }
 
   return (
@@ -62,7 +73,7 @@ function ReviewTile(props) {
       { props.review.photos ?
       <div>
         {props.review.photos.map((photo, i) =>
-          <img src={photo.url} key={i} style={{width:'50px', height:'50px'}}/>
+          <img src={photo.url} key={i} style={{height:'60px', margin: '10px'}}/>
         )}
       </div> : null}
 
@@ -71,7 +82,11 @@ function ReviewTile(props) {
       <div style={{whiteSpace: 'nowrap', marginTop: '10px', color: 'grey'}}>
         <div style={{display: 'inline-block'}}>Helpful? </div>
         <button style={yesStyles} onClick={markHelpful} >Yes</button>
-        <div style={{display: 'inline-block', marginLeft: '5px'}}>({helpfulness})</div>
+        <div style={{display: 'inline-block', marginLeft: '5px'}}>({helpfulness})   │</div>
+        <button
+          style={yesStyles}
+          value={props.review.review_id}
+          onClick={reportReview}>Report </button>
       </div>
       <hr style={{marginTop: '15px', orderBottomWidth: '1px'}} />
     </div>

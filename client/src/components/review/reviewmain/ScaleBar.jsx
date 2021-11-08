@@ -34,7 +34,7 @@ const ScaleBar = (props) => {
       </div>
       <div style={{width: '100%', fontSize: '14px'}}>
         <div style={{float: 'left'}}>{props.range[0]}</div>
-        <div style={{float: 'right'}}>{props.range[1]}</div>
+        <div style={{float: 'right'}}>{props.range[4]}</div>
       </div>
     </div>
   );

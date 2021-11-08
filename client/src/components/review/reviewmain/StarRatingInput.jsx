@@ -15,6 +15,14 @@ function StarRatingInput({ updateStarRating }) {
     clip: 'rect(1px, 1px, 1px, 1px)'
   }
 
+  const valueStr = {
+    1: "Poor",
+    2: "Fair",
+    3: "Average",
+    4: "Good",
+    5: "Great"
+  }
+
   const handleClick = (ratingValue) => {
     setRating(ratingValue);
     updateStarRating(ratingValue);
@@ -47,8 +55,11 @@ function StarRatingInput({ updateStarRating }) {
           </label>
         );
       })}
+      <span>
+        {rating ? valueStr[rating] : null}
+      </span>
     </div>
   )
-};
+}
 
 export default StarRatingInput;
