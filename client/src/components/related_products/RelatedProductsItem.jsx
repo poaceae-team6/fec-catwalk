@@ -1,7 +1,8 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext, useEffect, useRef} from 'react';
 import axios from 'axios';
 
 import StarRating from '../review/reviewmain/StarRating.jsx';
+import useOutsideClick from '../useOutsideClick.js';
 import ProductComparisonModal from './ProductComparisonModal.jsx';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 
@@ -15,7 +16,9 @@ const RelatedProductsItem = (props) => {
   const [productData, setProductData] = useState(null);
   const [styleData, setStyleData] = useState(null);
   const [reviewData, setReviewData] = useState(null);
+
   const [showModal, setShowModal] = useState(false);
+  const ref = useRef();
   
   useEffect(() => {
     fetchProductData();
@@ -65,12 +68,16 @@ const RelatedProductsItem = (props) => {
   
   const toggleModal = (e) => {
     e.stopPropagation();
-    setShowModal(!showModal);
+    setShowModal(true);
+    console.log(props.currentProduct);
+    console.log(productData)
   }
-  
-  // const onCloseModal = (e) => {
-  //   setShowModal(false);
-  // }
+
+  useOutsideClick(ref, () => {
+    if (showModal) {
+      setShowModal(false);
+    }
+  });
   
   if (productData === null || styleData === null || reviewData === null) {
     return <p>isLoading...</p>
@@ -78,8 +85,11 @@ const RelatedProductsItem = (props) => {
     return (
       <div className='product-card' onClick={onClickCard.bind(this)}>
         <div className='info-container'>
-          {showModal ? <ProductComparisonModal currentProduct={props.currentProduct} productData={productData} toggleModal={toggleModal.bind(this)}/> : null}
+          
           <IoMdInformationCircleOutline onClick={toggleModal.bind(this)} className='info-btn'/>
+          <div ref={ref}>
+            {showModal ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData}/> : null}
+          </div>
           {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}
         </div>
         <h3>CATEGORY: {productData.category.toUpperCase()}</h3>

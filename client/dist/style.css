@@ -309,14 +309,13 @@ h3 {
 .comparison-modal {
   display: block;
   position: absolute;
-  transform: translate(200px, 50px);
-  width: 200px;
-  height: 150px;
-  padding: 40px;
-  border: 1px solid #b6b2b2;
+  width: 150%;
+  height: 90%;
+  bottom: -20%;
+  border: none;
   background: rgba(243, 243, 243, 0.938);
   text-align: center;
-  z-index: 1;
+  z-index: 3;
 }
 
 .info-container {
