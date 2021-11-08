@@ -125,6 +125,10 @@ h3 {
   background-color: rgb(243, 243, 243);
 }
 
+.gallery img {
+  height: 100%;
+}
+
 .overview-grid h2 {
   grid-area: name;
   display: block;
