@@ -113,8 +113,10 @@ const QuestionItem = (props) => {
           {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
+            <span style={{float: 'right'}}>
             <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
             <button onClick={openModal}>Add answer</button>
+            </span>
           </p>
           {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
           <span onClick={handleLessAnswers}>Load Less Answers</span>
@@ -130,8 +132,10 @@ const QuestionItem = (props) => {
         {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
+          <span style={{float: 'right'}}>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
           <button onClick={openModal}>Add answer</button>
+          </span>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
         <span onClick={handleMoreAnswers}>Load More Answers</span>
@@ -143,8 +147,10 @@ const QuestionItem = (props) => {
         {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
+          <span style={{float: 'right'}}>
           <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
           <button onClick={openModal}>Add answer</button>
+          </span>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
 
