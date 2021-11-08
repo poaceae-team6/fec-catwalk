@@ -7,28 +7,28 @@ import { IoMdInformationCircleOutline } from 'react-icons/io';
 
   // product object (category, name, description, 'features')
   // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
-  
+
 const url = 'http://127.0.0.1:3000';
 
 const RelatedProductsItem = (props) => {
-  
+
   const [productData, setProductData] = useState(null);
   const [styleData, setStyleData] = useState(null);
   const [reviewData, setReviewData] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  
+
   useEffect(() => {
     fetchProductData();
     fetchStyleData();
     fetchReviewData();
     // cleanup/reset state after unmount
     return () => {
-      setProductData(null); 
-      setStyleData(null); 
-      setReviewData(null); 
+      setProductData(null);
+      setStyleData(null);
+      setReviewData(null);
     }
   }, [])
-  
+
   const fetchProductData = () => {
     axios.get(`${url}/products/${props.productId}`)
       .then(res => {
@@ -38,7 +38,7 @@ const RelatedProductsItem = (props) => {
         console.log(error);
       })
   }
-  
+
   const fetchStyleData = () => {
     axios.get(`${url}/products/${props.productId}/styles`)
     .then(res => {
@@ -48,7 +48,7 @@ const RelatedProductsItem = (props) => {
       console.log(error);
     })
   }
-  
+
   const fetchReviewData = () => {
     axios.get(`${url}/reviews/${props.productId}`)
     .then(res => {
@@ -58,20 +58,20 @@ const RelatedProductsItem = (props) => {
       console.log(error);
     })
   }
-  
+
   const onClickCard = () => {
     props.fetchNewProduct(props.productId);
   }
-  
+
   const toggleModal = (e) => {
     e.stopPropagation();
     setShowModal(!showModal);
   }
-  
+
   // const onCloseModal = (e) => {
   //   setShowModal(false);
   // }
-  
+
   if (productData === null || styleData === null || reviewData === null) {
     return <p>isLoading...</p>
   } else {
