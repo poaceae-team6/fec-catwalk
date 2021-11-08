@@ -56,9 +56,22 @@ const AddAnswerModal = (props) => {
 
   //handle upload image
   const onImageChange = (e) => {
-    let img = e.target.files[0];
-    setImg(URL.createObjectURL(img));
+    let images = e.target.files;
+    let length = images.length;
+    let results = [];
+
+    if (length > 5) {
+      length = 5;
+    }
+
+    for (let i = 0; i < images.length; i++) {
+      let img = URL.createObjectURL(images[i]);
+      results.push(img);
+    }
+
+    setImg (results);
   }
+
 
   //handle input changes
   const nameChange = (e) => {
@@ -134,12 +147,12 @@ const AddAnswerModal = (props) => {
 
       // send this data to API
       axios.post(`/questions/answers/${questionId}`, postObj)
-      .then(() => {
-        console.log('add answer ok');
-        props.getData();
-        props.close();
-      })
-      .catch((err) => console.log('add answer err', err));
+        .then(() => {
+          console.log('add answer ok');
+          props.getData();
+          props.close();
+        })
+        .catch((err) => console.log('add answer err', err));
 
       // close the window
       // props.close();
@@ -178,8 +191,8 @@ const AddAnswerModal = (props) => {
             <p>Your Answer *</p>
             <input onChange={answerChange} style={answerBox} type='text' placeholder='your answer here...' />
             <p>Do you want to upload your pictures?</p>
-            <input onChange={onImageChange} type='file' name='upload image' />
-            {image && <img style={{height: '50px'}} src={image} />}
+            <input onChange={onImageChange} type='file' name='upload image' multiple/>
+            {image && image.map((img, index) => <img style={{ height: '50px', margin: '5px' }} key={index} src={img} />)}
             <p></p>
             <input type='submit' value='submit' />
           </form>
