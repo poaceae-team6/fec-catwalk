@@ -75,6 +75,7 @@ const QuestionItem = (props) => {
 
   // style here
   const questionBody = { fontWeight: 'bold' };
+  const yesButton = {color: 'blue', textDecoration: 'underline'}
 
 
   let answers = Object.values(props.question.answers);
@@ -114,12 +115,12 @@ const QuestionItem = (props) => {
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
             <span style={{float: 'right'}}>
-            <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
+            <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes ({state.helpfulNum})</span>  |
             <button onClick={openModal}>Add answer</button>
             </span>
           </p>
           {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
-          <span onClick={handleLessAnswers}>Load Less Answers</span>
+          <span style={questionBody} onClick={handleLessAnswers}>Load Less Answers</span>
         </div>
       )
     }
@@ -133,12 +134,12 @@ const QuestionItem = (props) => {
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span style={{float: 'right'}}>
-          <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
+          <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes ({state.helpfulNum})</span>  |
           <button onClick={openModal}>Add answer</button>
           </span>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
-        <span onClick={handleMoreAnswers}>Load More Answers</span>
+        <span style={questionBody} onClick={handleMoreAnswers}>Load More Answers</span>
       </div>
     )
   } else {
@@ -148,7 +149,7 @@ const QuestionItem = (props) => {
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span style={{float: 'right'}}>
-          <span>helpful? </span> <span onClick={helpful}> Yes ({state.helpfulNum})</span>  |
+          <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes ({state.helpfulNum})</span>  |
           <button onClick={openModal}>Add answer</button>
           </span>
         </p>
