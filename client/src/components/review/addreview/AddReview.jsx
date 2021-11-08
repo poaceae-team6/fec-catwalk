@@ -46,7 +46,8 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     marginBottom: '10px',
     padding:'10px',
     border: 'solid grey 1px',
-    fontSize: '16px'
+    fontSize: '16px',
+    fontFamily: 'sans-serif'
   }
 
   const handleCharChange = (event) => {
@@ -192,6 +193,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
             value={summary}
             name="summary"
             onChange={(e) => {setSummary(e.target.value)}} />
+            <br></br>
           <small>up to 60 characters</small>
         </div>
         <br></br>
@@ -250,6 +252,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           onChange={(e) => setNickName(e.target.value)}/>
         </div>
         <small>For privacy reasons, do not use your full name or email address.</small>
+        <br></br>
         <br></br>
 
         <div>

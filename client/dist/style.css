@@ -373,7 +373,7 @@ h3 {
   unicode-bidi: bidi-override;
   color: #ccc;
   font-size: 16px;
-  position: relative;
+  position: absolute;
   margin: 0;
   padding: 0;
 }
