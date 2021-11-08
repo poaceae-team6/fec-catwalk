@@ -103,6 +103,28 @@ router
     })
   })
 
+  router
+  .route('/:id/report')
+  .put((req, res) => {
+    const reqUrl = `${url}/reviews/${req.params.id}/report`;
+    console.log(`Forward the request to ${reqUrl}`)
+    axios({
+      method: 'put',
+      url: reqUrl,
+      headers: {
+        'Authorization': `${TOKEN}`
+      }
+    })
+    .then(response => {
+      console.log(response.status);
+      res.sendStatus(response.status);
+    })
+    .catch(error => {
+      console.log(error);
+      res.sendStatus(500);
+    })
+  })
+
 // ... add the rest
 
 module.exports = router;
