@@ -12,7 +12,7 @@ const QuestionList = (props) => {
   const [state, setState] = useState(
     {
       data: [],
-      length: 4,
+      length: 2,
       modalShow: false,
       storage: [],
     }
@@ -127,7 +127,9 @@ const QuestionList = (props) => {
         <p>Questions & Answers</p>
         <Search ql={state} questions={questions} search={handleSearch}/>
         <p>No questions found. Do you want to add yours?</p>
+        <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
         <button onClick={openAddQuestion}>ADD A QUESTION +</button>
+        </span>
         {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
       </div>
     )
@@ -147,7 +149,9 @@ const QuestionList = (props) => {
         <ul style={overflow}>
           {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
         </ul>
+        <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
          <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+         </span>
          {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
 
       </div>
@@ -166,7 +170,9 @@ const QuestionList = (props) => {
         <ul style={overflow}>
           {data.map((question, index) => <QuestionItem getData={useEffect} name={props.name} key={index} question={question} />)}
         </ul>
+        <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+        </span>
         {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
       </div>
     );

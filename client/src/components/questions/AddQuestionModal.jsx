@@ -19,10 +19,11 @@ const AddQuestionModal = (props) => {
     width: '700px',
     height: '700px',
     backgroundColor: 'white',
-    position: 'relative',
+    position: 'absolute',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: '1000'
   };
 
   let modalContianer = {
