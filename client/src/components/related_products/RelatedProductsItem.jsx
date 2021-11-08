@@ -85,7 +85,6 @@ const RelatedProductsItem = (props) => {
     return (
       <div className='product-card' onClick={onClickCard.bind(this)}>
         <div className='info-container'>
-
           <IoMdInformationCircleOutline onClick={toggleModal.bind(this)} className='info-btn'/>
           <div ref={ref}>
             {showModal ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData}/> : null}
