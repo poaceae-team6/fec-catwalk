@@ -1,5 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import RelatedProductsItem from './RelatedProductsItem.jsx';
+import ProductComparisonModal from './ProductComparisonModal.jsx';
 import { ThemeContext } from '../ThemeContext.js';
 
 import slide from '../../../dist/css_animations/horizontalScroll.js';
