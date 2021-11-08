@@ -4,7 +4,6 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios from 'axios';
 import { ReviewContext } from '../ReviewProvider.jsx'
 
-
 function AddReview({ setShowAddReview, productTitle, productId }) {
   const [rating, setRating] = useState(5);
   const [summary, setSummary] = useState("");
@@ -16,6 +15,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   const [email, setEmail] = useState("");
   const [recommend, setRecommend] = useState(true);
   const [characteristics, setCharacteristics] = useState({});
+  const [warnings, setWarnings] = useState([]);
 
   const reviewContext = useContext(ReviewContext);
 
@@ -71,31 +71,36 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
       email, recommend, product_id: productId, characteristics }
     console.log('submitting review:', JSON.stringify(data));
 
-    axios({
-      method: 'post',
-      url: `/reviews`,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: JSON.stringify(data)
-    }).then(res => {
-      alert('Successfully submit the review!')
-      console.log('post review result: ', res.status);
-    }).catch(err => {
-      alert('Failed to submit the review.')
-      console.log('failed to submit the review', err);
-    });
-    setShowAddReview(false)
+    const warningList = validate(data);
+    console.log('get warnings: ', JSON.stringify(warningList));
+    setWarnings(warningList);
+    if (!warningList) {
+      // axios({
+      //   method: 'post',
+      //   url: `/reviews`,
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   data: JSON.stringify(data)
+      // }).then(res => {
+      //   alert('Successfully submit the review!')
+      //   console.log('post review result: ', res.status);
+      // }).catch(err => {
+      //   alert('Failed to submit the review.')
+      //   console.log('failed to submit the review', err);
+      // });
+      // setShowAddReview(false)
+    }
     event.preventDefault();
   }
 
   const validate = (data) => {
     const warnings = [];
-    if (!data.rating) {
-      warnings.push('Missing overall rating.');
-    }
-    if (!data.recommend) {
-      warnings.push('Missing recommendation response.');
+    const mandatories = ['rating', 'recommend', 'name', 'email'];
+    for (const key of mandatories) {
+      if (!data[key]) {
+        warnings.push(`Missing ${key} in the review.`)
+      }
     }
     if (Object.keys(data.characteristics).length !=
       Object.keys(reviewContext.reviewMeta.characteristics).length) {
@@ -110,6 +115,13 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     if (data.body.length < 50) {
       warnings.push('Should have more than 50 characters in the review body.');
     }
+    if (data.name.length > 60) {
+      warnings.push('Should have less than 60 characters in nickname.');
+    }
+    if (data.email && (data.email.indexOf('@') === -1 || data.email.length <= 5 || data.email.indexOf('.') === -1)) {
+      warnings.push('Should enter valid email address.')
+    }
+    return warnings;
   }
 
 
@@ -120,6 +132,20 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
       <div style={{fontSize: '16px',fontWeight: 'bold', marginTop: '10px', marginBottom: '10px'}}>
         {productTitle}</div>
       <br></br>
+
+      <div>
+        {warnings.length > 0 ?
+          <div >
+            You must enter the following:
+            <ul>
+              {warnings.map((warn, i) => (
+                <li key={i}>{warn}</li>
+              ))}
+            </ul>
+            <br></br>
+          </div> : null
+        }
+      </div>
 
       <form onSubmit={submit}>
         <div style={{height: '30px'}}><StarRatingInput updateStarRating={setRating}/></div>
@@ -169,8 +195,9 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           <small>up to 60 characters</small>
         </div>
         <br></br>
+
         <div>
-          Review Body:
+          Review Body: *
           <textarea
             style={InputBoxStyles}
             placeholder="Why did you like the product or not?"
@@ -184,6 +211,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           </small>
         </div>
         <br></br>
+
         {/* <div><UploadPic /></div><br></br> */}
         <div>
           Add Photos:
@@ -210,8 +238,9 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
             onChange={(e) => setPhoto3(e.target.value)}/>
         </div>
         <br></br>
+
         <div>
-          Nickname:
+          Nickname: *
         <input
           style={InputBoxStyles}
           type="text"
@@ -220,8 +249,11 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           name="nickName"
           onChange={(e) => setNickName(e.target.value)}/>
         </div>
+        <small>For privacy reasons, do not use your full name or email address.</small>
+        <br></br>
+
         <div>
-          Email:
+          Email: *
           <input
             style={InputBoxStyles}
             type="text"
@@ -232,6 +264,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           <small>For authentication reasons, you will not be emailed.</small>
         </div>
         <br></br>
+
         <input
           style={ButtonStyles}
           type="submit"
