@@ -8,7 +8,7 @@ const StarRating = (props) => {
   }
 
   return (
-    <div className="star-ratings">
+    <div className="star-ratings" style={{width: '80px'}}>
       <div className="fill-ratings" style={ ratingWidthStyle }>
         <span>★★★★★</span>
       </div>

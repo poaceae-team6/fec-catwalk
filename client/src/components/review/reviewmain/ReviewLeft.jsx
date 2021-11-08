@@ -34,15 +34,16 @@ function ReviewLeft({ productId }) {
     axios.get(`http://127.0.0.1:3000/reviews/${productId}/meta`)
     .then(res => {
        // Calculate total review and storge result in res.data.reveiwTotal
-       res.data.reveiwTotal = Number(res.data.recommended.true) + Number(res.data.recommended.false) ;
+       res.data.reveiwTotal = Number(res.data.recommended.true || '0') + Number(res.data.recommended.false || '0') ;
        // Calculate rating average and storge result in res.data.avgRating
-       res.data.avgRating = parseFloat(((Number(res.data.ratings['1']) * 1 + Number(res.data.ratings['2']) * 2 + Number(res.data.ratings['3']) * 3 + Number(res.data.ratings['4']) * 4 + Number(res.data.ratings['5']) * 5) / res.data.reveiwTotal)).toFixed(1);
+       res.data.avgRating = parseFloat(((Number(res.data.ratings['1'] || '0') * 1 + Number(res.data.ratings['2'] || '0') * 2 + Number(res.data.ratings['3'] || '0') * 3 + Number(res.data.ratings['4'] || '0') * 4 + Number(res.data.ratings['5'] || '0') * 5) / res.data.reveiwTotal)).toFixed(1);
+       console.log('total:', res.data.avgRating)
 
        // Calculate recommended percentage and storge result in res.data.recommended
        res.data.recommended = Math.round(Number(res.data.recommended.true)/res.data.reveiwTotal * 100)
 
        // Calculate starBreakdown
-       res.data.ratingBreakdown = [Math.round(Number(res.data.ratings['1']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['2']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['3']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['4']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['5']) / res.data.reveiwTotal * 100)]
+       res.data.ratingBreakdown = [Math.round(Number(res.data.ratings['1']|| '0') / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['2']|| '0') / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['3'|| '0']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['4']|| '0') / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['5']|| '0') / res.data.reveiwTotal * 100)]
 
       //  for(var key in res.data.characteristics) {
       //   res.data.char[key] = Number(res.data.characteristics.key.value).toFixed(2)
