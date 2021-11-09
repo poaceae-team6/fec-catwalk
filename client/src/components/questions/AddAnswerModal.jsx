@@ -55,21 +55,41 @@ const AddAnswerModal = (props) => {
   };
 
   //handle upload image
+
+  const isImage = (img) => {
+    // validat img
+    let allowed = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+    if (!allowed.exec(img)) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const onImageChange = (e) => {
     let images = e.target.files;
     let length = images.length;
     let results = [];
 
     if (length > 5) {
-      length = 5;
+      alert('You have reached max of 5 images');
+
+    } else {
+      for (let i = 0; i < length; i++) {
+
+        if (!isImage(images[i].name)) {
+          alert('invalid file type');
+          break;
+        } else {
+          let img = URL.createObjectURL(images[i]);
+          results.push(img);
+        }
+      }
+
+      setImg(results);
     }
 
-    for (let i = 0; i < length; i++) {
-      let img = URL.createObjectURL(images[i]);
-      results.push(img);
-    }
-
-    setImg (results);
   }
 
 
@@ -191,7 +211,7 @@ const AddAnswerModal = (props) => {
             <p>Your Answer *</p>
             <input onChange={answerChange} style={answerBox} type='text' placeholder='your answer here...' />
             <p>Do you want to upload your pictures? (up to 5) </p>
-            <input onChange={onImageChange} type='file' name='upload image' multiple/>
+            <input onChange={onImageChange} type='file' name='upload image' multiple />
             {image && image.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} />)}
             <p></p>
             <input type='submit' value='submit' />
