@@ -13,16 +13,18 @@ const Search = (props) => {
 
   // styles
   const searchStyle = {
-    height: '50px',
-    width: '800px',
+    height: '40px',
+    width: '1000px',
     fontSize: '20px',
   }
 
 
   return (
+    <div style={{display: 'flex', justifyContent: 'center', position: 'relative'}}>
     <form>
       <input style={searchStyle} onChange={handleInput} type='text' placeholder='Have a question? Search for answers…'/>
     </form>
+    </div>
   )
 }
 
