@@ -162,8 +162,8 @@ const AddQuestionModal = (props) => {
 
 
   return (
-    <div className='modalBg' style={modalBg}>
-      <div className='modalContianer' style={modalContianer}>
+    <div className='popup-box' >
+      <div className='popup-inner-box' >
         <div>
           <button style={xButton} onClick={props.close}>X</button>
         </div>
