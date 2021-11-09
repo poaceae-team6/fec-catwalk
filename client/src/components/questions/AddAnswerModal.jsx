@@ -170,8 +170,8 @@ const AddAnswerModal = (props) => {
   }
 
   return (
-    <div style={modalBg}>
-      <div style={modalContianer}>
+    <div className='popup-box' >
+      <div className='popup-inner-box' >
         <div>
           <button style={{ float: 'right' }} onClick={props.close}>X</button>
         </div>
@@ -190,9 +190,9 @@ const AddAnswerModal = (props) => {
             <p>For authentication reasons, you will not be emailed</p>
             <p>Your Answer *</p>
             <input onChange={answerChange} style={answerBox} type='text' placeholder='your answer here...' />
-            <p>Do you want to upload your pictures?</p>
+            <p>Do you want to upload your pictures? (up to 5) </p>
             <input onChange={onImageChange} type='file' name='upload image' multiple/>
-            {image && image.map((img, index) => <img style={{ height: '50px', margin: '5px' }} key={index} src={img} />)}
+            {image && image.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} />)}
             <p></p>
             <input type='submit' value='submit' />
           </form>

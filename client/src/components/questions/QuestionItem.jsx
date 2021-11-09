@@ -75,7 +75,7 @@ const QuestionItem = (props) => {
 
   // style here
   const questionBody = { fontWeight: 'bold' };
-  const yesButton = {color: 'blue', textDecoration: 'underline'}
+  const yesButton = {color: 'blue', textDecoration: 'underline', cursor: 'pointer'}
 
 
   let answers = Object.values(props.question.answers);
