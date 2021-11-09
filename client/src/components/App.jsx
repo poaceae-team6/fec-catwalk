@@ -53,6 +53,13 @@ const App = (props) => {
   const [darkMode, setDarkMode] = useState(theme.darkMode);
 
   const toggleMode = () => {
+    if (!darkMode) {
+      document.body.classList.remove('light-theme');
+      document.body.classList.add('dark-theme');
+    } else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
+    }
     setDarkMode(darkMode => !darkMode);
   }
 

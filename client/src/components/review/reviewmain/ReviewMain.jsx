@@ -7,17 +7,19 @@ import { ReviewProvider } from '../ReviewProvider.jsx'
 function ReviewMain({ productId, productName }) {
 
   return (
-    <ReviewProvider>
-      <div style = {{fontFamily:'sans-serif', marginTop: '40px', height: 'auto'}}>
-        <div id='leftbar'>
-          <div><ReviewLeft productId={productId }/></div>
+    <div className='review-container'>
+      <ReviewProvider>
+        <div style = {{fontFamily:'sans-serif', marginTop: '40px', height: 'auto'}}>
+          <div id='leftbar'>
+            <div><ReviewLeft productId={productId }/></div>
 
+          </div>
+          <div id='rightbar'>
+            <ReviewsRight productId={productId} productName={productName} />
+          </div>
         </div>
-        <div id='rightbar'>
-          <ReviewsRight productId={productId} productName={productName} />
-        </div>
-      </div>
-    </ReviewProvider>
+      </ReviewProvider>
+    </div>
   );
 }
 

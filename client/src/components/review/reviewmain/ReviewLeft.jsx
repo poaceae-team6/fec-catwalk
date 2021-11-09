@@ -16,7 +16,7 @@ function ReviewLeft({ productId }) {
 
   const Score = {
     display: 'inline-block',
-    fontSize: '50px',
+    // fontSize: '50px',
     fontWeight: 'bold'
   }
 
@@ -60,15 +60,15 @@ function ReviewLeft({ productId }) {
 
   return (
     <div>
-      <div>RATINGS & REVIEWS</div>
+      <p>RATINGS & REVIEWS</p>
       <div style={RatingSummary}>
-        <div style={Score}> {reviewContext.reviewMeta.avgRating} </div>
+        <h1 style={Score}> {reviewContext.reviewMeta.avgRating} </h1>
 
         <div style={Stars}><StarRating rating={reviewContext.reviewMeta.avgRating} /></div>
       </div>
-      <div>{reviewContext.reviewMeta.recommended}% of reviewer recommand this product</div>
+      <p>{reviewContext.reviewMeta.recommended}% of reviewer recommand this product</p>
       <br></br>
-      <div >
+      <p >
 
         {/* <ProgressBar ratingStar = '1' ratingBreakdown ={reviewContext.reviewMeta.ratingBreakdown[0]}/>
         {console.log('ratingBreakdown', reviewContext.reviewMeta.ratingBreakdown)} */}
@@ -77,9 +77,9 @@ function ReviewLeft({ productId }) {
             <ProgressBar ratingBreakdown={ratingBreakdown} key={i} ratingStar= {i + 1} />
           ) : null}
         </ul>
-      </div>
+      </p>
       <br></br>
-      <div>
+      <p>
         { reviewContext.reviewMeta.characteristics ?
           Object.keys(reviewContext.reviewMeta.characteristics).map((charName, i) => (
             <ScaleBar
@@ -88,7 +88,7 @@ function ReviewLeft({ productId }) {
               range={reviewContext.reviewMeta.characteristicsRange[charName]}
               key={i} />
           )) : null }
-      </div>
+      </p>
 
     </div>
   );
