@@ -11,11 +11,11 @@ import slide from '../../../dist/css_animations/horizontalScroll.js';
 const YourOutfit = (props) => {
   
   const handleLeftArrow = () => {
-    slide('outfit-slide', 'left', 1000, 500);
+    slide('outfit-slide', 'left', 1000, 800);
   }
   
   const handleRightArrow = () => {
-    slide('outfit-slide', 'right', 1000, 500);
+    slide('outfit-slide', 'right', 1000, 680);
   }
 
   return (  

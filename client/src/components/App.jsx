@@ -57,14 +57,16 @@ const App = (props) => {
   }
 
   if (currentProduct === null) {
-    return <p>Please wait...Loading...</p>
+    return (
+      <div className='app-loading'>
+        <h3>Team Poaceae</h3>
+      </div>
+    );
   } else {
     return (
       <ThemeContext.Provider value={darkMode}>
         <div id={darkMode ? 'bg-dark' : ''}>
           <div className='theme-setting'>
-
-
             <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
             <button id='toggle-btn' onClick={toggleMode.bind(this)}>
               {darkMode ? <BsToggleOn /> : <BsToggleOff />}
@@ -72,7 +74,6 @@ const App = (props) => {
             <h3 className={darkMode ? 'font-dark' : ''}>
               dark mode will turn this red
             </h3>
-
           </div>
           <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
           <QuestionList id={currentProduct.id} name={currentProduct.name}/>

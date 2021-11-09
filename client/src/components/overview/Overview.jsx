@@ -111,7 +111,12 @@ const Overview = (props) => {
   }
 
   if (styles === null || outfits === null) {
-    return (<h3>isLoading...</h3>)
+    return (
+      <div className='overview-loading-container'>
+        <h3>Loading</h3>
+        <div className="loader"></div>
+      </div>
+    )
   } else {
     return (
       <div className='overview-container'>
