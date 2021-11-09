@@ -80,7 +80,7 @@ const RelatedProductsItem = (props) => {
   });
   
   if (productData === null || styleData === null || reviewData === null) {
-    return <p>isLoading...</p>
+    return '';
   } else {
     return (
       <div className='product-card' onClick={onClickCard.bind(this)}>
@@ -98,7 +98,7 @@ const RelatedProductsItem = (props) => {
         {/* {reviewData.reduce((total, obj) => obj.rating + total, 0) / reviewData.length} */}
         <StarRating rating={reviewData.reduce((total, obj) => obj.rating + total, 0) / reviewData.length}/>
       </div>
-    )
+    );
   }
 };
 

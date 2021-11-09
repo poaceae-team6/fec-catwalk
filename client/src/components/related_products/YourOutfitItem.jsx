@@ -66,7 +66,7 @@ const YourOutfitItem = (props) => {
   }
   
   if (productData === null || styleData === null || reviewData === null) {
-    return <p>isLoading...</p>
+    return '';
   } else {
     return (
       <div className='product-card' onClick={onClickCard.bind(this)}>
@@ -79,7 +79,7 @@ const YourOutfitItem = (props) => {
         {styleData.sale_price ? <h3><span style={{color: 'red', 'fontWeight': 'bold'}}>${styleData.sale_price}</span> <span style={{'textDecorationLine': 'line-through'}}>${styleData.original_price}</span></h3> : <h3>${styleData.original_price}</h3>}
         <StarRating rating={reviewData.reduce((total, obj) => obj.rating + total, 0) / reviewData.length}/>
       </div>
-    )
+    );
   }
 };
 
