@@ -64,7 +64,7 @@ const AddAnswerModal = (props) => {
       length = 5;
     }
 
-    for (let i = 0; i < images.length; i++) {
+    for (let i = 0; i < length; i++) {
       let img = URL.createObjectURL(images[i]);
       results.push(img);
     }
