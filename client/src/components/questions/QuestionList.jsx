@@ -13,10 +13,11 @@ const QuestionList = (props) => {
     {
       data: [],
       length: 2,
-      modalShow: false,
       storage: [],
     }
   )
+
+  const [showModal, setModal] = useState(false)
 
   const productId = props.id;
   const questions = state.data;
@@ -82,17 +83,15 @@ const QuestionList = (props) => {
 
   // open Add a question
   const openAddQuestion = () => {
-    setState({
-      ...state,
-      modalShow: true,
-    });
+    setModal(true);
   };
   // close add a question
   const closeAddQuestion = () => {
-    setState({
-      ...state,
-      modalShow: false,
-    });
+    setModal(false);
+  };
+
+  const closeModal = () => {
+    closeAddQuestion ();
   };
 
   // add a question to the list
@@ -130,7 +129,7 @@ const QuestionList = (props) => {
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
         <button onClick={openAddQuestion}>ADD A QUESTION +</button>
         </span>
-        {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
+        {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
       </div>
     )
   } else {
@@ -152,7 +151,7 @@ const QuestionList = (props) => {
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
          <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
          </span>
-         {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
+         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
 
       </div>
     );
@@ -173,7 +172,7 @@ const QuestionList = (props) => {
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
         </span>
-        {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
+        {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
       </div>
     );
   }

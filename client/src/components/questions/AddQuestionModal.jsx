@@ -129,7 +129,7 @@ const AddQuestionModal = (props) => {
       // props.getData()
 
       // // close the window
-      props.close ();
+      // props.close ();
 
     } else {
       setState({

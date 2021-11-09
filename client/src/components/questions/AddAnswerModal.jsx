@@ -190,8 +190,8 @@ const AddAnswerModal = (props) => {
   }
 
   return (
-    <div className='popup-box' >
-      <div className='popup-inner-box' >
+    <div className='popup-modal' >
+      <div className='popup-inner-modal' >
         <div>
           <button style={{ float: 'right' }} onClick={props.close}>X</button>
         </div>
