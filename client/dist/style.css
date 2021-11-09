@@ -103,7 +103,9 @@ h3 {
 }
 
 .reviews-container {
-  margin: auto;
+  min-height: 100px;
+  overflow: hidden;
+
 }
 
 /*******************/
@@ -461,9 +463,10 @@ h3 {
 /* Footer
 /*******************/
 
-footer {
+/* footer {
   margin: auto;
-
+  position: absolute;
+  bottom: 0; */
 }
 
 footer p {
@@ -479,10 +482,10 @@ footer p {
 /*******************/
 /* Dark Mode
 /*******************/
-
+/*
 #bg-dark {
   background-color: #292826;
-}
+} */
 
 .overview-container-dark {
   margin: auto;
@@ -505,5 +508,23 @@ footer p {
 }
 
 .font-dark {
-  color: red;
+  color:white;
 }
+.light-theme {
+  --text-color: rgb(75, 75, 75);
+  --link-color: #9f0dcd;
+  --background-color: white;
+}
+
+.dark-theme {
+  --text-color: #FFF;
+  --link-color: #faf697;
+  --background-color: rgb(75, 75, 75);
+}
+
+/* class css variable */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+a { color: var(--link-color); }

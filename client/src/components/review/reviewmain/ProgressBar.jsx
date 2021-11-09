@@ -8,13 +8,16 @@ const ProgressBar = (props) => {
     display: 'inline-block',
     height: '7px',
     width: '80%',
-    backgroundColor: '#e4e5e9'
+    backgroundColor: '#e4e5e9',
+    border: 'solid 1px #e4e5e9'
+
   }
 
   const fillerStyles = {
     height: '100%',
     width: `${props.ratingBreakdown}%`,
-    backgroundColor: '#4d4d4d',
+    backgroundColor: '#4d4d4d'
+
   }
 
   const label = {

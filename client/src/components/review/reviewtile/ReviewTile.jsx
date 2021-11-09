@@ -19,7 +19,7 @@ function ReviewTile(props) {
     float:'right',
     fontSize: '14px',
     display: 'inline-block',
-    color: 'grey',
+    // color: 'grey',
   }
 
   const yesStyles = {
@@ -28,7 +28,7 @@ function ReviewTile(props) {
     marginLeft: '5px',
     border:'transparent',
     backgroundColor: 'transparent',
-    color: 'grey',
+    // color: 'grey',
     fontSize: '16px'
   }
 
@@ -62,13 +62,13 @@ function ReviewTile(props) {
   return (
     // props.review.rating
     <div style={tileStyles}>
-      <div style={{whiteSpace: 'nowrap', marginTop: '10px'}}>
-        <div style={{display: 'inline-block'}}><StarRating rating={props.review.rating}/></div>
-        <div style={tagStyles}>{props.review.reviewer_name}, {props.review.date.substring(0,10)}</div>
-      </div>
-      <div style={{fontSize: '16px',fontWeight: 'bold', marginTop: '10px'}}>{props.review.summary}</div>
-      <div style={{marginTop: '15px', color: 'grey'}}>{props.review.body}</div>
-      { props.review.recommend ? <div style={{marginTop: '15px', color: 'grey'}}>✔ I recomand this product</div> : null }
+      <p style={{whiteSpace: 'nowrap', marginTop: '5px'}}>
+        <p style={{display: 'inline-block'}}><StarRating rating={props.review.rating}/></p>
+        <p style={tagStyles}>{props.review.reviewer_name}, {props.review.date.substring(0,10)}</p>
+      </p>
+      <p style={{fontSize: '16px',fontWeight: 'bold', marginTop: '5px'}}>{props.review.summary}</p>
+      <p style={{marginTop: '5px'}}>{props.review.body}</p>
+      { props.review.recommend ? <div style={{marginTop: '5px'}}>✔ I recomand this product</div> : null }
 
       { props.review.photos ?
       <div>
@@ -77,18 +77,18 @@ function ReviewTile(props) {
         )}
       </div> : null}
 
-      { props.review.response ? <div style={ResponseStyles}>Response:<br></br>{props.review.response}</div> : null}
+      { props.review.response ? <p style={ResponseStyles}>Response:<br></br>{props.review.response}</p> : null}
 
-      <div style={{whiteSpace: 'nowrap', marginTop: '10px', color: 'grey'}}>
-        <div style={{display: 'inline-block'}}>Helpful? </div>
+      <p style={{whiteSpace: 'nowrap', marginTop: '10px'}}>
+        <p style={{display: 'inline-block'}}>Helpful? </p>
         <button style={yesStyles} onClick={markHelpful} >Yes</button>
-        <div style={{display: 'inline-block', marginLeft: '5px'}}>({helpfulness})   │</div>
+        <p style={{display: 'inline-block', marginLeft: '5px'}}>({helpfulness})   │</p>
         <button
           style={yesStyles}
           value={props.review.review_id}
           onClick={reportReview}>Report </button>
-      </div>
-      <hr style={{marginTop: '15px', orderBottomWidth: '1px'}} />
+      </p>
+      <hr style={{marginTop: '10px', orderBottomWidth: '1px'}} />
     </div>
   );
 }
