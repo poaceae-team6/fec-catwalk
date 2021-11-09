@@ -68,6 +68,7 @@ h3 {
 
 .overview-container {
   margin: auto;
+  height: 1450px;
   text-align: center;
 }
 
@@ -103,6 +104,37 @@ h3 {
 
 .reviews-container {
   margin: auto;
+}
+
+/*******************/
+/* Loading 
+/*******************/
+
+.app-loading {
+  height: 1450px;
+}
+
+.overview-loading-container {
+  margin: auto;
+  margin-top: 10%;
+  height: 1450px;
+  text-align: center;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #525252; 
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1.5s linear infinite;
+  animation-timing-function: ease-out;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 /*******************/
@@ -429,6 +461,12 @@ footer p {
 
 #bg-dark {
   background-color: #292826;
+}
+
+.overview-container-dark {
+  margin: auto;
+  height: 1450px;
+  text-align: center;
 }
 
 .theme-setting h2, h3 {
