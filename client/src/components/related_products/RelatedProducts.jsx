@@ -33,15 +33,15 @@ const RelatedProducts = (props) => {
   }
   
   const handleLeftArrow = () => {
-    slide('products-slide', 'left', 1000, 500);
+    slide('products-slide', 'left', 1000, 800);
   }
   
   const handleRightArrow = () => {
-    slide('products-slide', 'right', 1000, 500);
+    slide('products-slide', 'right', 1000, 680);
   }
   
   if (relatedProducts === null) {
-    return <p>isLoading...</p>
+    return '';
   } else {
     return (  
       <ThemeContext.Consumer>
