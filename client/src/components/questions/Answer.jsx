@@ -60,7 +60,7 @@ const Answer = (props) => {
   maxHeight: '300px'
 }
 
-  const yesButton = {color: 'blue', textDecoration: 'underline', cursor: 'pointer'};
+  const yesButton = {textDecoration: 'underline', cursor: 'pointer'};
 
   const inline = {left: '23px', position: 'relative'};
   const imgStyle = {left: '23px', position: 'relative', height: '50px', margin: '10px'};
@@ -88,7 +88,7 @@ const Answer = (props) => {
            <span style={boldA}>A: </span>{props.answer.body}
         </p>
         <span style={inline}>
-        <span> by User</span> <span style={bold}> {props.answer.answerer_name}</span><span>, {date}</span>  |  <span>helpful?</span> <span style={yesButton} onClick={handleHelpful}> Yes ({state.helpfulNum})</span>  |  <span style={yesButton} onClick={handleReport}>{state.reportDisplay}</span>
+        <span> by User</span> <span style={bold}> {props.answer.answerer_name}</span><span>, {date}</span>  |  <span>helpful?</span> <span style={yesButton} onClick={handleHelpful}> Yes </span> <span>({state.helpfulNum})</span>  |  <span style={yesButton} onClick={handleReport}>{state.reportDisplay}</span>
         </span>
       </div>
 
@@ -101,7 +101,7 @@ const Answer = (props) => {
         {props.answer.photos.map((img, index) => <img key={index} src={img} style={imgStyle}/>)}
         <br></br>
         <span style={inline}>
-        <span> by User </span> <span style={bold}>{props.answer.answerer_name}</span> <span>, {date}</span>  |  <span>helpful?</span>  <span style={yesButton} onClick={handleHelpful}>Yes ({state.helpfulNum})</span>  |  <span style={yesButton} onClick={handleReport}>{state.reportDisplay}</span>
+        <span> by User </span> <span style={bold}>{props.answer.answerer_name}</span> <span>, {date}</span>  |  <span>helpful?</span>  <span style={yesButton} onClick={handleHelpful}>Yes </span> <span>({state.helpfulNum})</span>  |  <span style={yesButton} onClick={handleReport}>{state.reportDisplay}</span>
         </span>
       </div>
 
