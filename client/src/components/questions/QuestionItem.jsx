@@ -75,7 +75,7 @@ const QuestionItem = (props) => {
 
   // style here
   const questionBody = { fontWeight: 'bold' };
-  const yesButton = {color: 'blue', textDecoration: 'underline', cursor: 'pointer'}
+  const yesButton = {textDecoration: 'underline', cursor: 'pointer'}
 
 
   let answers = Object.values(props.question.answers);
@@ -115,7 +115,7 @@ const QuestionItem = (props) => {
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
             <span style={{float: 'right'}}>
-            <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes ({state.helpfulNum})</span>  |
+            <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes</span> <span>({state.helpfulNum})</span>  |
             <button onClick={openModal}>Add answer</button>
             </span>
           </p>
@@ -134,7 +134,7 @@ const QuestionItem = (props) => {
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span style={{float: 'right'}}>
-          <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes ({state.helpfulNum})</span>  |
+          <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes </span> <span>({state.helpfulNum})</span>  |
           <button onClick={openModal}>Add answer</button>
           </span>
         </p>
@@ -149,7 +149,7 @@ const QuestionItem = (props) => {
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span style={{float: 'right'}}>
-          <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes ({state.helpfulNum})</span>  |
+          <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes </span> <span>({state.helpfulNum})</span>  |
           <button onClick={openModal}>Add answer</button>
           </span>
         </p>

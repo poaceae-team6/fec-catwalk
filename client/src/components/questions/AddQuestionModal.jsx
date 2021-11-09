@@ -15,26 +15,6 @@ const AddQuestionModal = (props) => {
   const productId = props.id;
 
   // style
-  let modalBg = {
-    width: '700px',
-    height: '700px',
-    backgroundColor: 'white',
-    position: 'absolute',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: '1000'
-  };
-
-  let modalContianer = {
-    width: '700px',
-    height: '800px',
-    backgroundColor: 'white',
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '25px',
-    border: 'solid 1px',
-  }
 
   let xButton = {
     float: 'right',
