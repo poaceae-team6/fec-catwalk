@@ -9,8 +9,6 @@ import {IoMdHeartEmpty} from 'react-icons/io';
 import {IoMdHeart} from 'react-icons/io';
 import { BsHeartFill } from 'react-icons/bs';
 
-const url = 'http://127.0.0.1:3000';
-
 const Overview = (props) => {
 
   const [styles, setStyles] = useState(null);
@@ -32,7 +30,7 @@ const Overview = (props) => {
   }, [])
 
   const fetchData = () => {
-    axios.get(`${url}/products/${props.currentProduct.id}/styles`)
+    axios.get(`/products/${props.currentProduct.id}/styles`)
       .then(res => {
         setStyles(res.data.results);
       })

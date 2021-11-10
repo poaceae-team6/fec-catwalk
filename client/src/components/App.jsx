@@ -11,9 +11,6 @@ import Overview from './overview/Overview.jsx';
 import QuestionList from './questions/QuestionList.jsx';
 import ReviewMain from './review/reviewmain/ReviewMain.jsx';
 
-// const url = 'http://localhost:3000';
-const url = 'http://127.0.0.1:3000';
-
 const App = (props) => {
 
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -29,7 +26,7 @@ const App = (props) => {
       localStorage.setItem('outfits', JSON.stringify([]));
     }
 
-    axios.get(`${url}/products`)
+    axios.get(`/products`)
       .then(res => {
         setCurrentProduct(res.data[0]);
       })
@@ -72,7 +69,8 @@ const App = (props) => {
   } else {
     return (
       <ThemeContext.Provider value={darkMode}>
-        <div id={darkMode ? 'bg-dark' : ''}>
+        {/* <div id={darkMode ? 'bg-dark' : ''}> */}
+        <div style={ darkMode ? { backgroundColor: '#525252' } : {} }>
           <div className='theme-setting'>
             <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
             <button id='toggle-btn' onClick={toggleMode.bind(this)}>

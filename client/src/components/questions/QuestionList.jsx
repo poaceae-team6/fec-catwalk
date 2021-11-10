@@ -4,8 +4,6 @@ import Search from './Search.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
 import axios from 'axios';
 
-// const url = 'http://localhost:3000';
-
 const QuestionList = (props) => {
 
   const [state, setState] = useState(
@@ -122,7 +120,7 @@ const QuestionList = (props) => {
   if (state.data.length === 0) {
     return (
       <div className='questions-container'>
-        <p>Questions & Answers</p>
+        <h2>Questions & Answers</h2>
         <Search ql={state} questions={questions} search={handleSearch}/>
         <p>No questions found. Do you want to add yours?</p>
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
@@ -142,11 +140,11 @@ const QuestionList = (props) => {
 
     return (
       <div className='questions-container'>
-        <p>Questions & Answers</p>
+        <h2>Questions & Answers</h2>
         <Search ql={state} questions={state.data} search={handleSearch}/>
-        <ul style={overflow}>
+        <div style={overflow}>
           {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
-        </ul>
+        </div>
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
          <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
          </span>
@@ -163,11 +161,11 @@ const QuestionList = (props) => {
 
     return (
       <div className='questions-container'>
-        <p>Questions & Answers</p>
+        <h2>Questions & Answers</h2>
         <Search ql={state} questions={state.data} search={handleSearch}/>
-        <ul style={overflow}>
+        <div style={overflow}>
           {data.map((question, index) => <QuestionItem getData={useEffect} name={props.name} key={index} question={question} />)}
-        </ul>
+        </div>
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
         <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
         </span>

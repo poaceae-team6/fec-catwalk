@@ -4,8 +4,6 @@ import axios from 'axios';
 import StarRating from '../review/reviewmain/StarRating.jsx';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
-const url = 'http://127.0.0.1:3000';
-
 const YourOutfitItem = (props) => {
 
   // product object (category, name, description, 'features')
@@ -27,7 +25,7 @@ const YourOutfitItem = (props) => {
   }, [])
 
   const fetchProductData = () => {
-    axios.get(`${url}/products/${props.outfit.id}`)
+    axios.get(`/products/${props.outfit.id}`)
       .then(res => {
         setProductData(res.data);
       })
@@ -37,7 +35,7 @@ const YourOutfitItem = (props) => {
   }
 
   const fetchStyleData = () => {
-    axios.get(`${url}/products/${props.outfit.id}/styles`)
+    axios.get(`/products/${props.outfit.id}/styles`)
     .then(res => {
       console.log(props.outfit.style)
       setStyleData(res.data.results[props.outfit.style]);
@@ -48,7 +46,7 @@ const YourOutfitItem = (props) => {
   }
 
   const fetchReviewData = () => {
-    axios.get(`${url}/reviews/${props.outfit.id}`)
+    axios.get(`$/reviews/${props.outfit.id}`)
     .then(res => {
       setReviewData(res.data.results);
     })
