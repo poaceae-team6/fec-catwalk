@@ -66,9 +66,9 @@ function ReviewLeft({ productId }) {
 
         <div style={Stars}><StarRating rating={reviewContext.reviewMeta.avgRating} /></div>
       </div>
-      <p>{reviewContext.reviewMeta.recommended}% of reviewer recommand this product</p>
+      <div>{reviewContext.reviewMeta.recommended}% of reviewer recommand this product</div>
       <br></br>
-      <p >
+      <div >
 
         {/* <ProgressBar ratingStar = '1' ratingBreakdown ={reviewContext.reviewMeta.ratingBreakdown[0]}/>
         {console.log('ratingBreakdown', reviewContext.reviewMeta.ratingBreakdown)} */}
@@ -77,9 +77,9 @@ function ReviewLeft({ productId }) {
             <ProgressBar ratingBreakdown={ratingBreakdown} key={i} ratingStar= {i + 1} />
           ) : null}
         </ul>
-      </p>
+      </div>
       <br></br>
-      <p>
+      <div>
         { reviewContext.reviewMeta.characteristics ?
           Object.keys(reviewContext.reviewMeta.characteristics).map((charName, i) => (
             <ScaleBar
@@ -88,7 +88,7 @@ function ReviewLeft({ productId }) {
               range={reviewContext.reviewMeta.characteristicsRange[charName]}
               key={i} />
           )) : null }
-      </p>
+      </div>
 
     </div>
   );
