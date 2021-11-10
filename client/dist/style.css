@@ -32,11 +32,16 @@ h1, h2, h3, h4, p {
   font-family:Helvetica, Arial, sans-serif;
 }
 
+h2 {
+  font-size: 14px;
+  text-align: left;
+  color: #1f1e1e;
+}
+
 h3 {
   font-size: 13px;
-  font-weight: 300;
-  color: #4d4d4d;
   text-align: center;
+  color: #4d4d4d;
 }
 
 /*******************/
@@ -243,7 +248,7 @@ h3 {
 /* Products
 /*******************/
 
-.products-list-title {
+.list-title {
   display: block;
   margin: 20px;
   padding-left: 5px;
@@ -467,8 +472,8 @@ h3 {
 /* footer {
   margin: auto;
   position: absolute;
-  bottom: 0; */
-}
+  bottom: 0; 
+}*/
 
 footer p {
   text-align: center;

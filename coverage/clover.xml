@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1636371882575" clover="3.2.0">
-  <project timestamp="1636371882576" name="All files">
+<coverage generated="1636523507223" clover="3.2.0">
+  <project timestamp="1636523507224" name="All files">
     <metrics statements="22" coveredstatements="11" conditionals="10" coveredconditionals="4" methods="7" coveredmethods="2" elements="39" coveredelements="17" complexity="0" loc="22" ncloc="22" packages="2" files="2" classes="2"/>
     <package name="reviewmain">
       <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="StarRating.jsx" path="/Users/oceanli/Desktop/WorkHR/fec-catwalk/client/src/components/review/reviewmain/StarRating.jsx">
+      <file name="StarRating.jsx" path="/Users/chiaoling/Documents/Hack_Reactor/fec-catwalk/client/src/components/review/reviewmain/StarRating.jsx">
         <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="3" count="1" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
@@ -13,7 +13,7 @@
     </package>
     <package name="reviewtile">
       <metrics statements="19" coveredstatements="10" conditionals="10" coveredconditionals="4" methods="6" coveredmethods="2"/>
-      <file name="ReviewTile.jsx" path="/Users/oceanli/Desktop/WorkHR/fec-catwalk/client/src/components/review/reviewtile/ReviewTile.jsx">
+      <file name="ReviewTile.jsx" path="/Users/chiaoling/Documents/Hack_Reactor/fec-catwalk/client/src/components/review/reviewtile/ReviewTile.jsx">
         <metrics statements="19" coveredstatements="10" conditionals="10" coveredconditionals="4" methods="6" coveredmethods="2"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
