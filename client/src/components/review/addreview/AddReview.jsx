@@ -8,14 +8,15 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   const [rating, setRating] = useState(5);
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
-  const [photo1, setPhoto1] = useState('');
-  const [photo2, setPhoto2] = useState('');
-  const [photo3, setPhoto3] = useState('');
+  // const [photo1, setPhoto1] = useState('');
+  // const [photo2, setPhoto2] = useState('');
+  // const [photo3, setPhoto3] = useState('');
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [recommend, setRecommend] = useState(true);
   const [characteristics, setCharacteristics] = useState({});
   const [warnings, setWarnings] = useState([]);
+  const [images, setImages] = useState(null);
 
   const reviewContext = useContext(ReviewContext);
 
@@ -45,19 +46,39 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     setCharacteristics({...characteristics, [id]: value});
   }
 
+  //handle upload image
+  const onImageChange = (e) => {
+    let images = e.target.files;
+    console.log(images);
+    let length = images.length;
+    let results = [];
+
+    if (length > 5) {
+      length = 5;
+    }
+
+    for (let i = 0; i < length; i++) {
+      let img = URL.createObjectURL(images[i]);
+      results.push(img);
+    }
+
+    setImages(results);
+  }
+
   const submit = (event) => {
-    const photos = [];
-    if (photo1) {
-      photos.push(photo1);
-    }
-    if (photo2) {
-      photos.push(photo2);
-    }
-    if (photo3) {
-      photos.push(photo3);
-    }
+    // const photos = [];
+    // if (photo1) {
+    //   photos.push(photo1);
+    // }
+    // if (photo2) {
+    //   photos.push(photo2);
+    // }
+    // if (photo3) {
+    //   photos.push(photo3);
+    // }
+
     const data = {
-      rating, summary, body, photos, name: nickName,
+      rating, summary, body, images, name: nickName,
       email, recommend, product_id: productId, characteristics }
     console.log('submitting review:', JSON.stringify(data));
 
@@ -207,7 +228,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           {/* <div><UploadPic /></div><br></br> */}
           <div>
             Add Photos:
-            <input
+            {/* <input
               style={InputBoxStyles}
               type="text"
               placeholder="Photo1"
@@ -227,8 +248,13 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
               placeholder="Photo3"
               value={photo3}
               name="photo3"
-              onChange={(e) => setPhoto3(e.target.value)}/>
+              onChange={(e) => setPhoto3(e.target.value)}/> */}
+            <input onChange={onImageChange} type='file' name='upload image' multiple/>
+            {images && images.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} />)}
           </div>
+
+
+            <p></p>
           <br></br>
 
           <div>
