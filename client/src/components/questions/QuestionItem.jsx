@@ -110,7 +110,7 @@ const QuestionItem = (props) => {
       answers = answers.slice(0, state.length);
 
       return (
-        <div>
+        <div className='question'>
           {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
@@ -129,7 +129,7 @@ const QuestionItem = (props) => {
     answers = answers.slice(0, state.length);
 
     return (
-      <div>
+      <div className='question'>
         {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
@@ -144,7 +144,7 @@ const QuestionItem = (props) => {
     )
   } else {
     return (
-      <div>
+      <div className='question'>
         {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
