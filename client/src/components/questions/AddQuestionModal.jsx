@@ -16,10 +16,6 @@ const AddQuestionModal = (props) => {
 
   // style
 
-  let xButton = {
-    float: 'right',
-  }
-
   let input = {
     width: '500px',
     height: '30px',
@@ -129,7 +125,7 @@ const AddQuestionModal = (props) => {
       // props.getData()
 
       // // close the window
-      props.close ();
+      // props.close ();
 
     } else {
       setState({
@@ -142,10 +138,10 @@ const AddQuestionModal = (props) => {
 
 
   return (
-    <div className='popup-box' >
-      <div className='popup-inner-box' >
+    <div className='popup-modal' >
+      <div className='popup-inner-modal' >
         <div>
-          <button style={xButton} onClick={props.close}>X</button>
+          <button className='close-btn' onClick={props.close}>X</button>
         </div>
       <div className='title'>
         <h2>Ask Your Question</h2>

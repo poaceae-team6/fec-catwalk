@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
 import axios from 'axios';
@@ -75,7 +75,7 @@ const QuestionItem = (props) => {
 
   // style here
   const questionBody = { fontWeight: 'bold' };
-  const yesButton = {textDecoration: 'underline', cursor: 'pointer'}
+  const yesButton = {textDecoration: 'underline', margin: '5px', cursor: 'pointer'}
 
 
   let answers = Object.values(props.question.answers);
@@ -116,7 +116,7 @@ const QuestionItem = (props) => {
             <span style={questionBody}>Q: {props.question.question_body}</span>
             <span style={{float: 'right'}}>
             <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes</span> <span>({state.helpfulNum})</span>  |
-            <button onClick={openModal}>Add answer</button>
+            <span style={yesButton} onClick={openModal}>Add answer</span>
             </span>
           </p>
           {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
@@ -135,7 +135,7 @@ const QuestionItem = (props) => {
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span style={{float: 'right'}}>
           <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes </span> <span>({state.helpfulNum})</span>  |
-          <button onClick={openModal}>Add answer</button>
+          <span style={yesButton} onClick={openModal}>Add answer</span>
           </span>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
@@ -150,7 +150,7 @@ const QuestionItem = (props) => {
           <span style={questionBody}>Q: {props.question.question_body}</span>
           <span style={{float: 'right'}}>
           <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes </span> <span>({state.helpfulNum})</span>  |
-          <button onClick={openModal}>Add answer</button>
+          <span style={yesButton} onClick={openModal}>Add answer</span>
           </span>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}

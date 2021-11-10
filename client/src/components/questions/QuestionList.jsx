@@ -10,10 +10,11 @@ const QuestionList = (props) => {
     {
       data: [],
       length: 2,
-      modalShow: false,
       storage: [],
     }
   )
+
+  const [showModal, setModal] = useState(false)
 
   const productId = props.id;
   const questions = state.data;
@@ -79,17 +80,15 @@ const QuestionList = (props) => {
 
   // open Add a question
   const openAddQuestion = () => {
-    setState({
-      ...state,
-      modalShow: true,
-    });
+    setModal(true);
   };
   // close add a question
   const closeAddQuestion = () => {
-    setState({
-      ...state,
-      modalShow: false,
-    });
+    setModal(false);
+  };
+
+  const closeModal = () => {
+    closeAddQuestion ();
   };
 
   // add a question to the list
@@ -125,9 +124,9 @@ const QuestionList = (props) => {
         <Search ql={state} questions={questions} search={handleSearch}/>
         <p>No questions found. Do you want to add yours?</p>
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
-        <button onClick={openAddQuestion}>ADD A QUESTION +</button>
+        <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTION +</button>
         </span>
-        {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
+        {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
       </div>
     )
   } else {
@@ -141,15 +140,15 @@ const QuestionList = (props) => {
 
     return (
       <div className='questions-container'>
-        <p>Questions & Answers</p>
+        <h2 className='list-title'>QUESTIONS & ANSWERS</h2>
         <Search ql={state} questions={state.data} search={handleSearch}/>
-        <ul style={overflow}>
+        <div style={overflow}>
           {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
-        </ul>
+        </div>
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
-         <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+         <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
          </span>
-         {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
+         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
 
       </div>
     );
@@ -162,15 +161,15 @@ const QuestionList = (props) => {
 
     return (
       <div className='questions-container'>
-        <p>Questions & Answers</p>
+        <h2 className='list-title'>QUESTIONS & ANSWERS</h2>
         <Search ql={state} questions={state.data} search={handleSearch}/>
-        <ul style={overflow}>
+        <div style={overflow}>
           {data.map((question, index) => <QuestionItem getData={useEffect} name={props.name} key={index} question={question} />)}
-        </ul>
+        </div>
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
-        <button onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>  |  <button onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+        <button className='click-btn' onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>    <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
         </span>
-        {state.modalShow && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeAddQuestion}/>}
+        {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
       </div>
     );
   }

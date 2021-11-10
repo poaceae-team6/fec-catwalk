@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 
@@ -6,6 +8,7 @@ import Answer from '../../../questions/Answer.jsx';
 import AddQuestionModal from '../../../questions/AddQuestionModal.jsx';
 import AddAnswerModal from '../../../questions/AddAnswerModal.jsx';
 import Search from '../../../questions/Search.jsx';
+import QuestionList from '../../../questions/QuestionList.jsx';
 
 const sample = {
   "product_id": "5",
@@ -57,6 +60,12 @@ const sample = {
       // ...
   ]
 };
+
+describe ('Question List', () => {
+  it('should render the list', () => {
+    shallow(<QuestionList />);
+  });
+});
 
 describe ('question item', () => {
   it('should render one question', () => {

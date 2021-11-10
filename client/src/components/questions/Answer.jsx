@@ -63,7 +63,7 @@ const Answer = (props) => {
   const yesButton = {textDecoration: 'underline', cursor: 'pointer'};
 
   const inline = {left: '23px', position: 'relative'};
-  const imgStyle = {left: '23px', position: 'relative', height: '50px', margin: '10px'};
+  const imgStyle = {left: '23px', position: 'relative', width: 'auto', height: '50px', margin: '10px'};
 
   // bold the A in the answer
   let boldA = {
@@ -98,7 +98,7 @@ const Answer = (props) => {
     return (
       <div style={overflow}>
         <p> A: {props.answer.body}</p>
-        {props.answer.photos.map((img, index) => <img key={index} src={img} style={imgStyle}/>)}
+        {props.answer.photos.map((img, index) => <img alt='' key={index} src={img} style={imgStyle}/>)}
         <br></br>
         <span style={inline}>
         <span> by User </span> <span style={bold}>{props.answer.answerer_name}</span> <span>, {date}</span>  |  <span>helpful?</span>  <span style={yesButton} onClick={handleHelpful}>Yes </span> <span>({state.helpfulNum})</span>  |  <span style={yesButton} onClick={handleReport}>{state.reportDisplay}</span>
