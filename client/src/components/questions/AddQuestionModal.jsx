@@ -14,19 +14,6 @@ const AddQuestionModal = (props) => {
 
   const productId = props.id;
 
-  // style
-
-  let input = {
-    width: '500px',
-    height: '30px',
-    fontSize: '18px'
-  }
-  let body = {
-    width: '500px',
-    height: '150px',
-    fontSize: '18px',
-  }
-
   // eslint-disable-next-line no-unused-vars
   const refresh = () => {
     props.getData();
@@ -143,28 +130,28 @@ const AddQuestionModal = (props) => {
         <div>
           <button className='close-btn' onClick={props.close}>X</button>
         </div>
-      <div className='title'>
-        <h2>Ask Your Question</h2>
-        <h4>Question about {props.name}</h4>
-        </div>
-      <div className='body'>
+      <div className='modal-title'>
+        <p>Ask Your Question</p>
+        <p className='modal-subtitle'>Question about {props.name}</p>
+      </div>
+      <div className='modal-text'>
         <form onSubmit={handleSubmit}>
           <p>What is your nickname? *</p>
-          <input onChange={handleNameInput} style={input} type='text' placeholder='Example: jackson11!'/>
+          <input onChange={handleNameInput} className='small-input' type='text' placeholder='Example: jackson11!'/>
           <p>For privacy reasons, do not use your full name or email address</p>
           <br></br>
           <p>Your email *</p>
-          <input onChange={handleEmailInput} style={input} type='text' placeholder='Why did you like the product or not?'/>
+          <input onChange={handleEmailInput} className='small-input' type='text' placeholder='Why did you like the product or not?'/>
           <p>For authentication reasons, you will not be emailed</p>
           <br></br>
           <p>Your Question *</p>
-          <input onChange={handleQInput} type='text' placeholder='question body' style={body}/>
+          <input className='large-input' onChange={handleQInput} type='text' placeholder='question body' />
           <br></br>
+          {state.error && <Error msg={state.msg} />}
           <br></br>
           <input type='submit' value='submit'/>
           <input onClick={props.close} type='submit' value='cancel'/>
           <br></br>
-          {state.error && <Error msg={state.msg} />}
         </form>
       </div>
       </div>
