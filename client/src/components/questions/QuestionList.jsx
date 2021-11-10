@@ -5,7 +5,6 @@ import AddQuestionModal from './AddQuestionModal.jsx';
 import axios from 'axios';
 
 // const url = 'http://localhost:3000';
-const url = 'http://127.0.0.1:3000';
 
 const QuestionList = (props) => {
 
@@ -25,7 +24,7 @@ const QuestionList = (props) => {
   const getData = () => {
     console.log('getting data');
     // send request to server asking API data
-    axios.get(`${url}/questions/${productId}`, {params: {id: productId}})
+    axios.get(`/questions/${productId}`, {params: {id: productId}})
     .then(res => {
       setState({
         ...state,

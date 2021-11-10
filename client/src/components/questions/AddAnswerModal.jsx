@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import Error from './Error.jsx';
 import axios from 'axios';
 
-const url = 'http://127.0.0.1:3000';
-
 const AddAnswerModal = (props) => {
 
   const questionId = props.questionId;

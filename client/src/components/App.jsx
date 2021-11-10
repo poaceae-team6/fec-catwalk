@@ -40,7 +40,7 @@ const App = (props) => {
 
   const fetchNewProduct = (productId) => {
     setCurrentProduct(null);
-    axios.get(`${url}/products/${productId}`)
+    axios.get(`/products/${productId}`)
       .then(res => {
         setCurrentProduct(res.data);
       })
