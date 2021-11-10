@@ -158,6 +158,7 @@ h3 {
   grid-area: gallery;
   display: block;
   height: 450px;
+  object-fit: cover;
   background-color: rgb(243, 243, 243);
 }
 

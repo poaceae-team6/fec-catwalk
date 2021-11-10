@@ -31,7 +31,7 @@ function ReviewLeft({ productId }) {
 
   // API
   const getReviewMeta = () => {
-    axios.get(`http://127.0.0.1:3000/reviews/${productId}/meta`)
+    axios.get(`/reviews/${productId}/meta`)
     .then(res => {
        // Calculate total review and storge result in res.data.reveiwTotal
        res.data.reveiwTotal = Number(res.data.recommended.true || '0') + Number(res.data.recommended.false || '0') ;

@@ -8,8 +8,6 @@ import { MdArrowForwardIos } from 'react-icons/md';
 import { MdArrowBackIos } from 'react-icons/md';
 import axios from 'axios';
 
-const url = 'http://127.0.0.1:3000';
-
 const RelatedProducts = (props) => {
   
   const [relatedProducts, setRelatedProducts] = useState(null);
@@ -23,7 +21,7 @@ const RelatedProducts = (props) => {
   }, [])
   
   const fetchRelatedProducts = () => {
-    axios.get(`${url}/products/${props.currentProduct.id}/related`)
+    axios.get(`/products/${props.currentProduct.id}/related`)
       .then(res => {
         setRelatedProducts(res.data);
       })

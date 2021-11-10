@@ -51,7 +51,7 @@ function ReviewsRight({ productId, productName }) {
 
   // Call API to fetch review data
   const getReviews = (page, sort, callback) => {
-    axios.get(`http://127.0.0.1:3000/reviews/${productId}?page=${page}&sort=${sort}`)
+    axios.get(`/reviews/${productId}?page=${page}&sort=${sort}`)
     .then(res => {
       callback(res);
     });
