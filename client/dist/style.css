@@ -40,9 +40,8 @@ h2 {
 
 h3 {
   font-size: 13px;
-  font-weight: 300;
-  color: #4d4d4d;
   text-align: center;
+  color: #4d4d4d;
 }
 
 /*******************/
@@ -249,7 +248,7 @@ h3 {
 /* Products
 /*******************/
 
-.products-list-title {
+.list-title {
   display: block;
   margin: 20px;
   padding-left: 5px;
