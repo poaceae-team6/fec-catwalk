@@ -9,8 +9,6 @@ import { IoMdInformationCircleOutline } from 'react-icons/io';
   // product object (category, name, description, 'features')
   // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
 
-const url = 'http://127.0.0.1:3000';
-
 const RelatedProductsItem = (props) => {
 
   const [productData, setProductData] = useState(null);
@@ -33,7 +31,7 @@ const RelatedProductsItem = (props) => {
   }, [])
 
   const fetchProductData = () => {
-    axios.get(`${url}/products/${props.productId}`)
+    axios.get(`/products/${props.productId}`)
       .then(res => {
         setProductData(res.data);
       })
@@ -43,7 +41,7 @@ const RelatedProductsItem = (props) => {
   }
 
   const fetchStyleData = () => {
-    axios.get(`${url}/products/${props.productId}/styles`)
+    axios.get(`/products/${props.productId}/styles`)
     .then(res => {
       setStyleData(res.data.results[0]);
     })
@@ -53,7 +51,7 @@ const RelatedProductsItem = (props) => {
   }
 
   const fetchReviewData = () => {
-    axios.get(`${url}/reviews/${props.productId}`)
+    axios.get(`/reviews/${props.productId}`)
     .then(res => {
       setReviewData(res.data.results);
     })
