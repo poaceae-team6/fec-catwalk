@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Answer from './Answer.jsx';
 import AddAnswerModal from './AddAnswerModal.jsx';
 import axios from 'axios';
@@ -75,7 +75,7 @@ const QuestionItem = (props) => {
 
   // style here
   const questionBody = { fontWeight: 'bold' };
-  const yesButton = {textDecoration: 'underline', cursor: 'pointer'}
+  const yesButton = {textDecoration: 'underline', margin: '5px', cursor: 'pointer'}
 
 
   let answers = Object.values(props.question.answers);
