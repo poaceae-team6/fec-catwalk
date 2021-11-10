@@ -23,7 +23,7 @@ const YourOutfit = (props) => {
       {darkMode => (
         // className={darkMode ? 'arrow-dark left' : 'arrow left'}
         <div className='outfit-container'>
-          <h2 className='products-list-title'>YOUR OUTFIT</h2>
+          <h2 className='list-title'>YOUR OUTFIT</h2>
           <div className='scroll-container'>
             <button className='arrow' onClick={handleLeftArrow.bind(this)}>
               <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>

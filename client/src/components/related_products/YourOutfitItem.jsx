@@ -37,7 +37,6 @@ const YourOutfitItem = (props) => {
   const fetchStyleData = () => {
     axios.get(`/products/${props.outfit.id}/styles`)
     .then(res => {
-      console.log(props.outfit.style)
       setStyleData(res.data.results[props.outfit.style]);
     })
     .catch(error => {
@@ -46,7 +45,7 @@ const YourOutfitItem = (props) => {
   }
 
   const fetchReviewData = () => {
-    axios.get(`$/reviews/${props.outfit.id}`)
+    axios.get(`/reviews/${props.outfit.id}`)
     .then(res => {
       setReviewData(res.data.results);
     })
