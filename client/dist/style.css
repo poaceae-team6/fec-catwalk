@@ -416,6 +416,8 @@ h3 {
   position: relative;
   margin: 0;
   padding: 0;
+  -webkit-text-stroke: 1px white;
+  stroke-opacity: 0.01
 }
 .star-ratings .fill-ratings {
   color: black;
