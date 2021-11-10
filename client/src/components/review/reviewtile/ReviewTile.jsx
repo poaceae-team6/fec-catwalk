@@ -62,10 +62,10 @@ function ReviewTile(props) {
   return (
     // props.review.rating
     <div style={tileStyles}>
-      <p style={{whiteSpace: 'nowrap', marginTop: '5px'}}>
-        <p style={{display: 'inline-block'}}><StarRating rating={props.review.rating}/></p>
+      <div style={{whiteSpace: 'nowrap', marginTop: '5px'}}>
+        <div style={{display: 'inline-block'}}><StarRating rating={props.review.rating}/></div>
         <p style={tagStyles}>{props.review.reviewer_name}, {props.review.date.substring(0,10)}</p>
-      </p>
+      </div>
       <p style={{fontSize: '16px',fontWeight: 'bold', marginTop: '5px'}}>{props.review.summary}</p>
       <p style={{marginTop: '5px'}}>{props.review.body}</p>
       { props.review.recommend ? <div style={{marginTop: '5px'}}>✔ I recomand this product</div> : null }
@@ -79,7 +79,7 @@ function ReviewTile(props) {
 
       { props.review.response ? <p style={ResponseStyles}>Response:<br></br>{props.review.response}</p> : null}
 
-      <p style={{whiteSpace: 'nowrap', marginTop: '10px'}}>
+      <div style={{whiteSpace: 'nowrap', marginTop: '10px'}}>
         <p style={{display: 'inline-block'}}>Helpful? </p>
         <button style={yesStyles} onClick={markHelpful} >Yes</button>
         <p style={{display: 'inline-block', marginLeft: '5px'}}>({helpfulness})   │</p>
@@ -87,7 +87,7 @@ function ReviewTile(props) {
           style={yesStyles}
           value={props.review.review_id}
           onClick={reportReview}>Report </button>
-      </p>
+      </div>
       <hr style={{marginTop: '10px', orderBottomWidth: '1px'}} />
     </div>
   );
