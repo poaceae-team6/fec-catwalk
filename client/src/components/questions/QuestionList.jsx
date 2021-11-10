@@ -120,7 +120,7 @@ const QuestionList = (props) => {
   if (state.data.length === 0) {
     return (
       <div className='questions-container'>
-        <h2>Questions & Answers</h2>
+        <h2 className='list-title'>QUESTIONS & ANSWERS</h2>
         <Search ql={state} questions={questions} search={handleSearch}/>
         <p>No questions found. Do you want to add yours?</p>
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
