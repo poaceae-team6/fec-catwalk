@@ -17,7 +17,7 @@ body {
   scrollbar-width: none;  /* Firefox */
   -webkit-font-smoothing: antialiased;
   overflow: auto;
-  
+
   background-color: var(--background-color);
   color: var(--text-color);
 
@@ -142,7 +142,7 @@ h3 {
 
 .questions-container {
   margin: auto;
-  width: calc(var(--width) * 0.8);
+  width: calc(var(--width) * 0.9);
 }
 
 .reviews-container {
@@ -229,7 +229,7 @@ h3 {
 }
 
 .features li {
-  margin: 0px; 
+  margin: 0px;
   padding: 0px;
   text-align: left;
 }
@@ -361,7 +361,7 @@ h3 {
   font-size: 14px;
   font-weight: 500;
   text-align: left;
-  color: #383838; 
+  color: #383838;
 }
 
 
@@ -466,7 +466,21 @@ h3 {
   width: 500px;
   height: 150px;
   font-size: 18px;
-  margin: 0 auto;
+}
+
+.search {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.searchStyle {
+  height: 40px;
+  width: 900px;
+  font-size: 20px;
+  background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-1024.png) 860px;
+  background-repeat: no-repeat;
+  background-size: 30px;
 }
 
 .question{
@@ -503,6 +517,7 @@ h3 {
 
 ::-webkit-input-placeholder {
   text-align: start;
+  margin: 0 auto;
 }
 
 .click-btn {
