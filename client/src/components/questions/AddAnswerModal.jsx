@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Error from './Error.jsx';
 import axios from 'axios';
-
+import { ThemeContext } from '../ThemeContext.js';
 
 const AddAnswerModal = (props) => {
 
@@ -158,38 +158,43 @@ const AddAnswerModal = (props) => {
   }
 
   return (
-    <div className='popup-modal' >
-      <div className='popup-inner-modal' >
-        <div>
-          <button className='close-btn' onClick={props.close}>X</button>
-        </div>
-        <div className='modal-title'>
-          <p>Submit Your Answer</p>
-          <p className='modal-subtitle'>{props.name}: {props.question} </p>
-        </div>
-        <div className='modal-text'>
-          <form onSubmit={handleSubmit}>
-            <p>What is your nickname? *</p>
-            <input onChange={nameChange} className='small-input' type='text' placeholder='Example: jack543!' />
-            <p>For privacy reasons, do not use your full name or email address</p>
+    <ThemeContext.Consumer>
+      {darkMode => (
+         <div className='popup-modal' >
+         <div className={darkMode ? 'popup-inner-modal-dark' : 'popup-inner-modal'} >
+           <div>
+             <button className='close-btn' onClick={props.close}>X</button>
+           </div>
+           <div className='modal-title'>
+             <p>Submit Your Answer</p>
+             <p className='modal-subtitle'>{props.name}: {props.question} </p>
+           </div>
+           <div className='modal-text'>
+             <form onSubmit={handleSubmit}>
+               <p>What is your nickname? *</p>
+               <input onChange={nameChange} className='small-input' type='text' placeholder='Example: jack543!' />
+               <p>For privacy reasons, do not use your full name or email address</p>
 
-            <p>What is your email? *</p>
-            <input onChange={emailChange} className='small-input' type='text' placeholder='Example: jack@email.com' />
-            <p>For authentication reasons, you will not be emailed</p>
-            <p>Your Answer *</p>
-            <input onChange={answerChange} className='large-input' type='text' placeholder='your answer here...' />
-            <p>Do you want to upload your pictures? (up to 5) </p>
-            <input onChange={onImageChange} type='file' name='upload image' multiple />
-            {image && image.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} alt=''/>)}
-            {state.error && <Error msg={state.msg} />}
-            <p></p>
-            <input type='submit' value='submit' />
-            <button onClick={props.close}>cancel</button>
-          </form>
+               <p>What is your email? *</p>
+               <input onChange={emailChange} className='small-input' type='text' placeholder='Example: jack@email.com' />
+               <p>For authentication reasons, you will not be emailed</p>
+               <p>Your Answer *</p>
+               <input onChange={answerChange} className='large-input' type='text' placeholder='your answer here...' />
+               <p>Do you want to upload your pictures? (up to 5) </p>
+               <input onChange={onImageChange} type='file' name='upload image' multiple />
+               {image && image.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} alt=''/>)}
+               {state.error && <Error msg={state.msg} />}
+               <p></p>
+               <input type='submit' value='submit' />
+               <button onClick={props.close}>cancel</button>
+             </form>
 
-        </div>
-      </div>
-    </div>
+           </div>
+         </div>
+       </div>
+      )}
+
+    </ThemeContext.Consumer>
   )
 }
 

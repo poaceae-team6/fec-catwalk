@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Error from './Error.jsx';
 import axios from 'axios';
+import { ThemeContext } from '../ThemeContext.js';
 
 const AddQuestionModal = (props) => {
 
@@ -125,37 +126,43 @@ const AddQuestionModal = (props) => {
 
 
   return (
-    <div className='popup-modal' >
-      <div className='popup-inner-modal' >
-        <div>
-          <button className='close-btn' onClick={props.close}>X</button>
+    <ThemeContext.Consumer>
+      {darkMode => (
+        <div className='popup-modal' >
+        <div className={darkMode ? 'popup-inner-modal-dark' : 'popup-inner-modal'} >
+          <div>
+            <button className='close-btn' onClick={props.close}>X</button>
+          </div>
+        <div className='modal-title'>
+          <p>Ask Your Question</p>
+          <p className='modal-subtitle'>Question about {props.name}</p>
         </div>
-      <div className='modal-title'>
-        <p>Ask Your Question</p>
-        <p className='modal-subtitle'>Question about {props.name}</p>
-      </div>
-      <div className='modal-text'>
-        <form onSubmit={handleSubmit}>
-          <p>What is your nickname? *</p>
-          <input onChange={handleNameInput} className='small-input' type='text' placeholder='Example: jackson11!'/>
-          <p>For privacy reasons, do not use your full name or email address</p>
-          <br></br>
-          <p>Your email *</p>
-          <input onChange={handleEmailInput} className='small-input' type='text' placeholder='Why did you like the product or not?'/>
-          <p>For authentication reasons, you will not be emailed</p>
-          <br></br>
-          <p>Your Question *</p>
-          <input className='large-input' onChange={handleQInput} type='text' placeholder='question body' />
-          <br></br>
-          {state.error && <Error msg={state.msg} />}
-          <br></br>
-          <input type='submit' value='submit'/>
-          <input onClick={props.close} type='submit' value='cancel'/>
-          <br></br>
-        </form>
-      </div>
-      </div>
-    </div>
+        <div className='modal-text'>
+          <form onSubmit={handleSubmit}>
+            <p>What is your nickname? *</p>
+            <input onChange={handleNameInput} className='small-input' type='text' placeholder='Example: jackson11!'/>
+            <p>For privacy reasons, do not use your full name or email address</p>
+            <br></br>
+            <p>Your email *</p>
+            <input onChange={handleEmailInput} className='small-input' type='text' placeholder='Why did you like the product or not?'/>
+            <p>For authentication reasons, you will not be emailed</p>
+            <br></br>
+            <p>Your Question *</p>
+            <input className='large-input' onChange={handleQInput} type='text' placeholder='question body' />
+            <br></br>
+            {state.error && <Error msg={state.msg} />}
+            <br></br>
+            <input type='submit' value='submit'/>
+            <input onClick={props.close} type='submit' value='cancel'/>
+            <br></br>
+          </form>
+        </div>
+        </div>
+        </div>
+      )}
+
+
+    </ThemeContext.Consumer>
   );
 };
 
