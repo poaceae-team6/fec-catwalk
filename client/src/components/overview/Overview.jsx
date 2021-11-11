@@ -143,6 +143,15 @@ const Overview = (props) => {
               return <OverviewStyle currentStyle={styles[index]} styleIndex={index} setStyleIndex={setStyleIndex} key={index}/>
             })}
           </div>
+          <div className='description'>
+            <h3 style={{fontSize: '18px', textAlign: 'left'}}>{props.currentProduct.slogan}</h3>
+            <p style={{fontSize: '16px'}}>{props.currentProduct.description}</p>
+          </div>
+          <div className='features'>
+            <h3 style={{fontSize: '16px'}}>{props.currentProduct.features ? <ul>{props.currentProduct.features.map((feature, index) => {
+              return <li key={index}><h3>{feature.feature} - {feature.value}</h3></li>
+            })}</ul> : 'no features available'}</h3>
+          </div>
         </div>
         <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
         <YourOutfit currentProduct={props.currentProduct} outfits={outfits} styleIndex={styleIndex}onUpdateOutfits={updateOutfits.bind(this)} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={deleteFromOutfitList.bind(this)}/>
