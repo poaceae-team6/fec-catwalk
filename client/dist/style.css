@@ -555,7 +555,7 @@ h3 {
 
 .popup-inner-modal {
   position: relative;
-  width: 700px;
+  width: 600px;
   margin: 0 auto;
   height: auto;
   max-height: 80%;
@@ -570,7 +570,7 @@ h3 {
 
 .popup-inner-modal-dark {
   position: relative;
-  width: 700px;
+  width: 600px;
   margin: 0 auto;
   height: auto;
   max-height: 80%;
@@ -671,7 +671,7 @@ h3 {
   margin: 0 auto;
   height: auto;
   max-height: 80%;
-  max-width: 80%;
+  max-width: 70%;
   margin-top: calc(100vh - 85vh - 20px);
   background: rgb(75, 75, 75);
   border-radius: 4px;

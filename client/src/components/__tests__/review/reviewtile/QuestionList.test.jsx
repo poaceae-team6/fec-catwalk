@@ -120,10 +120,10 @@ describe ('Question Modal', () => {
 
   });
 
-  it('should render the prouct name',() => {
-    const questionModal = shallow(<AddQuestionModal id={data.id} name={data.name} />);
-    expect (questionModal.contains(data.name)).toBe(true);
-  });
+  // it('should render the prouct name',() => {
+  //   const questionModal = shallow(<AddQuestionModal id={data.id} name={data.name} />);
+  //   expect (questionModal.contains(data.name)).toBe(true);
+  // });
 
 
 });
@@ -136,15 +136,15 @@ describe ('Answer Modal', () => {
 
   });
 
-  it('should render the product name', () => {
-    const answerModal = shallow (<AddAnswerModal name={data.name} question={data.question} questionId={data.questionId}/>);
-    expect(answerModal.contains(data.name)).toBe(true);
-  });
+  // it('should render the product name', () => {
+  //   const answerModal = shallow (<AddAnswerModal name={data.name} question={data.question} questionId={data.questionId}/>);
+  //   expect(answerModal.contains(data.name)).toBe(true);
+  // });
 
-  it('should render the question', () => {
-    const answerModal = shallow (<AddAnswerModal name={data.name} question={data.question} questionId={data.questionId}/>);
-    expect(answerModal.contains(data.question)).toBe(true);
-  });
+  // it('should render the question', () => {
+  //   const answerModal = shallow (<AddAnswerModal name={data.name} question={data.question} questionId={data.questionId}/>);
+  //   expect(answerModal.contains(data.question)).toBe(true);
+  // });
 
 });
 
