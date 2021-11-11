@@ -59,7 +59,7 @@ function ReviewLeft({ productId }) {
   }, []);
 
   return (
-    <div>
+    <div style={{marginLeft: '10px'}}>
       <p>RATINGS & REVIEWS</p>
       <div style={RatingSummary}>
         <h1 style={Score}> {reviewContext.reviewMeta.avgRating} </h1>
@@ -72,11 +72,11 @@ function ReviewLeft({ productId }) {
 
         {/* <ProgressBar ratingStar = '1' ratingBreakdown ={reviewContext.reviewMeta.ratingBreakdown[0]}/>
         {console.log('ratingBreakdown', reviewContext.reviewMeta.ratingBreakdown)} */}
-        <ul style={{lineHeight: '2.3', padding: '0px'}}>
-          <li>{reviewContext.reviewMeta.ratingBreakdown ? reviewContext.reviewMeta.ratingBreakdown.map((ratingBreakdown, i) =>
+        <div style={{lineHeight: '2.3', padding: '0px'}}>
+          <div>{reviewContext.reviewMeta.ratingBreakdown ? reviewContext.reviewMeta.ratingBreakdown.map((ratingBreakdown, i) =>
             <ProgressBar ratingBreakdown={ratingBreakdown} key={i} ratingStar= {5 - i} />
-          ) : null}</li>
-        </ul>
+          ) : null}</div>
+        </div>
       </div>
       <br></br>
       <div>

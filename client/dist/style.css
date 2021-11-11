@@ -590,7 +590,6 @@ h3 {
 #leftbar {
   float: left;
   clear: left;
-  height: 2000px;
   width: 27%;
   /* border: solid rgb(141, 110, 110); */
   border-top-left-radius: 0.5px;
@@ -685,7 +684,8 @@ h3 {
 /*******************/
 
 footer {
-  margin: auto;
+  display: inline-block;
+  width: 100%;
 }
 
 footer p {
