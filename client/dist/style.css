@@ -393,6 +393,7 @@ h3 {
   width: 500px;
   height: 150px;
   font-size: 18px;
+  margin: 0 auto;
 }
 
 .question{
@@ -416,6 +417,19 @@ h3 {
 .modal-text {
   display: flex;
   justify-content: center;
+}
+
+.modal-btn{
+  margin: 5px;
+  display: inline-flex;
+  justify-content: center;
+  height: 25px;
+  width: 150px;
+  cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+  text-align: start;
 }
 
 .click-btn {
