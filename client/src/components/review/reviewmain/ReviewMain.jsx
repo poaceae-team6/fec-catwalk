@@ -7,7 +7,7 @@ import { ReviewProvider } from '../ReviewProvider.jsx'
 function ReviewMain({ productId, productName }) {
 
   return (
-    <div className='review-container'>
+    <div className='reviews-container'>
       <ReviewProvider>
         <div style = {{fontFamily:'sans-serif', marginTop: '40px', height: 'auto'}}>
           <div id='leftbar'>
