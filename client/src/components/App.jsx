@@ -69,11 +69,10 @@ const App = (props) => {
   } else {
     return (
       <ThemeContext.Provider value={darkMode}>
-        {/* <div id={darkMode ? 'bg-dark' : ''}> */}
-        <div style={ darkMode ? { backgroundColor: '#525252' } : {} }>
+        <div>
           <div className='theme-setting'>
             <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
-            <button id='toggle-btn' onClick={toggleMode.bind(this)}>
+            <button id='toggle-btn' style={darkMode ? {color: 'white'} : {}} onClick={toggleMode.bind(this)}>
               {darkMode ? <BsToggleOn /> : <BsToggleOff />}
             </button>
             <h3 className={darkMode ? 'font-dark' : ''}>

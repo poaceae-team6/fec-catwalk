@@ -6,16 +6,27 @@ import { ThemeContext } from '../ThemeContext.js';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { MdArrowBackIos } from 'react-icons/md';
 
-import slide from '../../../dist/css_animations/horizontalScroll.js';
-
 const YourOutfit = (props) => {
   
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollLength, setScrollLength] = useState(500);
+  
+  const slide = (direction) => {
+    let element = document.getElementById('outfit-slide');
+    setScrollLength(element.scrollHeight);
+    if (direction === 'right') {
+      setScrollPosition(element.scrollLeft += 800);
+    } else {
+      setScrollPosition(element.scrollLeft -= 680);
+    }
+  }
+  
   const handleLeftArrow = () => {
-    slide('outfit-slide', 'left', 1000, 800);
+    slide('left');
   }
   
   const handleRightArrow = () => {
-    slide('outfit-slide', 'right', 1000, 680);
+    slide('right');
   }
 
   return (  
@@ -26,15 +37,16 @@ const YourOutfit = (props) => {
           <h2 className='list-title'>YOUR OUTFIT</h2>
           <div className='scroll-container'>
             <button className='arrow' onClick={handleLeftArrow.bind(this)}>
-              <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>
+              {scrollPosition > 0 ? <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> : ''}
             </button>
             <div className='horizontal-slide' id='outfit-slide'>
-              {props.outfits.length === 0 ? <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits}/> : props.outfits.map( (outfit, index) => {
+              <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits} styleIndex={props.styleIndex}/>
+              {props.outfits.map( (outfit, index) => {
                 return <YourOutfitItem outfit={outfit} key={outfit.id + '' + outfit.style} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={props.deleteFromOutfitList.bind(this)}/>
               })}
             </div>
             <button className='arrow' onClick={handleRightArrow.bind(this)}>
-              <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/>
+              {scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
             </button> 
           </div>
         </div>

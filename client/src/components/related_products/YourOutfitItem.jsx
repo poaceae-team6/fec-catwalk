@@ -64,7 +64,7 @@ const YourOutfitItem = (props) => {
   }
 
   if (productData === null || styleData === null || reviewData === null) {
-    return <p>isLoading...</p>
+    return ''
   } else {
     return (
       <div className='product-card' onClick={onClickCard.bind(this)}>
