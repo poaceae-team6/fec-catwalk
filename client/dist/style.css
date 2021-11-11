@@ -64,7 +64,7 @@ body::-webkit-scrollbar {
 /* Typography
 /*******************/
 
-h1, h2, h3, h4, p {
+h1, h2, h3, h4, p, span {
   font-family:Helvetica, Arial, sans-serif;
 }
 
@@ -655,7 +655,8 @@ h3 {
   width: 70%;
   margin: 0 auto;
   height: auto;
-  max-height: 70vh;
+  max-height: 80%;
+  max-width: 80%;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
   border-radius: 4px;
@@ -664,6 +665,20 @@ h3 {
   overflow: auto;
 }
 
+.popup-inner-dark {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 80%;
+  max-width: 80%;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: rgb(75, 75, 75);
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
 
 /*******************/
 /* Footer

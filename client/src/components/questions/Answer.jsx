@@ -62,7 +62,7 @@ const Answer = (props) => {
 
   const yesButton = { textDecoration: 'underline', cursor: 'pointer' };
 
-  const inline = { left: '23px', position: 'relative' };
+  const inline = { left: '23px', position: 'relative', color: 'grey' };
 
   // bold the A in the answer
   let boldA = {
