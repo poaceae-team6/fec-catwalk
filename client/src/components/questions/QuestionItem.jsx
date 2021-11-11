@@ -74,7 +74,7 @@ const QuestionItem = (props) => {
   }
 
   // style here
-  const questionBody = { fontWeight: 'bold' };
+  const questionBody = { fontWeight: 'bold', display:'inline-block', maxWidth:'600px' };
   const yesButton = {textDecoration: 'underline', margin: '5px', cursor: 'pointer'}
 
 
@@ -114,7 +114,7 @@ const QuestionItem = (props) => {
           {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
-            <span style={{float: 'right'}}>
+            <span style={{float: 'right', color:'grey'}}>
             <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes</span> <span>({state.helpfulNum})</span>  |
             <span style={yesButton} onClick={openModal}>Add answer</span>
             </span>
@@ -133,7 +133,7 @@ const QuestionItem = (props) => {
         {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
-          <span style={{float: 'right'}}>
+          <span style={{float: 'right', color:'grey'}}>
           <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes </span> <span>({state.helpfulNum})</span>  |
           <span style={yesButton} onClick={openModal}>Add answer</span>
           </span>
@@ -148,7 +148,7 @@ const QuestionItem = (props) => {
         {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
-          <span style={{float: 'right'}}>
+          <span style={{float: 'right', color:'grey'}}>
           <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes </span> <span>({state.helpfulNum})</span>  |
           <span style={yesButton} onClick={openModal}>Add answer</span>
           </span>
