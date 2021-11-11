@@ -7,7 +7,7 @@ import OverviewStyle from '../../../overview/OverviewStyle.jsx';
 import RelatedProductsItem from '../../../related_products/RelatedProductsItem.jsx';
 import YourOutfit from '../../../related_products/YourOutfit.jsx';
 import YourOutfitItem from '../../../related_products/YourOutfitItem.jsx';
-import YourOutfitItemDeafult from '../../../related_products/YourOutfitItemDeafult.jsx';
+import YourOutfitItemDefault from '../../../related_products/YourOutfitItemDefault.jsx';
 
 describe('Related Product', () => {
   //add your data and pass it in the component
@@ -32,7 +32,7 @@ describe('Your Outfit', () => {
   });
 
   it('should render the yourOutfit item deafult', ()=> {
-    shallow(<YourOutfitItemDeafult />)
+    shallow(<YourOutfitItemDefault />)
   });
 
 })
