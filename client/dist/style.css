@@ -109,7 +109,7 @@ h3 {
 
 .overview-container {
   margin: auto;
-  height: 1450px;
+  height: 1550px;
   text-align: center;
 }
 
@@ -128,6 +128,7 @@ h3 {
 
 .scroll-container {
   display: flex;
+  height: 325px;
   justify-content: center;
 }
 
@@ -141,10 +142,12 @@ h3 {
 
 .questions-container {
   margin: auto;
+  width: calc(var(--width) * 0.8);
 }
 
 .reviews-container {
   min-height: 100px;
+  width: calc(var(--width) * 0.8);
   overflow: hidden;
 
 }
@@ -192,14 +195,43 @@ h3 {
   "gallery name"
   "gallery styles"
   "gallery styles"
-  "gallery buttons";
+  "gallery buttons"
+  "description features";
 }
 
 .gallery {
   grid-area: gallery;
   display: block;
+  overflow: hidden;
+  width: 672px;
   height: 450px;
   background-color: rgb(243, 243, 243);
+}
+
+.gallery img {
+  object-fit: cover;
+}
+
+.description {
+  grid-area: description;
+  display: block;
+  height: 200px;
+  padding-top: 30px;
+  padding-left: 150px;
+  text-align: left;
+}
+
+.features {
+  margin: auto;
+  grid-area: features;
+  display: block;
+  padding-top: 20px;
+}
+
+.features li {
+  margin: 0px; 
+  padding: 0px;
+  text-align: left;
 }
 
 .gallery img {
@@ -259,6 +291,7 @@ h3 {
   border: 1px solid #696868;
   text-align: left;
   cursor: pointer;
+  transform: translate(0px, -7px);
 }
 
 #cart-btn h3 {
@@ -362,6 +395,7 @@ h3 {
   height: 200px;
   width: 50px;
   background: none;
+  border: none;
 }
 
 .add-outfit-btn {
@@ -388,9 +422,10 @@ h3 {
 .comparison-modal {
   display: block;
   position: absolute;
-  width: 150%;
-  height: 90%;
-  bottom: -20%;
+  bottom: -40%;
+  left: 35%;
+  width: 400px;
+  height: 300px;
   border: none;
   background: rgba(243, 243, 243, 0.938);
   text-align: center;
@@ -403,7 +438,7 @@ h3 {
 
 .info-btn {
   position: absolute;
-  padding-left: 75%;
+  left: 75%;
   margin: 10px;
   font-size: 30px;
   color: #cac8c8;
@@ -411,7 +446,7 @@ h3 {
 
 .delete-btn {
   position: absolute;
-  padding-left: 75%;
+  left: 75%;
   margin: 10px;
   font-size: 30px;
   color: #cac8c8;
@@ -546,11 +581,9 @@ h3 {
 /* Footer
 /*******************/
 
-/* footer {
+footer {
   margin: auto;
-  position: absolute;
-  bottom: 0;
-}*/
+}
 
 footer p {
   text-align: center;
