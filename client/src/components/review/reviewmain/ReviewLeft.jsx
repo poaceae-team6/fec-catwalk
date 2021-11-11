@@ -10,8 +10,6 @@ function ReviewLeft({ productId }) {
   // In-line Styling
   const RatingSummary = {
     whiteSpace: 'nowrap',
-    marginTop: '10px',
-    marginBottom: '10px',
   }
 
   const Score = {
