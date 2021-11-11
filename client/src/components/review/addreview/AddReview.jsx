@@ -8,14 +8,15 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   const [rating, setRating] = useState(5);
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
-  const [photo1, setPhoto1] = useState('');
-  const [photo2, setPhoto2] = useState('');
-  const [photo3, setPhoto3] = useState('');
+  // const [photo1, setPhoto1] = useState('');
+  // const [photo2, setPhoto2] = useState('');
+  // const [photo3, setPhoto3] = useState('');
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [recommend, setRecommend] = useState(true);
   const [characteristics, setCharacteristics] = useState({});
   const [warnings, setWarnings] = useState([]);
+  const [images, setImages] = useState([]);
 
   const reviewContext = useContext(ReviewContext);
 
@@ -42,29 +43,49 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   const handleCharChange = (event) => {
     const id = event.target.name;
     const value = event.target.value;
-    setCharacteristics({...characteristics, [id]: value});
+    setCharacteristics({...characteristics, [id]: Number(value)});
+  }
+
+  //handle upload image
+  const onImageChange = (e) => {
+    let images = e.target.files;
+    let length = images.length;
+    let results = [];
+
+    if (length > 5) {
+      length = 5;
+    }
+
+    for (let i = 0; i < length; i++) {
+      let img = URL.createObjectURL(images[i]);
+      results.push(img);
+    }
+
+    setImages(results);
   }
 
   const submit = (event) => {
-    const photos = [];
-    if (photo1) {
-      photos.push(photo1);
-    }
-    if (photo2) {
-      photos.push(photo2);
-    }
-    if (photo3) {
-      photos.push(photo3);
-    }
+    // const photos = [];
+    // if (photo1) {
+    //   photos.push(photo1);
+    // }
+    // if (photo2) {
+    //   photos.push(photo2);
+    // }
+    // if (photo3) {
+    //   photos.push(photo3);
+    // }
+
     const data = {
-      rating, summary, body, photos, name: nickName,
+      rating, summary, body, photos: images, name: nickName,
       email, recommend, product_id: productId, characteristics }
     console.log('submitting review:', JSON.stringify(data));
 
     const warningList = validate(data);
     console.log('get warnings: ', JSON.stringify(warningList));
     setWarnings(warningList);
-    if (!warningList) {
+    if (warningList.length === 0) {
+      console.log('submitting');
       axios({
         method: 'post',
         url: `/reviews`,
@@ -88,7 +109,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     const warnings = [];
     const mandatories = ['rating', 'recommend', 'name', 'email'];
     for (const key of mandatories) {
-      if (!data[key]) {
+      if (data[key] === null) {
         warnings.push(`Missing ${key} in the review.`)
       }
     }
@@ -123,20 +144,6 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
         <div style={{fontSize: '16px',fontWeight: 'bold', marginTop: '10px', marginBottom: '10px'}}>
           {productTitle}</div>
         <br></br>
-
-        <div>
-          {warnings.length > 0 ?
-            <div >
-              You must enter the following:
-              <ul>
-                {warnings.map((warn, i) => (
-                  <li key={i}>{warn}</li>
-                ))}
-              </ul>
-              <br></br>
-            </div> : null
-          }
-        </div>
 
         <form onSubmit={submit}>
           <div style={{height: '30px'}}><StarRatingInput updateStarRating={setRating}/></div>
@@ -207,7 +214,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           {/* <div><UploadPic /></div><br></br> */}
           <div>
             Add Photos:
-            <input
+            {/* <input
               style={InputBoxStyles}
               type="text"
               placeholder="Photo1"
@@ -227,8 +234,13 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
               placeholder="Photo3"
               value={photo3}
               name="photo3"
-              onChange={(e) => setPhoto3(e.target.value)}/>
+              onChange={(e) => setPhoto3(e.target.value)}/> */}
+            <input onChange={onImageChange} type='file' name='upload image' multiple/>
+            {images && images.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} />)}
           </div>
+
+
+            <p></p>
           <br></br>
 
           <div>
@@ -258,6 +270,20 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
             <small>For authentication reasons, you will not be emailed.</small>
           </div>
           <br></br>
+
+          <div>
+          {warnings.length > 0 ?
+            <div style={{color: 'red'}}>
+              You must enter the following:
+              <ul>
+                {warnings.map((warn, i) => (
+                  <li key={i}>{warn}</li>
+                ))}
+              </ul>
+              <br></br>
+            </div> : null
+          }
+        </div>
 
           <input
             style={ButtonStyles}

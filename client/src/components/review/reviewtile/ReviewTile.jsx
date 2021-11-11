@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import StarRating from '../reviewmain/StarRating.jsx'
 // import { BsFillCheckCircleFill } from "react-icons/bs";
 import axios from 'axios';
+import moment from 'moment';
 
 function ReviewTile(props) {
   const [helpfulness, setHelpfulness] = useState(props.review.helpfulness);
@@ -59,12 +60,14 @@ function ReviewTile(props) {
     })
   }
 
+  let date = moment(props.review.date).format('LL');
+
   return (
     // props.review.rating
     <div style={tileStyles}>
       <div style={{whiteSpace: 'nowrap', marginTop: '5px'}}>
         <div style={{display: 'inline-block'}}><StarRating rating={props.review.rating}/></div>
-        <p style={tagStyles}>{props.review.reviewer_name}, {props.review.date.substring(0,10)}</p>
+        <p style={tagStyles}>{props.review.reviewer_name}, {date}</p>
       </div>
       <p style={{fontSize: '16px',fontWeight: 'bold', marginTop: '5px'}}>{props.review.summary}</p>
       <p style={{marginTop: '5px'}}>{props.review.body}</p>
