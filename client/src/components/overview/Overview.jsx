@@ -22,6 +22,13 @@ const Overview = (props) => {
   const [fillHeart, setFillHeart] = useState(false);
   
   useEffect(() => {
+    // get the outfit data from localStorage
+    localStorage.getItem('outfits');
+    const hasOutfitsData = localStorage.getItem('outfits');
+    if (hasOutfitsData === null) {
+      localStorage.setItem('outfits', JSON.stringify([]));
+    }
+    
     fetchData();
     // cleanup/reset state after unmount
     return () => {
@@ -138,7 +145,7 @@ const Overview = (props) => {
           </div>
         </div>
         <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
-        <YourOutfit currentProduct={props.currentProduct} outfits={outfits} onUpdateOutfits={updateOutfits.bind(this)} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={deleteFromOutfitList.bind(this)}/>
+        <YourOutfit currentProduct={props.currentProduct} outfits={outfits} styleIndex={styleIndex}onUpdateOutfits={updateOutfits.bind(this)} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={deleteFromOutfitList.bind(this)}/>
       </div>
     )
   }

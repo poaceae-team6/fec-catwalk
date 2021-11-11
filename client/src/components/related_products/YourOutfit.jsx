@@ -16,6 +16,7 @@ const YourOutfit = (props) => {
   
   const handleRightArrow = () => {
     slide('outfit-slide', 'right', 1000, 680);
+    // {id: 40344, style: 0}
   }
 
   return (  
@@ -29,7 +30,8 @@ const YourOutfit = (props) => {
               <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>
             </button>
             <div className='horizontal-slide' id='outfit-slide'>
-              {props.outfits.length === 0 ? <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits}/> : props.outfits.map( (outfit, index) => {
+              <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits} styleIndex={props.styleIndex}/>
+              {props.outfits.map( (outfit, index) => {
                 return <YourOutfitItem outfit={outfit} key={outfit.id + '' + outfit.style} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={props.deleteFromOutfitList.bind(this)}/>
               })}
             </div>
