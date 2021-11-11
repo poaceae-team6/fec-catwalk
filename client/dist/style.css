@@ -17,7 +17,7 @@ body {
   scrollbar-width: none;  /* Firefox */
   -webkit-font-smoothing: antialiased;
   overflow: auto;
-  
+
   background-color: var(--background-color);
   color: var(--text-color);
 
@@ -142,7 +142,7 @@ h3 {
 
 .questions-container {
   margin: auto;
-  width: calc(var(--width) * 0.8);
+  width: calc(var(--width) * 0.9);
 }
 
 .reviews-container {
@@ -229,7 +229,7 @@ h3 {
 }
 
 .features li {
-  margin: 0px; 
+  margin: 0px;
   padding: 0px;
   text-align: left;
 }
@@ -361,7 +361,7 @@ h3 {
   font-size: 14px;
   font-weight: 500;
   text-align: left;
-  color: #383838; 
+  color: #383838;
 }
 
 
@@ -456,6 +456,70 @@ h3 {
 /*******************/
 /* Questions
 /*******************/
+.small-input{
+  width: 500px;
+  height: 30px;
+  font-size: 18px;
+}
+
+.large-input{
+  width: 500px;
+  height: 150px;
+  font-size: 18px;
+}
+
+.search {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.searchStyle {
+  height: 40px;
+  width: 900px;
+  font-size: 20px;
+  background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-1024.png) 860px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+.question{
+  margin:30px;
+}
+
+.modal-title {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal-subtitle {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal-text {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-btn{
+  margin: 5px;
+  display: inline-flex;
+  justify-content: center;
+  height: 25px;
+  width: 150px;
+  cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+  text-align: start;
+  margin: 0 auto;
+}
+
 .click-btn {
   height: 60px;
   width: 200px;
@@ -485,10 +549,25 @@ h3 {
   width: 700px;
   margin: 0 auto;
   height: auto;
-  max-height: 70%;
+  max-height: 80%;
   max-width: 70%;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.popup-inner-modal-dark {
+  position: relative;
+  width: 700px;
+  margin: 0 auto;
+  height: auto;
+  max-height: 80%;
+  max-width: 70%;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: rgb(75, 75, 75);
   border-radius: 4px;
   padding: 20px;
   border: 1px solid #999;
