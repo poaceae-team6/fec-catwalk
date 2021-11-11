@@ -136,7 +136,7 @@ const Overview = (props) => {
             <button id='cart-btn'>
               <h3>ADD TO BAG</h3>
             </button>
-            <button id='heart-icon' onClick={handleClickHeart.bind(this)}>
+            <button id='heart-icon' aria-label="Justify" onClick={handleClickHeart.bind(this)}>
               {fillHeart ? <IoMdHeart stye={{color: 'red'}}/> : <IoMdHeartEmpty />}
             </button>
           </div>
