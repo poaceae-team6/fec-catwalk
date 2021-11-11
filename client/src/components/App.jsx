@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, lazy, Suspense} from 'react';
 import { ThemeContext } from './ThemeContext.js';
 import axios from 'axios';
 
@@ -8,8 +8,11 @@ import { BsToggleOn } from 'react-icons/bs';
 import { BsToggleOff } from 'react-icons/bs';
 
 import Overview from './overview/Overview.jsx';
-import QuestionList from './questions/QuestionList.jsx';
-import ReviewMain from './review/reviewmain/ReviewMain.jsx';
+// import QuestionList from './questions/QuestionList.jsx';
+// import ReviewMain from './review/reviewmain/ReviewMain.jsx';
+
+const QuestionList = lazy(() => import('./questions/QuestionList.jsx'));
+const ReviewMain = lazy(() => import('./review/reviewmain/ReviewMain.jsx'));
 
 const App = (props) => {
 
@@ -80,8 +83,10 @@ const App = (props) => {
             </h3>
           </div>
           <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
+          <Suspense fallback={<div>is Loading...</div>}>
           <QuestionList id={currentProduct.id} name={currentProduct.name}/>
           <ReviewMain productId={currentProduct.id} />
+          </Suspense>
         </div>
       </ThemeContext.Provider>
     );
