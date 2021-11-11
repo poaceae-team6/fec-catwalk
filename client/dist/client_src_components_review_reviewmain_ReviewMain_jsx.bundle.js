@@ -89,6 +89,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./client/src/components/review/reviewmain/StarRating.jsx":
+/*!****************************************************************!*\
+  !*** ./client/src/components/review/reviewmain/StarRating.jsx ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _ThemeContext_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../ThemeContext.js */ \"./client/src/components/ThemeContext.js\");\n\n\n\nvar StarRating = function StarRating(props) {\n  var ratingWidthStyle = {\n    width: \"\".concat(props.rating / 5 * 100, \"%\")\n  };\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_ThemeContext_js__WEBPACK_IMPORTED_MODULE_1__.ThemeContext.Consumer, null, function (darkMode) {\n    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n      className: \"star-ratings\",\n      style: darkMode ? {\n        width: '80px',\n        'WebkitTextStroke': '1px #999',\n        color: '#1f1e1e'\n      } : {\n        width: '80px'\n      }\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n      className: \"fill-ratings\",\n      style: darkMode ? {\n        width: \"\".concat(props.rating / 5 * 100, \"%\"),\n        color: 'white'\n      } : {\n        width: \"\".concat(props.rating / 5 * 100, \"%\")\n      }\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", null, \"\\u2605\\u2605\\u2605\\u2605\\u2605\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"div\", {\n      className: \"empty-ratings\"\n    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(\"span\", null, \"\\u2605\\u2605\\u2605\\u2605\\u2605\")));\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StarRating);\n\n//# sourceURL=webpack://my-webpack-project/./client/src/components/review/reviewmain/StarRating.jsx?");
+
+/***/ }),
+
 /***/ "./client/src/components/review/reviewmain/StarRatingInput.jsx":
 /*!*********************************************************************!*\
   !*** ./client/src/components/review/reviewmain/StarRatingInput.jsx ***!
