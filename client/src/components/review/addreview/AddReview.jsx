@@ -145,20 +145,6 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
           {productTitle}</div>
         <br></br>
 
-        <div>
-          {warnings.length > 0 ?
-            <div >
-              You must enter the following:
-              <ul>
-                {warnings.map((warn, i) => (
-                  <li key={i}>{warn}</li>
-                ))}
-              </ul>
-              <br></br>
-            </div> : null
-          }
-        </div>
-
         <form onSubmit={submit}>
           <div style={{height: '30px'}}><StarRatingInput updateStarRating={setRating}/></div>
           <br></br>
@@ -284,6 +270,20 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
             <small>For authentication reasons, you will not be emailed.</small>
           </div>
           <br></br>
+
+          <div>
+          {warnings.length > 0 ?
+            <div style={{color: 'red'}}>
+              You must enter the following:
+              <ul>
+                {warnings.map((warn, i) => (
+                  <li key={i}>{warn}</li>
+                ))}
+              </ul>
+              <br></br>
+            </div> : null
+          }
+        </div>
 
           <input
             style={ButtonStyles}
