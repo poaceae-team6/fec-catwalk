@@ -16,7 +16,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   const [recommend, setRecommend] = useState(true);
   const [characteristics, setCharacteristics] = useState({});
   const [warnings, setWarnings] = useState([]);
-  const [images, setImages] = useState(null);
+  const [images, setImages] = useState([]);
 
   const reviewContext = useContext(ReviewContext);
 
@@ -43,13 +43,12 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   const handleCharChange = (event) => {
     const id = event.target.name;
     const value = event.target.value;
-    setCharacteristics({...characteristics, [id]: value});
+    setCharacteristics({...characteristics, [id]: Number(value)});
   }
 
   //handle upload image
   const onImageChange = (e) => {
     let images = e.target.files;
-    console.log(images);
     let length = images.length;
     let results = [];
 
@@ -78,14 +77,15 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     // }
 
     const data = {
-      rating, summary, body, images, name: nickName,
+      rating, summary, body, photos: images, name: nickName,
       email, recommend, product_id: productId, characteristics }
     console.log('submitting review:', JSON.stringify(data));
 
     const warningList = validate(data);
     console.log('get warnings: ', JSON.stringify(warningList));
     setWarnings(warningList);
-    if (!warningList) {
+    if (warningList.length === 0) {
+      console.log('submitting');
       axios({
         method: 'post',
         url: `/reviews`,
@@ -109,7 +109,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     const warnings = [];
     const mandatories = ['rating', 'recommend', 'name', 'email'];
     for (const key of mandatories) {
-      if (!data[key]) {
+      if (data[key] === null) {
         warnings.push(`Missing ${key} in the review.`)
       }
     }
