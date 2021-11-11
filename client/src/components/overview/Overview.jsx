@@ -22,6 +22,13 @@ const Overview = (props) => {
   const [fillHeart, setFillHeart] = useState(false);
   
   useEffect(() => {
+    // get the outfit data from localStorage
+    localStorage.getItem('outfits');
+    const hasOutfitsData = localStorage.getItem('outfits');
+    if (hasOutfitsData === null) {
+      localStorage.setItem('outfits', JSON.stringify([]));
+    }
+    
     fetchData();
     // cleanup/reset state after unmount
     return () => {
@@ -136,9 +143,18 @@ const Overview = (props) => {
               return <OverviewStyle currentStyle={styles[index]} styleIndex={index} setStyleIndex={setStyleIndex} key={index}/>
             })}
           </div>
+          <div className='description'>
+            <h3 style={{fontSize: '18px', textAlign: 'left'}}>{props.currentProduct.slogan}</h3>
+            <p style={{fontSize: '16px'}}>{props.currentProduct.description}</p>
+          </div>
+          <div className='features'>
+            <h3 style={{fontSize: '16px'}}>{props.currentProduct.features ? <ul>{props.currentProduct.features.map((feature, index) => {
+              return <li key={index}><h3>{feature.feature} - {feature.value}</h3></li>
+            })}</ul> : 'no features available'}</h3>
+          </div>
         </div>
         <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
-        <YourOutfit currentProduct={props.currentProduct} outfits={outfits} onUpdateOutfits={updateOutfits.bind(this)} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={deleteFromOutfitList.bind(this)}/>
+        <YourOutfit currentProduct={props.currentProduct} outfits={outfits} styleIndex={styleIndex}onUpdateOutfits={updateOutfits.bind(this)} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={deleteFromOutfitList.bind(this)}/>
       </div>
     )
   }

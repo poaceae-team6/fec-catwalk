@@ -5,9 +5,9 @@ import StarRating from '../review/reviewmain/StarRating.jsx';
 import useOutsideClick from '../useOutsideClick.js';
 import ProductComparisonModal from './ProductComparisonModal.jsx';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
-
-  // product object (category, name, description, 'features')
-  // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
+import { FaRegStar } from 'react-icons/fa';
+  
+  // style={darkMode ? {color: 'red'} : {}}
 
 const RelatedProductsItem = (props) => {
 
@@ -15,8 +15,7 @@ const RelatedProductsItem = (props) => {
   const [styleData, setStyleData] = useState(null);
   const [reviewData, setReviewData] = useState(null);
 
-  const [showModal, setShowModal] = useState(false);
-  const ref = useRef();
+
 
   useEffect(() => {
     fetchProductData();
@@ -66,14 +65,8 @@ const RelatedProductsItem = (props) => {
 
   const toggleModal = (e) => {
     e.stopPropagation();
-    setShowModal(true);
+    props.handleModalClick(productData);
   }
-
-  useOutsideClick(ref, () => {
-    if (showModal) {
-      setShowModal(false);
-    }
-  });
 
   if (productData === null || styleData === null || reviewData === null) {
     return '';
@@ -81,10 +74,7 @@ const RelatedProductsItem = (props) => {
     return (
       <div className='product-card' onClick={onClickCard.bind(this)}>
         <div className='info-container'>
-          <IoMdInformationCircleOutline onClick={toggleModal.bind(this)} className='info-btn'/>
-          <div ref={ref}>
-            {showModal ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData}/> : null}
-          </div>
+          <FaRegStar onClick={toggleModal.bind(this)} className='info-btn'/>
           {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}
         </div>
         <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
