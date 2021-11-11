@@ -1,9 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import RelatedProductsItem from './RelatedProductsItem.jsx';
 import ProductComparisonModal from './ProductComparisonModal.jsx';
 import { ThemeContext } from '../ThemeContext.js';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { MdArrowBackIos } from 'react-icons/md';
+import useOutsideClick from '../useOutsideClick.js';
 import axios from 'axios';
 
 const RelatedProducts = (props) => {
@@ -11,6 +12,10 @@ const RelatedProducts = (props) => {
   const [relatedProducts, setRelatedProducts] = useState(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollLength, setScrollLength] = useState(500);
+  
+  const [productData, setProductData] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const ref = useRef();
   
   useEffect(() => {
     fetchRelatedProducts();
@@ -48,22 +53,36 @@ const RelatedProducts = (props) => {
     slide('right');
   }
   
+  const handleModalClick = (clickedProductData) => {
+    setProductData(clickedProductData);
+    setShowModal(true);
+  }
+  
+  useOutsideClick(ref, () => {
+    if (showModal) {
+      setShowModal(false);
+    }
+  });
+  
+
   if (relatedProducts === null) {
     return '';
   } else {
     return (  
       <ThemeContext.Consumer>
         {darkMode => (
-          // className={darkMode ? 'arrow-dark left' : 'arrow left'}
           <div className='products-container'>
             <h2 className='list-title'>RELATED PRODUCTS</h2>
+            <div ref={ref}>
+              {showModal && productData ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData}/> : null}
+            </div>
             <div className='scroll-container'>
               <button className='arrow' onClick={handleLeftArrow.bind(this)}>
                 {scrollPosition > 0 ? <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> : ''}
               </button>
               <div className='horizontal-slide' id='products-slide'>
                 {relatedProducts.map( (productId, index) => {
-                  return <RelatedProductsItem productId={productId} fetchNewProduct={props.fetchNewProduct.bind(this)} currentProduct={props.currentProduct} key={index}/>
+                  return <RelatedProductsItem productId={productId} fetchNewProduct={props.fetchNewProduct.bind(this)} currentProduct={props.currentProduct} key={index} handleModalClick={handleModalClick}/>
                 })}
               </div>
               <button className='arrow' onClick={handleRightArrow.bind(this)}>
