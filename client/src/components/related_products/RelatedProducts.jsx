@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import RelatedProductsItem from './RelatedProductsItem.jsx';
 import ProductComparisonModal from './ProductComparisonModal.jsx';
-import { ThemeContext } from '../ThemeContext.js';
 import { MdArrowForwardIos, MdOutlineFitScreen } from 'react-icons/md';
 import { MdArrowBackIos } from 'react-icons/md';
 import useOutsideClick from '../useOutsideClick.js';
@@ -61,7 +60,7 @@ const RelatedProducts = (props) => {
       <div className='products-container'>
         <h2 className='list-title'>RELATED PRODUCTS</h2>
         <div ref={ref}>
-          {showModal && productData ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData}/> : null}
+          {showModal && productData ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData} darkMode={props.darkMode}/> : null}
         </div>
         <div className='scroll-container'>   
           {scrollPosition > 0 ? 
@@ -71,7 +70,7 @@ const RelatedProducts = (props) => {
           ''}
           <div className='horizontal-slide' id='products-slide'>
             {relatedProducts.map( (productId, index) => {
-              return <RelatedProductsItem productId={productId} fetchNewProduct={props.fetchNewProduct.bind(this)} currentProduct={props.currentProduct} key={index} handleModalClick={handleModalClick}/>
+              return <RelatedProductsItem productId={productId} fetchNewProduct={props.fetchNewProduct.bind(this)} currentProduct={props.currentProduct} key={index} handleModalClick={handleModalClick} darkMode={props.darkMode}/>
             })}
           </div>
           {relatedProducts.length > 4 && scrollPosition < scrollLength ? 

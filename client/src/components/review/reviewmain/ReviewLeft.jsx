@@ -57,7 +57,7 @@ function ReviewLeft({ productId }) {
   }, []);
 
   return (
-    <div style={{marginLeft: '10px'}}>
+    <div>
       <h2 className='list-title'>RATINGS & REVIEWS</h2>
       <div style={RatingSummary}>
         <h1 style={Score}> {reviewContext.reviewMeta.avgRating} </h1>

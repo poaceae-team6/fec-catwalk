@@ -1,7 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import YourOutfitItem from './YourOutfitItem.jsx';
 import YourOutfitItemDefault from './YourOutfitItemDefault.jsx';
-import { ThemeContext } from '../ThemeContext.js';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { MdArrowBackIos } from 'react-icons/md';
 
@@ -28,19 +27,19 @@ const YourOutfit = (props) => {
       <h2 className='list-title'>YOUR OUTFIT</h2>
       <div className='scroll-container'>
         {scrollPosition > 0 ? 
-          <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)}>
+          <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)} style={props.darkMode ? {color: 'red'} : {}}>
             <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> 
           </button> : 
         ''}
         <div className='horizontal-slide' id='outfit-slide'>
-          <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits} styleIndex={props.styleIndex}/>
+          <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits} styleIndex={props.styleIndex} darkMode={props.darkMode}/>
           {props.outfits.map( (outfit, index) => {
-            return <YourOutfitItem outfit={outfit} key={outfit.id + '' + outfit.style} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={props.deleteFromOutfitList.bind(this)}/>
+            return <YourOutfitItem outfit={outfit} key={outfit.id + '' + outfit.style} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={props.deleteFromOutfitList.bind(this)} darkMode={props.darkMode}/>
           })}
         </div>
           {props.outfits.length > 3 && scrollPosition < scrollLength ? 
-          <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
-            <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/>
+          <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)} style={props.darkMode ? {color: 'red'} : {}}>
+            <MdArrowForwardIos onClick={handleRightArrow.bind(this)} />
           </button>  : 
         ''}
       </div>

@@ -17,6 +17,7 @@ function ReviewsRight({ productId, productName, darkMode }) {
     fontSize: '16px',
     fontWeight: 'bold',
     background: 'none',
+    border: '1px solid #808080'
   }
 
   const buttonStylesDark = {
