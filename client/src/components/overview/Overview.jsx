@@ -158,8 +158,10 @@ const Overview = (props) => {
                 })}</ul> : 'no features available'}</h3>
               </div>
             </div>
+            <Suspense fallback={<div>is Loading...</div>}>
             <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
             <YourOutfit currentProduct={props.currentProduct} outfits={outfits} styleIndex={styleIndex}onUpdateOutfits={updateOutfits.bind(this)} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={deleteFromOutfitList.bind(this)}/>
+            </Suspense>
           </div>
         )}
       </ThemeContext.Consumer>
