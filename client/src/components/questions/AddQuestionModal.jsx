@@ -89,8 +89,7 @@ const AddQuestionModal = (props) => {
       }
 
       axios.post(`/questions/${productId}`, postObj)
-        .then(res => {
-          console.log('add question ok', res);
+        .then(() => {
           props.getData();
           props.close();
         })

@@ -136,7 +136,6 @@ const AddAnswerModal = (props) => {
       // send this data to API
       axios.post(`/questions/answers/${questionId}`, postObj)
         .then(() => {
-          console.log('add answer ok');
           props.getData();
           props.close();
         })

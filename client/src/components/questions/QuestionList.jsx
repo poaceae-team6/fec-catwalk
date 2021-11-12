@@ -20,7 +20,6 @@ const QuestionList = (props) => {
   const questions = state.data;
 
   const getData = () => {
-    console.log('getting data');
     // send request to server asking API data
     axios.get(`/questions/${productId}`, {params: {id: productId}})
     .then(res => {
@@ -50,7 +49,7 @@ const QuestionList = (props) => {
         }),
       })
     } else {
-      console.log('should retore')
+
       setState({
         ...state,
         data: state.storage
