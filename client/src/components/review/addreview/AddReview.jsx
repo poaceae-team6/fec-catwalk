@@ -162,6 +162,7 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
               <br></br>
 
               <div style={{ whiteSpace: 'nowrap' }}>Characteristics: *
+                <br></br>
                 <table><tbody>
                   {reviewContext.reviewMeta.characteristics ?
                     Object.keys(reviewContext.reviewMeta.characteristics).map((charName, i) => (
@@ -194,7 +195,7 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
                   name="summary"
                   onChange={(e) => { setSummary(e.target.value) }} />
                 <br></br>
-                <small>up to 60 characters</small>
+                <small>Up to 60 characters</small>
               </div>
               <br></br>
 

@@ -11,16 +11,16 @@ function ReviewTile(props) {
   const tileStyles = {
     height: 'auto',
     width: 'auto',
-    // border: 'solid black 1px',
-    // padding: '10px',
     lineHeight: '1.8',
-    display: showReview ? 'block' : 'none'
+    display: showReview ? 'block' : 'none',
+    marginTop: '20px'
   }
   const tagStyles = {
     float:'right',
-    fontSize: '14px',
+    fontSize: '16px',
     display: 'inline-block',
-    // color: 'grey',
+    fontStyle: 'italic',
+    margin: '0px'
   }
 
   const yesStyles = {
@@ -65,12 +65,12 @@ function ReviewTile(props) {
   return (
     // props.review.rating
     <div style={tileStyles}>
-      <div style={{whiteSpace: 'nowrap', marginTop: '5px'}}>
+      <div style={{whiteSpace: 'nowrap', marginTop: '10px'}}>
         <div style={{display: 'inline-block'}}><StarRating rating={props.review.rating}/></div>
         <p style={tagStyles}>{props.review.reviewer_name}, {date}</p>
       </div>
-      <p style={{fontSize: '16px',fontWeight: 'bold', marginTop: '5px'}}>{props.review.summary}</p>
-      <p style={{marginTop: '5px', overflowWrap: 'break-word'}}>{props.review.body}</p>
+      <p style={{fontSize: '16px',fontWeight: 'bold', marginTop: '15px'}}>{props.review.summary}</p>
+      <p style={{overflowWrap: 'break-word'}}>{props.review.body}</p>
       { props.review.recommend ? <div style={{marginTop: '5px'}}>✔ I recomand this product</div> : null }
 
       { props.review.photos ?
@@ -91,7 +91,7 @@ function ReviewTile(props) {
           value={props.review.review_id}
           onClick={reportReview}>Report </button>
       </div>
-      <hr style={{marginTop: '10px', orderBottomWidth: '1px'}} />
+      <hr style={{marginTop: '10px', orderBottomWidth: '1px', color: '#D8E1D5'}} />
     </div>
   );
 }

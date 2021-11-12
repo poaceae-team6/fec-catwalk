@@ -621,7 +621,7 @@ a { color: var(--link-color); }
 #rightbar {
   float: right;
   height: auto;
-  width: calc(100% - 350px);
+  width: calc(100% - 360px);
   /* border: solid rgb(141, 110, 110); */
   /* border-top-left-radius: 0.5px; */
   /* padding: 10px; */
