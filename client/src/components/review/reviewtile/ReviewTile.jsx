@@ -53,10 +53,10 @@ function ReviewTile({ darkMode, review }) {
       .then(() => {
         setHelpfulness(helpfulness + 1);
         localStorage.setItem(review.review_id, true);
-        console.log(`Mark ${review.review_id} as helpful`);
+        //(`Mark ${review.review_id} as helpful`);
       })
     } else {
-      console.log(`Review ${review.review_id} has been marked before.`)
+      //console.log(`Review ${review.review_id} has been marked before.`)
     }
   }
 
@@ -64,7 +64,7 @@ function ReviewTile({ darkMode, review }) {
     axios.put(`/reviews/${review.review_id}/report`)
     .then(() => {
       setShowReview(false);
-      console.log(`Successfully report review ${review.review_id}`);
+      //console.log(`Successfully report review ${review.review_id}`);
     })
   }
 
