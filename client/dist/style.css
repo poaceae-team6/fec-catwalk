@@ -626,8 +626,6 @@ a { color: var(--link-color); }
   float: left;
   clear: left;
   width: 310px;
-  /* border: solid rgb(141, 110, 110); */
-  border-top-left-radius: 0.5px;
   padding: 10px;
 }
 
@@ -635,9 +633,6 @@ a { color: var(--link-color); }
   float: right;
   height: auto;
   width: calc(100% - 360px);
-  /* border: solid rgb(141, 110, 110); */
-  /* border-top-left-radius: 0.5px; */
-  /* padding: 10px; */
 }
 
 .star-ratings {
@@ -670,7 +665,6 @@ a { color: var(--link-color); }
 
 .review-buttons:hover {
   filter: brightness(10%);
-
 }
 
 .popup-box {
@@ -690,6 +684,7 @@ a { color: var(--link-color); }
   margin: 0 auto;
   height: auto;
   max-height: 70vh;
+  max-width: 900px;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
   border-radius: 4px;
