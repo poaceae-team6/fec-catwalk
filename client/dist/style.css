@@ -571,6 +571,18 @@ a { color: var(--link-color); }
   cursor: pointer;
 }
 
+.click-btn-dark {
+  height: 60px;
+  width: 200px;
+  margin: 5px;
+  background: rgb(42, 44, 41);
+  color:rgba(243, 243, 243);
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .close-btn {
   float: right;
   border-radius: 10px;

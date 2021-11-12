@@ -166,7 +166,7 @@ const AddAnswerModal = (props) => {
              <button className='close-btn' onClick={props.close}>X</button>
            </div>
            <div className='modal-title'>
-             <p>Submit Your Answer</p>
+             <p className='modal-title'>Submit Your Answer</p>
              <p className='modal-subtitle'>{props.name}: {props.question} </p>
            </div>
            <div className='modal-text'>

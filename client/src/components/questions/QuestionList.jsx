@@ -124,7 +124,7 @@ const QuestionList = (props) => {
         <Search ql={state} questions={questions} search={handleSearch}/>
         <p>No questions found. Do you want to add yours?</p>
         <span className='qa-btn'>
-        <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTION +</button>
+        <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={openAddQuestion}>ADD A QUESTION +</button>
         </span>
         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
       </div>
@@ -146,7 +146,7 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
         </div>
         <span className='qa-btn'>
-         <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+         <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={openAddQuestion}>ADD A QUESTIONS +</button>
          </span>
          {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
 
@@ -167,7 +167,7 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
         </div>
         <span className='qa-btn'>
-        <button className='click-btn' onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>    <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+        <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>    <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={openAddQuestion}>ADD A QUESTIONS +</button>
         </span>
         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
       </div>
