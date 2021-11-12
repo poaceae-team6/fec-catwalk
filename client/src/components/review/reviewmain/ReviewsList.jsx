@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import ReviewTile from '../reviewtile/ReviewTile.jsx';
 import { ReviewContext } from '../ReviewProvider.jsx'
 
-function ReviewsList() {
+function ReviewsList({ darkMode }) {
 
   const listStyles = {
     height: 'auto',
@@ -18,7 +18,7 @@ function ReviewsList() {
     <div style={listStyles}>
       <div>
         {reviewContext.reviewList.map((review, i) =>
-           <ReviewTile review={review} key={i} />
+           <ReviewTile review={review} key={i} darkMode={darkMode} />
         )}
       </div>
 
