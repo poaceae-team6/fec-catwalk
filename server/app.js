@@ -2,6 +2,11 @@ const express = require('express');
 const path = require("path")
 
 const app = express ();
+
+// import compression to enable text compression
+var compression = require('compression');
+app.use(compression());
+
 // routers
 const products = require('./routes/products')
 const reviews = require('./routes/reviews')
@@ -25,4 +30,4 @@ app.get('/', (req, res) => {
   res.send('hello world');
 });
 
-module.exports = app; 
+module.exports = app;

@@ -70,7 +70,7 @@ function ReviewTile(props) {
         <p style={tagStyles}>{props.review.reviewer_name}, {date}</p>
       </div>
       <p style={{fontSize: '16px',fontWeight: 'bold', marginTop: '5px'}}>{props.review.summary}</p>
-      <p style={{marginTop: '5px'}}>{props.review.body}</p>
+      <p style={{marginTop: '5px', overflowWrap: 'break-word'}}>{props.review.body}</p>
       { props.review.recommend ? <div style={{marginTop: '5px'}}>✔ I recomand this product</div> : null }
 
       { props.review.photos ?

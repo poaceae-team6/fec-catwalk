@@ -72,7 +72,7 @@ const RelatedProducts = (props) => {
       <ThemeContext.Consumer>
         {darkMode => (
           <div className='products-container'>
-            <h2 className='list-title'>RELATED PRODUCTS</h2>
+            <h2 className='list-title' style={darkMode ? {color: '#f3f3f3'} : {}}>RELATED PRODUCTS</h2>
             <div ref={ref}>
               {showModal && productData ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData}/> : null}
             </div>

@@ -88,7 +88,7 @@ function ReviewsRight({ productId, productName, darkMode }) {
 
 
   return (
-    <div style={{padding: '10px', marginTop: '20px'}}>
+    <div style={{padding: '10px', marginTop: '60px'}}>
       <div style={sortStyles}>
         <div style={{display: 'inline-block'}}>{reviewContext.reviewMeta.reveiwTotal} reviews, sorted by  </div>
         <div style={{display: 'inline-block'}}>

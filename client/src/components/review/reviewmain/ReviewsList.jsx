@@ -16,11 +16,11 @@ function ReviewsList() {
 
   return (
     <div style={listStyles}>
-      <ul>
+      <div>
         {reviewContext.reviewList.map((review, i) =>
            <ReviewTile review={review} key={i} />
         )}
-      </ul>
+      </div>
 
     </div>
     );
