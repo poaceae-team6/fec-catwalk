@@ -298,6 +298,7 @@ a { color: var(--link-color); }
   padding-top: 1%;
   background: none;
   border: none;
+  /* color: #505050 */
 }
 
 #cart-btn {
