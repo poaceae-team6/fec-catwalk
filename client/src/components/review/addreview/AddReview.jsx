@@ -3,6 +3,7 @@ import StarRatingInput from '../reviewmain/StarRatingInput.jsx';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios from 'axios';
 import { ReviewContext } from '../ReviewProvider.jsx';
+import Track from '../../TrackerHOC/Track.js';
 
 function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
   const [rating, setRating] = useState(null);
@@ -255,11 +256,12 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
                   </div> : null
                 }
               </div>
-
-              <input
-                style={darkMode ? ButtonStylesDark : ButtonStyles}
-                type="submit"
-                value="Submit Review" />
+              <Track eventName={`A Review is submitted`} module='Reviews'>
+                <input
+                  style={darkMode ? ButtonStylesDark : ButtonStyles}
+                  type="submit"
+                  value="Submit Review" />
+              </Track>
             </form>
           </div>
         </div>
