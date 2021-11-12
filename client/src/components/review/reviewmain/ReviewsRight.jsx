@@ -17,6 +17,7 @@ function ReviewsRight({ productId, productName, darkMode }) {
     fontSize: '16px',
     fontWeight: 'bold',
     background: 'none',
+    border: '1px solid #808080'
   }
 
   const buttonStylesDark = {
@@ -80,11 +81,11 @@ function ReviewsRight({ productId, productName, darkMode }) {
     .then(res => {
       callback(res);
     });
-    console.log(`refersh list with page ${page} and sort ${sort}`);
+    //console.log(`refersh list with page ${page} and sort ${sort}`);
   }
 
   const openAddReview = () => {
-    console.log('should show add review', showAddReview);
+    //console.log('should show add review', showAddReview);
     setShowAddReview(prev => !prev)
   }
 

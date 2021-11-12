@@ -77,13 +77,13 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
       rating, summary, body, photos: images, name: nickName,
       email, recommend, product_id: productId, characteristics
     }
-    console.log('submitting review:', JSON.stringify(data));
+    // console.log('submitting review:', JSON.stringify(data));
 
     const warningList = validate(data);
-    console.log('get warnings: ', JSON.stringify(warningList));
+    // console.log('get warnings: ', JSON.stringify(warningList));
     setWarnings(warningList);
     if (warningList.length === 0) {
-      console.log('submitting');
+      // console.log('submitting');
       axios({
         method: 'post',
         url: `/reviews`,
@@ -93,10 +93,10 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
         data: JSON.stringify(data)
       }).then(res => {
         alert('Successfully submit the review!')
-        console.log('post review result: ', res.status);
+        //console.log('post review result: ', res.status);
       }).catch(err => {
         alert('Failed to submit the review.')
-        console.log('failed to submit the review', err);
+        //console.log('failed to submit the review', err);
       });
       setShowAddReview(false)
     }
