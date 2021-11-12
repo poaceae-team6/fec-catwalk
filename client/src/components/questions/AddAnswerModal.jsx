@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Error from './Error.jsx';
 import axios from 'axios';
 import { ThemeContext } from '../ThemeContext.js';
+import Track from '../TrackerHOC/Track.js';
 
 const AddAnswerModal = (props) => {
 
