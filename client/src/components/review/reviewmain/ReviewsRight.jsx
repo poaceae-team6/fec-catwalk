@@ -14,8 +14,23 @@ function ReviewsRight({ productId, productName, darkMode }) {
     margin: '10px',
     padding:'10px',
     fontSize: '16px',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    background: 'none',
   }
+
+  const buttonStylesDark = {
+    height: '60px',
+    width: '200px',
+    marginLeft: '20px',
+    margin: '10px',
+    padding:'10px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    background: '#2a2c29',
+    color: '#f3f3f3',
+    border: '1px solid #808080'
+  }
+
   const sortStyles = {
     margin: '10px',
     fontSize: '16px',
@@ -28,6 +43,15 @@ function ReviewsRight({ productId, productName, darkMode }) {
     border: 'transparent',
     backgroundColor: 'transparent',
     textDecoration: 'underline'
+  }
+
+  const dropdownStyleDark = {
+    fontSize: '16px',
+    fontWeight: 'bold',
+    border: 'transparent',
+    backgroundColor: 'transparent',
+    textDecoration: 'underline',
+    color: 'white'
   }
 
   // Create state for page sort
@@ -92,20 +116,20 @@ function ReviewsRight({ productId, productName, darkMode }) {
       <div style={sortStyles}>
         <div style={{display: 'inline-block'}}>{reviewContext.reviewMeta.reveiwTotal} reviews, sorted by  </div>
         <div style={{display: 'inline-block'}}>
-          <select style={dropdownStyle} name="sortBy" id="casortByrs" onChange={resetReviews}>
-            <option style={dropdownStyle} value="revelent">Revelent</option>
-            <option style={dropdownStyle} value="helpful">Helpful</option>
-            <option style={dropdownStyle} value="newest">Newest</option>
+          <select style={darkMode ? dropdownStyleDark : dropdownStyle} name="sortBy" id="casortByrs" onChange={resetReviews}>
+            <option style={darkMode ? dropdownStyleDark : dropdownStyle} value="revelent">Revelent</option>
+            <option style={darkMode ? dropdownStyleDark : dropdownStyle} value="helpful">Helpful</option>
+            <option style={darkMode ? dropdownStyleDark : dropdownStyle} value="newest">Newest</option>
           </select>
         </div>
       </div>
       <br></br>
-      <div style={{marginLeft: '10px'}} ><ReviewsList /></div>
+      <div style={{marginLeft: '10px'}} ><ReviewsList darkMode={darkMode} /></div>
       <br></br>
-      <button style={buttonStyles} onClick={loadMoreReviews}>
+      <button style={darkMode ? buttonStylesDark : buttonStyles} onClick={loadMoreReviews}>
         MORE REVIEWS
       </button>
-      <button style={buttonStyles} onClick={openAddReview}>
+      <button style={darkMode ? buttonStylesDark : buttonStyles} onClick={openAddReview}>
         ADD A REVIEW +
       </button>
       <br></br>
