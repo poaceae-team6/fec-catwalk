@@ -131,13 +131,16 @@ const Overview = (props) => {
         {darkMode => (
           <div className='overview-container' aria-label="Justify">
             <div className='overview-grid'>
-              <h2>{props.currentProduct.name}</h2>
+              <div className='product'>
+                <h2>{props.currentProduct.name}</h2>
+                <h3>{props.currentProduct.description}</h3>
+              </div>
               <div className='gallery' style={darkMode ? {backgroundColor: '#2a2c29'} : {}}>
                 {styles[styleIndex].photos[0].url ? <img src={styles[styleIndex].photos[0].url} height='450' alt={'product img for ' + props.currentProduct.name}/> : <img src='./img/image-not-found.webp' height='450' alt='product img not available'/>}
               </div>
               <div className='overview-buttons'>
                 <button id='cart-btn' aria-label="Left Align" style={darkMode ? {background: '#2a2c29', color: '#f3f3f3', border: '1px solid #808080'} : {}}>
-                  <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>ADD TO BAG</h3>
+                  <h3>ADD TO BAG</h3>
                 </button>
                 <button id='heart-icon' onClick={handleClickHeart.bind(this)} aria-label="Left Align" style={darkMode ? {background: '#2a2c29', color: '#f3f3f3'} : {}}>
                   {fillHeart ? <IoMdHeart /> : <IoMdHeartEmpty />}
@@ -149,11 +152,11 @@ const Overview = (props) => {
                 })}
               </div>
               <div className='description'>
-                <h3 style={darkMode ? {color: '#f3f3f3', fontSize: '18px', textAlign: 'left'} : {fontSize: '18px', textAlign: 'left'}}>{props.currentProduct.slogan}</h3>
-                <p style={darkMode ? {color: '#f3f3f3', fontSize: '18px', textAlign: 'left'} : {}}>{props.currentProduct.description}</p>
+                <h2>{props.currentProduct.slogan}</h2>
+                <h3>{props.currentProduct.description}</h3>
               </div>
               <div className='features'>
-                <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>{props.currentProduct.features ? <ul>{props.currentProduct.features.map((feature, index) => {
+                <h3>{props.currentProduct.features ? <ul>{props.currentProduct.features.map((feature, index) => {
                   return <li key={index}><h3>{feature.feature} - {feature.value}</h3></li>
                 })}</ul> : 'no features available'}</h3>
               </div>

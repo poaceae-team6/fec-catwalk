@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { ThemeContext } from '../ThemeContext.js';
 import { BsPlusLg } from 'react-icons/bs';
 
 const YourOutfitItemDefault = (props) => {
@@ -15,14 +16,18 @@ const YourOutfitItemDefault = (props) => {
   }
   
   return (
-    <div className='product-card' onClick={addToOutfits.bind(this)}>
-      <div className='add-outfit-btn'>
-        <BsPlusLg />
-        <h2 className='product-name'>
-          CLICK TO ADD OUTFIT
-        </h2>
-      </div>
-    </div>
+    <ThemeContext.Consumer>
+      {darkMode => (
+        <div className='product-card' onClick={addToOutfits.bind(this)} style={darkMode ? {backgroundColor: '#2a2c29', border: '1px solid #808080'} : {}}>
+          <div className='add-outfit-btn'>
+            <BsPlusLg />
+            <h2 className='product-name'>
+              CLICK TO ADD OUTFIT
+            </h2>
+          </div>
+        </div>
+      )}
+    </ThemeContext.Consumer>
   )
 };
 

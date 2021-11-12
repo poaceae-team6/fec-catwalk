@@ -15,7 +15,6 @@ router
   .route('/:id') // expecting the text after / to be a param named id
   .get((req, res) => {
     const reqUrl = `${url}/reviews?product_id=${req.params.id}&${req.url.split('?')[1]}`;
-    console.log(`Forward the request to ${reqUrl}`);
     axios({
       method: 'get',
       url: reqUrl,
@@ -24,7 +23,6 @@ router
       }
     })
     .then(response => {
-      console.log(response.status);
       res.send(response.data);
     })
     .catch(error => {
@@ -36,8 +34,6 @@ router
   router
     .route('/')
     .post((req, res) => {
-      console.log(`Forward review create request to the atelier api`);
-      console.log('body', JSON.stringify(req.body));
       axios({
         method: 'post',
         url: `${url}/reviews`,
@@ -48,7 +44,6 @@ router
         data: JSON.stringify(req.body)
       })
       .then(response => {
-        console.log(response.status);
         res.sendStatus(response.status);
       })
       .catch(error => {
@@ -61,7 +56,6 @@ router
 router
   .route('/:id/helpful')
   .put((req, res) => {
-    console.log(`Forward to ${url}/reviews${req.url}`);
     axios({
       method: 'put',
       url: `${url}/reviews${req.url}`,
@@ -70,7 +64,6 @@ router
       }
     })
     .then(response => {
-      console.log(response.status);
       res.sendStatus(response.status);
     })
     .catch(error => {
@@ -85,7 +78,6 @@ router
   .route('/:id/meta')
   .get((req, res) => {
     const reqUrl = `${url}/reviews/meta?product_id=${req.params.id}`;
-    console.log(`Forward the request to ${reqUrl}`)
     axios({
       method: 'get',
       url: reqUrl,
@@ -94,7 +86,6 @@ router
       }
     })
     .then(response => {
-      console.log(response.status);
       res.send(response.data);
     })
     .catch(error => {
@@ -107,7 +98,6 @@ router
   .route('/:id/report')
   .put((req, res) => {
     const reqUrl = `${url}/reviews/${req.params.id}/report`;
-    console.log(`Forward the request to ${reqUrl}`)
     axios({
       method: 'put',
       url: reqUrl,
@@ -116,7 +106,6 @@ router
       }
     })
     .then(response => {
-      console.log(response.status);
       res.sendStatus(response.status);
     })
     .catch(error => {
@@ -124,7 +113,5 @@ router
       res.sendStatus(500);
     })
   })
-
-// ... add the rest
 
 module.exports = router;
