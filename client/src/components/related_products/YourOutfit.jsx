@@ -34,7 +34,7 @@ const YourOutfit = (props) => {
       {darkMode => (
         // className={darkMode ? 'arrow-dark left' : 'arrow left'}
         <div className='outfit-container'>
-          <h2 className='list-title'>YOUR OUTFIT</h2>
+          <h2 className='list-title' style={darkMode ? {color: '#f3f3f3'} : {}}>YOUR OUTFIT</h2>
           <div className='scroll-container'>
             <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)}>
               {scrollPosition > 0 ? <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> : ''}

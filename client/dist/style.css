@@ -4,26 +4,21 @@
 
 :root {
   --width: 1120px;
-  --scroll: 0.8 * --width;
 }
 
 body {
   display: block;
   margin: auto;
-  width: var(--width);
+  /* width: var(--width); */
   line-height: 1.4;
   /* Hide scrollbar for IE, Edge and Firefox */
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
   -webkit-font-smoothing: antialiased;
   overflow: auto;
-
   background-color: var(--background-color);
   color: var(--text-color);
-
 }
-
-a { color: var(--link-color); }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar {
@@ -34,60 +29,78 @@ body::-webkit-scrollbar {
 /* Dark Mode
 /*******************/
 
-.theme-setting h2, h3 {
-  padding: 0px;
+.theme-setting {
+  display: flex;
+  width: var(--width);
+  justify-content: right;
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.theme-setting h3 {
+  display: inline-block;
+  font-size: 18px;
 }
 
 #toggle-btn {
-  display: block;
-  margin: auto;
-  font-size: 25px;
+  display: inline-block;
+  margin: 5px;
+  padding: 0px;
+  font-size: 35px;
   color: #808080;
   cursor: pointer;
   background: none;
   border: none;
 }
 
-/* .light-theme {
-  --text-color: rgb(75, 75, 75);
-  --link-color: #9f0dcd;
-  --background-color: white;
-} */
-
 .dark-theme {
   --text-color: #FFF;
   --link-color: #faf697;
-  --background-color: rgb(75, 75, 75);
+  --background-color: #4b4b4b;
 }
 
 /*******************/
 /* Typography
 /*******************/
 
-h1, h2, h3, h4, p, span {
+h1, h2, h3, h4, p {
   font-family:Helvetica, Arial, sans-serif;
 }
 
 h2 {
-  font-size: 14px;
+  font-size: 24px;
+  text-align: left;
+  color: #2a2c29;
+}
+
+h3 {
+  font-size: 18px;
+  text-align: center;
+  color: #4b4b4b;
+}
+
+p {
+  font-size: 18px;
   text-align: left;
   color: #1f1e1e;
 }
 
-h3 {
-  font-size: 13px;
-  text-align: center;
-  color: #4d4d4d;
-}
+a { color: var(--link-color); }
 
 /*******************/
 /* Logo
 /*******************/
+
 .logo {
-  background-color: #525252;
+  background-color: #d8e1d5;
   color: white;
-  height: 70px;
-  padding-left: 30px;
+  height: 200px;
+  text-align: center;
+}
+
+.logo img {
+  height: 120px;
+  padding-top: 40px;
 }
 
 .logo h1 {
@@ -110,31 +123,34 @@ h3 {
 .overview-container {
   margin: auto;
   height: 1550px;
+  width: var(--width);
   text-align: center;
 }
 
 .details-container {
   margin: auto;
+  width: var(--width);
   text-align: center;
 }
 
 .products-container {
   display: block;
   margin: auto;
-  width: calc(var(--width) * 0.8);
+  width: var(--width);
   padding-top: 30px;
   text-align: center;
 }
 
 .scroll-container {
   display: flex;
+  width: var(--width);
   height: 325px;
   justify-content: center;
 }
 
 .outfit-container {
   display: block;
-  width: calc(var(--width) * 0.8);
+  width: var(--width);
   margin: auto;
   padding-top: 30px;
   text-align: center;
@@ -142,14 +158,14 @@ h3 {
 
 .questions-container {
   margin: auto;
-  width: calc(var(--width) * 0.9);
+  width: var(--width);
 }
 
 .reviews-container {
+  margin: auto;
   min-height: 100px;
-  width: calc(var(--width) * 0.8);
+  width: var(--width);
   overflow: hidden;
-
 }
 
 /*******************/
@@ -168,7 +184,7 @@ h3 {
 }
 
 .loader {
-  border: 16px solid #f3f3f3;
+  border: 16px solid #d9e2df;
   border-top: 16px solid #525252;
   border-radius: 50%;
   width: 100px;
@@ -205,7 +221,7 @@ h3 {
   overflow: hidden;
   width: 672px;
   height: 450px;
-  background-color: rgb(243, 243, 243);
+  background-color: #f3f3f3;
 }
 
 .gallery img {
@@ -229,7 +245,7 @@ h3 {
 }
 
 .features li {
-  margin: 0px;
+  margin: 0px; 
   padding: 0px;
   text-align: left;
 }
@@ -245,7 +261,7 @@ h3 {
   margin-left: 0px;
   padding-left: 30px;
   font-size: 35px;
-  color:#474747;
+  color:#4b4b4b;
   text-align: left;
 }
 
@@ -273,7 +289,7 @@ h3 {
   width: 60px;
   height: 60px;
   object-fit: cover;
-  border: 1px solid #696868;
+  border: 1px solid #808080;
   border-radius: 50%;
   cursor: pointer;
 }
@@ -288,7 +304,7 @@ h3 {
   height: 60px;
   width: 240px;
   background: none;
-  border: 1px solid #696868;
+  border: 1px solid #808080;
   text-align: left;
   cursor: pointer;
   transform: translate(0px, -7px);
@@ -303,12 +319,12 @@ h3 {
 
 #heart-icon {
   font-size: 25px;
-  color: #696868;
+  color: #4b4b4b;
   margin: 10px;
   padding: 15px;
   padding-bottom: 10px;
   background: none;
-  border: 1px solid #696868;
+  border: 1px solid #808080;
   cursor: pointer;
 }
 
@@ -318,11 +334,11 @@ h3 {
 
 .list-title {
   display: block;
-  margin: 20px;
-  padding-left: 5px;
-  font-size: 15px;
-  font-weight: 300;
-  color: #1f1e1e;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 400;
+  color: #2a2c29;
   text-align: left;
 }
 
@@ -331,7 +347,7 @@ h3 {
   height: 320px;
   width: 215px;
   margin-right: 20px;
-  border: 1px solid #b6b2b2;
+  border: 1px solid #d8e1d5;
   cursor: pointer;
 }
 
@@ -339,7 +355,7 @@ h3 {
   width: 100%;
   height: 220px;
   object-fit: cover;
-  background-color: #F6F5F2;
+  background-color: #d8e1d5;
 }
 
 .product-name {
@@ -361,7 +377,7 @@ h3 {
   font-size: 14px;
   font-weight: 500;
   text-align: left;
-  color: #383838;
+  color: #4b4b4b; 
 }
 
 
@@ -371,7 +387,7 @@ h3 {
 
 .horizontal-slide {
   display: inline-block;
-  width: calc(var(--width) * 0.7);
+  width: calc(var(--width) * 0.9);
   text-align: left;
   overflow: auto;
   white-space: nowrap;
@@ -391,7 +407,7 @@ h3 {
   margin: auto;
   cursor: pointer;
   font-size: 25px;
-  color: #68665f;
+  color: #2a2c29;
   height: 200px;
   width: 50px;
   background: none;
@@ -415,7 +431,7 @@ h3 {
   margin-top: 10px;
   font-size: 14px;
   font-weight: 300;
-  color: #383838;
+  color: #4b4b4b;
   text-align: center;
 }
 
@@ -441,7 +457,7 @@ h3 {
   left: 75%;
   margin: 10px;
   font-size: 30px;
-  color: #cac8c8;
+  color: #d8e1d5;
 }
 
 .delete-btn {
@@ -449,86 +465,13 @@ h3 {
   left: 75%;
   margin: 10px;
   font-size: 30px;
-  color: #cac8c8;
+  color: #d8e1d5;
   text-shadow: 2px 2px 1px #202020;
 }
 
 /*******************/
 /* Questions
 /*******************/
-.imgStyle {
-  left:23px;
-  position: relative;
-  margin: 5px;
-  object-fit: cover;
-  width: 50px;
-  height: 50px;
-}
-
-.small-input{
-  width: 500px;
-  height: 30px;
-  font-size: 18px;
-}
-
-.large-input{
-  width: 500px;
-  height: 150px;
-  font-size: 18px;
-}
-
-.search {
-  display: flex;
-  position: relative;
-  justify-content: center;
-}
-
-.searchStyle {
-  height: 40px;
-  width: 900px;
-  font-size: 20px;
-  background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-1024.png) 860px;
-  background-repeat: no-repeat;
-  background-size: 30px;
-}
-
-.question{
-  margin:30px;
-}
-
-.modal-title {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.modal-subtitle {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.modal-text {
-  display: flex;
-  justify-content: center;
-}
-
-.modal-btn{
-  margin: 5px;
-  display: inline-flex;
-  justify-content: center;
-  height: 25px;
-  width: 150px;
-  cursor: pointer;
-}
-
-::-webkit-input-placeholder {
-  text-align: start;
-  margin: 0 auto;
-}
-
 .click-btn {
   height: 60px;
   width: 200px;
@@ -558,25 +501,10 @@ h3 {
   width: 700px;
   margin: 0 auto;
   height: auto;
-  max-height: 80%;
+  max-height: 70%;
   max-width: 70%;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
-  border-radius: 4px;
-  padding: 20px;
-  border: 1px solid #999;
-  overflow: auto;
-}
-
-.popup-inner-modal-dark {
-  position: relative;
-  width: 700px;
-  margin: 0 auto;
-  height: auto;
-  max-height: 80%;
-  max-width: 70%;
-  margin-top: calc(100vh - 85vh - 20px);
-  background: rgb(75, 75, 75);
   border-radius: 4px;
   padding: 20px;
   border: 1px solid #999;
@@ -608,7 +536,7 @@ h3 {
 
 .star-ratings {
   unicode-bidi: bidi-override;
-  color: #ccc;
+  color: #d9e2df;
   font-size: 16px;
   position: relative;
   margin: 0;
@@ -617,7 +545,7 @@ h3 {
   stroke-opacity: 0.01
 }
 .star-ratings .fill-ratings {
-  color: #1f1e1e;
+  color: #2a2c29;
   padding: 0;
   position: absolute;
   z-index: 1;
@@ -655,30 +583,15 @@ h3 {
   width: 70%;
   margin: 0 auto;
   height: auto;
-  max-height: 80%;
-  max-width: 80%;
+  max-height: 70vh;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
   border-radius: 4px;
   padding: 20px;
-  border: 1px solid #999;
+  border: 1px solid #808080;
   overflow: auto;
 }
 
-.popup-inner-dark {
-  position: relative;
-  width: 70%;
-  margin: 0 auto;
-  height: auto;
-  max-height: 80%;
-  max-width: 80%;
-  margin-top: calc(100vh - 85vh - 20px);
-  background: rgb(75, 75, 75);
-  border-radius: 4px;
-  padding: 20px;
-  border: 1px solid #999;
-  overflow: auto;
-}
 
 /*******************/
 /* Footer
@@ -690,5 +603,5 @@ footer {
 
 footer p {
   text-align: center;
-  color: #4d4d4d;
+  color: #808080;
 }
