@@ -78,13 +78,8 @@ const App = (props) => {
             <h3 style={darkMode ? {color: '#d8e1d5'} : {}}>SITE-WIDE ANNOUNCEMENT MESSAGE! - SALE / DISCOUNT <strong>OFFER</strong> - NEW PRODUCT HIGHLIGHT</h3>
           </div>
           <div className='theme-setting'>
-<<<<<<< HEAD
             <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
             <button id='toggle-btn' style={darkMode ? {color: '#f3f3f3'} : {}} onClick={toggleMode.bind(this)}>
-=======
-            <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
-            <button id='toggle-btn' aria-label="Justify" style={darkMode ? {color: 'white'} : {}} onClick={toggleMode.bind(this)}>
->>>>>>> 95840f803c3256d26c4b2f060717e00000d5ffd2
               {darkMode ? <BsToggleOn /> : <BsToggleOff />}
             </button>
           </div>
