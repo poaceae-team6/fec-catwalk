@@ -7,6 +7,6 @@ node_modules
 .vscode
 /*.env
 package-lock.json
-
+**bundle.js**
 # Coverage directory used by tools like istanbul
 coverage

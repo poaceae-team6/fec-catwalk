@@ -8,9 +8,6 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
   const [rating, setRating] = useState(5);
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
-  // const [photo1, setPhoto1] = useState('');
-  // const [photo2, setPhoto2] = useState('');
-  // const [photo3, setPhoto3] = useState('');
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [recommend, setRecommend] = useState(true);
@@ -21,23 +18,31 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
   const reviewContext = useContext(ReviewContext);
 
   const ButtonStyles = {
-    height: '35px',
-    width: 'auto',
-    padding: '8px',
+    height: '50px',
     fontSize: '16px',
     fontWeight: 'bold',
-    "&:hover": {
-      color: "red"
-    },
+    width: '200px',
+    padding:'10px',
+    background: 'none',
+  }
+
+  const ButtonStylesDark = {
+    height: '50px',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    width: '200px',
+    padding:'10px',
+    background: '#2a2c29',
+    color: '#f3f3f3',
+    border: '1px solid #808080'
   }
 
   const InputBoxStyles = {
     width: '95%',
-    marginBottom: '10px',
     padding: '10px',
     border: 'solid grey 1px',
     fontSize: '16px',
-    fontFamily: 'sans-serif'
+    display: 'block'
   }
 
   const handleCharChange = (event) => {
@@ -65,16 +70,6 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
   }
 
   const submit = (event) => {
-    // const photos = [];
-    // if (photo1) {
-    //   photos.push(photo1);
-    // }
-    // if (photo2) {
-    //   photos.push(photo2);
-    // }
-    // if (photo3) {
-    //   photos.push(photo3);
-    // }
 
     const data = {
       rating, summary, body, photos: images, name: nickName,
@@ -142,11 +137,11 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
 
         <div className='popup-box'>
           <div className={darkMode ? 'popup-inner-dark' : 'popup-inner-box'}>
-            <AiOutlineCloseCircle className='review-buttons' style={{ float: 'right' }} color="grey" size={30} onClick={() => setShowAddReview(false)} />
+            <AiOutlineCloseCircle className='review-buttons' style={{ float: 'right', margin: '10px'}} color="grey" size={30} onClick={() => setShowAddReview(false)} />
 
-            <div style={{ fontSize: '16px', fontWeight: 'bold', marginTop: '10px', marginBottom: '10px' }}>
+            {/* <div style={{ fontSize: '16px', fontWeight: 'bold', marginTop: '10px', marginBottom: '10px' }}>
               {productTitle}</div>
-            <br></br>
+            <br></br> */}
 
             <form onSubmit={submit}>
               <div style={{ height: '30px' }}><StarRatingInput updateStarRating={setRating} /></div>
@@ -154,12 +149,14 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
 
               <div style={{ whiteSpace: 'nowrap' }}>
                 <div style={{ display: 'inline-block', marginRight: '5px' }}>Do you recommend this product? *</div>
+                <br></br>
+
                 <div style={{ display: 'inline-block' }}>
                   <input type="radio" value='true' name="YN" onChange={() => { setRecommend(true) }} checked /> Yes
                   <input type="radio" value='false' name="YN" onChange={() => { setRecommend(false) }} /> No
                 </div>
-              </div>
-              <br></br>
+              </div><br></br>
+
 
               <div style={{ whiteSpace: 'nowrap' }}>Characteristics: *
                 <table><tbody>
@@ -182,10 +179,9 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
                       </tr>)) : null}
                 </tbody></table>
               </div>
-              <br></br>
 
               <div>
-                Summary:
+                <p>Summary:</p>
                 <input
                   style={InputBoxStyles}
                   type="text"
@@ -193,13 +189,12 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
                   value={summary}
                   name="summary"
                   onChange={(e) => { setSummary(e.target.value) }} />
-                <br></br>
-                <small>up to 60 characters</small>
+
+                <small>Up to 60 characters</small>
               </div>
-              <br></br>
 
               <div>
-                Review Body: *
+                <p>Review Body: *</p>
                 <textarea
                   style={InputBoxStyles}
                   placeholder="Why did you like the product or not?"
@@ -212,42 +207,17 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
                     'Minimum required characters left: ' + (50 - body.length)}
                 </small>
               </div>
-              <br></br>
 
-              {/* <div><UploadPic /></div><br></br> */}
               <div>
-                Add Photos:
-                {/* <input
-                style={InputBoxStyles}
-                type="text"
-                placeholder="Photo1"
-                value={photo1}
-                name="photo1"
-                onChange={(e) => setPhoto1(e.target.value)}/>
-              <input
-                style={InputBoxStyles}
-                type="text"
-                placeholder="Photo2"
-                value={photo2}
-                name="photo2"
-                onChange={(e) => setPhoto2(e.target.value)}/>
-              <input
-                style={InputBoxStyles}
-                type="text"
-                placeholder="Photo3"
-                value={photo3}
-                name="photo3"
-                onChange={(e) => setPhoto3(e.target.value)}/> */}
+                <p>Add Photos:</p>
                 <input onChange={onImageChange} type='file' name='upload image' multiple />
                 {images && images.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} />)}
               </div>
 
-
               <p></p>
-              <br></br>
 
               <div>
-                Nickname: *
+                <p>Nickname: *</p>
                 <input
                   style={InputBoxStyles}
                   type="text"
@@ -257,11 +227,9 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
                   onChange={(e) => setNickName(e.target.value)} />
               </div>
               <small>For privacy reasons, do not use your full name or email address.</small>
-              <br></br>
-              <br></br>
 
               <div>
-                Email: *
+                <p>Email: *</p>
                 <input
                   style={InputBoxStyles}
                   type="text"
@@ -269,7 +237,6 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
                   value={email}
                   name="email"
                   onChange={(e) => setEmail(e.target.value)} />
-                <br></br>
                 <small>For authentication reasons, you will not be emailed.</small>
               </div>
               <br></br>
@@ -289,7 +256,7 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
               </div>
 
               <input
-                style={ButtonStyles}
+                style={darkMode ? ButtonStylesDark : ButtonStyles}
                 type="submit"
                 value="Submit Review" />
             </form>

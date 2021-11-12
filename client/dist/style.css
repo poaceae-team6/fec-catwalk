@@ -621,7 +621,7 @@ a { color: var(--link-color); }
 #rightbar {
   float: right;
   height: auto;
-  width: calc(100% - 350px);
+  width: calc(100% - 360px);
   /* border: solid rgb(141, 110, 110); */
   /* border-top-left-radius: 0.5px; */
   /* padding: 10px; */
@@ -667,6 +667,7 @@ a { color: var(--link-color); }
   height: 100vh;
   top: 0;
   left: 0;
+  line-height: 1.8;
   z-index: 4;
 }
 
@@ -679,7 +680,7 @@ a { color: var(--link-color); }
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
   border-radius: 4px;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #808080;
   overflow: auto;
 }
@@ -694,7 +695,7 @@ a { color: var(--link-color); }
   margin-top: calc(100vh - 85vh - 20px);
   background: rgb(75, 75, 75);
   border-radius: 4px;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #999;
   overflow: auto;
 }
