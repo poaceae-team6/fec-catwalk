@@ -58,7 +58,7 @@ function ReviewLeft({ productId }) {
 
   return (
     <div style={{marginLeft: '10px'}}>
-      <p>RATINGS & REVIEWS</p>
+      <h2>RATINGS & REVIEWS</h2>
       <div style={RatingSummary}>
         <h1 style={Score}> {reviewContext.reviewMeta.avgRating} </h1>
 
