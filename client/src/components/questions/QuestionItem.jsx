@@ -120,7 +120,7 @@ const QuestionItem = (props) => {
             </span>
           </p>
           {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
-          <span style={questionBody} onClick={handleLessAnswers}>Load Less Answers</span>
+          <span className='loadMoreAnswer' onClick={handleLessAnswers}>Load Less Answers</span>
         </div>
       )
     }
@@ -139,7 +139,7 @@ const QuestionItem = (props) => {
           </span>
         </p>
         {answers.map((answer, index) => <Answer key={index} answer={answer} questionId={questionId}/>)}
-        <span style={questionBody} onClick={handleMoreAnswers}>Load More Answers</span>
+        <span className='loadMoreAnswer' onClick={handleMoreAnswers}>Load More Answers</span>
       </div>
     )
   } else {

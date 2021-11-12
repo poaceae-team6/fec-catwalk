@@ -123,7 +123,7 @@ const QuestionList = (props) => {
         <h2 className='list-title'>QUESTIONS & ANSWERS</h2>
         <Search ql={state} questions={questions} search={handleSearch}/>
         <p>No questions found. Do you want to add yours?</p>
-        <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
+        <span className='qa-btn'>
         <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTION +</button>
         </span>
         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
@@ -145,7 +145,7 @@ const QuestionList = (props) => {
         <div style={overflow}>
           {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
         </div>
-        <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
+        <span className='qa-btn'>
          <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
          </span>
          {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
@@ -166,7 +166,7 @@ const QuestionList = (props) => {
         <div style={overflow}>
           {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
         </div>
-        <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
+        <span className='qa-btn'>
         <button className='click-btn' onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>    <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
         </span>
         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
