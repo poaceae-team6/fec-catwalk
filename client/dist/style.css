@@ -724,3 +724,12 @@ footer p {
   text-align: center;
   color: #808080;
 }
+
+
+select {
+  background-color: DodgerBlue;
+}
+
+select:after {
+  background-color: DodgerBlue;
+}
