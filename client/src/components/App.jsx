@@ -79,7 +79,7 @@ const App = (props) => {
           </div>
           <div className='theme-setting'>
             <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
-            <button id='toggle-btn' style={darkMode ? {color: '#f3f3f3'} : {}} onClick={toggleMode.bind(this)}>
+            <button id='toggle-btn' style={darkMode ? {color: '#f3f3f3'} : {}} onClick={toggleMode.bind(this)} aria-label="Right Align">
               {darkMode ? <BsToggleOn /> : <BsToggleOff />}
             </button>
           </div>

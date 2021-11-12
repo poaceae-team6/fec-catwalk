@@ -136,10 +136,10 @@ const Overview = (props) => {
                 {styles[styleIndex].photos[0].url ? <img src={styles[styleIndex].photos[0].url} height='450' alt={'product img for ' + props.currentProduct.name}/> : <img src='./img/image-not-found.webp' height='450' alt='product img not available'/>}
               </div>
               <div className='overview-buttons'>
-                <button id='cart-btn' style={darkMode ? {background: '#2a2c29', color: '#f3f3f3', border: '1px solid #808080'} : {}}>
+                <button id='cart-btn' aria-label="Left Align" style={darkMode ? {background: '#2a2c29', color: '#f3f3f3', border: '1px solid #808080'} : {}}>
                   <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>ADD TO BAG</h3>
                 </button>
-                <button id='heart-icon' onClick={handleClickHeart.bind(this)} style={darkMode ? {background: '#2a2c29', color: '#f3f3f3'} : {}}>
+                <button id='heart-icon' onClick={handleClickHeart.bind(this)} aria-label="Left Align" style={darkMode ? {background: '#2a2c29', color: '#f3f3f3'} : {}}>
                   {fillHeart ? <IoMdHeart /> : <IoMdHeartEmpty />}
                 </button>
               </div>
