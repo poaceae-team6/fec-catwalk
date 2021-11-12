@@ -10,8 +10,6 @@ function ReviewLeft({ productId }) {
   // In-line Styling
   const RatingSummary = {
     whiteSpace: 'nowrap',
-    marginTop: '10px',
-    marginBottom: '10px',
   }
 
   const Score = {
@@ -43,7 +41,7 @@ function ReviewLeft({ productId }) {
        res.data.recommended = Math.round(Number(res.data.recommended.true)/res.data.reveiwTotal * 100)
 
        // Calculate starBreakdown
-       res.data.ratingBreakdown = [Math.round(Number(res.data.ratings['1']|| '0') / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['2']|| '0') / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['3'|| '0']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['4']|| '0') / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['5']|| '0') / res.data.reveiwTotal * 100)]
+       res.data.ratingBreakdown = [Math.round(Number(res.data.ratings['5']|| '0') / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['4']|| '0') / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['3'|| '0']) / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['2']|| '0') / res.data.reveiwTotal * 100), Math.round(Number(res.data.ratings['1']|| '0') / res.data.reveiwTotal * 100)]
 
       //  for(var key in res.data.characteristics) {
       //   res.data.char[key] = Number(res.data.characteristics.key.value).toFixed(2)
@@ -59,7 +57,7 @@ function ReviewLeft({ productId }) {
   }, []);
 
   return (
-    <div>
+    <div style={{marginLeft: '10px'}}>
       <p>RATINGS & REVIEWS</p>
       <div style={RatingSummary}>
         <h1 style={Score}> {reviewContext.reviewMeta.avgRating} </h1>
@@ -72,11 +70,11 @@ function ReviewLeft({ productId }) {
 
         {/* <ProgressBar ratingStar = '1' ratingBreakdown ={reviewContext.reviewMeta.ratingBreakdown[0]}/>
         {console.log('ratingBreakdown', reviewContext.reviewMeta.ratingBreakdown)} */}
-        <ul style={{lineHeight: '2.3', padding: '0px'}}>
-          {reviewContext.reviewMeta.ratingBreakdown ? reviewContext.reviewMeta.ratingBreakdown.map((ratingBreakdown, i) =>
-            <ProgressBar ratingBreakdown={ratingBreakdown} key={i} ratingStar= {i + 1} />
-          ) : null}
-        </ul>
+        <div style={{lineHeight: '2.3', padding: '0px'}}>
+          <div>{reviewContext.reviewMeta.ratingBreakdown ? reviewContext.reviewMeta.ratingBreakdown.map((ratingBreakdown, i) =>
+            <ProgressBar ratingBreakdown={ratingBreakdown} key={i} ratingStar= {5 - i} />
+          ) : null}</div>
+        </div>
       </div>
       <br></br>
       <div>
