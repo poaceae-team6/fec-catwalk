@@ -48,9 +48,6 @@ const QuestionItem = (props) => {
       .catch((err) => console.log(err));
 
       localStorage.setItem(questionId, true);
-
-    } else {
-      console.log('you voted');
     }
   }
 

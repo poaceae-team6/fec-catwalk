@@ -21,7 +21,6 @@ const QuestionList = (props) => {
   const questions = state.data;
 
   const getData = () => {
-    console.log('getting data');
     // send request to server asking API data
     axios.get(`/questions/${productId}`, {params: {id: productId}})
     .then(res => {
@@ -51,7 +50,7 @@ const QuestionList = (props) => {
         }),
       })
     } else {
-      console.log('should retore')
+
       setState({
         ...state,
         data: state.storage
@@ -126,7 +125,7 @@ const QuestionList = (props) => {
         <p>No questions found. Do you want to add yours?</p>
         <span className='qa-btn'>
         <Track eventName={`User wants to add a question for ${productId}`} module='Questions'>
-          <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTION +</button>
+        <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={openAddQuestion}>ADD A QUESTION +</button>
         </Track>
         </span>
         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
@@ -150,9 +149,9 @@ const QuestionList = (props) => {
         </div>
         <span className='qa-btn'>
         <Track eventName={`User wants to add a question for ${productId}`} module='Questions'>
-          <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+         <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={openAddQuestion}>ADD A QUESTIONS +</button>
         </Track>
-        </span>
+         </span>
          {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
 
       </div>
@@ -173,7 +172,7 @@ const QuestionList = (props) => {
         </div>
         <span className='qa-btn'>
         <Track eventName={`User wants to load more answered questions for ${productId}`} module='Questions'>
-          <button className='click-btn' onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>    <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+          <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>    <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={openAddQuestion}>ADD A QUESTIONS +</button>
         </Track>
         </span>
         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}

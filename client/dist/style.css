@@ -486,25 +486,25 @@ a { color: var(--link-color); }
   display: flex;
   position: relative;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .qa-btn {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   position: relative;
 }
 
 .searchStyle {
   height: 40px;
-  width: 1055px;
+  width: 1122px;
   font-size: 20px;
-  background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-1024.png) 1000px;
   background-repeat: no-repeat;
   background-size: 30px;
 }
 
 .question{
-  margin:30px;
+  margin: 0, 30px, 30px, 30px;
 }
 
 .loadMoreAnswer{
@@ -513,6 +513,7 @@ a { color: var(--link-color); }
   margin: 20px;
   left: 3px;
   display: inline-block;
+  color: grey;
   cursor: pointer;
 }
 
@@ -554,6 +555,18 @@ a { color: var(--link-color); }
   width: 200px;
   margin: 5px;
   background: white;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.click-btn-dark {
+  height: 60px;
+  width: 200px;
+  margin: 5px;
+  background: rgb(42, 44, 41);
+  color:rgba(243, 243, 243);
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
@@ -712,4 +725,13 @@ footer {
 footer p {
   text-align: center;
   color: #808080;
+}
+
+
+select {
+  background-color: DodgerBlue;
+}
+
+select:after {
+  background-color: DodgerBlue;
 }
