@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect, useRef } from 'react';
 import RelatedProductsItem from './RelatedProductsItem.jsx';
 import ProductComparisonModal from './ProductComparisonModal.jsx';
 import { ThemeContext } from '../ThemeContext.js';
-import { MdArrowForwardIos } from 'react-icons/md';
+import { MdArrowForwardIos, MdOutlineFitScreen } from 'react-icons/md';
 import { MdArrowBackIos } from 'react-icons/md';
 import useOutsideClick from '../useOutsideClick.js';
 import axios from 'axios';
@@ -86,7 +86,7 @@ const RelatedProducts = (props) => {
                 })}
               </div>
               <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
-                {scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
+                {(relatedProducts.length > 4 && scrollPosition === 0) || scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
               </button>
             </div>
           </div>
