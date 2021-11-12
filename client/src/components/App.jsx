@@ -81,14 +81,14 @@ const App = (props) => {
           <div className="logo" style={darkMode ? {backgroundColor: '#3E6765'} : {}}>
             <img src='./img/poaceae-logo.webp' alt='poaceae-company-logo' style={darkMode ? {filter: 'invert(99%) sepia(60%) saturate(30%) hue-rotate(60deg) brightness(130%) contrast(86%)'} : {}}/>
           </div>
-          <div className='theme-setting'>
-            <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
-            <Track eventName={'toggle theme'}>
+          <Track eventName={'toggle theme'}>
+            <div className='theme-setting'>
+              <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
               <button id='toggle-btn' style={darkMode ? {color: '#f3f3f3'} : {}} onClick={toggleMode.bind(this)} aria-label="Right Align">
               {darkMode ? <BsToggleOn /> : <BsToggleOff />}
               </button>
-            </Track>
-          </div>
+            </div>
+          </Track>
           <div className="announce-container">
             <h3 style={{fontWeight: '300'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! - SALE / DISCOUNT <b>OFFER</b> - NEW PRODUCT HIGHLIGHT</h3>
           </div>
