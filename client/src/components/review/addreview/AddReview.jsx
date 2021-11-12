@@ -6,7 +6,7 @@ import { ReviewContext } from '../ReviewProvider.jsx';
 import Track from '../../TrackerHOC/Track.js';
 
 function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(null);
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
   const [nickName, setNickName] = useState("");
@@ -43,7 +43,8 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
     padding: '10px',
     border: 'solid grey 1px',
     fontSize: '16px',
-    display: 'block'
+    display: 'block',
+    fontFamily: 'sans-serif'
   }
 
   const handleCharChange = (event) => {
@@ -106,7 +107,7 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
     const warnings = [];
     const mandatories = ['rating', 'recommend', 'name', 'email'];
     for (const key of mandatories) {
-      if (data[key] === null) {
+      if (data[key] === null || data[key] === '' || data[key].length === 0) {
         warnings.push(`Missing ${key} in the review.`)
       }
     }
@@ -138,7 +139,7 @@ function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
 
         <div className='popup-box'>
           <div className={darkMode ? 'popup-inner-dark' : 'popup-inner-box'}>
-            <AiOutlineCloseCircle className='review-buttons' style={{ float: 'right', margin: '10px'}} color="grey" size={30} onClick={() => setShowAddReview(false)} />
+            <AiOutlineCloseCircle className='review-buttons' style={{ float: 'right', marginRight: '20px'}} color="grey" size={30} onClick={() => setShowAddReview(false)} />
 
             {/* <div style={{ fontSize: '16px', fontWeight: 'bold', marginTop: '10px', marginBottom: '10px' }}>
               {productTitle}</div>

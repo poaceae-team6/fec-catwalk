@@ -125,7 +125,7 @@ const QuestionList = (props) => {
         <p>No questions found. Do you want to add yours?</p>
         <span className='qa-btn'>
         <Track eventName={`User wants to add a question for ${productId}`} module='Questions'>
-        <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={openAddQuestion}>ADD A QUESTION +</button>
+          <button className={props.darkMode ? 'click-btn-dark' : 'click-btn'} onClick={openAddQuestion}>ADD A QUESTION +</button>
         </Track>
         </span>
         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
