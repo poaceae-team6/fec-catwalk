@@ -86,7 +86,7 @@ const RelatedProducts = (props) => {
                 })}
               </div>
               <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
-                {(relatedProducts.length > 4 && scrollPosition === 0) || scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
+                {relatedProducts.length > 4 && scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
               </button>
             </div>
           </div>
