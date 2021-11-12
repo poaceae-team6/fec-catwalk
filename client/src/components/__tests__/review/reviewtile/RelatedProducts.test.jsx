@@ -23,10 +23,6 @@ describe('Related Product', () => {
 
 describe('Your Outfit', () => {
 
-  it('should render the yourOutfit', ()=> {
-    shallow(<YourOutfit />)
-  });
-
   it('should render the yourOutfit item', ()=> {
     shallow(<YourOutfitItem />)
   });

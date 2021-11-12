@@ -3,6 +3,7 @@ import ReviewsList from './ReviewsList.jsx';
 import AddReview from '../addreview/AddReview.jsx';
 import { ReviewContext } from '../ReviewProvider.jsx'
 import axios from 'axios';
+import Track from '../../TrackerHOC/Track.js';
 
 function ReviewsRight({ productId, productName, darkMode }) {
 
@@ -127,12 +128,16 @@ function ReviewsRight({ productId, productName, darkMode }) {
       <br></br>
       <div style={{marginLeft: '10px'}} ><ReviewsList darkMode={darkMode} /></div>
       <br></br>
-      <button style={darkMode ? buttonStylesDark : buttonStyles} onClick={loadMoreReviews}>
-        MORE REVIEWS
-      </button>
+      <Track eventName={`More Review for ${productName} is clicked`} module='Reviews'>
+        <button style={darkMode ? buttonStylesDark : buttonStyles} onClick={loadMoreReviews}>
+          MORE REVIEWS
+        </button>
+      </Track>
+      <Track eventName={`Add a Review for ${productName} is clicked`} module='Reviews'>
       <button style={darkMode ? buttonStylesDark : buttonStyles} onClick={openAddReview}>
         ADD A REVIEW +
       </button>
+      </Track>
       <br></br>
       {showAddReview ? <AddReview darkMode={darkMode} setShowAddReview={ setShowAddReview } productTitle={productName} productId={productId} /> : ''}
     </div>
