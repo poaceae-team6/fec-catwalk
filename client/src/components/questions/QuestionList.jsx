@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import QuestionItem from './QuestionItem.jsx';
 import Search from './Search.jsx';
 import AddQuestionModal from './AddQuestionModal.jsx';
+import Track from '../TrackerHOC/Track.js';
 import axios from 'axios';
 
 const QuestionList = (props) => {
@@ -124,7 +125,9 @@ const QuestionList = (props) => {
         <Search ql={state} questions={questions} search={handleSearch}/>
         <p>No questions found. Do you want to add yours?</p>
         <span className='qa-btn'>
-        <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTION +</button>
+        <Track eventName={`User wants to add a question for ${productId}`} module='Questions'>
+          <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTION +</button>
+        </Track>
         </span>
         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
       </div>
@@ -146,8 +149,10 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
         </div>
         <span className='qa-btn'>
-         <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
-         </span>
+        <Track eventName={`User wants to add a question for ${productId}`} module='Questions'>
+          <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+        </Track>
+        </span>
          {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
 
       </div>
@@ -167,7 +172,9 @@ const QuestionList = (props) => {
           {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
         </div>
         <span className='qa-btn'>
-        <button className='click-btn' onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>    <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+        <Track eventName={`User wants to load more answered questions for ${productId}`} module='Questions'>
+          <button className='click-btn' onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>    <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>
+        </Track>
         </span>
         {showModal && <AddQuestionModal getData={getData} addQ={AddQuestion} id={props.id} name={props.name} close={closeModal}/>}
       </div>

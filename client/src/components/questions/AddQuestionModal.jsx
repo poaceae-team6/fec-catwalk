@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Error from './Error.jsx';
 import axios from 'axios';
 import { ThemeContext } from '../ThemeContext.js';
+import Track from '../TrackerHOC/Track.js';
 
 const AddQuestionModal = (props) => {
 
@@ -133,7 +134,9 @@ const AddQuestionModal = (props) => {
                 <br></br>
                 {state.error && <Error msg={state.msg} />}
                 <br></br>
-                <input className='modal-btn' type='submit' value='submit' />
+                <Track eventName={`User Submits an Question`} module='Questions'>
+                  <input className='modal-btn' type='submit' value='submit' />
+                </Track>
                 <input className='modal-btn' onClick={props.close} type='submit' value='cancel' />
                 <br></br>
               </form>
@@ -141,8 +144,6 @@ const AddQuestionModal = (props) => {
           </div>
         </div>
       )}
-
-
     </ThemeContext.Consumer>
   );
 };

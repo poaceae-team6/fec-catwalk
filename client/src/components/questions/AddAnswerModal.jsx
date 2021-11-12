@@ -185,7 +185,9 @@ const AddAnswerModal = (props) => {
                {image && image.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} alt=''/>)}
                {state.error && <Error msg={state.msg} />}
                <p></p>
-               <input className='modal-btn' type='submit' value='submit' />
+               <Track eventName={`User Submits an Answer`} module='Answers'>
+                <input className='modal-btn' type='submit' value='submit' />
+               </Track>
                <button className='modal-btn' onClick={props.close}>cancel</button>
              </form>
 
