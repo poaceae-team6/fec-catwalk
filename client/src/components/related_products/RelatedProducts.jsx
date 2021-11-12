@@ -8,15 +8,12 @@ import useOutsideClick from '../useOutsideClick.js';
 import axios from 'axios';
 
 const RelatedProducts = (props) => {
-
   const [relatedProducts, setRelatedProducts] = useState(null);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollLength, setScrollLength] = useState(500);
-
   const [productData, setProductData] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const ref = useRef();
-
   useEffect(() => {
     fetchRelatedProducts();
     // cleanup/reset state after unmount
@@ -24,7 +21,6 @@ const RelatedProducts = (props) => {
       setRelatedProducts(null);
     }
   }, [])
-
   const fetchRelatedProducts = () => {
     axios.get(`/products/${props.currentProduct.id}/related`)
       .then(res => {
@@ -34,7 +30,6 @@ const RelatedProducts = (props) => {
         console.log(error);
       })
   }
-
   const slide = (direction) => {
     let element = document.getElementById('products-slide');
     setScrollLength(element.scrollHeight);
@@ -44,27 +39,21 @@ const RelatedProducts = (props) => {
       setScrollPosition(element.scrollLeft -= 680);
     }
   }
-
   const handleLeftArrow = () => {
     slide('left');
   }
-
   const handleRightArrow = () => {
     slide('right');
   }
-
   const handleModalClick = (clickedProductData) => {
     setProductData(clickedProductData);
     setShowModal(true);
   }
-
   useOutsideClick(ref, () => {
     if (showModal) {
       setShowModal(false);
     }
   });
-
-
   if (relatedProducts === null) {
     return '';
   } else {
@@ -74,18 +63,22 @@ const RelatedProducts = (props) => {
         <div ref={ref}>
           {showModal && productData ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData}/> : null}
         </div>
-        <div className='scroll-container'>
-          <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)}>
-            {scrollPosition > 0 ? <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> : ''}
-          </button>
+        <div className='scroll-container'>   
+          {scrollPosition > 0 ? 
+            <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)}>
+              <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>
+            </button>  : 
+          ''}
           <div className='horizontal-slide' id='products-slide'>
             {relatedProducts.map( (productId, index) => {
               return <RelatedProductsItem productId={productId} fetchNewProduct={props.fetchNewProduct.bind(this)} currentProduct={props.currentProduct} key={index} handleModalClick={handleModalClick}/>
             })}
           </div>
-          <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
-            {relatedProducts.length > 4 && scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
-          </button>
+          {relatedProducts.length > 4 && scrollPosition < scrollLength ? 
+            <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
+            <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> 
+            </button> : 
+          ''}
         </div>
       </div>
     );

@@ -1,32 +1,24 @@
 import React, {Component, useEffect, useState} from 'react';
 import axios from 'axios';
-
 import StarRating from '../review/reviewmain/StarRating.jsx';
 import { ThemeContext } from '../ThemeContext.js';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
-
 import Track from '../TrackerHOC/Track.js';
 
 const YourOutfitItem = (props) => {
-
-  // product object (category, name, description, 'features')
-  // 'styles' object.results[0] (image url - "photos[0].thumbnail_url" and price - "original_price", "sale_price")
   const [productData, setProductData] = useState(null);
   const [styleData, setStyleData] = useState(null);
   const [reviewData, setReviewData] = useState(null);
-
   useEffect(() => {
     fetchProductData();
     fetchStyleData();
     fetchReviewData();
-    // cleanup/reset state after unmount
     return () => {
       setProductData(null);
       setStyleData(null);
       setReviewData(null);
     }
   }, [])
-
   const fetchProductData = () => {
     axios.get(`/products/${props.outfit.id}`)
       .then(res => {
@@ -36,7 +28,6 @@ const YourOutfitItem = (props) => {
         console.log(error);
       })
   }
-
   const fetchStyleData = () => {
     axios.get(`/products/${props.outfit.id}/styles`)
     .then(res => {
@@ -46,7 +37,6 @@ const YourOutfitItem = (props) => {
       console.log(error);
     })
   }
-
   const fetchReviewData = () => {
     axios.get(`/reviews/${props.outfit.id}`)
     .then(res => {
@@ -56,16 +46,13 @@ const YourOutfitItem = (props) => {
       console.log(error);
     })
   }
-
   const onClickCard = () => {
     props.fetchNewProduct(productData.id);
   }
-
   const onDelete = (e) => {
     e.stopPropagation();
     props.deleteFromOutfitList(props.outfit.id, props.outfit.style);
   }
-
   if (productData === null || styleData === null || reviewData === null) {
     return ''
   } else {

@@ -1,19 +1,14 @@
 import React, {useState, useEffect, lazy, Suspense} from 'react';
 import axios from 'axios';
-
-// import RelatedProducts from '../related_products/RelatedProducts.jsx';
 const RelatedProducts = lazy(() => import('../related_products/RelatedProducts.jsx'));
-// import YourOutfit from '../related_products/YourOutfit.jsx';
 const YourOutfit = lazy(() => import('../related_products/YourOutfit.jsx'));
 import OverviewStyle from './OverviewStyle.jsx';
-
 import {IoMdHeartEmpty} from 'react-icons/io';
 import {IoMdHeart} from 'react-icons/io';
 import { BsHeartFill } from 'react-icons/bs';
 import { ThemeContext } from '../ThemeContext.js';
 
 const Overview = (props) => {
-
   const [styles, setStyles] = useState(null);
   const [styleIndex, setStyleIndex] = useState(0);
   const [outfits, setOutfits] = useState(() => {
@@ -23,7 +18,6 @@ const Overview = (props) => {
     return initialValue || [];
   });
   const [fillHeart, setFillHeart] = useState(false);
-
   useEffect(() => {
     // get the outfit data from localStorage
     localStorage.getItem('outfits');
@@ -31,14 +25,12 @@ const Overview = (props) => {
     if (hasOutfitsData === null) {
       localStorage.setItem('outfits', JSON.stringify([]));
     }
-
     fetchData();
     // cleanup/reset state after unmount
     return () => {
       setStyles(null);
     }
   }, [])
-
   const fetchData = () => {
     axios.get(`/products/${props.currentProduct.id}/styles`)
       .then(res => {
@@ -48,17 +40,14 @@ const Overview = (props) => {
         console.log(error);
       })
   }
-
   // update everytime styleIndex is changed.
   useEffect(() => {
     checkHeartStatus();
   }, [styleIndex])
-
   // update everytime outfits is changed.
   useEffect(() => {
     checkHeartStatus();
   }, [outfits])
-
   // check which current styles in current product are already in outfits!
   const checkHeartStatus = () => {
     if (outfits.length === 0) {
@@ -74,15 +63,12 @@ const Overview = (props) => {
       }
     }
   }
-
-  // triggered in Outfit Components
   const updateOutfits = (newOutfit) => {
     let temp = [...outfits, newOutfit];
     setFillHeart(true);
     setOutfits(temp);
     localStorage.setItem('outfits', JSON.stringify(temp));
   }
-
   const addToOutfits = () => {
     let temp = [...outfits, {
       id: props.currentProduct.id,
@@ -92,7 +78,6 @@ const Overview = (props) => {
     setOutfits(temp);
     localStorage.setItem('outfits', JSON.stringify(temp));
   }
-
   const deleteFromOutfits = () => {
     let temp = [...outfits];
     let outfitIndex = temp.findIndex( ({ id, style }) => id === props.currentProduct.id && style === styleIndex);
@@ -101,7 +86,6 @@ const Overview = (props) => {
     setOutfits(temp);
     localStorage.setItem('outfits', JSON.stringify(temp));
   }
-
   const deleteFromOutfitList = (outfitId, outfitStyle) => {
     let temp = [...outfits];
     let outfitIndex = temp.findIndex( ({ id, style }) => id === outfitId && style === outfitStyle);
@@ -109,7 +93,6 @@ const Overview = (props) => {
     setOutfits([...temp]);
     localStorage.setItem('outfits', JSON.stringify(temp));
   }
-
   const handleClickHeart = () => {
     if (fillHeart) {
       deleteFromOutfits();
@@ -117,7 +100,6 @@ const Overview = (props) => {
       addToOutfits();
     }
   }
-
   if (styles === null || outfits === null) {
     return (
       <div className='overview-loading-container'>
