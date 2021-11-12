@@ -1,39 +1,23 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useContext, useEffect, lazy, Suspense} from 'react';
 import { ThemeContext } from './ThemeContext.js';
 import axios from 'axios';
-
 import Track from './TrackerHOC/Track.js';
 import Wrapper from './TrackerHOC/Wrapper.js';
-
-// Theme Toggle Button Icons
 import { BsToggleOn } from 'react-icons/bs';
 import { BsToggleOff } from 'react-icons/bs';
-
 import Overview from './overview/Overview.jsx';
-// import QuestionList from './questions/QuestionList.jsx';
-// import ReviewMain from './review/reviewmain/ReviewMain.jsx';
-
-
 
 const QuestionList = lazy(() => import('./questions/QuestionList.jsx'));
 const ReviewMain = lazy(() => import('./review/reviewmain/ReviewMain.jsx'));
 
 const App = (props) => {
-
   const [currentProduct, setCurrentProduct] = useState(null);
-  // hooks version of componentDidMount
-  // fetch the first product in the proucts list in DB
-  // and set it as the currentProduct
   useEffect(() => {
-
-    // get the outfit data from localStorage
     localStorage.getItem('outfits');
     const hasOutfitsData = localStorage.getItem('outfits');
     if (hasOutfitsData === null) {
       localStorage.setItem('outfits', JSON.stringify([]));
     }
-
     axios.get(`/products`)
       .then(res => {
         setCurrentProduct(res.data[0]);
@@ -94,7 +78,7 @@ const App = (props) => {
               <h3 style={{fontWeight: '300'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! - SALE / DISCOUNT <b>OFFER</b> - NEW PRODUCT HIGHLIGHT</h3>
             </div>
           </Track>
-          <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
+          <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)} darkMode={darkMode}/>
           <Suspense fallback={<div>is Loading...</div>}>
           <QuestionList darkMode={darkMode} id={currentProduct.id} name={currentProduct.name}/>
           <ReviewMain darkMode={darkMode} productId={currentProduct.id} productName={currentProduct.name}/>

@@ -4,7 +4,6 @@ import { BsPlusLg } from 'react-icons/bs';
 import Track from '../TrackerHOC/Track.js';
 
 const YourOutfitItemDefault = (props) => {
-  
   const addToOutfits = () => {
     let temp = props.outfits;
     let outfitIndex = temp.findIndex( ({ id, style }) => id === props.currentProduct.id && style === props.styleIndex);
@@ -15,7 +14,6 @@ const YourOutfitItemDefault = (props) => {
       });
     }
   }
-  
   return (
     <ThemeContext.Consumer>
       {darkMode => (
