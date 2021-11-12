@@ -35,7 +35,7 @@ function ReviewLeft({ productId }) {
        res.data.reveiwTotal = Number(res.data.recommended.true || '0') + Number(res.data.recommended.false || '0') ;
        // Calculate rating average and storge result in res.data.avgRating
        res.data.avgRating = parseFloat(((Number(res.data.ratings['1'] || '0') * 1 + Number(res.data.ratings['2'] || '0') * 2 + Number(res.data.ratings['3'] || '0') * 3 + Number(res.data.ratings['4'] || '0') * 4 + Number(res.data.ratings['5'] || '0') * 5) / res.data.reveiwTotal)).toFixed(1);
-       console.log('total:', res.data.avgRating)
+       //console.log('total:', res.data.avgRating)
 
        // Calculate recommended percentage and storge result in res.data.recommended
        res.data.recommended = Math.round(Number(res.data.recommended.true)/res.data.reveiwTotal * 100)
