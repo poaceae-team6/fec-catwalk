@@ -20,9 +20,9 @@ const Search = (props) => {
 
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', position: 'relative'}}>
+    <div className='search'>
     <form>
-      <input style={searchStyle} onChange={handleInput} type='text' placeholder='Have a question? Search for answers…'/>
+      <input className='searchStyle' onChange={handleInput} type='text' placeholder='Have a question? Search for answers…'/>
     </form>
     </div>
   )

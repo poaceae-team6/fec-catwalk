@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, lazy, Suspense} from 'react';
 import axios from 'axios';
 
-import RelatedProducts from '../related_products/RelatedProducts.jsx';
-import YourOutfit from '../related_products/YourOutfit.jsx';
+// import RelatedProducts from '../related_products/RelatedProducts.jsx';
+const RelatedProducts = lazy(() => import('../related_products/RelatedProducts.jsx'));
+// import YourOutfit from '../related_products/YourOutfit.jsx';
+const YourOutfit = lazy(() => import('../related_products/YourOutfit.jsx'));
 import OverviewStyle from './OverviewStyle.jsx';
 
 import {IoMdHeartEmpty} from 'react-icons/io';
@@ -19,9 +21,9 @@ const Overview = (props) => {
     const storedOutfits = localStorage.getItem('outfits');
     const initialValue = JSON.parse(storedOutfits);
     return initialValue || [];
-  }); 
+  });
   const [fillHeart, setFillHeart] = useState(false);
-  
+
   useEffect(() => {
     // get the outfit data from localStorage
     localStorage.getItem('outfits');
@@ -29,11 +31,11 @@ const Overview = (props) => {
     if (hasOutfitsData === null) {
       localStorage.setItem('outfits', JSON.stringify([]));
     }
-    
+
     fetchData();
     // cleanup/reset state after unmount
     return () => {
-      setStyles(null); 
+      setStyles(null);
     }
   }, [])
 
@@ -46,17 +48,17 @@ const Overview = (props) => {
         console.log(error);
       })
   }
-  
+
   // update everytime styleIndex is changed.
   useEffect(() => {
     checkHeartStatus();
   }, [styleIndex])
-  
+
   // update everytime outfits is changed.
   useEffect(() => {
     checkHeartStatus();
   }, [outfits])
-  
+
   // check which current styles in current product are already in outfits!
   const checkHeartStatus = () => {
     if (outfits.length === 0) {
@@ -72,7 +74,7 @@ const Overview = (props) => {
       }
     }
   }
-  
+
   // triggered in Outfit Components
   const updateOutfits = (newOutfit) => {
     let temp = [...outfits, newOutfit];
@@ -99,7 +101,7 @@ const Overview = (props) => {
     setOutfits(temp);
     localStorage.setItem('outfits', JSON.stringify(temp));
   }
-  
+
   const deleteFromOutfitList = (outfitId, outfitStyle) => {
     let temp = [...outfits];
     let outfitIndex = temp.findIndex( ({ id, style }) => id === outfitId && style === outfitStyle);
@@ -127,7 +129,7 @@ const Overview = (props) => {
     return (
       <ThemeContext.Consumer>
         {darkMode => (
-          <div className='overview-container'>
+          <div className='overview-container' aria-label="Justify">
             <div className='overview-grid'>
               <h2>{props.currentProduct.name}</h2>
               <div className='gallery' style={darkMode ? {backgroundColor: '#2a2c29'} : {}}>

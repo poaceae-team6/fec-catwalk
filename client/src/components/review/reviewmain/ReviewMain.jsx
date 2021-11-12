@@ -4,7 +4,7 @@ import ReviewsRight from './ReviewsRight.jsx'
 import { ReviewProvider } from '../ReviewProvider.jsx'
 
 
-function ReviewMain({ productId, productName }) {
+function ReviewMain({ productId, productName, darkMode }) {
 
   return (
     <div className='reviews-container'>
@@ -15,7 +15,7 @@ function ReviewMain({ productId, productName }) {
 
           </div>
           <div id='rightbar'>
-            <ReviewsRight productId={productId} productName={productName} />
+            <ReviewsRight darkMode={darkMode} productId={productId} productName={productName} />
           </div>
         </div>
       </ReviewProvider>

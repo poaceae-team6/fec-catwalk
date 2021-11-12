@@ -4,7 +4,7 @@ import AddReview from '../addreview/AddReview.jsx';
 import { ReviewContext } from '../ReviewProvider.jsx'
 import axios from 'axios';
 
-function ReviewsRight({ productId, productName }) {
+function ReviewsRight({ productId, productName, darkMode }) {
 
   //In-line styling
   const buttonStyles = {
@@ -109,7 +109,7 @@ function ReviewsRight({ productId, productName }) {
         ADD A REVIEW +
       </button>
       <br></br>
-      {showAddReview ? <AddReview setShowAddReview={ setShowAddReview } productTitle={productName} productId={productId} /> : ''}
+      {showAddReview ? <AddReview darkMode={darkMode} setShowAddReview={ setShowAddReview } productTitle={productName} productId={productId} /> : ''}
     </div>
     );
 }

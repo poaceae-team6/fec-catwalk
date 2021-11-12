@@ -25,9 +25,9 @@ const Answer = (props) => {
 
       // API call
       let id = props.answer.id;
-      axios.put(`/questions/report/answers/${id}`, {answer_id: id})
-      .then(() => {console.log('you report this answer')})
-      .catch(err => console.log(err));
+      axios.put(`/questions/report/answers/${id}`, { answer_id: id })
+        .then(() => { console.log('you report this answer') })
+        .catch(err => console.log(err));
 
     }
   };
@@ -36,7 +36,7 @@ const Answer = (props) => {
   const handleHelpful = () => {
     const id = props.answer.id;
 
-    if(state.vote === false && localStorage.getItem(id) === null) {
+    if (state.vote === false && localStorage.getItem(id) === null) {
       setState({
         ...state,
         helpfulNum: props.answer.helpfulness += 1,
@@ -44,26 +44,25 @@ const Answer = (props) => {
       })
 
       //calls the API for the update
-      axios.put(`/questions/helpfulness/answers/${id}`, {answer_id: id})
-      .then(() => {console.log('you find this answer helpful')})
-      .catch(err => console.log(err));
+      axios.put(`/questions/helpfulness/answers/${id}`, { answer_id: id })
+        .then(() => { console.log('you find this answer helpful') })
+        .catch(err => console.log(err));
 
       localStorage.setItem(id, true);
     } else {
-      console.log ('you voted')
+      console.log('you voted')
     }
   };
 
- //overflow style
- let overflow = {
-  overflow: 'scroll',
-  maxHeight: '300px'
-}
+  //overflow style
+  let overflow = {
+    overflow: 'scroll',
+    maxHeight: '300px',
+  }
 
-  const yesButton = {textDecoration: 'underline', cursor: 'pointer'};
+  const yesButton = { textDecoration: 'underline', cursor: 'pointer' };
 
-  const inline = {left: '23px', position: 'relative'};
-  const imgStyle = {left: '23px', position: 'relative', width: 'auto', height: '50px', margin: '10px'};
+  const inline = { left: '23px', position: 'relative', color: 'grey' };
 
   // bold the A in the answer
   let boldA = {
@@ -72,10 +71,10 @@ const Answer = (props) => {
 
   // conditional bold the seller username
   let bold = {
-   fontWeight: 'normal'
+    fontWeight: 'normal'
   };
 
-  if(props.answer.answerer_name === 'Seller') {
+  if (props.answer.answerer_name === 'Seller') {
     bold.fontWeight = 'bold';
   }
 
@@ -85,10 +84,10 @@ const Answer = (props) => {
     return (
       <div style={overflow}>
         <p>
-           <span style={boldA}>A: </span>{props.answer.body}
+          <span style={boldA}>A: </span>{props.answer.body}
         </p>
         <span style={inline}>
-        <span> by User</span> <span style={bold}> {props.answer.answerer_name}</span><span>, {date}</span>  |  <span>helpful?</span> <span style={yesButton} onClick={handleHelpful}> Yes </span> <span>({state.helpfulNum})</span>  |  <span style={yesButton} onClick={handleReport}>{state.reportDisplay}</span>
+          <span> by User</span> <span style={bold}> {props.answer.answerer_name}</span><span>, {date}</span>  |  <span>helpful?</span> <span style={yesButton} onClick={handleHelpful}> Yes </span> <span>({state.helpfulNum})</span>  |  <span style={yesButton} onClick={handleReport}>{state.reportDisplay}</span>
         </span>
       </div>
 
@@ -98,10 +97,10 @@ const Answer = (props) => {
     return (
       <div style={overflow}>
         <p> A: {props.answer.body}</p>
-        {props.answer.photos.map((img, index) => <img alt='' key={index} src={img} style={imgStyle}/>)}
+        {props.answer.photos.map((img, index) => <img alt='' key={index} src={img} className='imgStyle' />)}
         <br></br>
         <span style={inline}>
-        <span> by User </span> <span style={bold}>{props.answer.answerer_name}</span> <span>, {date}</span>  |  <span>helpful?</span>  <span style={yesButton} onClick={handleHelpful}>Yes </span> <span>({state.helpfulNum})</span>  |  <span style={yesButton} onClick={handleReport}>{state.reportDisplay}</span>
+          <span> by User </span> <span style={bold}>{props.answer.answerer_name}</span> <span>, {date}</span>  |  <span>helpful?</span>  <span style={yesButton} onClick={handleHelpful}>Yes </span> <span>({state.helpfulNum})</span>  |  <span style={yesButton} onClick={handleReport}>{state.reportDisplay}</span>
         </span>
       </div>
 

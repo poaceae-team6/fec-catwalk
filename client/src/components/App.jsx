@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, lazy, Suspense} from 'react';
 import { ThemeContext } from './ThemeContext.js';
 import axios from 'axios';
 
@@ -8,8 +8,11 @@ import { BsToggleOn } from 'react-icons/bs';
 import { BsToggleOff } from 'react-icons/bs';
 
 import Overview from './overview/Overview.jsx';
-import QuestionList from './questions/QuestionList.jsx';
-import ReviewMain from './review/reviewmain/ReviewMain.jsx';
+// import QuestionList from './questions/QuestionList.jsx';
+// import ReviewMain from './review/reviewmain/ReviewMain.jsx';
+
+const QuestionList = lazy(() => import('./questions/QuestionList.jsx'));
+const ReviewMain = lazy(() => import('./review/reviewmain/ReviewMain.jsx'));
 
 const App = (props) => {
 
@@ -75,14 +78,21 @@ const App = (props) => {
             <h3 style={darkMode ? {color: '#d8e1d5'} : {}}>SITE-WIDE ANNOUNCEMENT MESSAGE! - SALE / DISCOUNT <strong>OFFER</strong> - NEW PRODUCT HIGHLIGHT</h3>
           </div>
           <div className='theme-setting'>
+<<<<<<< HEAD
             <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
             <button id='toggle-btn' style={darkMode ? {color: '#f3f3f3'} : {}} onClick={toggleMode.bind(this)}>
+=======
+            <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
+            <button id='toggle-btn' aria-label="Justify" style={darkMode ? {color: 'white'} : {}} onClick={toggleMode.bind(this)}>
+>>>>>>> 95840f803c3256d26c4b2f060717e00000d5ffd2
               {darkMode ? <BsToggleOn /> : <BsToggleOff />}
             </button>
           </div>
           <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
+          <Suspense fallback={<div>is Loading...</div>}>
           <QuestionList id={currentProduct.id} name={currentProduct.name}/>
-          <ReviewMain productId={currentProduct.id} />
+          <ReviewMain darkMode={darkMode} productId={currentProduct.id} />
+          </Suspense>
         </div>
       </ThemeContext.Provider>
     );

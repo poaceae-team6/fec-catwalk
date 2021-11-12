@@ -1,39 +1,40 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import StarRatingInput from '../reviewmain/StarRatingInput.jsx';
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import axios from 'axios';
-import { ReviewContext } from '../ReviewProvider.jsx'
+import { ReviewContext } from '../ReviewProvider.jsx';
 
-function AddReview({ setShowAddReview, productTitle, productId }) {
+function AddReview({ setShowAddReview, productTitle, productId, darkMode }) {
   const [rating, setRating] = useState(5);
   const [summary, setSummary] = useState("");
   const [body, setBody] = useState("");
-  const [photo1, setPhoto1] = useState('');
-  const [photo2, setPhoto2] = useState('');
-  const [photo3, setPhoto3] = useState('');
+  // const [photo1, setPhoto1] = useState('');
+  // const [photo2, setPhoto2] = useState('');
+  // const [photo3, setPhoto3] = useState('');
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [recommend, setRecommend] = useState(true);
   const [characteristics, setCharacteristics] = useState({});
   const [warnings, setWarnings] = useState([]);
+  const [images, setImages] = useState([]);
 
   const reviewContext = useContext(ReviewContext);
 
   const ButtonStyles = {
     height: '35px',
     width: 'auto',
-    padding:'8px',
+    padding: '8px',
     fontSize: '16px',
     fontWeight: 'bold',
     "&:hover": {
       color: "red"
-   },
+    },
   }
 
   const InputBoxStyles = {
     width: '95%',
     marginBottom: '10px',
-    padding:'10px',
+    padding: '10px',
     border: 'solid grey 1px',
     fontSize: '16px',
     fontFamily: 'sans-serif'
@@ -42,29 +43,50 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
   const handleCharChange = (event) => {
     const id = event.target.name;
     const value = event.target.value;
-    setCharacteristics({...characteristics, [id]: value});
+    setCharacteristics({ ...characteristics, [id]: Number(value) });
+  }
+
+  //handle upload image
+  const onImageChange = (e) => {
+    let images = e.target.files;
+    let length = images.length;
+    let results = [];
+
+    if (length > 5) {
+      length = 5;
+    }
+
+    for (let i = 0; i < length; i++) {
+      let img = URL.createObjectURL(images[i]);
+      results.push(img);
+    }
+
+    setImages(results);
   }
 
   const submit = (event) => {
-    const photos = [];
-    if (photo1) {
-      photos.push(photo1);
-    }
-    if (photo2) {
-      photos.push(photo2);
-    }
-    if (photo3) {
-      photos.push(photo3);
-    }
+    // const photos = [];
+    // if (photo1) {
+    //   photos.push(photo1);
+    // }
+    // if (photo2) {
+    //   photos.push(photo2);
+    // }
+    // if (photo3) {
+    //   photos.push(photo3);
+    // }
+
     const data = {
-      rating, summary, body, photos, name: nickName,
-      email, recommend, product_id: productId, characteristics }
+      rating, summary, body, photos: images, name: nickName,
+      email, recommend, product_id: productId, characteristics
+    }
     console.log('submitting review:', JSON.stringify(data));
 
     const warningList = validate(data);
     console.log('get warnings: ', JSON.stringify(warningList));
     setWarnings(warningList);
-    if (!warningList) {
+    if (warningList.length === 0) {
+      console.log('submitting');
       axios({
         method: 'post',
         url: `/reviews`,
@@ -88,7 +110,7 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
     const warnings = [];
     const mandatories = ['rating', 'recommend', 'name', 'email'];
     for (const key of mandatories) {
-      if (!data[key]) {
+      if (data[key] === null) {
         warnings.push(`Missing ${key} in the review.`)
       }
     }
@@ -116,156 +138,164 @@ function AddReview({ setShowAddReview, productTitle, productId }) {
 
 
   return (
-    <div className='popup-box'>
-      <div className='popup-inner-box'>
-        <AiOutlineCloseCircle className='review-buttons' style={{float: 'right'}} color="grey" size= {30} onClick={ () => setShowAddReview(false)}/>
 
-        <div style={{fontSize: '16px',fontWeight: 'bold', marginTop: '10px', marginBottom: '10px'}}>
-          {productTitle}</div>
-        <br></br>
 
-        <div>
-          {warnings.length > 0 ?
-            <div >
-              You must enter the following:
-              <ul>
-                {warnings.map((warn, i) => (
-                  <li key={i}>{warn}</li>
-                ))}
-              </ul>
+        <div className='popup-box'>
+          <div className={darkMode ? 'popup-inner-dark' : 'popup-inner-box'}>
+            <AiOutlineCloseCircle className='review-buttons' style={{ float: 'right' }} color="grey" size={30} onClick={() => setShowAddReview(false)} />
+
+            <div style={{ fontSize: '16px', fontWeight: 'bold', marginTop: '10px', marginBottom: '10px' }}>
+              {productTitle}</div>
+            <br></br>
+
+            <form onSubmit={submit}>
+              <div style={{ height: '30px' }}><StarRatingInput updateStarRating={setRating} /></div>
               <br></br>
-            </div> : null
-          }
+
+              <div style={{ whiteSpace: 'nowrap' }}>
+                <div style={{ display: 'inline-block', marginRight: '5px' }}>Do you recommend this product? *</div>
+                <div style={{ display: 'inline-block' }}>
+                  <input type="radio" value='true' name="YN" onChange={() => { setRecommend(true) }} checked /> Yes
+                  <input type="radio" value='false' name="YN" onChange={() => { setRecommend(false) }} /> No
+                </div>
+              </div>
+              <br></br>
+
+              <div style={{ whiteSpace: 'nowrap' }}>Characteristics: *
+                <table><tbody>
+                  {reviewContext.reviewMeta.characteristics ?
+                    Object.keys(reviewContext.reviewMeta.characteristics).map((charName, i) => (
+                      <tr key={i}>
+                        <td style={{ display: 'inline-block', marginRight: '5px', fontWeight: 'bold' }}>
+                          {charName}:
+                        </td>
+                        {[1, 2, 3, 4, 5].map((value, i) => (
+                          <td key={i}>
+                            <input
+                              type="radio"
+                              value={value}
+                              name={reviewContext.reviewMeta.characteristics[charName].id}
+                              onChange={handleCharChange} />
+                            {reviewContext.reviewMeta.characteristicsRange[charName][i]}
+                          </td>
+                        ))}
+                      </tr>)) : null}
+                </tbody></table>
+              </div>
+              <br></br>
+
+              <div>
+                Summary:
+                <input
+                  style={InputBoxStyles}
+                  type="text"
+                  placeholder="Example: Best purchase ever!"
+                  value={summary}
+                  name="summary"
+                  onChange={(e) => { setSummary(e.target.value) }} />
+                <br></br>
+                <small>up to 60 characters</small>
+              </div>
+              <br></br>
+
+              <div>
+                Review Body: *
+                <textarea
+                  style={InputBoxStyles}
+                  placeholder="Why did you like the product or not?"
+                  value={body}
+                  name="body"
+                  onChange={(e) => setBody(e.target.value)} />
+                <small>
+                  {body.length >= 50 ?
+                    'Minimum reached' :
+                    'Minimum required characters left: ' + (50 - body.length)}
+                </small>
+              </div>
+              <br></br>
+
+              {/* <div><UploadPic /></div><br></br> */}
+              <div>
+                Add Photos:
+                {/* <input
+                style={InputBoxStyles}
+                type="text"
+                placeholder="Photo1"
+                value={photo1}
+                name="photo1"
+                onChange={(e) => setPhoto1(e.target.value)}/>
+              <input
+                style={InputBoxStyles}
+                type="text"
+                placeholder="Photo2"
+                value={photo2}
+                name="photo2"
+                onChange={(e) => setPhoto2(e.target.value)}/>
+              <input
+                style={InputBoxStyles}
+                type="text"
+                placeholder="Photo3"
+                value={photo3}
+                name="photo3"
+                onChange={(e) => setPhoto3(e.target.value)}/> */}
+                <input onChange={onImageChange} type='file' name='upload image' multiple />
+                {images && images.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} />)}
+              </div>
+
+
+              <p></p>
+              <br></br>
+
+              <div>
+                Nickname: *
+                <input
+                  style={InputBoxStyles}
+                  type="text"
+                  placeholder="Nick Name"
+                  value={nickName}
+                  name="nickName"
+                  onChange={(e) => setNickName(e.target.value)} />
+              </div>
+              <small>For privacy reasons, do not use your full name or email address.</small>
+              <br></br>
+              <br></br>
+
+              <div>
+                Email: *
+                <input
+                  style={InputBoxStyles}
+                  type="text"
+                  placeholder="Email"
+                  value={email}
+                  name="email"
+                  onChange={(e) => setEmail(e.target.value)} />
+                <br></br>
+                <small>For authentication reasons, you will not be emailed.</small>
+              </div>
+              <br></br>
+
+              <div>
+                {warnings.length > 0 ?
+                  <div style={{ color: 'red' }}>
+                    You must enter the following:
+                    <ul>
+                      {warnings.map((warn, i) => (
+                        <li key={i}>{warn}</li>
+                      ))}
+                    </ul>
+                    <br></br>
+                  </div> : null
+                }
+              </div>
+
+              <input
+                style={ButtonStyles}
+                type="submit"
+                value="Submit Review" />
+            </form>
+          </div>
         </div>
 
-        <form onSubmit={submit}>
-          <div style={{height: '30px'}}><StarRatingInput updateStarRating={setRating}/></div>
-          <br></br>
-
-          <div style={{whiteSpace: 'nowrap'}}>
-            <div style={{display: 'inline-block', marginRight: '5px'}}>Do you recommend this product? *</div>
-            <div style={{display: 'inline-block'}}>
-              <input type="radio" value='true' name="YN" onChange={() => {setRecommend(true)}} checked/> Yes
-              <input type="radio" value='false' name="YN"  onChange={() => {setRecommend(false)}}/> No
-            </div>
-          </div>
-          <br></br>
-
-          <div style={{whiteSpace: 'nowrap'}}>Characteristics: *
-            <table><tbody>
-              {reviewContext.reviewMeta.characteristics ?
-                Object.keys(reviewContext.reviewMeta.characteristics).map((charName, i) => (
-                  <tr key={i}>
-                    <td style={{display: 'inline-block', marginRight: '5px', fontWeight: 'bold' }}>
-                      {charName}:
-                    </td>
-                    {[1, 2, 3, 4, 5].map((value, i) => (
-                      <td key={i}>
-                        <input
-                          type="radio"
-                          value={value}
-                          name={reviewContext.reviewMeta.characteristics[charName].id}
-                          onChange={handleCharChange} />
-                          {reviewContext.reviewMeta.characteristicsRange[charName][i]}
-                      </td>
-                    ))}
-                </tr>)) : null}
-            </tbody></table>
-          </div>
-          <br></br>
-
-          <div>
-            Summary:
-            <input
-              style={InputBoxStyles}
-              type="text"
-              placeholder="Example: Best purchase ever!"
-              value={summary}
-              name="summary"
-              onChange={(e) => {setSummary(e.target.value)}} />
-              <br></br>
-            <small>up to 60 characters</small>
-          </div>
-          <br></br>
-
-          <div>
-            Review Body: *
-            <textarea
-              style={InputBoxStyles}
-              placeholder="Why did you like the product or not?"
-              value={body}
-              name="body"
-              onChange={(e) => setBody(e.target.value)} />
-            <small>
-              {body.length >= 50 ?
-                'Minimum reached' :
-                'Minimum required characters left: ' + (50 - body.length) }
-            </small>
-          </div>
-          <br></br>
-
-          {/* <div><UploadPic /></div><br></br> */}
-          <div>
-            Add Photos:
-            <input
-              style={InputBoxStyles}
-              type="text"
-              placeholder="Photo1"
-              value={photo1}
-              name="photo1"
-              onChange={(e) => setPhoto1(e.target.value)}/>
-            <input
-              style={InputBoxStyles}
-              type="text"
-              placeholder="Photo2"
-              value={photo2}
-              name="photo2"
-              onChange={(e) => setPhoto2(e.target.value)}/>
-            <input
-              style={InputBoxStyles}
-              type="text"
-              placeholder="Photo3"
-              value={photo3}
-              name="photo3"
-              onChange={(e) => setPhoto3(e.target.value)}/>
-          </div>
-          <br></br>
-
-          <div>
-            Nickname: *
-          <input
-            style={InputBoxStyles}
-            type="text"
-            placeholder="Nick Name"
-            value={nickName}
-            name="nickName"
-            onChange={(e) => setNickName(e.target.value)}/>
-          </div>
-          <small>For privacy reasons, do not use your full name or email address.</small>
-          <br></br>
-          <br></br>
-
-          <div>
-            Email: *
-            <input
-              style={InputBoxStyles}
-              type="text"
-              placeholder="Email"
-              value={email}
-              name="email"
-              onChange={(e) => setEmail(e.target.value)}/>
-            <br></br>
-            <small>For authentication reasons, you will not be emailed.</small>
-          </div>
-          <br></br>
-
-          <input
-            style={ButtonStyles}
-            type="submit"
-            value="Submit Review" />
-        </form>
-      </div>
-    </div>
   );
 }
 

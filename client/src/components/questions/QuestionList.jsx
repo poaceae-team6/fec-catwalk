@@ -164,7 +164,7 @@ const QuestionList = (props) => {
         <h2 className='list-title'>QUESTIONS & ANSWERS</h2>
         <Search ql={state} questions={state.data} search={handleSearch}/>
         <div style={overflow}>
-          {data.map((question, index) => <QuestionItem getData={useEffect} name={props.name} key={index} question={question} />)}
+          {data.map((question, index) => <QuestionItem getData={getData} name={props.name} key={index} question={question} />)}
         </div>
         <span style={{display:'flex', justifyContent:'center', position: 'relative'}}>
         <button className='click-btn' onClick={handleMoreQuestionsClick}>MORE ANSWERED QUESTIONS</button>    <button className='click-btn' onClick={openAddQuestion}>ADD A QUESTIONS +</button>

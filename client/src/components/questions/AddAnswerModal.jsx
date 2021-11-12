@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Error from './Error.jsx';
 import axios from 'axios';
+import { ThemeContext } from '../ThemeContext.js';
 
 const AddAnswerModal = (props) => {
 
@@ -16,37 +17,6 @@ const AddAnswerModal = (props) => {
     error: false,
     msg: [],
   })
-
-  let modalBg = {
-    width: '700px',
-    height: '950px',
-    backgroundColor: 'white',
-    position: 'absolute',
-    display: 'inline-block',
-    left: '400px',
-    zIndex: '1000'
-  };
-
-  let modalContianer = {
-    width: '700px',
-    height: '950px',
-    backgroundColor: 'white',
-    display: 'inline-block',
-    padding: '25px',
-    border: 'solid 1px',
-  }
-
-  let inputBox = {
-    width: '500px',
-    height: '30px',
-    fontSize: '18px',
-  }
-
-  let answerBox = {
-    width: '500px',
-    height: '300px',
-    fontSize: '18px',
-  }
 
   const refresh = () => {
     props.getData();
@@ -188,37 +158,43 @@ const AddAnswerModal = (props) => {
   }
 
   return (
-    <div className='popup-modal' >
-      <div className='popup-inner-modal' >
-        <div>
-          <button className='close-btn' onClick={props.close}>X</button>
-        </div>
-        <div>
-          <h2>Submit Your Answer</h2>
-          <h4>{props.name}: {props.question} </h4>
-        </div>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <p>What is your nickname? *</p>
-            <input onChange={nameChange} style={inputBox} type='text' placeholder='Example: jack543!' />
-            <p>For privacy reasons, do not use your full name or email address</p>
+    <ThemeContext.Consumer>
+      {darkMode => (
+         <div className='popup-modal' >
+         <div className={darkMode ? 'popup-inner-modal-dark' : 'popup-inner-modal'} >
+           <div>
+             <button className='close-btn' onClick={props.close}>X</button>
+           </div>
+           <div className='modal-title'>
+             <p>Submit Your Answer</p>
+             <p className='modal-subtitle'>{props.name}: {props.question} </p>
+           </div>
+           <div className='modal-text'>
+             <form onSubmit={handleSubmit}>
+               <p>What is your nickname? *</p>
+               <input onChange={nameChange} className='small-input' type='text' placeholder='Example: jack543!' />
+               <p>For privacy reasons, do not use your full name or email address</p>
 
-            <p>What is your email? *</p>
-            <input onChange={emailChange} style={inputBox} type='text' placeholder='Example: jack@email.com' />
-            <p>For authentication reasons, you will not be emailed</p>
-            <p>Your Answer *</p>
-            <input onChange={answerChange} style={answerBox} type='text' placeholder='your answer here...' />
-            <p>Do you want to upload your pictures? (up to 5) </p>
-            <input onChange={onImageChange} type='file' name='upload image' multiple />
-            {image && image.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} alt=''/>)}
-            <p></p>
-            <input type='submit' value='submit' />
-          </form>
-          <button onClick={props.close}>cancel</button>
-          {state.error && <Error msg={state.msg} />}
-        </div>
-      </div>
-    </div>
+               <p>What is your email? *</p>
+               <input onChange={emailChange} className='small-input' type='text' placeholder='Example: jack@email.com' />
+               <p>For authentication reasons, you will not be emailed</p>
+               <p>Your Answer *</p>
+               <input onChange={answerChange} className='large-input' type='text' placeholder='your answer here...' />
+               <p>Do you want to upload your pictures? (up to 5) </p>
+               <input className='modal-btn' onChange={onImageChange} type='file' name='upload image' multiple />
+               {image && image.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} alt=''/>)}
+               {state.error && <Error msg={state.msg} />}
+               <p></p>
+               <input className='modal-btn' type='submit' value='submit' />
+               <button className='modal-btn' onClick={props.close}>cancel</button>
+             </form>
+
+           </div>
+         </div>
+       </div>
+      )}
+
+    </ThemeContext.Consumer>
   )
 }
 
