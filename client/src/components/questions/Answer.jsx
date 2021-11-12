@@ -49,8 +49,6 @@ const Answer = (props) => {
         .catch(err => console.log(err));
 
       localStorage.setItem(id, true);
-    } else {
-      console.log('you voted')
     }
   };
 
@@ -96,7 +94,7 @@ const Answer = (props) => {
 
     return (
       <div style={overflow}>
-        <p> A: {props.answer.body}</p>
+        <p> <span style={boldA}>A: </span> {props.answer.body}</p>
         {props.answer.photos.map((img, index) => <img alt='' key={index} src={img} className='imgStyle' />)}
         <br></br>
         <span style={inline}>

@@ -136,7 +136,6 @@ const AddAnswerModal = (props) => {
       // send this data to API
       axios.post(`/questions/answers/${questionId}`, postObj)
         .then(() => {
-          console.log('add answer ok');
           props.getData();
           props.close();
         })
@@ -166,7 +165,7 @@ const AddAnswerModal = (props) => {
              <button className='close-btn' onClick={props.close}>X</button>
            </div>
            <div className='modal-title'>
-             <p>Submit Your Answer</p>
+             <p className='modal-title'>Submit Your Answer</p>
              <p className='modal-subtitle'>{props.name}: {props.question} </p>
            </div>
            <div className='modal-text'>

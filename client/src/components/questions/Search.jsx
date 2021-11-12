@@ -21,9 +21,9 @@ const Search = (props) => {
 
   return (
     <div className='search'>
-    <form>
+
       <input className='searchStyle' onChange={handleInput} type='text' placeholder='Have a question? Search for answers…'/>
-    </form>
+
     </div>
   )
 }

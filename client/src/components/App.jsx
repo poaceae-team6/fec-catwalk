@@ -90,7 +90,7 @@ const App = (props) => {
           </div>
           <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
           <Suspense fallback={<div>is Loading...</div>}>
-          <QuestionList id={currentProduct.id} name={currentProduct.name}/>
+          <QuestionList darkMode={darkMode} id={currentProduct.id} name={currentProduct.name}/>
           <ReviewMain darkMode={darkMode} productId={currentProduct.id} />
           </Suspense>
         </div>
