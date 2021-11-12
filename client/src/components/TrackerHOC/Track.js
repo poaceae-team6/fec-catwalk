@@ -1,16 +1,19 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 // Higher Order Component
 class Track extends React.Component {
   handleEvent = e => {
     console.log("TRACK", this.props.eventName);
   };
 
-  handleChildMounted = (el, child) => {
-    const DOMNode = ReactDOM.findDOMNode(el);
+  handleChildMounted = (element, child) => {
+    const DOMNode = ReactDOM.findDOMNode(element);
     if (DOMNode) {
       DOMNode.addEventListener("click", this.handleEvent);
     }
     if (typeof child.ref === "function") {
-      child.ref(el);
+      child.ref(element);
     }
   };
 
@@ -23,7 +26,7 @@ class Track extends React.Component {
 
   remapChildren(children) {
     return React.Children.map(children, child => {
-      const ref = el => this.handleChildMounted(el, child);
+      const ref = element => this.handleChildMounted(element, child);
 
       // DOM Component, such as:
       // <button />
@@ -57,3 +60,5 @@ class Track extends React.Component {
     return this.remapChildren(this.props.children);
   }
 }
+
+export default Track;

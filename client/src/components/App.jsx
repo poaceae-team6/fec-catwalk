@@ -3,6 +3,8 @@ import React, { useState, useContext, useEffect, lazy, Suspense} from 'react';
 import { ThemeContext } from './ThemeContext.js';
 import axios from 'axios';
 
+import Track from './TrackerHOC/Track.js';
+import Wrapper from './TrackerHOC/Wrapper.js';
 
 // Theme Toggle Button Icons
 import { BsToggleOn } from 'react-icons/bs';
@@ -81,9 +83,11 @@ const App = (props) => {
           </div>
           <div className='theme-setting'>
             <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
-            <button id='toggle-btn' style={darkMode ? {color: '#f3f3f3'} : {}} onClick={toggleMode.bind(this)} aria-label="Right Align">
+            <Track eventName={'toggle theme'}>
+              <button id='toggle-btn' style={darkMode ? {color: '#f3f3f3'} : {}} onClick={toggleMode.bind(this)} aria-label="Right Align">
               {darkMode ? <BsToggleOn /> : <BsToggleOff />}
-            </button>
+              </button>
+            </Track>
           </div>
           <div className="announce-container">
             <h3 style={{fontWeight: '300'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! - SALE / DISCOUNT <b>OFFER</b> - NEW PRODUCT HIGHLIGHT</h3>
