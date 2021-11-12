@@ -7,8 +7,6 @@ import ProductComparisonModal from './ProductComparisonModal.jsx';
 import { ThemeContext } from '../ThemeContext.js';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { FaRegStar } from 'react-icons/fa';
-  
-  // style={darkMode ? {color: 'red'} : {}}
 
 const RelatedProductsItem = (props) => {
 
@@ -80,9 +78,9 @@ const RelatedProductsItem = (props) => {
               <FaRegStar onClick={toggleModal.bind(this)} className='info-btn'/>
               {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}
             </div>
-            <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>CATEGORY: {productData.category.toUpperCase()}</h3>
-            <h2 className='product-name' style={darkMode ? {color: '#f3f3f3'} : {}}>{productData.name}</h2>
-            {styleData.sale_price ? <h3 style={darkMode ? {color: '#f3f3f3'} : {}}><span style={{color: 'red', 'fontWeight': 'bold'}}>${styleData.sale_price}</span> <span style={{'textDecorationLine': 'line-through'}}>${styleData.original_price}</span></h3> : <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>${styleData.original_price}</h3>}
+            <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
+            <h2 className='product-name'>{productData.name}</h2>
+            {styleData.sale_price ? <h3><span style={{color: 'red', 'fontWeight': 'bold'}}>${styleData.sale_price}</span> <span style={{'textDecorationLine': 'line-through'}}>${styleData.original_price}</span></h3> : <h3>${styleData.original_price}</h3>}
             <StarRating rating={reviewData.reduce((total, obj) => obj.rating + total, 0) / reviewData.length}/>
           </div>
         )}
