@@ -69,29 +69,25 @@ const RelatedProducts = (props) => {
     return '';
   } else {
     return (
-      <ThemeContext.Consumer>
-        {darkMode => (
-          <div className='products-container'>
-            <h2 className='list-title' style={darkMode ? {color: '#f3f3f3'} : {}}>RELATED PRODUCTS</h2>
-            <div ref={ref}>
-              {showModal && productData ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData}/> : null}
-            </div>
-            <div className='scroll-container'>
-              <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)}>
-                {scrollPosition > 0 ? <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> : ''}
-              </button>
-              <div className='horizontal-slide' id='products-slide'>
-                {relatedProducts.map( (productId, index) => {
-                  return <RelatedProductsItem productId={productId} fetchNewProduct={props.fetchNewProduct.bind(this)} currentProduct={props.currentProduct} key={index} handleModalClick={handleModalClick}/>
-                })}
-              </div>
-              <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
-                {relatedProducts.length > 4 && scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
-              </button>
-            </div>
+      <div className='products-container'>
+        <h2 className='list-title'>RELATED PRODUCTS</h2>
+        <div ref={ref}>
+          {showModal && productData ? <ProductComparisonModal currentProduct={props.currentProduct} comparedProduct={productData}/> : null}
+        </div>
+        <div className='scroll-container'>
+          <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)}>
+            {scrollPosition > 0 ? <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> : ''}
+          </button>
+          <div className='horizontal-slide' id='products-slide'>
+            {relatedProducts.map( (productId, index) => {
+              return <RelatedProductsItem productId={productId} fetchNewProduct={props.fetchNewProduct.bind(this)} currentProduct={props.currentProduct} key={index} handleModalClick={handleModalClick}/>
+            })}
           </div>
-        )}
-      </ThemeContext.Consumer>
+          <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
+            {relatedProducts.length > 4 && scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
+          </button>
+        </div>
+      </div>
     );
   }
 }

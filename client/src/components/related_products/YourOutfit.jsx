@@ -30,28 +30,23 @@ const YourOutfit = (props) => {
   }
 
   return (
-    <ThemeContext.Consumer>
-      {darkMode => (
-        // className={darkMode ? 'arrow-dark left' : 'arrow left'}
-        <div className='outfit-container'>
-          <h2 className='list-title' style={darkMode ? {color: '#f3f3f3'} : {}}>YOUR OUTFIT</h2>
-          <div className='scroll-container'>
-            <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)}>
-              {scrollPosition > 0 ? <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> : ''}
-            </button>
-            <div className='horizontal-slide' id='outfit-slide'>
-              <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits} styleIndex={props.styleIndex}/>
-              {props.outfits.map( (outfit, index) => {
-                return <YourOutfitItem outfit={outfit} key={outfit.id + '' + outfit.style} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={props.deleteFromOutfitList.bind(this)}/>
-              })}
-            </div>
-            <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
-              {props.outfits.length > 3 && scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
-            </button>
-          </div>
+    <div className='outfit-container'>
+      <h2 className='list-title'>YOUR OUTFIT</h2>
+      <div className='scroll-container'>
+        <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)}>
+          {scrollPosition > 0 ? <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> : ''}
+        </button>
+        <div className='horizontal-slide' id='outfit-slide'>
+          <YourOutfitItemDefault currentProduct={props.currentProduct} outfits={props.outfits} updateOutfits={props.onUpdateOutfits} styleIndex={props.styleIndex}/>
+          {props.outfits.map( (outfit, index) => {
+            return <YourOutfitItem outfit={outfit} key={outfit.id + '' + outfit.style} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={props.deleteFromOutfitList.bind(this)}/>
+          })}
         </div>
-      )}
-    </ThemeContext.Consumer>
+        <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
+          {props.outfits.length > 3 && scrollPosition < scrollLength ? <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> : ''}
+        </button>
+      </div>
+    </div>
   );
 }
 

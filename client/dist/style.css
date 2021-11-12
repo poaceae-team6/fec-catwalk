@@ -72,18 +72,17 @@ h1, h2, h3, h4, p {
 }
 
 h2 {
-  font-size: 24px;
-  text-align: left;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 h3 {
   font-size: 18px;
-  text-align: center;
+  font-weight: 400;
 }
 
 p {
-  font-size: 18px;
-  text-align: left;
+  font-size: 16px;
 }
 
 a { color: var(--link-color); }
@@ -103,15 +102,6 @@ a { color: var(--link-color); }
   padding-top: 40px;
 }
 
-.logo h1 {
-  margin: 0px;
-  text-decoration: underline;
-  font-size: 20px;
-  padding-top: 25px;
-  font-weight: bolder;
-  font-style: italic;
-}
-
 /*******************/
 /* Containers
 /*******************/
@@ -119,13 +109,13 @@ a { color: var(--link-color); }
 .announce-container {
   margin: auto;
   margin-bottom: 50px;
+  text-align: center;
 }
 
 .overview-container {
   margin: auto;
   height: 1550px;
   width: var(--width);
-  text-align: center;
 }
 
 .details-container {
@@ -216,10 +206,29 @@ a { color: var(--link-color); }
   "description features";
 }
 
+.product {
+  grid-area: name;
+  height: 225px;
+  display: block;
+  margin: auto;
+}
+
+.product h2 {
+  padding-left: 30px;
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.product h3 {
+  padding-left: 30px;
+  font-weight: 400;
+}
+
 .gallery {
   grid-area: gallery;
   display: block;
   overflow: hidden;
+  text-align: center;
   width: 672px;
   height: 450px;
   background-color: #f3f3f3;
@@ -232,7 +241,6 @@ a { color: var(--link-color); }
 .description {
   grid-area: description;
   display: block;
-  height: 200px;
   padding-top: 30px;
   padding-left: 150px;
   text-align: left;
@@ -255,15 +263,6 @@ a { color: var(--link-color); }
   height: 100%;
 }
 
-.overview-grid h2 {
-  grid-area: name;
-  display: block;
-  margin: auto;
-  margin-left: 0px;
-  padding-left: 30px;
-  font-size: 35px;
-  text-align: left;
-}
 
 .styles {
   grid-area: styles;
@@ -276,8 +275,6 @@ a { color: var(--link-color); }
 
 .overview-buttons {
   grid-area: buttons;
-  text-align: left;
-  padding-left: 30px;
 }
 
 .styles-selection {
@@ -303,17 +300,15 @@ a { color: var(--link-color); }
 #cart-btn {
   height: 60px;
   width: 240px;
+  margin-left: 40px;
   background: none;
   border: 1px solid #808080;
-  text-align: left;
   cursor: pointer;
-  transform: translate(0px, -7px);
+  transform: translate(0px, -6px);
 }
 
 #cart-btn h3 {
   margin: auto;
-  padding-left: 15px;
-  text-align: left;
   font-weight: 600;
 }
 
@@ -365,7 +360,6 @@ a { color: var(--link-color); }
 .product-card h2 {
   margin: 0px;
   padding-left: 5px;
-  font-size: 14px;
   text-align: left;
 }
 
@@ -377,14 +371,13 @@ a { color: var(--link-color); }
   text-align: left;
 }
 
-
 /*******************/
 /* Products Widgets
 /*******************/
 
 .horizontal-slide {
   display: inline-block;
-  width: calc(var(--width) * 0.9);
+  width: var(--width);
   text-align: left;
   overflow: auto;
   white-space: nowrap;
@@ -428,7 +421,6 @@ a { color: var(--link-color); }
   margin-top: 10px;
   font-size: 14px;
   font-weight: 300;
-  color: #4b4b4b;
   text-align: center;
 }
 
