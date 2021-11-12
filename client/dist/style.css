@@ -63,7 +63,7 @@ body::-webkit-scrollbar {
 /* Typography
 /*******************/
 
-h1, h2, h3, h4, p {
+h1, h2, h3, h4, p, span {
   font-family:Helvetica, Arial, sans-serif;
 }
 
@@ -82,7 +82,7 @@ h3 {
 p {
   font-size: 18px;
   text-align: left;
-  color: #1f1e1e;
+  /* color: #1f1e1e; */
 }
 
 a { color: var(--link-color); }
@@ -472,13 +472,103 @@ a { color: var(--link-color); }
 /*******************/
 /* Questions
 /*******************/
+.imgStyle {
+  left:23px;
+  position: relative;
+  margin: 5px;
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+}
+
+.small-input{
+  width: 500px;
+  height: 30px;
+  font-size: 18px;
+}
+
+.large-input{
+  width: 500px;
+  height: 150px;
+  font-size: 18px;
+}
+
+.search {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+.qa-btn {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.searchStyle {
+  height: 40px;
+  width: 1055px;
+  font-size: 20px;
+  background: url(https://cdn1.iconfinder.com/data/icons/hawcons/32/698956-icon-111-search-1024.png) 1000px;
+  background-repeat: no-repeat;
+  background-size: 30px;
+}
+
+.question{
+  margin:30px;
+}
+
+.loadMoreAnswer{
+  font-weight: bold;
+  position:relative;
+  margin: 20px;
+  left: 3px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.modal-title {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal-subtitle {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal-text {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-btn{
+  margin: 5px;
+  display: inline-flex;
+  justify-content: center;
+  height: 25px;
+  width: 150px;
+  cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+  text-align: start;
+  margin: 0 auto;
+}
+
 .click-btn {
   height: 60px;
   width: 200px;
-  margin: 10px;
+  margin: 5px;
+  background: white;
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .close-btn {
@@ -501,7 +591,7 @@ a { color: var(--link-color); }
   width: 600px;
   margin: 0 auto;
   height: auto;
-  max-height: 70%;
+  max-height: 80%;
   max-width: 70%;
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
