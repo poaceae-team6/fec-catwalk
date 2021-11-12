@@ -303,6 +303,8 @@ a { color: var(--link-color); }
   margin: 0px;
   padding-left: 5px;
   text-align: left;
+  font-weight: 600;
+  font-size: 16px;
 }
 .product-card h3 {
   margin: 0px;

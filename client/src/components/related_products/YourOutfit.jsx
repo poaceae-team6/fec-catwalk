@@ -27,7 +27,7 @@ const YourOutfit = (props) => {
       <h2 className='list-title'>YOUR OUTFIT</h2>
       <div className='scroll-container'>
         {scrollPosition > 0 ? 
-          <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)} style={props.darkMode ? {color: 'red'} : {}}>
+          <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)} style={props.darkMode ? {color: '#f3f3f3'} : {}}>
             <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/> 
           </button> : 
         ''}
@@ -38,7 +38,7 @@ const YourOutfit = (props) => {
           })}
         </div>
           {props.outfits.length > 3 && scrollPosition < scrollLength ? 
-          <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)} style={props.darkMode ? {color: 'red'} : {}}>
+          <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)} style={props.darkMode ? {color: '#f3f3f3'} : {}}>
             <MdArrowForwardIos onClick={handleRightArrow.bind(this)} />
           </button>  : 
         ''}

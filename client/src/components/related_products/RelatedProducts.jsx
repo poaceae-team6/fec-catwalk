@@ -64,7 +64,7 @@ const RelatedProducts = (props) => {
         </div>
         <div className='scroll-container'>   
           {scrollPosition > 0 ? 
-            <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)}>
+            <button className='arrow' aria-label="Justify" onClick={handleLeftArrow.bind(this)} style={props.darkMode ? {color: '#f3f3f3'} : {}}>
               <MdArrowBackIos onClick={handleLeftArrow.bind(this)}/>
             </button>  : 
           ''}
@@ -74,7 +74,7 @@ const RelatedProducts = (props) => {
             })}
           </div>
           {relatedProducts.length > 4 && scrollPosition < scrollLength ? 
-            <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)}>
+            <button className='arrow' aria-label="Justify" onClick={handleRightArrow.bind(this)} style={props.darkMode ? {color: '#f3f3f3'} : {}}>
             <MdArrowForwardIos onClick={handleRightArrow.bind(this)}/> 
             </button> : 
           ''}
