@@ -1,6 +1,7 @@
 **/dist/main.js
 config.js
 .DS_Store
+**/dist/**bundle.js
 **/dist/bundle.js
 node_modules
 .vscode
