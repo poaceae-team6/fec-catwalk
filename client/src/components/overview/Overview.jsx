@@ -10,6 +10,7 @@ import OverviewStyle from './OverviewStyle.jsx';
 import {IoMdHeartEmpty} from 'react-icons/io';
 import {IoMdHeart} from 'react-icons/io';
 import { BsHeartFill } from 'react-icons/bs';
+import { ThemeContext } from '../ThemeContext.js';
 
 const Overview = (props) => {
 
@@ -126,40 +127,44 @@ const Overview = (props) => {
     )
   } else {
     return (
-      <div className='overview-container'>
-        <div className='overview-grid'>
-          <h2>{props.currentProduct.name}</h2>
-          <div className='gallery'>
-            {styles[styleIndex].photos[0].url ? <img src={styles[styleIndex].photos[0].url} height='450' alt={'product img for ' + props.currentProduct.name}/> : <img src='./img/image-not-found.webp' height='450' alt='product img not available'/>}
+      <ThemeContext.Consumer>
+        {darkMode => (
+          <div className='overview-container' aria-label="Justify">
+            <div className='overview-grid'>
+              <h2>{props.currentProduct.name}</h2>
+              <div className='gallery' style={darkMode ? {backgroundColor: '#2a2c29'} : {}}>
+                {styles[styleIndex].photos[0].url ? <img src={styles[styleIndex].photos[0].url} height='450' alt={'product img for ' + props.currentProduct.name}/> : <img src='./img/image-not-found.webp' height='450' alt='product img not available'/>}
+              </div>
+              <div className='overview-buttons'>
+                <button id='cart-btn' aria-label="Left Align" style={darkMode ? {background: '#2a2c29', color: '#f3f3f3', border: '1px solid #808080'} : {}}>
+                  <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>ADD TO BAG</h3>
+                </button>
+                <button id='heart-icon' onClick={handleClickHeart.bind(this)} aria-label="Left Align" style={darkMode ? {background: '#2a2c29', color: '#f3f3f3'} : {}}>
+                  {fillHeart ? <IoMdHeart /> : <IoMdHeartEmpty />}
+                </button>
+              </div>
+              <div className='styles'>
+                {styles.map( (style, index) => {
+                  return <OverviewStyle currentStyle={styles[index]} styleIndex={index} setStyleIndex={setStyleIndex} key={index}/>
+                })}
+              </div>
+              <div className='description'>
+                <h3 style={darkMode ? {color: '#f3f3f3', fontSize: '18px', textAlign: 'left'} : {fontSize: '18px', textAlign: 'left'}}>{props.currentProduct.slogan}</h3>
+                <p style={darkMode ? {color: '#f3f3f3', fontSize: '18px', textAlign: 'left'} : {}}>{props.currentProduct.description}</p>
+              </div>
+              <div className='features'>
+                <h3 style={darkMode ? {color: '#f3f3f3'} : {}}>{props.currentProduct.features ? <ul>{props.currentProduct.features.map((feature, index) => {
+                  return <li key={index}><h3>{feature.feature} - {feature.value}</h3></li>
+                })}</ul> : 'no features available'}</h3>
+              </div>
+            </div>
+            <Suspense fallback={<div>is Loading...</div>}>
+            <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
+            <YourOutfit currentProduct={props.currentProduct} outfits={outfits} styleIndex={styleIndex}onUpdateOutfits={updateOutfits.bind(this)} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={deleteFromOutfitList.bind(this)}/>
+            </Suspense>
           </div>
-          <div className='overview-buttons'>
-            <button id='cart-btn'>
-              <h3>ADD TO BAG</h3>
-            </button>
-            <button id='heart-icon' aria-label="Justify" onClick={handleClickHeart.bind(this)}>
-              {fillHeart ? <IoMdHeart stye={{color: 'red'}}/> : <IoMdHeartEmpty />}
-            </button>
-          </div>
-          <div className='styles'>
-            {styles.map( (style, index) => {
-              return <OverviewStyle currentStyle={styles[index]} styleIndex={index} setStyleIndex={setStyleIndex} key={index}/>
-            })}
-          </div>
-          <div className='description'>
-            <h3 style={{fontSize: '18px', textAlign: 'left'}}>{props.currentProduct.slogan}</h3>
-            <p style={{fontSize: '16px'}}>{props.currentProduct.description}</p>
-          </div>
-          <div className='features'>
-            <h3 style={{fontSize: '16px'}}>{props.currentProduct.features ? <ul>{props.currentProduct.features.map((feature, index) => {
-              return <li key={index}><h3>{feature.feature} - {feature.value}</h3></li>
-            })}</ul> : 'no features available'}</h3>
-          </div>
-        </div>
-        <Suspense fallback={<div>is Loading...</div>}>
-        <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>
-        <YourOutfit currentProduct={props.currentProduct} outfits={outfits} styleIndex={styleIndex}onUpdateOutfits={updateOutfits.bind(this)} fetchNewProduct={props.fetchNewProduct.bind(this)} deleteFromOutfitList={deleteFromOutfitList.bind(this)}/>
-        </Suspense>
-      </div>
+        )}
+      </ThemeContext.Consumer>
     )
   }
 };
