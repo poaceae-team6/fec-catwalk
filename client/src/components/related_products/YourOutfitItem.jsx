@@ -5,6 +5,8 @@ import StarRating from '../review/reviewmain/StarRating.jsx';
 import { ThemeContext } from '../ThemeContext.js';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
+import Track from '../TrackerHOC/Track.js';
+
 const YourOutfitItem = (props) => {
 
   // product object (category, name, description, 'features')
@@ -70,16 +72,18 @@ const YourOutfitItem = (props) => {
     return (
       <ThemeContext.Consumer>
         {darkMode => (
-          <div className='product-card' onClick={onClickCard.bind(this)} style={darkMode ? {backgroundColor: '#2a2c29', border: '1px solid #808080'} : {}}>
-            <div className='info-container'>
-              <IoMdCloseCircleOutline onClick={onDelete.bind(this)} className='delete-btn'/>
-              {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}
+          <Track eventName={`Product - ${productData.name} was deleted form Outfit List`} module='Your Outfits'>
+            <div className='product-card' onClick={onClickCard.bind(this)} style={darkMode ? {backgroundColor: '#2a2c29', border: '1px solid #808080'} : {}}>
+              <div className='info-container'>
+                <IoMdCloseCircleOutline onClick={onDelete.bind(this)} className='delete-btn'/>
+                {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}
+              </div>
+              <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
+              <h2 className='product-name'>{styleData.name}</h2>
+              {styleData.sale_price ? <h3><span style={{color: 'red', 'fontWeight': 'bold'}}>${styleData.sale_price}</span> <span style={{'textDecorationLine': 'line-through'}}>${styleData.original_price}</span></h3> : <h3>${styleData.original_price}</h3>}
+              <StarRating rating={reviewData.reduce((total, obj) => obj.rating + total, 0) / reviewData.length}/>
             </div>
-            <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
-            <h2 className='product-name'>{styleData.name}</h2>
-            {styleData.sale_price ? <h3><span style={{color: 'red', 'fontWeight': 'bold'}}>${styleData.sale_price}</span> <span style={{'textDecorationLine': 'line-through'}}>${styleData.original_price}</span></h3> : <h3>${styleData.original_price}</h3>}
-            <StarRating rating={reviewData.reduce((total, obj) => obj.rating + total, 0) / reviewData.length}/>
-          </div>
+          </Track>
         )}
       </ThemeContext.Consumer>
     );

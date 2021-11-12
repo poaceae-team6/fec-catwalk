@@ -135,9 +135,11 @@ const Overview = (props) => {
                 <h2>{props.currentProduct.name}</h2>
                 <h3>{props.currentProduct.description}</h3>
               </div>
+              <Suspense fallback={<div>is Loading...</div>}>
               <div className='gallery' style={darkMode ? {backgroundColor: '#2a2c29'} : {}}>
                 {styles[styleIndex].photos[0].url ? <img src={styles[styleIndex].photos[0].url} height='450' alt={'product img for ' + props.currentProduct.name}/> : <img src='./img/image-not-found.webp' height='450' alt='product img not available'/>}
               </div>
+              </Suspense>
               <div className='overview-buttons'>
                 <button id='cart-btn' aria-label="Left Align" style={darkMode ? {background: '#2a2c29', color: '#f3f3f3', border: '1px solid #808080'} : {}}>
                   <h3>ADD TO BAG</h3>
@@ -160,6 +162,7 @@ const Overview = (props) => {
                   return <li key={index}><h3>{feature.feature} - {feature.value}</h3></li>
                 })}</ul> : 'no features available'}</h3>
               </div>
+
             </div>
             <Suspense fallback={<div>is Loading...</div>}>
             <RelatedProducts currentProduct={props.currentProduct} fetchNewProduct={props.fetchNewProduct.bind(this)}/>

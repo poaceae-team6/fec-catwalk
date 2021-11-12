@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, lazy, Suspense} from 'react';
 
 const OverviewStyle = (props) => {
 

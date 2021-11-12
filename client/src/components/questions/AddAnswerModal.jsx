@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Error from './Error.jsx';
 import axios from 'axios';
 import { ThemeContext } from '../ThemeContext.js';
+import Track from '../TrackerHOC/Track.js';
 
 const AddAnswerModal = (props) => {
 
@@ -184,7 +185,9 @@ const AddAnswerModal = (props) => {
                {image && image.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} alt=''/>)}
                {state.error && <Error msg={state.msg} />}
                <p></p>
-               <input className={darkMode ? 'click-btn-dark' : 'click-btn'} type='submit' value='submit' />
+               <Track eventName={`User Submits an Answer`} module='Answers'>
+                <input className={darkMode ? 'click-btn-dark' : 'click-btn'} type='submit' value='submit' />
+               </Track>
                <button className={darkMode ? 'click-btn-dark' : 'click-btn'} onClick={props.close}>cancel</button>
              </form>
 

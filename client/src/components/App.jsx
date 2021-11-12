@@ -3,6 +3,8 @@ import React, { useState, useContext, useEffect, lazy, Suspense} from 'react';
 import { ThemeContext } from './ThemeContext.js';
 import axios from 'axios';
 
+import Track from './TrackerHOC/Track.js';
+import Wrapper from './TrackerHOC/Wrapper.js';
 
 // Theme Toggle Button Icons
 import { BsToggleOn } from 'react-icons/bs';
@@ -79,19 +81,23 @@ const App = (props) => {
           <div className="logo" style={darkMode ? {backgroundColor: '#3E6765'} : {}}>
             <img src='./img/poaceae-logo.webp' alt='poaceae-company-logo' style={darkMode ? {filter: 'invert(99%) sepia(60%) saturate(30%) hue-rotate(60deg) brightness(130%) contrast(86%)'} : {}}/>
           </div>
-          <div className='theme-setting'>
-            <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
-            <button id='toggle-btn' style={darkMode ? {color: '#f3f3f3'} : {}} onClick={toggleMode.bind(this)} aria-label="Right Align">
-              {darkMode ? <BsToggleOn /> : <BsToggleOff />}
-            </button>
-          </div>
-          <div className="announce-container">
-            <h3 style={{fontWeight: '300'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! - SALE / DISCOUNT <b>OFFER</b> - NEW PRODUCT HIGHLIGHT</h3>
-          </div>
+            <div className='theme-setting'>
+              <h3>{darkMode ? "Dark Mode" : "Light Mode"}</h3>
+              <Track eventName='user toggled theme' module='Theme'>
+                <button id='toggle-btn' style={darkMode ? {color: '#f3f3f3'} : {}} onClick={toggleMode.bind(this)} aria-label="Right Align">
+                {darkMode ? <BsToggleOn /> : <BsToggleOff />}
+                </button>
+              </Track>
+            </div>
+          <Track eventName='announcement link clicked' module='Announcement'>
+            <div className="announce-container">
+              <h3 style={{fontWeight: '300'}}>SITE-WIDE ANNOUNCEMENT MESSAGE! - SALE / DISCOUNT <b>OFFER</b> - NEW PRODUCT HIGHLIGHT</h3>
+            </div>
+          </Track>
           <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)}/>
           <Suspense fallback={<div>is Loading...</div>}>
           <QuestionList darkMode={darkMode} id={currentProduct.id} name={currentProduct.name}/>
-          <ReviewMain darkMode={darkMode} productId={currentProduct.id} />
+          <ReviewMain darkMode={darkMode} productId={currentProduct.id} productName={currentProduct.name}/>
           </Suspense>
         </div>
       </ThemeContext.Provider>
