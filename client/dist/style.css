@@ -545,10 +545,6 @@ a { color: var(--link-color); }
   cursor: pointer;
 }
 
-::-webkit-input-placeholder {
-  text-align: start;
-  margin: 0 auto;
-}
 
 .click-btn {
   height: 60px;
@@ -603,6 +599,10 @@ a { color: var(--link-color); }
   overflow: auto;
 }
 
+.popup-inner-modal::-webkit-scrollbar {
+  display: none;
+}
+
 .popup-inner-modal-dark {
   position: relative;
   width: 600px;
@@ -616,6 +616,10 @@ a { color: var(--link-color); }
   padding: 20px;
   border: 1px solid #999;
   overflow: auto;
+}
+
+.popup-inner-modal-dark::-webkit-scrollbar {
+  display: none;
 }
 
 /*******************/

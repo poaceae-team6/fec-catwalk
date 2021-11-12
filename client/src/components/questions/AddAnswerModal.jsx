@@ -180,12 +180,12 @@ const AddAnswerModal = (props) => {
                <p>Your Answer *</p>
                <input onChange={answerChange} className='large-input' type='text' placeholder='your answer here...' />
                <p>Do you want to upload your pictures? (up to 5) </p>
-               <input className='modal-btn' onChange={onImageChange} type='file' name='upload image' multiple />
+               <input onChange={onImageChange} type='file' name='upload image' multiple />
                {image && image.map((img, index) => <img style={{ height: '40px', margin: '5px' }} key={index} src={img} alt=''/>)}
                {state.error && <Error msg={state.msg} />}
                <p></p>
-               <input className='modal-btn' type='submit' value='submit' />
-               <button className='modal-btn' onClick={props.close}>cancel</button>
+               <input className={darkMode ? 'click-btn-dark' : 'click-btn'} type='submit' value='submit' />
+               <button className={darkMode ? 'click-btn-dark' : 'click-btn'} onClick={props.close}>cancel</button>
              </form>
 
            </div>
