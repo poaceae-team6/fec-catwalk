@@ -134,9 +134,9 @@ const AddQuestionModal = (props) => {
                 {state.error && <Error msg={state.msg} />}
                 <br></br>
                 <Track eventName={`User Submits an Question`} module='Questions'>
-                  <input className='modal-btn' type='submit' value='submit' />
+                  <input className={darkMode ? 'click-btn-dark' : 'click-btn'} type='submit' value='submit' />
                 </Track>
-                <input className='modal-btn' onClick={props.close} type='submit' value='cancel' />
+                <input className={darkMode ? 'click-btn-dark' : 'click-btn'} onClick={props.close} type='submit' value='cancel' />
                 <br></br>
               </form>
             </div>

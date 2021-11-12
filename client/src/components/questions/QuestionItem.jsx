@@ -111,7 +111,7 @@ const QuestionItem = (props) => {
           {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
           <p>
             <span style={questionBody}>Q: {props.question.question_body}</span>
-            <span style={{float: 'right', color:'grey'}}>
+            <span style={{float: 'right',}}>
             <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes</span> <span>({state.helpfulNum})</span>  |
             <span style={yesButton} onClick={openModal}>Add answer</span>
             </span>
@@ -130,7 +130,7 @@ const QuestionItem = (props) => {
         {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
-          <span style={{float: 'right', color:'grey'}}>
+          <span style={{float: 'right',}}>
           <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes </span> <span>({state.helpfulNum})</span>  |
           <span style={yesButton} onClick={openModal}>Add answer</span>
           </span>
@@ -145,7 +145,7 @@ const QuestionItem = (props) => {
         {modalShow && <AddAnswerModal getData={props.getData} questionId={questionId} question={props.question.question_body} name={props.name} close={closeModal}/>}
         <p>
           <span style={questionBody}>Q: {props.question.question_body}</span>
-          <span style={{float: 'right', color:'grey'}}>
+          <span style={{float: 'right',}}>
           <span>helpful? </span> <span style={yesButton} onClick={helpful}> Yes </span> <span>({state.helpfulNum})</span>  |
           <span style={yesButton} onClick={openModal}>Add answer</span>
           </span>
