@@ -29,8 +29,8 @@ The ratings and reviews widget breaks down rating and review information about t
 
 # Technologies & Performance
 Our team used React to build dynamically-rendered for an optimized user experience. On server-side, we used Express.routers to connect to API and 
-![performance](https://user-images.githubusercontent.com/39775868/141662060-f360062f-ccf0-406f-a74c-062f0c269676.png =100x20)
-![Screen Shot 2021-11-13 at 3 37 40 PM](https://user-images.githubusercontent.com/39775868/141662096-7dd16241-b2cd-42a2-9938-1a51d0c411eb.png =100x20)
+![performance](https://user-images.githubusercontent.com/39775868/141662060-f360062f-ccf0-406f-a74c-062f0c269676.png)
+![Screen Shot 2021-11-13 at 3 37 40 PM](https://user-images.githubusercontent.com/39775868/141662096-7dd16241-b2cd-42a2-9938-1a51d0c411eb.png)
 
 # Installation
 1. Install the project with npm
