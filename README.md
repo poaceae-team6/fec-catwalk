@@ -9,9 +9,7 @@
 ![Webpack](https://img.shields.io/badge/-webpack-20232A?style=for-the-badge&logo=webpack&logoColor=blueviolet)
 ![Babel](https://img.shields.io/badge/-Babel-20232A?style=for-the-badge&logo=babel&logoColor=yellow)
 
-<p align="center">
-  <img alt="app demo" src="client/demo.gif">
-</p>
+![poaceae-project-catwalk-demo](https://user-images.githubusercontent.com/39775868/141661854-d121d7e9-45a0-4709-9843-339f1fcd489d.gif)
 
 # Project Catwalk
 Hack Reactor front end capstone. We are approached by our client with the tasks on updating an old ecommerce front end to boost the site's sales. As a team of three, we built four main components which were the Overview, Related Products, Questions & Answers, and Ratings & Reviews. To accelarate our development time and enriche the e-commerce browsing experience, we implemented React hooks, Context, and HOC into our production.
@@ -43,8 +41,3 @@ The ratings and reviews widget breaks down rating and review information about t
 npm install 
 npm run server-dev
 ```
-'npm install'
-'npm run watch'
-Move index.html into public
-  -- modify index.html to include new DIV with id="app"
-  -- modify script tag to include main.js
