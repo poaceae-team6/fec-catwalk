@@ -25,7 +25,7 @@ The second part is the Your Outfits section, which is unique to each user. It gi
 
 
 # Ratings and Reviews
-The ratings and reviews widget breaks down rating and review information about the given product, all of which information is provided by users of the site. On page load the widget will request information from the api to dynamically render the correct information on the DOM. You can also interact with the widget to filter, sort, and add reviews.
+The ratings and reviews widget breaks down rating and review information about the given product, all of which information is provided by users of the site. On page load the widget will request information from the api to dynamically render the correct information on the DOM. You can also interact with the widget to sort, report, vote helpful and add reviews. In adding reviews, the users can put in ratings on the product as well as each related characteristics, upload review photos and more to share. Upon submission, all entries will be validated.
 
 # Technologies & Performance
 Our team used React to build dynamically-rendered for an optimized user experience. On server-side, we used Express.routers to connect to API and 
