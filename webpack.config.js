@@ -10,8 +10,8 @@ const DIST_DIR = path.join(__dirname, "/client/dist");
 const config = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    filename: 'bundle.js',
+    chunkFilename: '[name].chunk.js',
     path: DIST_DIR,
   },
   module: {
@@ -25,19 +25,19 @@ const config = {
       // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: 'initial',
-          name: 'vendor',
-          test: 'vendor',
-          enforce: true
-        },
-      }
-    },
-    runtimeChunk: true
-  }
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendor: {
+  //         chunks: 'initial',
+  //         name: 'vendor',
+  //         test: 'vendor',
+  //         enforce: true
+  //       },
+  //     }
+  //   },
+  //   runtimeChunk: true
+  // }
 };
 
 module.exports = () => {

@@ -71,7 +71,7 @@ const QuestionItem = (props) => {
   }
 
   // style here
-  const questionBody = { fontWeight: 'bold', display:'inline-block', maxWidth:'600px' };
+  const questionBody = { fontWeight: 'bold', display:'inline-block', maxWidth:'500px', overflow: 'scroll' };
   const yesButton = {textDecoration: 'underline', margin: '5px', cursor: 'pointer'}
 
 
