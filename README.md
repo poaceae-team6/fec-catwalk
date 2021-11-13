@@ -22,7 +22,9 @@ Related Products widgets consist of two parts. One is the Related products which
 The second part is the Your Outfits section, which is unique to each user. It gives the user the ability to save the current style of the product by clicking the Add to Outfit card or clicking the heart icon in Overview. The Outfit List will persist after refresh so the user maintans access to previously added items.
 
 # Questions & Answers
-
+The question and answer consist of three parts. The first one is the Search bar. When user input more than 3 characters, the filter will be activated, and when user clear the input to 2 characters or less, the filter will be stopped. 
+The second part is the Question list, the page will display two questions by default, users are able to load more questions, vote for helpfulness, and add specific questions. 
+The third part is the Answer, for each question, the page will display two answers by default. User can load more answers, vote helpfulness and report the answers. User can also submit their own answers with photos. 
 
 # Ratings and Reviews
 The ratings and reviews widget breaks down rating and review information about the given product, all of which information is provided by users of the site. On page load the widget will request information from the api to dynamically render the correct information on the DOM. You can also interact with the widget to sort, report, vote helpful and add reviews. In adding reviews, the users can put in ratings on the product as well as each related characteristics, upload review photos and more to share. Upon submission, all entries will be validated.
