@@ -58,7 +58,7 @@ const YourOutfitItem = (props) => {
   } else {
     return (
       <Track eventName={`Product - ${productData.name} was deleted form Outfit List`} module='Your Outfits'>
-        <div className='product-card' onClick={onClickCard.bind(this)} style={props.darkMode ? {backgroundColor: '#2a2c29', border: '1px solid #808080'} : {}}>
+        <div className='product-card' onClick={onClickCard.bind(this)} style={props.darkMode ? {backgroundColor: '#2a2c29', border: '0px'} : {}}>
           <div className='info-container'>
             <IoMdCloseCircleOutline onClick={onDelete.bind(this)} className='delete-btn'/>
             {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}

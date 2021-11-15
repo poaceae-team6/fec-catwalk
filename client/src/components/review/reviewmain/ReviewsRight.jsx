@@ -10,7 +10,7 @@ function ReviewsRight({ productId, productName, darkMode }) {
   //In-line styling
   const buttonStyles = {
     height: '60px',
-    width: '200px',
+    width: '300px',
     marginLeft: '20px',
     margin: '10px',
     padding:'10px',
@@ -22,7 +22,7 @@ function ReviewsRight({ productId, productName, darkMode }) {
 
   const buttonStylesDark = {
     height: '60px',
-    width: '200px',
+    width: '300px',
     marginLeft: '20px',
     margin: '10px',
     padding:'10px',
@@ -30,7 +30,7 @@ function ReviewsRight({ productId, productName, darkMode }) {
     fontWeight: 'bold',
     background: '#2a2c29',
     color: '#f3f3f3',
-    border: '1px solid #808080'
+    border: '0px'
   }
 
   const sortStyles = {
