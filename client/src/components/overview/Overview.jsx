@@ -120,10 +120,10 @@ const Overview = (props) => {
           </div>
           </Suspense>
           <div className='overview-buttons'>
-            <button id='cart-btn' aria-label="Left Align" style={props.darkMode ? {background: '#2a2c29', color: '#f3f3f3', border: '1px solid #808080'} : {}}>
+            <button id='cart-btn' aria-label="Left Align" style={props.darkMode ? {background: '#2a2c29', color: '#f3f3f3', border: '0px'} : {}}>
               <h3>ADD TO BAG</h3>
             </button>
-            <button id='heart-icon' onClick={handleClickHeart.bind(this)} aria-label="Left Align" style={props.darkMode ? {background: '#2a2c29', color: '#f3f3f3'} : {}}>
+            <button id='heart-icon' onClick={handleClickHeart.bind(this)} aria-label="Left Align" style={props.darkMode ? {background: '#2a2c29', color: '#f3f3f3', border: '0px'} : {}}>
               {fillHeart ? <IoMdHeart /> : <IoMdHeartEmpty />}
             </button>
           </div>

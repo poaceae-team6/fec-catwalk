@@ -16,7 +16,7 @@ const ProgressBar = (props) => {
   const fillerStyles = {
     height: '100%',
     width: `${props.ratingBreakdown}%`,
-    backgroundColor: '#4d4d4d'
+    backgroundColor: 'grey'
 
   }
 

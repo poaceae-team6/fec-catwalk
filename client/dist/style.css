@@ -124,6 +124,7 @@ a { color: var(--link-color); }
 .questions-container {
   margin: auto;
   width: var(--width);
+
 }
 .reviews-container {
   margin: auto;
@@ -249,7 +250,7 @@ a { color: var(--link-color); }
 }
 #cart-btn {
   height: 60px;
-  width: 240px;
+  width: 300px;
   margin-left: 40px;
   background: none;
   border: 1px solid #808080;
@@ -430,6 +431,7 @@ a { color: var(--link-color); }
   display: flex;
   justify-content: flex-start;
   position: relative;
+  margin-top: 30px;
 }
 .searchStyle {
   height: 40px;
@@ -437,9 +439,11 @@ a { color: var(--link-color); }
   font-size: 20px;
   background-repeat: no-repeat;
   background-size: 30px;
+  border: solid 1px grey;
 }
 .question{
-  margin: 0, 30px, 30px, 30px;
+  margin: 5px, 30px, 30px, 30px;
+  border-bottom: solid lightgrey 1px;
 }
 .loadMoreAnswer{
   font-weight: bold;
@@ -479,8 +483,8 @@ a { color: var(--link-color); }
 }
 .click-btn {
   height: 60px;
-  width: 200px;
-  margin: 5px;
+  width: 300px;
+  margin: 10px;
   background: white;
   padding: 10px;
   font-size: 16px;
@@ -490,15 +494,15 @@ a { color: var(--link-color); }
 }
 .click-btn-dark {
   height: 60px;
-  width: 200px;
-  margin: 5px;
+  width: 300px;
+  margin: 10px;
   background: rgb(42, 44, 41);
   color:rgba(243, 243, 243);
   padding: 10px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  border: 1px solid rgb(128, 128, 128);
+  border: 0px;
 }
 .close-btn {
   float: right;
@@ -575,7 +579,7 @@ a { color: var(--link-color); }
   stroke-opacity: 0.01
 }
 .star-ratings .fill-ratings {
-  color: #2a2c29;
+  color:grey;
   padding-left: 2px;
   position: absolute;
   z-index: 1;

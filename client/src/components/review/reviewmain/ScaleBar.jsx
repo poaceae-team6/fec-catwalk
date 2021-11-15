@@ -21,10 +21,11 @@ const ScaleBar = (props) => {
   }
 
   const fillerStyles = {
-    height: '10px',
-    width: '10px',
+    height: '12px',
+    width: '12px',
     paddingLeft: `${Number(Number(props.scale) / 5).toFixed(2) * 100}%`,
-    inlineAlign: 'top'
+    inlineAlign: 'top',
+    color: 'grey'
   }
 
   return (

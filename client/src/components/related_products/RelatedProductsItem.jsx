@@ -61,7 +61,7 @@ const RelatedProductsItem = (props) => {
   } else {
     return (
       <Track eventName={`Product - ${productData.name} was clicked`} module='Related Products'>
-        <div className='product-card' onClick={onClickCard.bind(this)} style={props.darkMode ? {backgroundColor: '#2a2c29', border: '1px solid #808080'} : {}}>
+        <div className='product-card' onClick={onClickCard.bind(this)} style={props.darkMode ? {backgroundColor: '#2a2c29', border: '0px'} : {}}>
           <div className='info-container'>
             <FaRegStar onClick={toggleModal.bind(this)} className='info-btn'/>
             {styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}

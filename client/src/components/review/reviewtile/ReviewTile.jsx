@@ -13,7 +13,8 @@ function ReviewTile({ darkMode, review }) {
     width: 'auto',
     lineHeight: '1.8',
     display: showReview ? 'block' : 'none',
-    marginTop: '20px'
+    marginTop: '20px',
+    borderBottom: 'solid 1px lightgrey'
   }
   const tagStyles = {
     float:'right',
@@ -99,7 +100,7 @@ function ReviewTile({ darkMode, review }) {
           value={review.review_id}
           onClick={reportReview}>Report </button>
       </div>
-      <hr style={{marginTop: '10px', orderBottomWidth: '1px', color: '#D8E1D5'}} />
+
     </div>
   );
 }
