@@ -79,10 +79,10 @@ const App = (props) => {
             </div>
           </Track>
           <Overview currentProduct={currentProduct} fetchNewProduct={fetchNewProduct.bind(this)} darkMode={darkMode}/>
-          <Suspense fallback={<div>is Loading...</div>}>
-          <QuestionList darkMode={darkMode} id={currentProduct.id} name={currentProduct.name}/>
-          <ReviewMain darkMode={darkMode} productId={currentProduct.id} productName={currentProduct.name}/>
-          </Suspense>
+          {/* <Suspense fallback={<div>is Loading...</div>}> */}
+          {/* <QuestionList darkMode={darkMode} id={currentProduct.id} name={currentProduct.name}/> */}
+          {/* <ReviewMain darkMode={darkMode} productId={currentProduct.id} productName={currentProduct.name}/> */}
+          {/* </Suspense> */}
         </div>
       </ThemeContext.Provider>
     );

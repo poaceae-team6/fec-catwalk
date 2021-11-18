@@ -3,6 +3,7 @@ const axios = require('axios');
 let router = express.Router();
 
 const url = require('../atelier_api.js');
+// const url = 'http://localhost:3010'
 const {TOKEN} = require('../../config.js');
 
 // .route adds onto the path that is stated in app.js
@@ -28,7 +29,7 @@ router
       console.log(error);
     })
   });
-  
+
 // GET specific product by id
 router
   .route('/:id')
@@ -42,6 +43,7 @@ router
     })
     .then(response => {
       //console.log(resonse.data);
+      console.log(response.data)
       res.send(response.data);
     })
     .catch(error => {
@@ -61,13 +63,14 @@ router
       }
     })
     .then(response => {
+      console.log(response.data)
       res.send(response.data);
     })
     .catch(error => {
       console.log(error);
     })
   });
-  
+
 // GET related products ids for specific product
 router
   .route('/:id/related')
@@ -80,7 +83,7 @@ router
       }
     })
     .then(response => {
-      //console.log(resonse.data);
+      console.log(response.data);
       res.send(response.data);
     })
     .catch(error => {
