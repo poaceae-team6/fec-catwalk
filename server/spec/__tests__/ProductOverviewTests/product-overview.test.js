@@ -3,11 +3,27 @@ const pactum = require('pactum');
 const url = require('../../../atelier_api.js')
 
 test('should retrieve product information', () => {
-  expect(3).toBe(4)
-  // return pactum.spec()
-  //   .get(`${url}/products`)
-  //   .expectStatus(200)
-
+  return pactum.spec()
+    .get(`${url}/products`)
+    .expectStatus(200)
+    .expectJson([{
+          "id": 1,
+          "name": "Camo Onesie",
+          "slogan": "Blend in to your crowd",
+          "description": "The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest surroundings.",
+          "category": "Jackets",
+          "default_price": 140,
+          // "features": [
+          //     {
+          //         "feature": "Fabric",
+          //         "value": "Canvas"
+          //     },
+          //     {
+          //         "feature": "Buttons",
+          //         "value": "Brass"
+          //     }
+          // ]
+    }])
 })
 
 // import axios from 'axios';
