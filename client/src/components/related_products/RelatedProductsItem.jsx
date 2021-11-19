@@ -71,7 +71,7 @@ const RelatedProductsItem = (props) => {
             <FaRegStar onClick={toggleModal.bind(this)} className='info-btn'/>
             {styleData.photos.length === 0 ? <img src='./img/image-not-found.webp' height='220' alt='product img not available'/> : styleData.photos[0].thumbnail_url ? <img src={styleData.photos[0].thumbnail_url} height='220' alt={'product img for ' + styleData.name}/> : <img src='./img/image-not-found.webp' height='220' alt='product img not available'/>}
           </div>
-          <h3>CATEGORY: {productData.category.toUpperCase()}</h3>
+          <h3>CATEGORY: {productData.category ? productData.category.toUpperCase() : <p>No Category</p>}</h3>
           <h2 className='product-name'>{productData.name}</h2>
           {styleData.sale_price ? <h3><span style={{color: 'red', 'fontWeight': 'bold'}}>${styleData.sale_price}</span> <span style={{'textDecorationLine': 'line-through'}}>${styleData.original_price}</span></h3> : <h3>${styleData.original_price}</h3>}
           {/* <StarRating rating={reviewData.reduce((total, obj) => obj.rating + total, 0) / reviewData.length}/> */}
