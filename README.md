@@ -16,7 +16,7 @@
 ![poaceae-project-catwalk-demo](https://user-images.githubusercontent.com/39775868/141661854-d121d7e9-45a0-4709-9843-339f1fcd489d.gif)
 
 # Project Catwalk
-Hack Reactor front end capstone. We are approached by our client with the tasks on updating an old ecommerce front end to boost the site's sales. As a team of three, we built four main components which were the Overview, Related Products, Questions & Answers, and Ratings & Reviews. To accelarate our development time and enriche the e-commerce browsing experience, we implemented React hooks, Context, and HOC into our production.
+Hack Reactor front end capstone. We are tasked on updating an old ecommerce front end to achieve intuitive user experience. As a team of three, we built four main components which were the Overview, Related Products, Questions & Answers, and Ratings & Reviews. To accelarate our development time and enriche the e-commerce browsing experience, we implemented React hooks, Context, and HOC into our production.
 
 # Overview
 The Overview section provides a quick insight on the current product. Showing the different styles available, current price, description, and features of the product. The Overview displays the hero image front and center. Selecting the icons will update the hero image to the selected style. Toggling the heart icon will add/remove the currently selected style of the product from the Outfit List.
